@@ -1,0 +1,23 @@
+/* .main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:flex-start;
+  gap: 2.5rem;
+  padding: 6rem;
+  min-height: 100vh;
+  width: 100%;
+} */
+
+.summary {
+  max-width: 62ch;
+}
+
+.summary > p {
+  margin-bottom: 1rem;
+}
+
+.summary > p > strong:hover {
+  background-color: #c6c6c6;
+  cursor: pointer;
+}
