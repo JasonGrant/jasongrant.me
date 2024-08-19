@@ -3,6 +3,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google";
 import { Theme, ThemePanel } from '@radix-ui/themes';
+import PageLayout from "@/ui/PageLayout";
+import Home from "./home/Home";
+import styles from "./layout.module.css";
 import '@radix-ui/themes/styles.css';
 import "./globals.css";
 
@@ -19,18 +22,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-        <body className={inter.variable}>
-          <Theme 
+        <body className={`${inter.variable} ${styles.reset}`}>
+          <Theme
+            appearance="light"
             accentColor="blue" 
             radius="large" 
           >
-            {children}
+            <PageLayout
+              leftZone={<Home></Home>} 
+              children={children}
+            ></PageLayout>
           </Theme>
           <SpeedInsights />
           <Analytics />

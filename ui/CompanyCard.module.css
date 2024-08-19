@@ -1,0 +1,11 @@
+.companyinfoswitch {
+    --color-surface: none;
+}
+
+.cardcontainer {
+    height: 100%;
+}
+
+.companycard {
+    height: 100%;
+}

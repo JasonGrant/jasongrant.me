@@ -1,0 +1,81 @@
+.container {
+    display: grid;
+    grid-template-areas: "left right";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100dvh;
+    overflow: hidden;
+}
+
+main.leftZone {
+    height: 100%;
+    grid-area: left;
+    overflow-y: scroll;
+}
+
+aside.rightZone {
+    height: 100%;
+    grid-area: right;
+    background-image: url('/sequoialight.jpg');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+aside.home {
+    background-image: url('/HomeBackground.jpg');
+}
+aside.about {
+    background-image: url('/HomeBackground.jpg');
+}
+aside.klaviyo {
+    background-image: url('/KlaviyoBackground.jpg');
+}
+aside.vertex {
+    background-image: url('/VertexBackground.jpg');
+}
+aside.collaborative {
+    background-image: url('/CollaborativeBackground.jpg');
+}
+aside.dassault {
+    background-image: url('/DassaultBackground.jpg');
+}
+
+.switcher {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: calc(100dvh - 3rem) 3rem;
+        position: relative;
+    }
+    .leftZone {
+        display: none;
+    }
+    
+    .leftZone[data-active="true"] {
+        display: block;
+        grid-row: 1 / 3;
+    }
+    
+    .rightZone {
+        display: none;
+    }
+    
+    .rightZone[data-active="true"] {
+        display: block;
+        grid-area: unset;
+        grid-row: 1 / 3;
+    }
+
+    .switcher {
+        grid-row: 2 / 3;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+

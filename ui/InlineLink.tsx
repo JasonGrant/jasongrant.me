@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from '@radix-ui/themes';
+import Link from 'next/link'
+import { Code } from '@radix-ui/themes';
 import styles from './InlineLink.module.css';
 
 interface InlineLinkProps {
@@ -9,9 +10,9 @@ interface InlineLinkProps {
 
 const InlineLink: React.FC<InlineLinkProps> = ({ label, url }) => {
     return (
-        <Link href={url} target="_blank" size="3" weight="bold">
-            <code>{label}</code>
-        </Link>
+        <Code>
+            <Link href={url} className={styles.linkreset}>{label}</Link>
+        </Code>
     );
 };
 
