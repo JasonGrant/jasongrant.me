@@ -11,9 +11,8 @@ export default function CollaborativeWorkPage() {
         <Flex direction="column" gap="4">
             <Heading as="h2" size="6">Integrated Planning</Heading>
             <Text as="p" size="3">
-                Jason created this video to demonstrate the integrated planning process 
-                which is the first of a multi-app strategy. Jason was responsible for the
-                script, visuals, voiceover, and editing.
+                Empowers Architects to quickly conceptualize the shape of a building's envelope and 
+                plan the interior spaces to accomodate the building's program based on client requirements.
             </Text>
             <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
                 <iframe 
@@ -25,6 +24,11 @@ export default function CollaborativeWorkPage() {
                 </iframe>
             </div>
             <script src="https://player.vimeo.com/api/player.js"></script>
+            <Text as="p" size="2">
+                Jason created this video to demonstrate the integrated planning process 
+                which is the first of a multi-app strategy. Jason was responsible for the
+                script, visuals, voiceover, and editing.
+            </Text>
             {/* <WorkCard
                 imageUrl="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
                 imageAltText="Image representing a design system"

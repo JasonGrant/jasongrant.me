@@ -11,7 +11,23 @@
   min-height: 100vh;
   width: 100%;
 } */
+.Home_main__l7_XN {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 1fr 40px;
+  padding-right: 1rem;
+  overflow: hidden;
+}
 
+.Home_scrollarea__EewfT {
+  overflow: hidden;
+}
+
+/* .scrollarea {
+  overflow-y: scroll;
+  height: 100%;
+} */
 
 /* .main {
   height: 100%;
@@ -54,70 +70,9 @@ body.layout_reset__dVA5E {
     padding: 0;
 }
 
-/* .container {
-    display: grid;
-    grid-template-areas: "left right";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100dvh;
-    overflow: hidden;
+.layout_bodystyles__oEqe0 {
+    height: 100dvh;
 }
-@media (max-width: 768px) {
-    .container {
-        grid-template-areas: 
-            "left";
-        grid-template-columns: 1fr;
-        grid-template-rows: 100dvh;
-    } */
-    /* aside.rightZone {
-        display: none;
-    }
-    aside.rightZone {
-        display:block;
-
-        .container {
-            grid-template-areas: 
-                "right";
-            grid-template-columns: 1fr;
-            grid-template-rows: 100dvh;
-        }
-    } */
-/* }
-
-.switcher {
-    position: absolute;
-} */
-
-/* .container {
-    display: grid;
-    grid-template-areas: 
-        "title title"
-        "left right"
-        "footer footer";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    height: 100vh;
-}
-  
-.titleZone {
-    grid-area: title;
-    padding: 10px;
-    background-color: #f8f9fa;
-    text-align: center;
-} */
-
-/* main.leftZone {
-    height: 100%;
-    grid-area: left;
-    overflow-y: scroll;
-} */
-
-/* .footerZone {
-    grid-area: footer;
-    padding: 10px;
-    background-color: #f8f9fa;
-    text-align: center;
-} */
-
 
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./app/globals.css ***!
@@ -27103,11 +27058,11 @@ body.layout_reset__dVA5E {
   \********************************************************************************************************************************************************************************************************************************************************************/
 
 .Navigation_trigger__t28aW {
-  width: 50%;
+  width: 60%;
 }
 
 .Navigation_item__JjvEe {
-  width: calc(100vw * 0.5 - 1rem);
+  width: calc(100vw * 0.6 - 1rem);
 }
 
 /* .NavigationMenuRoot {
@@ -27422,22 +27377,22 @@ aside.PageLayout_rightZone__6w5L_ {
 }
 
 aside.PageLayout_home__rdioe {
-    background-image: url('/HomeBackground.jpg');
+    background-image: url('/backgrounds/HomeBackground.jpg');
 }
 aside.PageLayout_about__a7BuF {
-    background-image: url('/HomeBackground.jpg');
+    background-image: url('/backgrounds/HomeBackground.jpg');
 }
 aside.PageLayout_klaviyo__Z96IU {
-    background-image: url('/KlaviyoBackground.jpg');
+    background-image: url('/backgrounds/KlaviyoBackground.jpg');
 }
 aside.PageLayout_vertex__Z9OCI {
-    background-image: url('/VertexBackground.jpg');
+    background-image: url('/backgrounds/VertexBackground.jpg');
 }
 aside.PageLayout_collaborative__gY9Vh {
-    background-image: url('/CollaborativeBackground.jpg');
+    background-image: url('/backgrounds/CollaborativeBackground.jpg');
 }
 aside.PageLayout_dassault__6d8_h {
-    background-image: url('/DassaultBackground.jpg');
+    background-image: url('/backgrounds/DassaultBackground.jpg');
 }
 
 .PageLayout_switcher__FLzsd {

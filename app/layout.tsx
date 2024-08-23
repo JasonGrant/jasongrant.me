@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <body className={`${inter.variable} ${styles.reset}`}>
+        <body className={`${inter.variable} ${styles.reset} ${styles.bodystyles}`}>
           <Theme
             appearance="light"
             accentColor="blue" 

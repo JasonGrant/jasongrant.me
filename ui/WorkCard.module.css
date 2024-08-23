@@ -1,0 +1,9 @@
+.cardhover {
+    cursor: pointer;
+    border: 1.5px solid rgb(0, 0, 0, 0);
+}
+.cardhover:hover {
+    cursor: pointer;
+    border: 1.5px solid rgb(0, 0, 0, 1);
+    transition: border 0.3s ease-in-out;
+}

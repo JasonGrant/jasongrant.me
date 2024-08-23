@@ -6,20 +6,26 @@ import styles from "./Home.module.css";
 
 export default function Home() {
   return (
-      <Container height="100%" size="2" px="7" pb="7" className={styles.main}>
+    <div className={styles.main}>
+      <Container size="2" px="7" pb="7">
         <Flex direction="row" gap="4" justify="between" pt="7" py="4" className={styles.title}>
           <InlineLink label="Jason Grant" url="/" />
-          {/* <Button 
-                  color="gray"
-                  variant="soft"
-                  size="3"
-              >
-                  <SunIcon />
-              </Button> */}
         </Flex>
-        <Heading as="h2">Optimizing Design, Elevating Systems</Heading>
-        <HomeNarrative />
-        <HomeTimeline />
       </Container>
+      <ScrollArea type="always" scrollbars="vertical" size="2" radius="full" className={styles.scrollarea}>
+        <Container size="2" px="7" pb="7">
+          <HomeNarrative />
+          <HomeTimeline />
+        </Container>
+      </ScrollArea>
+      <div></div>
+    </div>
+      // <Container size="2" px="7" pb="7" className={styles.main}>
+      //   <ScrollArea type="always" scrollbars="vertical" size="2" radius="full" className={styles.scrollarea} style={{ height: `100%` }}>
+      //     <Heading as="h2">Optimizing Design, Elevating Systems</Heading>
+      //     <HomeNarrative />
+      //     <HomeTimeline />
+      //   </ScrollArea>
+      // </Container>
   );
 }

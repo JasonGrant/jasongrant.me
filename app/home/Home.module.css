@@ -8,7 +8,23 @@
   min-height: 100vh;
   width: 100%;
 } */
+.main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 1fr 40px;
+  padding-right: 1rem;
+  overflow: hidden;
+}
 
+.scrollarea {
+  overflow: hidden;
+}
+
+/* .scrollarea {
+  overflow-y: scroll;
+  height: 100%;
+} */
 
 /* .main {
   height: 100%;

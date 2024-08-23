@@ -22,22 +22,22 @@ aside.rightZone {
 }
 
 aside.home {
-    background-image: url('/HomeBackground.jpg');
+    background-image: url('/backgrounds/HomeBackground.jpg');
 }
 aside.about {
-    background-image: url('/HomeBackground.jpg');
+    background-image: url('/backgrounds/HomeBackground.jpg');
 }
 aside.klaviyo {
-    background-image: url('/KlaviyoBackground.jpg');
+    background-image: url('/backgrounds/KlaviyoBackground.jpg');
 }
 aside.vertex {
-    background-image: url('/VertexBackground.jpg');
+    background-image: url('/backgrounds/VertexBackground.jpg');
 }
 aside.collaborative {
-    background-image: url('/CollaborativeBackground.jpg');
+    background-image: url('/backgrounds/CollaborativeBackground.jpg');
 }
 aside.dassault {
-    background-image: url('/DassaultBackground.jpg');
+    background-image: url('/backgrounds/DassaultBackground.jpg');
 }
 
 .switcher {

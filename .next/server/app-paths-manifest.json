@@ -1,9 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/klaviyo/page": "app/klaviyo/page.js",
-  "/collaborative/work/page": "app/collaborative/work/page.js",
-  "/dassault/page": "app/dassault/page.js",
-  "/vertex/page": "app/vertex/page.js",
-  "/collaborative/page": "app/collaborative/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
 }

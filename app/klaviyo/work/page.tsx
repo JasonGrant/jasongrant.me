@@ -12,8 +12,8 @@ export default function KlaviyoWorkPage() {
             <WorkCard
                 imageUrl="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
                 imageAltText="Image representing a design system"
-                linkUrl='https://www.ascentdesignsystem.com/'
-                linkType='external'
+                linkUrl='/klaviyo/work/ascentdesignsystem'
+                linkType='internal'
             >
                 <Heading as="h3" size="3">
                     Ascent Design System
@@ -25,7 +25,21 @@ export default function KlaviyoWorkPage() {
                 </Text>
             </WorkCard>
             <WorkCard
-                imageUrl="/datasciencepodcast.png"
+                imageUrl="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                imageAltText="Image representing a design system"
+                linkUrl='/klaviyo/work/internationalization'
+                linkType='internal'
+            >
+                <Heading as="h3" size="3">
+                    Internationalization and Localization
+                </Heading>
+                <Text as="p" size="3">
+                    Led the transformation of the platform from an English US-centric product to a globally accessible app, 
+                    successfully localizing it into multiple languages and expanding its reach to a diverse international audience.
+                </Text>
+            </WorkCard>
+            <WorkCard
+                imageUrl="/klaviyo/datasciencepodcast.png"
                 imageAltText="Logo for the Data Science Podcast"
                 linkUrl='https://medium.com/klaviyo-data-science/klaviyo-data-science-podcast-ep-38-are-you-going-to-science-fair-345b498508ff'
                 linkType='external'
@@ -40,7 +54,7 @@ export default function KlaviyoWorkPage() {
                 </Text>
             </WorkCard>
             <WorkCard
-                imageUrl="/BehindThePixels.jpg"
+                imageUrl="/klaviyo/BehindThePixels.jpg"
                 imageAltText="Logo for Behind the Pixels blog"
                 linkUrl='https://medium.com/klaviyo-design/behind-the-pixels-4a3d145d0e01'
                 linkType='external'

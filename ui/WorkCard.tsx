@@ -3,6 +3,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, Flex } from '@radix-ui/themes';
+import Styles from './WorkCard.module.css';
 
 interface CompanyCardProps {
     imageUrl: string;
@@ -28,6 +29,7 @@ const WorkCard: React.FC<CompanyCardProps> = ({ imageUrl, imageAltText, linkType
             size="2" 
             style={{padding: 0}}
             onClick={handleClick}
+            className={Styles.cardhover}
         >
             <div style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: "1rem" }}>
                 <div style={{ width: "120px" }}>

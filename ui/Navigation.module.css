@@ -1,10 +1,10 @@
 
 .trigger {
-  width: 50%;
+  width: 60%;
 }
 
 .item {
-  width: calc(100vw * 0.5 - 1rem);
+  width: calc(100vw * 0.6 - 1rem);
 }
 
 /* .NavigationMenuRoot {

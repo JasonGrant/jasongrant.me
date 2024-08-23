@@ -3,67 +3,6 @@ body.reset {
     padding: 0;
 }
 
-/* .container {
-    display: grid;
-    grid-template-areas: "left right";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100dvh;
-    overflow: hidden;
+.bodystyles {
+    height: 100dvh;
 }
-@media (max-width: 768px) {
-    .container {
-        grid-template-areas: 
-            "left";
-        grid-template-columns: 1fr;
-        grid-template-rows: 100dvh;
-    } */
-    /* aside.rightZone {
-        display: none;
-    }
-    aside.rightZone {
-        display:block;
-
-        .container {
-            grid-template-areas: 
-                "right";
-            grid-template-columns: 1fr;
-            grid-template-rows: 100dvh;
-        }
-    } */
-/* }
-
-.switcher {
-    position: absolute;
-} */
-
-/* .container {
-    display: grid;
-    grid-template-areas: 
-        "title title"
-        "left right"
-        "footer footer";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    height: 100vh;
-}
-  
-.titleZone {
-    grid-area: title;
-    padding: 10px;
-    background-color: #f8f9fa;
-    text-align: center;
-} */
-
-/* main.leftZone {
-    height: 100%;
-    grid-area: left;
-    overflow-y: scroll;
-} */
-
-/* .footerZone {
-    grid-area: footer;
-    padding: 10px;
-    background-color: #f8f9fa;
-    text-align: center;
-} */
-
