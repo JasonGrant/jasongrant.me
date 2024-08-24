@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google";
 import { Theme, ThemePanel } from '@radix-ui/themes';
+import { ThemeProvider } from 'next-themes';
 import PageLayout from "@/ui/PageLayout";
 import Home from "./home/Home";
 import styles from "./layout.module.css";
@@ -29,8 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={`${inter.variable} ${styles.reset} ${styles.bodystyles}`}>
+        <ThemeProvider attribute="class">
           <Theme
-            appearance="light"
+            // appearance="dark"
             accentColor="blue" 
             radius="large" 
           >
@@ -39,6 +41,7 @@ export default function RootLayout({
               children={children}
             ></PageLayout>
           </Theme>
+          </ThemeProvider>
           <SpeedInsights />
           <Analytics />
         </body>

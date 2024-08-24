@@ -15,6 +15,7 @@
     "@vercel/edge": "^1.1.2",
     "@vercel/speed-insights": "^1.0.12",
     "next": "14.2.5",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18"
   },
