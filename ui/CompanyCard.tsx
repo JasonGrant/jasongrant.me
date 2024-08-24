@@ -3,7 +3,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
-import { Box, Card, Container, Flex, Heading, SegmentedControl } from '@radix-ui/themes';
+import { Box, Card, Container, Flex, Heading, ScrollArea, SegmentedControl } from '@radix-ui/themes';
 import styles from './CompanyCard.module.css';
 
 interface CompanyCardProps {
@@ -24,26 +24,60 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ logo, aboutUrl, impactUrl, wo
     const pathName = paths.substring(paths.lastIndexOf('/') + 1);
 
     return (
-        <Container height="100%" size="2" px={{initial: '3', md: '7'}} pt={{initial: '3', md: '7'}} pb={{initial: '9', md: '7'}} className={styles.cardcontainer}>
-            <Card size="4" className={styles.companycard}>
-                <Flex direction="row" justify="between" align="center" overflow="hidden" wrap="wrap">
+        <Container 
+            height="100%" 
+            size="2" 
+            px={{initial: '3', md: '7'}} 
+            pt={{initial: '3', md: '7'}} 
+            pb={{initial: '9', md: '7'}} 
+            className={styles.cardcontainer}
+        >
+            <Card 
+                size="4" 
+                className={styles.companycard}
+            >
+                <Flex 
+                    direction={{initial: 'column', sm: 'row'}} 
+                    justify={{initial: 'center', sm: 'between'}}
+                    gap={{initial: '4', sm: '0'}}  
+                    align="center" 
+                    overflow="hidden" 
+                >
                     {logo}
-                    {/* <Heading as="h2">{company}</Heading> */}
-                    <SegmentedControl.Root defaultValue={pathName} radius="full" className={styles.companyinfoswitch}>
-                        <SegmentedControl.Item value={aboutValue} onClick={() => router.push(aboutUrl)}>
+                    <SegmentedControl.Root 
+                        defaultValue={pathName} 
+                        radius="full" 
+                        className={styles.companyinfoswitch}
+                    >
+                        <SegmentedControl.Item 
+                            value={aboutValue} 
+                            onClick={() => router.push(aboutUrl)}
+                        >
                             About
                         </SegmentedControl.Item>
-                        <SegmentedControl.Item value="impact" onClick={() => router.push(impactUrl)}>
+                        <SegmentedControl.Item 
+                            value="impact" 
+                            onClick={() => router.push(impactUrl)}
+                        >
                             Impact
                         </SegmentedControl.Item>
-                        <SegmentedControl.Item value="work" onClick={() => router.push(workUrl)}>
+                        <SegmentedControl.Item 
+                            value="work" 
+                            onClick={() => router.push(workUrl)}
+                        >
                             Work
                         </SegmentedControl.Item>
                     </SegmentedControl.Root>
                 </Flex>
-                <Box py="6" overflow="scroll" height="100%">
+                <ScrollArea 
+                    type="auto" 
+                    scrollbars="vertical" 
+                    size="2" 
+                    radius="full" 
+                    className={styles.scrollarea}
+                >
                     {children}
-                </Box>
+                </ScrollArea>
             </Card>
         </Container>
     );

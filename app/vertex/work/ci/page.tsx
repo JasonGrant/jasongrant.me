@@ -35,12 +35,6 @@ export default function VertexWorkCiPage() {
                     <Image src="/vertex/ci/CompetitiveIntelligenceDashboard.jpg" alt="Competitive Intelligence Design of Dashboard" className={styles.imageresponsive} width={500} height={282}/>
                     <Image src="/vertex/ci/CompetitiveIntelligenceReports.jpg" alt="Competitive Intelligence Design of Reports" className={styles.imageresponsive} width={500} height={282}/>
                 </Flex>
-                {/* <Text as="p" size="2">
-                    <Em>
-                        Jason developed this vision sketch in collaboration with company and R&D leadership to 
-                        secure organization-wide understanding and support.
-                    </Em>
-                </Text> */}
             </Flex>
         </Flex>
     );

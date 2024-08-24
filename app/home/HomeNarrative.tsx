@@ -79,7 +79,7 @@ export default function HomeNarrative() {
                     </Text>
                 </Flex>
                 <Text as="p" size="3">
-                    Connect with Jason to explore how his expertise can elevate your team and business.
+                    <InlineLink label="Connect with Jason" url="/contact" /> to explore how his expertise can elevate your team and business.
                 </Text>
             </Flex>
         </Section>

@@ -31,8 +31,8 @@ const WorkCard: React.FC<CompanyCardProps> = ({ imageUrl, imageAltText, linkType
             onClick={handleClick}
             className={Styles.cardhover}
         >
-            <div style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: "1rem" }}>
-                <div style={{ width: "120px" }}>
+            <div className={Styles.cardcontents}>
+                <div className={Styles.imagecontainer}>
                     <img
                         src={imageUrl}
                         alt={imageAltText}

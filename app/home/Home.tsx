@@ -2,6 +2,7 @@ import { Container, Heading, Flex, ScrollArea } from '@radix-ui/themes';
 import InlineLink from '@/ui/InlineLink';
 import HomeNarrative from './HomeNarrative';
 import HomeTimeline from './HomeTimeline';
+import Navigation from '@/ui/Navigation';
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -9,7 +10,10 @@ export default function Home() {
     <div className={styles.main}>
       <Container size="2" px="7" pb="7">
         <Flex direction="row" gap="4" justify="between" pt="7" py="4" className={styles.title}>
-          <InlineLink label="Jason Grant" url="/" />
+          <Flex direction="row" gap="4" align="center">
+            <Navigation icononly />
+            <InlineLink label="Jason Grant" url="/" />
+          </Flex>
         </Flex>
       </Container>
       <ScrollArea type="always" scrollbars="vertical" size="2" radius="full" className={styles.scrollarea}>
@@ -20,12 +24,5 @@ export default function Home() {
       </ScrollArea>
       <div></div>
     </div>
-      // <Container size="2" px="7" pb="7" className={styles.main}>
-      //   <ScrollArea type="always" scrollbars="vertical" size="2" radius="full" className={styles.scrollarea} style={{ height: `100%` }}>
-      //     <Heading as="h2">Optimizing Design, Elevating Systems</Heading>
-      //     <HomeNarrative />
-      //     <HomeTimeline />
-      //   </ScrollArea>
-      // </Container>
   );
 }

@@ -2,10 +2,15 @@
 
 import React from 'react';
 import { Button, DropdownMenu } from '@radix-ui/themes';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { useRouter } from 'next/navigation'
 import styles from './Navigation.module.css';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+    icononly?: boolean;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ icononly }) => {
     const router = useRouter();
 
     const handleClick = (url: string) => {
@@ -14,55 +19,88 @@ const Navigation: React.FC = () => {
 
     return (
         <DropdownMenu.Root>
-            <DropdownMenu.Trigger className={styles.trigger}>
-                <Button color="gray" highContrast>
-                    Menu
-                    <DropdownMenu.TriggerIcon />
-                </Button>
-            </DropdownMenu.Trigger>
+            {icononly ? (
+                <DropdownMenu.Trigger className={styles.triggericon}>
+                    <Button variant="ghost" size="4">
+                        <HamburgerMenuIcon />
+                    </Button>
+                </DropdownMenu.Trigger>
+            ) : (
+                <DropdownMenu.Trigger className={styles.trigger}>
+                    <Button color="gray" highContrast>
+                        Menu
+                        <DropdownMenu.TriggerIcon />
+                    </Button>
+                </DropdownMenu.Trigger>
+            )}
             <DropdownMenu.Content color="gray" highContrast>
                 <DropdownMenu.Item 
                     shortcut="Jason Grant" 
-                    className={styles.item}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
                     onClick={() => handleClick('/about')}
                 >
                     About
                 </DropdownMenu.Item>
                 <DropdownMenu.Item 
                     shortcut="2021 - Now" 
-                    className={styles.item}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
                     onClick={() => handleClick('/klaviyo')}
                 >
                     Klaviyo
                 </DropdownMenu.Item>
                 <DropdownMenu.Item 
                     shortcut="2017 - 2021"
-                    className={styles.item}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
                     onClick={() => handleClick('/vertex')}
                 >
                     Vertex
                 </DropdownMenu.Item>
                 <DropdownMenu.Item 
                     shortcut="2014 - 2017" 
-                    className={styles.item}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
                     onClick={() => handleClick('/collaborative')}
                 >
                     Collaborative
                 </DropdownMenu.Item>
                 <DropdownMenu.Item 
                     shortcut="2011 - 2014" 
-                    className={styles.item}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
                     onClick={() => handleClick('/dassault')}
                 >
                     Dassault
                 </DropdownMenu.Item>
-                <DropdownMenu.Separator />
                 <DropdownMenu.Item 
-                    shortcut="Summary"
-                    onClick={() => handleClick('/')}
+                    className={`
+                        ${icononly ? styles.icononlyitem : styles.item}
+                    `}
+                    onClick={() => handleClick('/contact')}
                 >
-                    Home
+                    Connect with Jason
                 </DropdownMenu.Item>
+                {icononly ? ('') : (
+                    <>
+                        <DropdownMenu.Separator />
+                        <DropdownMenu.Item 
+                            shortcut="Summary"
+                            className={`
+                                ${icononly ? styles.icononlyitem : styles.item}
+                            `}
+                            onClick={() => handleClick('/')}
+                        >
+                            Home
+                        </DropdownMenu.Item>
+                    </>
+                )}
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     )

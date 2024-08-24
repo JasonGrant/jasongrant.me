@@ -27061,6 +27061,10 @@ body.layout_reset__dVA5E {
   width: 60%;
 }
 
+.Navigation_triggericon___0pIG {
+  cursor: pointer;
+}
+
 .Navigation_item__JjvEe {
   width: calc(100vw * 0.6 - 1rem);
 }
@@ -27370,7 +27374,6 @@ main.PageLayout_leftZone__7F32N {
 aside.PageLayout_rightZone__6w5L_ {
     height: 100%;
     grid-area: right;
-    background-image: url('/sequoialight.jpg');
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */

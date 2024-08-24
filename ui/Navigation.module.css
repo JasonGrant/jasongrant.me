@@ -3,6 +3,10 @@
   width: 60%;
 }
 
+.triggericon {
+  cursor: pointer;
+}
+
 .item {
   width: calc(100vw * 0.6 - 1rem);
 }

@@ -10,7 +10,7 @@ export default function KlaviyoWorkPage() {
     return (
         <Flex direction="column" gap="4">
             <WorkCard
-                imageUrl="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                imageUrl="/logos/AscentLogo.jpg"
                 imageAltText="Image representing a design system"
                 linkUrl='/klaviyo/work/ascentdesignsystem'
                 linkType='internal'
@@ -25,7 +25,7 @@ export default function KlaviyoWorkPage() {
                 </Text>
             </WorkCard>
             <WorkCard
-                imageUrl="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                imageUrl="/logos/Translation.jpg"
                 imageAltText="Image representing a design system"
                 linkUrl='/klaviyo/work/internationalization'
                 linkType='internal'

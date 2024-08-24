@@ -8,4 +8,17 @@
 
 .companycard {
     height: 100%;
+    display: grid;
+    grid-template-rows: 40px 1fr 16px;
+}
+
+@media (max-width: 768px) {
+    .companycard {
+        grid-template-rows: 80px 1fr 16px;
+    }
+}
+
+.scrollarea {
+    height: 100%;
+    padding-top: 24px;
 }
