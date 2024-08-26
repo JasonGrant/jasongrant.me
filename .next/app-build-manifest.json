@@ -11,6 +11,55 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/klaviyo/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/klaviyo/page.js"
+    ],
+    "/klaviyo/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/klaviyo/layout.css",
+      "static/chunks/app/klaviyo/layout.js"
+    ],
+    "/klaviyo/impact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/klaviyo/impact/page.js"
+    ],
+    "/vertex/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/vertex/page.js"
+    ],
+    "/vertex/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/vertex/layout.css",
+      "static/chunks/app/vertex/layout.js"
+    ],
+    "/collaborative/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/collaborative/page.js"
+    ],
+    "/collaborative/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/collaborative/layout.css",
+      "static/chunks/app/collaborative/layout.js"
+    ],
+    "/dassault/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dassault/page.js"
+    ],
+    "/dassault/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dassault/layout.css",
+      "static/chunks/app/dassault/layout.js"
     ]
   }
 }

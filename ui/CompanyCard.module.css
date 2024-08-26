@@ -6,10 +6,22 @@
     height: 100%;
 }
 
+.cardcontainer[data-theme="dark"] {
+    backdrop-filter: brightness(0.6);
+}
+
 .companycard {
     height: 100%;
     display: grid;
     grid-template-rows: 40px 1fr 16px;
+}
+
+.logocontainer svg {
+    fill: #232426;
+}
+
+.logocontainer[data-theme="dark"] svg {
+    fill: rgb(255, 255, 255, 0.8);
 }
 
 @media (max-width: 768px) {

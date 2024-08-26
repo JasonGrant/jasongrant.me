@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import { Box, Card, Container, Flex, Heading, ScrollArea, SegmentedControl } from '@radix-ui/themes';
@@ -23,6 +23,37 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ logo, aboutUrl, impactUrl, wo
     const paths = usePathname();
     const pathName = paths.substring(paths.lastIndexOf('/') + 1);
 
+    const [htmlClass, setHtmlClass] = useState('');
+
+    useEffect(() => {
+      // Ensure the code only runs on the client side
+        if (typeof window !== 'undefined') {
+            const htmlElement = document.documentElement; // Get the <html> element
+
+            // Function to update the state when the class changes
+            const updateClass = () => {
+                const currentClass = htmlElement.className;
+                setHtmlClass(currentClass);
+            };
+
+            // Set the initial class
+            updateClass();
+
+            // Create a MutationObserver to watch for class changes
+            const observer = new MutationObserver(updateClass);
+
+            observer.observe(htmlElement, {
+                attributes: true, // Monitor attributes
+                attributeFilter: ['class'], // Specifically watch for changes to the 'class' attribute
+            });
+
+            // Cleanup the observer on component unmount
+            return () => {
+                observer.disconnect();
+            };
+        }
+    }, []);
+
     return (
         <Container 
             height="100%" 
@@ -31,6 +62,8 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ logo, aboutUrl, impactUrl, wo
             pt={{initial: '3', md: '7'}} 
             pb={{initial: '9', md: '7'}} 
             className={styles.cardcontainer}
+            data-theme={htmlClass}
+
         >
             <Card 
                 size="4" 
@@ -43,7 +76,12 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ logo, aboutUrl, impactUrl, wo
                     align="center" 
                     overflow="hidden" 
                 >
-                    {logo}
+                    <Flex
+                        className={styles.logocontainer}
+                        data-theme={htmlClass}
+                    >
+                        {logo}
+                    </Flex>
                     <SegmentedControl.Root 
                         defaultValue={pathName} 
                         radius="full" 

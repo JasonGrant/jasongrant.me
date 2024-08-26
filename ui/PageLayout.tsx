@@ -1,8 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Flex, Text, Button } from '@radix-ui/themes';
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import Navigation from './Navigation';
 import { usePathname } from 'next/navigation'
 import styles from "./PageLayout.module.css";
@@ -14,13 +12,8 @@ interface PageLayoutProps {
 
 const PageLayout: React.FC<PageLayoutProps> = ({ leftZone, children }) => {
     const [activeButton, setActiveButton] = useState('summary');
-//     const [activeSegment, setActiveSegment] = useState('details');
-//     // const router = useRouter();
-    const paths = usePathname();
 
-//     const handleButtonClick = (buttonNumber: string) => {
-//         setActiveButton(buttonNumber);
-//     };
+    const paths = usePathname();
 
     useEffect(() => {
         // Update the active button based on the current path on route change
@@ -36,7 +29,6 @@ const PageLayout: React.FC<PageLayoutProps> = ({ leftZone, children }) => {
     const collaborative = styles.collaborative;
     const dassault = styles.dassault;
 
-
     return (
         <>
             <div className={styles.container}>
@@ -47,12 +39,12 @@ const PageLayout: React.FC<PageLayoutProps> = ({ leftZone, children }) => {
                     data-active={activeButton === 'details' && (true)}
                     className={`
                         ${styles.rightZone} 
-                        ${paths.length == 1 ? home : ''}
-                        ${paths.startsWith('/about') ? about : ''}  
-                        ${paths.startsWith('/klaviyo') ? klaviyo : ''} 
-                        ${paths.startsWith('/vertex') ? vertex : ''}
-                        ${paths.startsWith('/collaborative') ? collaborative : ''}
-                        ${paths.startsWith('/dassault') ? dassault : ''}
+                        ${paths.length == 1 ? styles.home : ''}
+                        ${paths.startsWith('/about') ? styles.about : ''}  
+                        ${paths.startsWith('/klaviyo') ? styles.klaviyo : ''} 
+                        ${paths.startsWith('/vertex') ? styles.vertex : ''}
+                        ${paths.startsWith('/collaborative') ? styles.collaborative : ''}
+                        ${paths.startsWith('/dassault') ? styles.dassault : ''}
                     `}
                 >
                     {children}
