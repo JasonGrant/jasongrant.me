@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertDialog, Avatar, Button, Container, Card, DataList, Em, Heading, HoverCard, Flex, Link, Text, ScrollArea, SegmentedControl, Grid } from '@radix-ui/themes';
+import { AlertDialog, Avatar, Button, Container, Card, DataList, Inset, Em, Heading, HoverCard, Flex, Link, Text, ScrollArea, SegmentedControl, Grid } from '@radix-ui/themes';
 import Image from 'next/image';
 import styles from './page.module.css';
 
@@ -24,6 +24,72 @@ export default function AboutPage() {
                             />
                             <Heading as="h2">About Jason</Heading>
                         </Flex>
+                        <AlertDialog.Root>
+                            <AlertDialog.Trigger>
+                                <Button color="gray" highContrast size="2">Behind the site</Button>
+                            </AlertDialog.Trigger>
+                            <AlertDialog.Content maxWidth="450px">
+                                <AlertDialog.Title>Site details</AlertDialog.Title>
+                                <AlertDialog.Description size="3">
+                                    Portfolio was built entirely from scratch with custom code, avoiding traditional website builders. 
+                                    This approach gave me complete control over design, functionality, and user experience. Rather than 
+                                    using conventional navigation, I opted for a narrative-driven structure that guides users through 
+                                    a storytelling experience, allowing them to drill down into detailed content naturally. This 
+                                    showcases my skills and reflects my passion for crafting unique, user-centered digital experiences.
+                                </AlertDialog.Description>
+                                <Flex mt="6" justify="start">
+                                    <DataList.Root>
+                                        <DataList.Item align="center">
+                                            <DataList.Label minWidth="88px">
+                                                Code repo
+                                            </DataList.Label>
+                                            <DataList.Value>
+                                                <Link href="https://github.com/jasongrant" target="_blank">
+                                                    Github
+                                                </Link>
+                                            </DataList.Value>
+                                        </DataList.Item>
+                                        <DataList.Item align="center">
+                                            <DataList.Label minWidth="88px">
+                                                Framework
+                                            </DataList.Label>
+                                            <DataList.Value>
+                                                <Link href="https://nextjs.org/" target="_blank">
+                                                    Next.js
+                                                </Link>
+                                            </DataList.Value>
+                                        </DataList.Item>
+                                        <DataList.Item align="center">
+                                            <DataList.Label minWidth="88px">
+                                                Theming and components
+                                            </DataList.Label>
+                                            <DataList.Value>
+                                                <Link href="https://www.radix-ui.com/" target="_blank">
+                                                    Radix
+                                                </Link>
+                                            </DataList.Value>
+                                        </DataList.Item>
+                                        <DataList.Item align="center">
+                                            <DataList.Label minWidth="88px">
+                                                Build and hosting
+                                            </DataList.Label>
+                                            <DataList.Value>
+                                                <Link href="https://vercel.com/" target="_blank">
+                                                    Vercel
+                                                </Link>
+                                            </DataList.Value>
+                                        </DataList.Item>
+                                    </DataList.Root>
+                                </Flex>
+                                <Flex gap="3" mt="4" justify="end">
+                                <AlertDialog.Cancel>
+                                    <Button variant="soft" color="gray">
+                                    Cancel
+                                    </Button>
+                                </AlertDialog.Cancel>
+                                </Flex>
+                            </AlertDialog.Content>
+                        </AlertDialog.Root>
                     </Flex>
                     <ScrollArea type="auto" scrollbars="vertical" size="2" radius="full" className={styles.scrollarea}>
                         <Flex direction="column" align="start" justify="start" gap="4" pt="6">
@@ -200,31 +266,8 @@ export default function AboutPage() {
                                 </HoverCard.Content>
                             </HoverCard.Root>
                         </Grid>
-                        {/* <AlertDialog.Root>
-                            <AlertDialog.Trigger>
-                                <Button color="red">Revoke access</Button>
-                            </AlertDialog.Trigger>
-                            <AlertDialog.Content maxWidth="450px">
-                                <AlertDialog.Title>Revoke access</AlertDialog.Title>
-                                <AlertDialog.Description size="2">
-                                Are you sure? This application will no longer be accessible and any
-                                existing sessions will be expired.
-                                </AlertDialog.Description>
-
-                                <Flex gap="3" mt="4" justify="end">
-                                <AlertDialog.Cancel>
-                                    <Button variant="soft" color="gray">
-                                    Cancel
-                                    </Button>
-                                </AlertDialog.Cancel>
-                                <AlertDialog.Action>
-                                    <Button variant="solid" color="red">
-                                    Revoke access
-                                    </Button>
-                                </AlertDialog.Action>
-                                </Flex>
-                            </AlertDialog.Content>
-                        </AlertDialog.Root> */}
+                        {/* ADPList Reviews */}
+                        {/* <section style="padding: 16px; height: 496px; box-shadow: rgba(142, 151, 158, 0.15) 0px 4px 19px 0px; border-radius: 16px; overflow: hidden; width: 100%; max-width: 650px;"><iframe src="https://adplist.org/widgets/reviews?src=jason-grant" title="All Reviews" width="100%" height="100%" loading="lazy" style="border: 0px;"></iframe></section> */}
                     </ScrollArea>
                 </div>
             </Card>

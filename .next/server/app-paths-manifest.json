@@ -1,7 +1,10 @@
 {
   "/page": "app/page.js",
-  "/dassault/page": "app/dassault/page.js",
-  "/klaviyo/page": "app/klaviyo/page.js",
-  "/collaborative/page": "app/collaborative/page.js",
-  "/vertex/page": "app/vertex/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/klaviyo/impact/page": "app/klaviyo/impact/page.js",
+  "/klaviyo/work/page": "app/klaviyo/work/page.js",
+  "/klaviyo/work/internationalization/page": "app/klaviyo/work/internationalization/page.js",
+  "/klaviyo/work/ascentdesignsystem/page": "app/klaviyo/work/ascentdesignsystem/page.js",
+  "/vertex/page": "app/vertex/page.js",
+  "/vertex/work/page": "app/vertex/work/page.js"
 }
