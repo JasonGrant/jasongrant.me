@@ -15,14 +15,14 @@ export default function AboutPage() {
         >
             <Card size="4" className={styles.companycard}>
                 <div className={styles.gridcontainer}>
-                    <Flex direction="row" justify="between" align="center" overflow="hidden" wrap="wrap">
+                    <Flex direction="row" justify="between" align="center" overflow="hidden" flexShrink="1">
                         <Flex direction="row" justify="start" align="center" gap="4">
                             <Avatar
                                 src="/JasonHeadshot.jpg"
                                 fallback="JG"
                                 size="5"
                             />
-                            <Heading as="h2">About Jason</Heading>
+                            <Heading as="h2" wrap="wrap">About Jason</Heading>
                         </Flex>
                         <AlertDialog.Root>
                             <AlertDialog.Trigger>
