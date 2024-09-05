@@ -12,10 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/klaviyo/page": [
+    "/klaviyo/work/ascentdesignsystem/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/klaviyo/page.js"
+      "static/css/app/klaviyo/work/ascentdesignsystem/page.css",
+      "static/chunks/app/klaviyo/work/ascentdesignsystem/page.js"
     ],
     "/klaviyo/layout": [
       "static/chunks/webpack.js",
@@ -23,45 +24,21 @@
       "static/css/app/klaviyo/layout.css",
       "static/chunks/app/klaviyo/layout.js"
     ],
-    "/klaviyo/impact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/klaviyo/impact/page.js"
-    ],
     "/klaviyo/work/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/klaviyo/work/page.css",
       "static/chunks/app/klaviyo/work/page.js"
     ],
-    "/klaviyo/work/internationalization/page": [
+    "/klaviyo/impact/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/klaviyo/work/internationalization/page.css",
-      "static/chunks/app/klaviyo/work/internationalization/page.js"
+      "static/chunks/app/klaviyo/impact/page.js"
     ],
-    "/klaviyo/work/ascentdesignsystem/page": [
+    "/klaviyo/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/klaviyo/work/ascentdesignsystem/page.css",
-      "static/chunks/app/klaviyo/work/ascentdesignsystem/page.js"
-    ],
-    "/vertex/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/vertex/page.js"
-    ],
-    "/vertex/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/vertex/layout.css",
-      "static/chunks/app/vertex/layout.js"
-    ],
-    "/vertex/work/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/vertex/work/page.css",
-      "static/chunks/app/vertex/work/page.js"
+      "static/chunks/app/klaviyo/page.js"
     ]
   }
 }
