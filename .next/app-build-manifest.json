@@ -39,6 +39,67 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/klaviyo/page.js"
+    ],
+    "/klaviyo/work/internationalization/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/klaviyo/work/internationalization/page.css",
+      "static/chunks/app/klaviyo/work/internationalization/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/about/page.css",
+      "static/chunks/app/about/page.js"
+    ],
+    "/dassault/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dassault/page.js"
+    ],
+    "/dassault/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dassault/layout.css",
+      "static/chunks/app/dassault/layout.js"
+    ],
+    "/dassault/impact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dassault/impact/page.js"
+    ],
+    "/dassault/work/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dassault/work/page.js"
+    ],
+    "/vertex/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/vertex/page.js"
+    ],
+    "/vertex/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/vertex/layout.css",
+      "static/chunks/app/vertex/layout.js"
+    ],
+    "/vertex/impact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/vertex/impact/page.js"
+    ],
+    "/vertex/work/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/vertex/work/page.css",
+      "static/chunks/app/vertex/work/page.js"
+    ],
+    "/vertex/work/loof/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/vertex/work/loof/page.css",
+      "static/chunks/app/vertex/work/loof/page.js"
     ]
   }
 }
