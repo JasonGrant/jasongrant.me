@@ -13,6 +13,7 @@ export default function HomeTimeline() {
                 <RowItem startLabel="Dassault" url="/dassault" endLabel="2011 - 2014" />
                 <RowItem startLabel="Technologist" endLabel="1997 - 2011" />
                 <RowHeader label="Mentoring, speaking, writing" />
+                <RowItem startLabel="Designing Forward with Jason Grant" external url="https://mrjasongrant.substack.com/" endLabel="2024 - Now_" />
                 <RowItem startLabel="ADPList" external url="https://adplist.org/mentors/jason-grant" endLabel="2022 - Now_" />
                 <RowItem startLabel="Endicott" external url="https://www.endicott.edu/" endLabel="2023 - 2024" />
                 <RowItem startLabel="Behind the Pixels" external url="https://medium.com/klaviyo-design/behind-the-pixels-4a3d145d0e01" endLabel="2022" />
