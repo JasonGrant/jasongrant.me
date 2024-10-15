@@ -11,6 +11,124 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/writing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/page.css",
+      "static/chunks/app/writing/page.js"
+    ],
+    "/writing/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/layout.css",
+      "static/chunks/app/writing/layout.js"
+    ],
+    "/narrative/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/about/page.css",
+      "static/chunks/app/narrative/about/page.js"
+    ],
+    "/narrative/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/layout.css",
+      "static/chunks/app/narrative/layout.js"
+    ],
+    "/narrative/klaviyo/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/narrative/klaviyo/page.js"
+    ],
+    "/narrative/klaviyo/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/klaviyo/layout.css",
+      "static/chunks/app/narrative/klaviyo/layout.js"
+    ],
+    "/traditional/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/layout.css",
+      "static/chunks/app/traditional/layout.js"
+    ],
+    "/traditional/work/vertex/via/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/vertex/via/page.css",
+      "static/chunks/app/traditional/work/vertex/via/page.js"
+    ],
+    "/traditional/work/vertex/loof/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/vertex/loof/page.css",
+      "static/chunks/app/traditional/work/vertex/loof/page.js"
+    ],
+    "/traditional/work/vertex/vip/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/vertex/vip/page.css",
+      "static/chunks/app/traditional/work/vertex/vip/page.js"
+    ],
+    "/traditional/work/vertex/ci/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/vertex/ci/page.css",
+      "static/chunks/app/traditional/work/vertex/ci/page.js"
+    ],
+    "/traditional/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/page.css",
+      "static/chunks/app/traditional/page.js"
+    ],
+    "/narrative/klaviyo/impact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/narrative/klaviyo/impact/page.js"
+    ],
+    "/narrative/klaviyo/work/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/klaviyo/work/page.css",
+      "static/chunks/app/narrative/klaviyo/work/page.js"
+    ],
+    "/narrative/klaviyo/work/ascentdesignsystem/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/klaviyo/work/ascentdesignsystem/page.css",
+      "static/chunks/app/narrative/klaviyo/work/ascentdesignsystem/page.js"
+    ],
+    "/traditional/work/klaviyo/ascent/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/klaviyo/ascent/page.css",
+      "static/chunks/app/traditional/work/klaviyo/ascent/page.js"
+    ],
+    "/traditional/work/klaviyo/i18n/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/klaviyo/i18n/page.css",
+      "static/chunks/app/traditional/work/klaviyo/i18n/page.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/not-found.css",
+      "static/chunks/app/not-found.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/_not-found/page.css",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/traditional/work/dassault/integratedplanning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/dassault/integratedplanning/page.css",
+      "static/chunks/app/traditional/work/dassault/integratedplanning/page.js"
     ]
   }
 }

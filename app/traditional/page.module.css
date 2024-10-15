@@ -1,0 +1,30 @@
+.linkOverride a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.imageOverrides {
+    aspect-ratio: 16 / 9;
+    object-fit: fill;
+    border-radius: 0.75rem;
+}
+
+.projectContainer {
+    padding: 0.75rem;
+}
+
+.caseStudyContainer {
+    padding: 0.75rem;
+    border-radius: 1rem;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.caseStudyContainer:hover {
+    background-color: rgba(197, 196, 193, .15);
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.whiteImageContainer {
+    border: 1px solid rgba(197, 196, 193, .35);
+}

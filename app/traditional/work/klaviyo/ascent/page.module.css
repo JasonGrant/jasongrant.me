@@ -1,0 +1,11 @@
+.dataListItemLabel {
+    min-width: 88px;
+}
+
+.iframeContainer iframe {
+    margin-top: 1rem;
+    width: 100%;
+    height: 680px;
+    border: none;
+    border-radius: 0.75rem;
+}

@@ -1,0 +1,8 @@
+.iconTrigger {
+    cursor: pointer;
+    height: 1.5rem;
+}
+
+.iconTrigger svg {
+    transform: scale(1.5);
+}

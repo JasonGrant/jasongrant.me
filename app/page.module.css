@@ -1,0 +1,22 @@
+.pageContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+.pageTitle {
+    margin-bottom: 1rem;
+}
+
+.pageDescription {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.itemsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 400px));
+    grid-template-rows: auto;
+    justify-content: center;
+}
