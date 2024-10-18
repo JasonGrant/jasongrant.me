@@ -1,20 +1,38 @@
 /*!*************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/writing/layout.module.css ***!
   \*************************************************************************************************************************************************************************************************************************************************************************/
-main.layout_layout__gaJ1B {
-    display: flex;
-    justify-content: center;
-    overflow-y: scroll;
-}
-
 .layout_pageLayout__HvL4u {
-    width: 100vw;
+    /* width: 100vw;
     height: 100dvh;
     display: grid;
     grid-template-columns: 100vw;
-    grid-template-rows: 90px calc(100dvh - 90px);
+    grid-template-rows: 90px 100%;
     justify-content: center;
-    padding: 3rem 0;
+    padding: 3rem 0; */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+main.layout_layout__gaJ1B {
+    margin-top: 90px; /* Offset the body below the fixed header */
+    flex-grow: 1;
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.layout_pageLayout__HvL4u Header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./ui/shared/Header.module.css ***!

@@ -9,9 +9,11 @@ const WritingLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 title='Designing Forward'
                 back={true}
             />
-            <main className={`${styles.layout}`}>{children}</main>
-            
-            {/* Add your footer component here */}
+            <main 
+                className={styles.layout}
+            >
+                {children}
+            </main>
         </div>
     );
 };

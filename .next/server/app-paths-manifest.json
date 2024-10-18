@@ -1,8 +1,4 @@
 {
   "/page": "app/page.js",
-  "/traditional/page": "app/traditional/page.js",
-  "/traditional/work/vertex/loof/page": "app/traditional/work/vertex/loof/page.js",
-  "/traditional/work/vertex/ci/page": "app/traditional/work/vertex/ci/page.js",
-  "/traditional/work/vertex/vip/page": "app/traditional/work/vertex/vip/page.js",
-  "/traditional/work/dassault/integratedplanning/page": "app/traditional/work/dassault/integratedplanning/page.js"
+  "/writing/page": "app/writing/page.js"
 }

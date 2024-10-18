@@ -14,6 +14,13 @@ interface Article {
 
 const articles: Article[] = [
     {
+        image: '/writing/2024-10-18-Paradoxes.webp',
+        title: 'Mastering the Art of Balancing Paradoxes',
+        description: 'How Success Lies in Thriving Amid Change, Raising the Bar, and Leading with Both Principles and Adaptability',
+        date: 'Oct 18, 2024',
+        link: 'https://mrjasongrant.substack.com/p/mastering-the-art-of-balancing-paradoxes',
+    },
+    {
         image: '/writing/2024-10-08-ClarityThoughtExecution.webp',
         title: 'Clarity of Thought and Clarity of Execution',
         description: 'The Path to Successful Outcomes is Think Before you Do',
@@ -87,6 +94,7 @@ const ArticleList: React.FC = () => {
                     </div>
                 </div>
             ))}
+            <div className={styles.bottomSpacer} />
         </div>
     );
 };

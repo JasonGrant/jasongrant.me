@@ -1,6 +1,7 @@
 .articlesContainer {
-    margin-bottom: 7rem;
+    height: 100%;
 }
+    
 .articleContainer {
     display: grid;
     grid-template-columns: 160px 1fr;
@@ -50,4 +51,8 @@
 
 .articleDate {
     margin-bottom: 0.75rem;
+}
+
+.bottomSpacer {
+    height: 4rem;
 }
