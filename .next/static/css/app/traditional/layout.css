@@ -1,0 +1,73 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/traditional/layout.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./ui/traditional/TraditionalHeader.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+.TraditionalHeader_containerOuter__jdDpg {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TraditionalHeader_containerInner__7_k1v {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    height: 90px;
+}
+
+.TraditionalHeader_back__6DQgy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.TraditionalHeader_backLink__njzXw {
+    cursor: pointer;
+}
+
+.TraditionalHeader_start__VR98J {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    -webkit-padding-start: 1rem;
+            padding-inline-start: 1rem;
+    width: 145px;
+}
+
+.TraditionalHeader_start__VR98J a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.TraditionalHeader_center__DTkjf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.TraditionalHeader_end__FDc__ {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    -webkit-padding-end: 2rem;
+            padding-inline-end: 2rem;
+    width: 145px;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./ui/shared/ThemeSwitcher.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.ThemeSwitcher_iconTrigger__F28y_ {
+    cursor: pointer;
+    height: 1.5rem;
+}
+
+.ThemeSwitcher_iconTrigger__F28y_ svg {
+    transform: scale(1.5);
+}
