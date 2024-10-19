@@ -13,11 +13,16 @@ type Commit = {
 export default async function Page() {
     const { REPO_OWNER, REPO_NAME, GITHUB_TOKEN } = process.env;
     let data = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits`, {
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`
-        }
+        // headers: {
+        //     'Authorization': `token ${GITHUB_TOKEN}`
+        // }
     })
-    let commits = await data.json()
+    let commits = await data.json();
+    if (!Array.isArray(commits)) {
+        // console.error('Expected an array of commits but got:', commits);
+        commits = [];
+    }
+    console.log(commits)
     let formattedCommits: Commit[] = commits.map((commit: any) => {
         const [message, ...descriptionParts] = commit.commit.message.split('\n');
         const description = descriptionParts.slice(1).join('\n').trim();
