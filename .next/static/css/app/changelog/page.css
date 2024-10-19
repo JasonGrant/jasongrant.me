@@ -1,0 +1,19 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/changelog/page.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+.page_commitWrapper__rsT3h {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page_commitList__Sxv_P {
+    height: 100%;
+}
+
+.page_commitItem__RPyx4 {
+    list-style: none;
+    padding-bottom: 1rem;
+}
+

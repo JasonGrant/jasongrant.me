@@ -33,6 +33,13 @@ const items: Item[] = [
         link: '/narrative/about',
         button: 'Explore',
     },
+    {
+        image: '/Publishing_Site.jpg',
+        title: 'Changelog',
+        description: 'Explore the latest updates and changes to the site.',
+        link: '/changelog',
+        button: 'View updates',
+    },
     // {
     //     image: '/writing/2024-10-08-ClarityThoughtExecution.webp',
     //     title: 'About',

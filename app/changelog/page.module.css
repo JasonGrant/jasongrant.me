@@ -1,0 +1,15 @@
+.commitWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.commitList {
+    height: 100%;
+}
+
+.commitItem {
+    list-style: none;
+    padding-bottom: 1rem;
+}
