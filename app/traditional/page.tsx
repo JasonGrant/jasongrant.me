@@ -94,6 +94,40 @@ const Home: React.FC = () => {
                         </Flex>
                     </Link>
                     <Link 
+                        href="/traditional/work/klaviyo/requests"
+                    >
+                        <Flex 
+                            gap="3" 
+                            direction="column" 
+                            className={styles.caseStudyContainer}
+                        >
+                            <Image 
+                                src="/klaviyo/Ascent-Portal-Backlog-ProductBoard.png" 
+                                alt="Dashboard of Ascent Design System requests"
+                                className={`${styles.imageOverrides} ${styles.whiteImageContainer}`} 
+                                layout="responsive" 
+                                width={600} 
+                                height={450}
+                            />
+                            <Heading 
+                                as="h3" 
+                                size="4"
+                            >
+                                Ascent Request Process
+                            </Heading>
+                            <Text size="2">
+                                Klaviyo
+                            </Text>
+                            <Text size="3">
+                                The Ascent Design System request process evolved from unstructured Slack messages and 
+                                manual spreadsheets to a fully automated workflow using Google Forms, Zapier, and Jira 
+                                for efficient tracking and prioritization. This transformation streamlined collaboration, 
+                                increased transparency, and aligned with company-wide planning tools for better long-term 
+                                planning and execution.
+                            </Text>
+                        </Flex>
+                    </Link>
+                    <Link 
                         href="/traditional/work/vertex/via"
                     >
                         <Flex 

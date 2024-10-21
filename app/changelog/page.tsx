@@ -22,7 +22,6 @@ export default async function Page() {
         // console.error('Expected an array of commits but got:', commits);
         commits = [];
     }
-    console.log(commits)
     let formattedCommits: Commit[] = commits.map((commit: any) => {
         const [message, ...descriptionParts] = commit.commit.message.split('\n');
         const description = descriptionParts.slice(1).join('\n').trim();
