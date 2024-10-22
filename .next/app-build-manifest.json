@@ -41,6 +41,48 @@
       "static/chunks/main-app.js",
       "static/css/app/traditional/work/klaviyo/i18n/page.css",
       "static/chunks/app/traditional/work/klaviyo/i18n/page.js"
+    ],
+    "/traditional/work/dassault/integratedplanning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/dassault/integratedplanning/page.css",
+      "static/chunks/app/traditional/work/dassault/integratedplanning/page.js"
+    ],
+    "/changelog/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/changelog/page.css",
+      "static/chunks/app/changelog/page.js"
+    ],
+    "/changelog/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/changelog/layout.css",
+      "static/chunks/app/changelog/layout.js"
+    ],
+    "/narrative/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/about/page.css",
+      "static/chunks/app/narrative/about/page.js"
+    ],
+    "/narrative/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/narrative/layout.css",
+      "static/chunks/app/narrative/layout.js"
+    ],
+    "/traditional/work/klaviyo/ascent/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/klaviyo/ascent/page.css",
+      "static/chunks/app/traditional/work/klaviyo/ascent/page.js"
+    ],
+    "/traditional/work/klaviyo/f2p/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/traditional/work/klaviyo/f2p/page.css",
+      "static/chunks/app/traditional/work/klaviyo/f2p/page.js"
     ]
   }
 }

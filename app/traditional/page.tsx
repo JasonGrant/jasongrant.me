@@ -33,7 +33,7 @@ const Home: React.FC = () => {
                             className={styles.caseStudyContainer}
                         >
                             <Image 
-                                src="/klaviyo/Ascent-Homepage.png" 
+                                src="/klaviyo/Ascent-ComponentsPage.png" 
                                 alt="Ascent Design System site screenshot" 
                                 className={`${styles.imageOverrides} ${styles.whiteImageContainer}`} 
                                 layout="responsive" 
@@ -124,6 +124,40 @@ const Home: React.FC = () => {
                                 for efficient tracking and prioritization. This transformation streamlined collaboration, 
                                 increased transparency, and aligned with company-wide planning tools for better long-term 
                                 planning and execution.
+                            </Text>
+                        </Flex>
+                    </Link>
+                    <Link 
+                        href="/traditional/work/klaviyo/f2p"
+                    >
+                        <Flex 
+                            gap="3" 
+                            direction="column" 
+                            className={styles.caseStudyContainer}
+                        >
+                            <Image 
+                                src="/klaviyo/F2P.png" 
+                                alt="Image of the free to paid experiment"
+                                className={`${styles.imageOverrides} ${styles.whiteImageContainer}`} 
+                                layout="responsive" 
+                                width={600} 
+                                height={450}
+                            />
+                            <Heading 
+                                as="h3" 
+                                size="4"
+                            >
+                                Optimizing Conversions
+                            </Heading>
+                            <Text size="2">
+                                Klaviyo
+                            </Text>
+                            <Text size="3">
+                                This project aimed to boost free-to-paid conversions through experiments on value 
+                                propositions and plan usage visibility. The value proposition test significantly 
+                                increased conversions and was moved to General Availability, while the usage-based 
+                                experiment negatively impacted conversions and was ended early. These findings help 
+                                refine future upgrade strategies.
                             </Text>
                         </Flex>
                     </Link>
