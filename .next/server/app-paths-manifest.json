@@ -3,5 +3,7 @@
   "/traditional/page": "app/traditional/page.js",
   "/traditional/work/klaviyo/ascent/page": "app/traditional/work/klaviyo/ascent/page.js",
   "/traditional/work/klaviyo/requests/page": "app/traditional/work/klaviyo/requests/page.js",
-  "/traditional/work/klaviyo/f2p/page": "app/traditional/work/klaviyo/f2p/page.js"
+  "/traditional/work/klaviyo/f2p/page": "app/traditional/work/klaviyo/f2p/page.js",
+  "/writing/page": "app/writing/page.js",
+  "/changelog/page": "app/changelog/page.js"
 }

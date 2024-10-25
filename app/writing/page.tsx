@@ -14,6 +14,13 @@ interface Article {
 
 const articles: Article[] = [
     {
+        image: '/writing/2024-10-22-Figma-Multiuser.webp',
+        title: 'Innovating Beyond User Data and Feedback',
+        description: 'How Figma’s multiplayer feature exemplifies the importance of making bold, intuitive decisions even when customers don’t see the need.',
+        date: 'Oct 22, 2024',
+        link: 'https://mrjasongrant.substack.com/p/innovating-beyond-user-data-and-feedback',
+    },
+    {
         image: '/writing/2024-10-18-Paradoxes.webp',
         title: 'Mastering the Art of Balancing Paradoxes',
         description: 'How Success Lies in Thriving Amid Change, Raising the Bar, and Leading with Both Principles and Adaptability',

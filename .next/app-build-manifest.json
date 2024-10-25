@@ -83,6 +83,18 @@
       "static/chunks/main-app.js",
       "static/css/app/traditional/work/klaviyo/f2p/page.css",
       "static/chunks/app/traditional/work/klaviyo/f2p/page.js"
+    ],
+    "/writing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/page.css",
+      "static/chunks/app/writing/page.js"
+    ],
+    "/writing/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/layout.css",
+      "static/chunks/app/writing/layout.js"
     ]
   }
 }
