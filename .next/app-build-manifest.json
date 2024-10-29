@@ -59,6 +59,18 @@
       "static/chunks/main-app.js",
       "static/css/app/writing/layout.css",
       "static/chunks/app/writing/layout.js"
+    ],
+    "/mentoring/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/mentoring/page.css",
+      "static/chunks/app/mentoring/page.js"
+    ],
+    "/mentoring/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/mentoring/layout.css",
+      "static/chunks/app/mentoring/layout.js"
     ]
   }
 }

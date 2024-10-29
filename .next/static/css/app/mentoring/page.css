@@ -1,0 +1,28 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/mentoring/page.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+.page_pageLayout__O7beP {
+    width: 100%;
+    height: calc(100dvh - 90px);
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    grid-template-rows: 100%;
+    grid-gap: 1rem;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+/* .reviewsZone {
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+}
+
+.informationZone {
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+} */
+
+/* .colorButton {
+    justify-content: flex-start;
+} */
+

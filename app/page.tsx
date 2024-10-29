@@ -34,6 +34,13 @@ const items: Item[] = [
         button: 'Check contrast',
     },
     {
+        image: '/Mentor.jpg',
+        title: 'Mentoring',
+        description: 'Sharing insights on career growth, design systems, and user experience while supporting individuals in reaching their goals.',
+        link: '/mentoring',
+        button: 'See impact',
+    },
+    {
         image: '/Portfolio_Experimental.jpg',
         title: 'Experimental Portfolio',
         description: 'Experimenting with a new way to navigate and structure a portfolio, providing a more narrative experience.',

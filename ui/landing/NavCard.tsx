@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Heading, Text, Button } from '@radix-ui/themes';
+import { Heading, Text, Button, Flex } from '@radix-ui/themes';
 import Image from 'next/image';
 import styles from './NavCard.module.css';
 
