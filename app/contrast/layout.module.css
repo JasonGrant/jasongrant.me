@@ -1,0 +1,27 @@
+.pageLayout {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    width: 100%;
+}
+
+main.layout {
+    margin-top: 90px;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    height: calc(100dvh - 90px);
+}
+
+.pageLayout Header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}

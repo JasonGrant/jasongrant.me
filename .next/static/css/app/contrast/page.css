@@ -1,0 +1,49 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./ui/contrast/ApcaSettings.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.ApcaSettings_checkboxGroup__dsVl4 {
+    padding-left: 52px;
+}
+
+.ApcaSettings_fontLabel__qHnyD {
+    min-width: 6rem;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./ui/contrast/ColorSelection.module.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+.ColorSelection_colorButton__H0Lbn {
+    justify-content: flex-start;
+    width: 260px;
+}
+
+.ColorSelection_popoverContent__0wj_8 {
+    padding: 2px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./app/contrast/page.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.page_pageLayout___bUE1 {
+    width: 100%;
+    height: calc(100dvh - 90px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 100%;
+    grid-gap: 3rem;
+    gap: 3rem;
+    overflow: hidden;
+}
+
+.page_resultsZone__jlvw8 {
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+}
+
+.page_settingsZone__ZSM0p {
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+}
+
+.page_colorButton__44Vkh {
+    justify-content: flex-start;
+}
+

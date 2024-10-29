@@ -27,6 +27,13 @@ const items: Item[] = [
         button: 'Review work',
     },
     {
+        image: '/Contrast.jpg',
+        title: 'Contrast Checker',
+        description: 'WCAG and APCA tool to allow both the current and future to be checked at same time.',
+        link: '/contrast',
+        button: 'Check contrast',
+    },
+    {
         image: '/Portfolio_Experimental.jpg',
         title: 'Experimental Portfolio',
         description: 'Experimenting with a new way to navigate and structure a portfolio, providing a more narrative experience.',
