@@ -47,6 +47,18 @@
       "static/chunks/main-app.js",
       "static/css/app/_not-found/page.css",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/writing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/page.css",
+      "static/chunks/app/writing/page.js"
+    ],
+    "/writing/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/writing/layout.css",
+      "static/chunks/app/writing/layout.js"
     ]
   }
 }

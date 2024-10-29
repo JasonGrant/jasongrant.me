@@ -14,6 +14,13 @@ interface Article {
 
 const articles: Article[] = [
     {
+        image: '/writing/2024-10-29-Unicorn.webp',
+        title: 'Why Every Company Needs a UX Engineer',
+        description: 'Blending design and engineering to drive innovation, efficiency, and growth.',
+        date: 'Oct 29, 2024',
+        link: 'https://mrjasongrant.substack.com/p/why-every-company-needs-a-ux-engineer',
+    },
+    {
         image: '/writing/2024-10-22-Figma-Multiuser.webp',
         title: 'Innovating Beyond User Data and Feedback',
         description: 'How Figma’s multiplayer feature exemplifies the importance of making bold, intuitive decisions even when customers don’t see the need.',

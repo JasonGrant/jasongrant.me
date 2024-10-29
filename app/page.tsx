@@ -1,4 +1,4 @@
-import { Heading, Text } from '@radix-ui/themes';
+import { Text } from '@radix-ui/themes';
 import Header from '@/ui/shared/Header';
 import NavCard from '@/ui/landing/NavCard';
 import styles from "./page.module.css";
