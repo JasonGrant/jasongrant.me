@@ -14,6 +14,13 @@ interface Article {
 
 const articles: Article[] = [
     {
+        image: '/writing/2024-10-31-Contrast.webp',
+        title: 'Case Study: Contrast Checker',
+        description: 'Building an integrated, clutter-free tool for accessible contrast',
+        date: 'Oct 31, 2024',
+        link: 'https://mrjasongrant.substack.com/p/case-study-contrast-checker',
+    },
+    {
         image: '/writing/2024-10-29-Unicorn.webp',
         title: 'Why Every Company Needs a UX Engineer',
         description: 'Blending design and engineering to drive innovation, efficiency, and growth.',
