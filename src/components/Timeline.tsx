@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import {
   Column,
   Text,
@@ -30,10 +31,24 @@ interface TimelineProps {
 
 export function Timeline({ 
   items, 
-  dateFormat = 'month-year',
-  dateWidth = '120px',
   clickable = false,
 }: TimelineProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const formatDate = (date: string) => {
+    return isMobile ? date.split(' ').join('\n') : date;
+  };
+
   return (
     <Column gap="0" fillWidth>
       {items.map((item, index) => {
@@ -57,15 +72,18 @@ export function Timeline({
             variant="label-strong-s" 
             onBackground="neutral-weak"
             style={{ 
-              width: dateWidth, 
+              width: isMobile ? '64px' : '120px',
               flexShrink: 0,
               textAlign: 'right',
               paddingRight: '8px',
               paddingTop: '4px',
-              lineHeight: '1.2'
+              lineHeight: '1.2',
+              whiteSpace: isMobile ? 'pre-line' : 'normal'
+              
             }}
+            className="timeline-date"
           >
-            {item.date}
+            {formatDate(item.date)}
           </Text>
           
           {/* Timeline Line and Dot */}

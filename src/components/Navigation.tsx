@@ -150,24 +150,22 @@ export function Navigation() {
                 zIndex: 999
               }}
               padding="m"
-              gap="m"
+              gap="xl"
             >
               {/* Navigation Items */}
               <NavigationItems 
+                showLabels={true}
                 items={navigationItems}
                 showActiveIcon={true}
                 onItemClick={() => setIsMobileMenuOpen(false)}
               />
 
-              <Line background="neutral-alpha-weak" />
-
               {/* Social Links */}
               <SocialLinks 
+                showLabels={true}
                 links={socialLinks}
                 showExternalIcon={false}
               />
-
-              <Line background="neutral-alpha-weak" />
 
               {/* Theme Switcher */}
               <ThemeSwitcher 
