@@ -1,10 +1,16 @@
 "use client";
 
-import { Column, Text } from "@once-ui-system/core";
 import { PageLayout } from "@/components/PageLayout";
 import { Timeline } from "@/components/Timeline";
 
 const writingItems = [
+  {
+    date: "Jul 10, 2025",
+    title: "Post-Figma Design: Real UI, Real Data, Real Impact",
+    description: "What happens when you ditch mockups and prototype directly in code.",
+    url: "https://mrjasongrant.substack.com/p/post-figma-design-real-ui-real-data",
+    type: "external" as const,
+  },
   {
     date: "Jul 02, 2025",
     title: "Design isn’t dead. It just needs to split.",
