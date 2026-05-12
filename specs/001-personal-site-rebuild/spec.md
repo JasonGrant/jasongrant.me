@@ -400,7 +400,7 @@ a path to the public repo.
   may treat them differently.
 - **Newsletter target subdomain**: The inline newsletter form will POST to
   `https://[substack-subdomain].substack.com/api/v1/free`. The exact subdomain
-  is a launch-time configuration value (e.g., `designingforward`), not a spec
+  is a launch-time configuration value (e.g., `mrjasongrant`), not a spec
   decision. A `mode: 'no-cors'` opaque POST is the established pattern.
 - **Build-credit copy**: The mockup's "Built by hand · React + plain CSS, no
   build step" line will be rewritten to be truthful for a Next.js production

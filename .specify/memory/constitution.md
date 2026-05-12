@@ -1,6 +1,25 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.1.0 → 1.1.1
+Rationale: PATCH. Adds a narrow fourth exception under Principle IV's
+  "Subtle-craft exceptions" — a single playful avatar/portrait may scale on
+  hover under bounded amplitude and the existing reduced-motion guard. No rule
+  removed or inverted; the general ban on scale-on-hover still applies to
+  every other interactive element.
+
+Modified principles:
+  - IV. Design-Engineer Craft — added "Avatar hover" exception with explicit
+    bounds (≤1.15× scale, ≤5° rotation, ≤600ms transition, single element only).
+
+Templates requiring updates:
+  - ✅ specs/001-personal-site-rebuild/spec.md — FR-045 banned-pattern list
+    cites the constitution; no rewrite needed since the new exception is
+    enumerated in the constitution itself.
+  - ✅ Other templates: no edits required.
+==================
+PRIOR REPORT (v1.1.0)
+==================
 Version change: 1.0.0 → 1.1.0
 Rationale: MINOR. Three reconciliations to Principle IV (and one knock-on edit
   to Principle I and the Workflow gates) driven by the supplied design assets
@@ -198,6 +217,13 @@ Banned (MUST NOT ship):
   content blocks on first intersection with the viewport, IF AND ONLY IF it
   is suppressed under `prefers-reduced-motion: reduce`. No parallax. No
   staggered cinematic sequences. No scroll-driven typography.
+- *Avatar hover*: A single avatar/portrait element MAY scale and slightly
+  rotate on hover IF AND ONLY IF (a) scale is ≤1.15×, (b) rotation is ≤5°
+  in either direction, (c) transition is ≤600ms ease, (d) the element is
+  not part of a list (i.e., not applied to multiple repeated images), and
+  (e) it is suppressed under `prefers-reduced-motion: reduce`. This is a
+  single deliberate playful moment — the general ban on scale/bounce
+  hovers still applies to every other interactive element.
 
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
@@ -320,4 +346,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.1.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-11
+**Version**: 1.1.1 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-12

@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "ignore": [".specify/**", ".next/**", "node_modules/**"]
   },
   "formatter": {
     "enabled": true,
@@ -20,11 +20,22 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true }
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useSemanticElements": "off",
+        "useFocusableInteractive": "off"
+      }
+    }
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
     }
   }
 }

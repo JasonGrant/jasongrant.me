@@ -15,14 +15,14 @@ do not ship.
 git checkout 001-personal-site-rebuild
 npm ci
 cp .env.example .env.local                # if .env.example exists; otherwise create
-echo 'NEXT_PUBLIC_SUBSTACK_SUBDOMAIN=designingforward' >> .env.local
+echo 'NEXT_PUBLIC_SUBSTACK_SUBDOMAIN=mrjasongrant' >> .env.local
 ```
 
 Optional environment variables:
 
 | Var                                 | Default            | Purpose                          |
 |-------------------------------------|--------------------|----------------------------------|
-| `NEXT_PUBLIC_SUBSTACK_SUBDOMAIN`    | `designingforward` | Substack newsletter target       |
+| `NEXT_PUBLIC_SUBSTACK_SUBDOMAIN`    | `mrjasongrant` | Substack newsletter target       |
 
 ---
 

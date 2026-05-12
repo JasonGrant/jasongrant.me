@@ -266,7 +266,7 @@ export const site = {
   socials: {
     github: "https://github.com/jasongrant",
     linkedin: "https://www.linkedin.com/in/jasongrant",
-    substack: "https://designingforward.substack.com",
+    substack: "https://mrjasongrant.substack.com",
     bluesky: "https://bsky.app/profile/jasongrant.me",
   },
   buildCredit: {

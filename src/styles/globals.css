@@ -1,0 +1,60 @@
+/* No transform: scale() on hover anywhere. No bounce. No drop-shadow.
+   See constitution Principle IV. */
+
+@import "./reset.css";
+@import "./tokens.css";
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 40px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-feature-settings: "ss01", "ss02", "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* Reveal-on-enter is JS-opt-in via the .js-reveals class set on <html>.
+   Without JS (or before hydration), content is visible by default — important
+   for no-JS browsers, crawlers, and assistive tech. */
+.js-reveals [data-reveal] {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms), transform
+    0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js-reveals [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js-reveals [data-reveal] {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}

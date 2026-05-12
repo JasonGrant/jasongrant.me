@@ -17,7 +17,7 @@ Mode: no-cors
 email=<user-supplied>&first_referrer=<window.location.href>
 ```
 
-- `NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` defaults to `designingforward` if unset.
+- `NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` defaults to `mrjasongrant` if unset.
 - `email` is required, validated client-side by `<input type="email" required>`
   and a defensive RFC 5322-ish check in `lib/newsletter.ts`.
 - `first_referrer` is captured from `window.location.href` for Substack's

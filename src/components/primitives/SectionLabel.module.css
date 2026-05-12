@@ -1,0 +1,60 @@
+/* The label uses data-reveal but with a different reveal style than the
+   default fade-up: the LABEL itself doesn't fade, the inner TEXT slides up
+   inside an overflow:hidden clip, and the trailing RULE scales in.
+   Reveal hiding is gated by .js-reveals on <html> so no-JS users see content
+   immediately. */
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.text {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--rule);
+  transform-origin: left center;
+}
+
+:global(.js-reveals) .label .text {
+  transform: translateY(110%);
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+:global(.js-reveals) .label .rule {
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1)
+    calc(var(--reveal-delay, 0ms) + 140ms), opacity 0.4s ease calc(var(--reveal-delay, 0ms) + 140ms);
+}
+
+:global(.js-reveals) .label:global(.is-in) .text {
+  transform: none;
+}
+
+:global(.js-reveals) .label:global(.is-in) .rule {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.js-reveals) .label .text,
+  :global(.js-reveals) .label .rule {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}

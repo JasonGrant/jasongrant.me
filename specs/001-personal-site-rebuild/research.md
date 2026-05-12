@@ -151,7 +151,7 @@ or should we proxy through a Next.js Route Handler?
 
 **Decision**: Keep the client-side opaque POST exactly as the mockup. Wrap it
 in a small `lib/newsletter.ts` helper. The Substack subdomain is read from
-`NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` (defaults to `designingforward` if unset).
+`NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` (defaults to `mrjasongrant` if unset).
 On any non-throw the form transitions to the "check your inbox" confirmation
 state.
 

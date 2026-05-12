@@ -57,10 +57,10 @@ these stable in-page anchors. They MUST NOT be renamed without updating
 ## RSS discovery (FR-081)
 
 `/writing` MUST emit a `<link rel="alternate" type="application/rss+xml"
-title="Designing Forward" href="https://designingforward.substack.com/feed">`
+title="Designing Forward" href="https://mrjasongrant.substack.com/feed">`
 in `<head>`, and MUST render a visible "RSS →" link in the page footer
 area pointing at the same URL. (Substack subdomain is the
-`NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` env var; default `designingforward`.)
+`NEXT_PUBLIC_SUBSTACK_SUBDOMAIN` env var; default `mrjasongrant`.)
 
 ## SEO contract
 
