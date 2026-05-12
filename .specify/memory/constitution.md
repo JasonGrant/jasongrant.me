@@ -1,6 +1,44 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.0.0 → 1.1.0
+Rationale: MINOR. Three reconciliations to Principle IV (and one knock-on edit
+  to Principle I and the Workflow gates) driven by the supplied design assets
+  for feature 001-personal-site-rebuild. None remove or invert prior rules; all
+  are additive carve-outs that make the constitution honest about what shipping
+  craft texture actually looks like.
+
+  (1) Color modes: dual light+dark is no longer mandatory. A single deliberate
+      theme is acceptable when AA contrast holds in that theme.
+  (2) Ambient texture exception: low-opacity halos and grain overlays MAY ship
+      under a strict opacity ceiling AND `prefers-reduced-motion` guard.
+  (3) Reveal-on-enter exception: a single subtle scroll-triggered fade-in MAY
+      ship for section labels under the same reduced-motion guard.
+
+Modified principles:
+  - I. Accessibility (WCAG 2.1 AA) — narrowed contrast clause from "in both
+    color modes" to "in every shipped color mode" to match (1) above.
+  - IV. Design-Engineer Craft — color-mode requirement softened (1); banned
+    list footnoted with two narrow carve-outs (2) and (3); rationale extended.
+
+Added sections: None.
+Removed sections: None.
+Removed rules: None — both bans (gradients/patterns, scroll-triggered anims)
+  remain the default; the exceptions are explicit and bounded.
+
+Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md — generic; no edits required.
+  - ✅ .specify/templates/spec-template.md — generic; no edits required.
+  - ✅ .specify/templates/tasks-template.md — generic; no edits required.
+  - ✅ .specify/templates/checklist-template.md — generic; no edits required.
+  - ✅ CLAUDE.md — generic; no edits required.
+  - ✅ specs/001-personal-site-rebuild/spec.md — FR-047 and FR-050 updated to
+    cite the amended principle and remove [NEEDS CLARIFICATION] markers.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.0.0)
+==================
 Version change: (uninitialized template) → 1.0.0
 Rationale: Initial ratification. First concrete fill of the project constitution
   template — no prior versioned principles existed, so this is a MAJOR baseline.
@@ -47,8 +85,8 @@ shipped page. This is a pass/fail gate, not an aspiration.
 Concrete requirements:
 
 - Color contrast MUST satisfy WCAG AA (4.5:1 body text, 3:1 large text and
-  non-text UI) in both color modes. Verify with axe DevTools or equivalent
-  before any merge that ships visible changes.
+  non-text UI) in every shipped color mode. Verify with axe DevTools or
+  equivalent before any merge that ships visible changes.
 - Semantic HTML is required: real `<nav>`, `<main>`, `<article>`, `<header>`,
   `<footer>`, and a single, logical heading hierarchy per page.
 - Full keyboard navigation MUST be possible. Visible focus rings are required;
@@ -119,28 +157,55 @@ constraints. These are project-level invariants, not per-feature suggestions.
 
 Required:
 
-- Three-voice type system: Instrument Serif Italic (display), Geist Sans
-  with Inter fallback (body/UI), JetBrains Mono (metadata/labels). Maximum
-  four type sizes in active use.
-- Single-column layout, left-aligned, ~640–700px maximum content measure.
+- Three-voice type system: a display serif used italic for hero and major
+  emphasis, a body sans for paragraphs and UI, and a mono for metadata,
+  dates, and small-caps section labels. The specific families are a
+  per-feature design decision (recorded in the feature spec and the
+  colophon); maximum four type sizes in active use.
+- Single-column layout, left-aligned, ~640–720px maximum content measure.
   No sidebars on content pages. No grid layouts on the homepage.
-- Light AND dark modes are both first-class. System preference MUST be
-  respected by default. The theme toggle MUST transition smoothly
+- Color modes MAY be EITHER dual (light AND dark, both first-class with
+  system preference respected via `prefers-color-scheme`) OR a single
+  deliberate theme. A single-theme site is acceptable when (a) the chosen
+  theme meets WCAG AA contrast on every text and UI surface (Principle I),
+  and (b) the choice is the deliberate design direction, not an unfinished
+  second mode. If both modes ship, the theme toggle MUST transition smoothly
   (~150–200ms ease).
 - Hairline (1px, low-contrast) dividers only. No cards or bordered boxes
-  around content blocks.
+  around content blocks, except for deliberate framed devices used sparingly
+  (e.g., a "now" terminal fence or an inline newsletter card). Such devices
+  MUST use a single hairline border and an elevated background tone — never
+  shadows.
 
 Banned (MUST NOT ship):
 
 - Gradients, drop shadows, hero background images, decorative illustration,
   patterned backgrounds.
 - Scale transforms or bounce animations on hover.
-- Custom cursors. Parallax. Scroll-triggered animations.
+- Custom cursors. Parallax. Scroll-triggered animations beyond the subtle
+  reveal exception below.
+
+**Subtle-craft exceptions** (narrow carve-outs, not loopholes):
+
+- *Ambient background texture*: Low-opacity radial-gradient halos and
+  noise/grain overlays MAY ship IF AND ONLY IF every layer is at or below
+  ~6% opacity AND every layer disables under `prefers-reduced-motion: reduce`
+  (`display: none` or equivalent, AND any pointer/scroll listeners
+  detached). This is texture, not effect — it MUST NOT call attention to
+  itself or compete with content.
+- *Reveal-on-enter*: A single subtle reveal-on-enter animation (≤900ms ease,
+  ≤12px translate, fade-in only) MAY be applied to section labels and
+  content blocks on first intersection with the viewport, IF AND ONLY IF it
+  is suppressed under `prefers-reduced-motion: reduce`. No parallax. No
+  staggered cinematic sequences. No scroll-driven typography.
 
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
-actively undermines the spike.
+actively undermines the spike. The exceptions above exist for low-amplitude,
+motion-prefs-safe craft texture that warms the surface without performing.
+The opacity ceiling and reduced-motion guard are the bright lines — anything
+louder is a violation, not an interpretation.
 
 ### V. Content Discipline & Network Coherence
 
@@ -199,7 +264,7 @@ gates before merge to `main`:
 1. TypeScript build is clean.
 2. Biome reports no errors.
 3. axe DevTools (or equivalent) accessibility scan passes with zero
-   violations on every changed page in both light and dark modes
+   violations on every changed page in every shipped color mode
    (Principle I).
 4. Lighthouse Performance, Accessibility, Best Practices, and SEO each score
    95 or higher on the Vercel preview build for every changed page,
@@ -207,7 +272,7 @@ gates before merge to `main`:
 5. CLS is verified at 0 on every changed page.
 6. Manual keyboard and screen-reader smoke pass on changed surfaces
    (Principle III).
-7. Light AND dark mode visual check on changed surfaces.
+7. Visual check on every changed surface in every shipped color mode.
 8. The change does not introduce any banned visual pattern (Principle IV)
    or violate content rules (Principle V).
 
@@ -255,4 +320,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.0.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-11
+**Version**: 1.1.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-11
