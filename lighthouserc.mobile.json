@@ -9,7 +9,7 @@
         "http://localhost:3000/writing",
         "http://localhost:3000/colophon"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--no-sandbox --headless=new",
         "throttlingMethod": "simulate",

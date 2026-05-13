@@ -51,8 +51,8 @@ jobs:
 
       - run: npm run build
 
-      - name: Sync Chrome + ChromeDriver versions
-        run: npx --yes browser-driver-manager@latest install chrome
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Start Next.js
         run: |
@@ -63,12 +63,5 @@ jobs:
           done
           echo "server failed to start"; cat server.log; exit 1
 
-      - name: Run axe-core against all routes
-        run: |
-          npx --yes @axe-core/cli@4 \
-            http://localhost:3000/ \
-            http://localhost:3000/experience \
-            http://localhost:3000/writing \
-            http://localhost:3000/colophon \
-            --tags wcag2a,wcag2aa,wcag21a,wcag21aa \
-            --exit
+      - name: Run axe-core via Playwright against all routes
+        run: node scripts/axe-check.mjs
