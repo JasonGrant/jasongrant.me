@@ -202,7 +202,14 @@ export function CommandPalette() {
             aria-activedescendant={filtered[idx] ? `cmdk-item-${idx}` : undefined}
             aria-controls="cmdk-list"
           />
-          <span className={styles.kbd}>esc</span>
+          <button
+            type="button"
+            className={styles.kbd}
+            onClick={close}
+            aria-label="Close command palette"
+          >
+            esc
+          </button>
         </div>
         <div className={styles.list} id="cmdk-list" role="listbox">
           {groups.length === 0 && <div className={styles.empty}>No matches</div>}
@@ -230,7 +237,7 @@ export function CommandPalette() {
         <div className={styles.foot}>
           <span>↑↓ navigate</span>
           <span>⏎ select</span>
-          <span>built by hand · Next.js · view source</span>
+          <span className={styles.footEnd}>built by hand · Next.js · view source</span>
         </div>
       </div>
     </div>
