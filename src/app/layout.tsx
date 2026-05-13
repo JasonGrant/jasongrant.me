@@ -39,6 +39,12 @@ export const metadata: Metadata = {
     icon: [{ url: "/icon.jpg", type: "image/jpeg", sizes: "128x128" }],
     apple: [{ url: "/icon.jpg", type: "image/jpeg", sizes: "128x128" }],
   },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: {
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION ?? "",
+    },
+  },
 };
 
 export const viewport: Viewport = {
