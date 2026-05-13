@@ -151,10 +151,15 @@ export default function Colophon() {
 
         <dt>Domain &amp; TLS</dt>
         <dd>
-          jasongrant.me · DNS and TLS via{" "}
+          jasongrant.me · DNS via{" "}
           <a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
             Cloudflare
-          </a>
+          </a>{" "}
+          · TLS via{" "}
+          <a href="https://vercel.com" target="_blank" rel="noreferrer">
+            Vercel
+          </a>{" "}
+          (Let&rsquo;s Encrypt)
         </dd>
 
         <dt>Newsletter</dt>
