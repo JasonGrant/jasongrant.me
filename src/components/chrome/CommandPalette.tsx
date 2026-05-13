@@ -64,7 +64,15 @@ export function CommandPalette() {
     if (open) {
       setQuery("");
       setIdx(0);
-      requestAnimationFrame(() => inputRef.current?.focus());
+      // On touch devices, auto-focusing the input raises the soft keyboard.
+      // That breaks list scrolling on iOS (keyboard masks gesture area) and
+      // the palette is primarily a tap-to-navigate surface on mobile anyway.
+      // Desktop users still get instant search-as-you-type focus.
+      const isTouch =
+        typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+      if (!isTouch) {
+        requestAnimationFrame(() => inputRef.current?.focus());
+      }
     } else if (triggerRef.current instanceof HTMLElement) {
       triggerRef.current.focus();
       triggerRef.current = null;
@@ -196,12 +204,7 @@ export function CommandPalette() {
           />
           <span className={styles.kbd}>esc</span>
         </div>
-        <div
-          className={styles.list}
-          id="cmdk-list"
-          role="listbox"
-          onTouchStart={() => inputRef.current?.blur()}
-        >
+        <div className={styles.list} id="cmdk-list" role="listbox">
           {groups.length === 0 && <div className={styles.empty}>No matches</div>}
           {groups.map((g) => (
             <div key={g.name} className={styles.group}>
