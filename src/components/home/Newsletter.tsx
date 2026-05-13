@@ -1,6 +1,7 @@
 "use client";
 
 import { site } from "@/content/site";
+import { trackNewsletterSubscribe } from "@/lib/analytics";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 import { useState } from "react";
 import styles from "./Newsletter.module.css";
@@ -22,6 +23,7 @@ export function Newsletter() {
     const result = await subscribeToNewsletter(email);
     if (result.state === "ok") {
       setState({ kind: "done" });
+      trackNewsletterSubscribe();
       return;
     }
     if (result.state === "validation-error") {

@@ -3,10 +3,11 @@
 **Feature**: 001-personal-site-rebuild
 **Related**: FR-080, US4 acceptance scenario 3
 
-The first child of `<head>` on every shipped HTML response MUST be an HTML
-comment that carries the build credit, the repo URL, and a contact address.
-This is the FR-080 view-source signal — the page rewards the design-engineer
-audience that opens dev tools.
+Every shipped HTML response MUST contain an HTML comment near the top of
+`<head>` (after Next.js's auto-injected `<meta charset>` and `<meta viewport>`,
+before any external scripts) that carries the build credit, the repo URL,
+and a contact address. This is the FR-080 view-source signal — the page
+rewards the design-engineer audience that opens dev tools.
 
 ## Required content
 
@@ -59,8 +60,10 @@ export function HeadComment() {
 
 ## Validation
 
-- The first non-whitespace bytes of `<head>` content MUST begin with `<!--`.
+- A `<script type="text/html">` carrying the comment MUST appear inside
+  `<head>` on every page.
 - The comment MUST contain the literal substrings `Repo: https://`,
   `hello@jasongrant.me`, and `Next.js`.
-- These three checks MAY be added to a launch smoke script (`curl https://jasongrant.me | head -50 | grep ...`)
-  but are not enforced at build time beyond the `-->` assertion above.
+- These checks MAY be added to a launch smoke script
+  (`curl https://jasongrant.me | grep ...`) but are not enforced at build time
+  beyond the `-->` assertion above.

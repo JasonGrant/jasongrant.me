@@ -43,51 +43,40 @@
   font-size: 14px;
 }
 
-/* Hard reset on the palette search input. UA default field rendering and any
-   third-party autofill highlighter are suppressed by !important + an explicit
-   dark background-color matching the card. */
-.input,
+.input {
+  flex: 1 1 auto;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  caret-color: var(--accent);
+}
+
 .input:focus,
-.input:focus-visible,
-.input:hover,
-.input:active {
-  flex: 1 1 auto !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  background: var(--bg-elev) !important;
-  background-color: var(--bg-elev) !important;
-  background-image: none !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  color: var(--ink) !important;
-  -webkit-text-fill-color: var(--ink) !important;
-  font-family: var(--font-body) !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  caret-color: var(--accent) !important;
+.input:focus-visible {
+  outline: 0;
+  box-shadow: none;
 }
 
 .input::placeholder {
-  color: var(--ink-mute) !important;
-  opacity: 1 !important;
-  -webkit-text-fill-color: var(--ink-mute) !important;
+  color: var(--ink-mute);
+  opacity: 1;
 }
 
-/* Suppress browser autofill (Safari/Chrome paint a cream/yellow background
-   on type=email/password inputs even with autoComplete=off). */
+/* Belt-and-suspenders: suppress webkit autofill cream background. */
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
-  -webkit-text-fill-color: var(--ink) !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--bg-elev) inset !important;
-  caret-color: var(--accent) !important;
-  transition: background-color 9999s ease-out !important;
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-elev) inset;
+  caret-color: var(--accent);
 }
 
 .kbd {

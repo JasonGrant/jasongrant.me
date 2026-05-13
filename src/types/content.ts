@@ -1,5 +1,5 @@
 export type MarkRef =
-  | { kind: "logo"; key: "marley" }
+  | { kind: "logo"; key: "marley" | "klaviyo" | "vertex" | "hypoth" | "olllo" | "wren" }
   | { kind: "monogram"; letter: string; style: "solid" | "outline" | "accent" };
 
 export interface WorkLink {
@@ -28,6 +28,8 @@ export interface WorkEntry {
   role: string;
   reportingLine?: string;
   dates: string;
+  /** Company stage tag, e.g. "Insurtech · Series B", "Martech · Series D to IPO". */
+  companyStage?: string;
   homeDescription: string;
   experienceBullets: string[];
   links?: WorkLink[];

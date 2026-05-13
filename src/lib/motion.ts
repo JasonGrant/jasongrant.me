@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function useReducedMotion(): boolean {
@@ -17,6 +18,13 @@ export function useReducedMotion(): boolean {
 }
 
 export function useReveal(): void {
+  // Re-run on every route change. App Router layouts persist across client-side
+  // navigation, so without this dependency the IntersectionObserver would only
+  // observe the elements present on initial mount; SectionLabels on subsequent
+  // pages would stay hidden behind their reveal transform.
+  const pathname = usePathname();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is intentionally a dependency to re-run the effect on each navigation; it is not read inside the effect body
   useEffect(() => {
     // Opt the document into JS-based reveal hiding. Without this class the
     // [data-reveal] elements are always visible — important for crawlers and
@@ -48,5 +56,5 @@ export function useReveal(): void {
       i++;
     }
     return () => io.disconnect();
-  }, []);
+  }, [pathname]);
 }

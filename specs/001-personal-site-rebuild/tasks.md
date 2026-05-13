@@ -148,11 +148,11 @@ categories. axe scan clean.
 
 ### Implementation for User Story 2
 
-- [ ] T060 [P] [US2] Create `src/components/experience/ExperienceEntry.tsx` — long-form entry: org + role + dates + optional `reportingLine` + 2–4 `experienceBullets` as a `<ul>` with hairline-bordered separators per mockup-derived design. Uses MarkTile for org chips where present (Hi Marley logo, Hypoth monogram). Co-located CSS module — re-use the meta/body two-column grid from `WorkEntry` but allow body to be a bulleted list
-- [ ] T061 [US2] Rewrite `src/app/(main)/experience/page.tsx` to render a single `<main>` with `<h1>Experience</h1>` (display serif italic), then map `workEntries` to `<ExperienceEntry>` in array order (reverse chronological). Below the list, render a short downloadable-resume CTA linking to `/resume.pdf` with mono "↓ Resume (PDF)" label. Architecture-firms 1997–2011 entry MUST NOT appear (per FR-024). Add `metadata` export for the page
-- [ ] T062 [US2] Add `Download resume` to the Meta group of `src/content/palette.ts` with action `{ kind: "navigate", href: "/resume.pdf" }` and hint `pdf` (per `contracts/keyboard.md`)
-- [ ] T063 [US2] Place a current resume PDF at `public/resume.pdf` (placeholder acceptable until Jason provides the final file — but the route MUST resolve, no 404, for SC-009)
-- [ ] T064 [US2] Run Lighthouse against `/experience` (mobile + desktop) — ≥95 on all four. Run axe scan — zero serious/critical. Verify resume link resolves (200 OK, application/pdf). Verify the page reads correctly under VoiceOver (semantic `<article>` per entry, heading hierarchy intact)
+- [x] T060 [P] [US2] Create `src/components/experience/ExperienceEntry.tsx` — long-form entry: org + role + dates + optional `reportingLine` + 2–4 `experienceBullets` as a `<ul>` with hairline-bordered separators per mockup-derived design. Uses MarkTile for org chips where present (Hi Marley logo, Hypoth monogram). Co-located CSS module — re-use the meta/body two-column grid from `WorkEntry` but allow body to be a bulleted list
+- [x] T061 [US2] Rewrite `src/app/(main)/experience/page.tsx` to render a single `<main>` with `<h1>Experience</h1>` (display serif italic), then map `workEntries` to `<ExperienceEntry>` in array order (reverse chronological). Below the list, render a short downloadable-resume CTA linking to `/resume.pdf` with mono "↓ Resume (PDF)" label. Architecture-firms 1997–2011 entry MUST NOT appear (per FR-024). Add `metadata` export for the page
+- [x] T062 [US2] Add `Download resume` to the Meta group of `src/content/palette.ts` with action `{ kind: "navigate", href: "/resume.pdf" }` and hint `pdf` (per `contracts/keyboard.md`)
+- [x] T063 [US2] Place a current resume PDF at `public/resume.pdf` (placeholder acceptable until Jason provides the final file — but the route MUST resolve, no 404, for SC-009)
+- [x] T064 [US2] Run Lighthouse against `/experience` (mobile + desktop) — ≥95 on all four. Run axe scan — zero serious/critical. Verify resume link resolves (200 OK, application/pdf). Verify the page reads correctly under VoiceOver (semantic `<article>` per entry, heading hierarchy intact)
 
 **Checkpoint**: US1 + US2 both ship. Recruiter has the homepage hook AND the proof page.
 
@@ -173,11 +173,11 @@ Lighthouse ≥95.
 
 ### Implementation for User Story 3
 
-- [ ] T070 [US3] Augment `src/content/writing.ts` so that the five `selected: true` entries each carry a `blurb` field per data-model.md (≤160 chars). For now blurbs can be one-line summaries derived from the post titles; final copy will be edited closer to launch
-- [ ] T071 [P] [US3] Create `src/components/writing/SelectedList.tsx` — filters `writing` for `selected === true`, renders each as a richer card-less row with title + blurb + date, linking out. Co-located CSS module
-- [ ] T072 [P] [US3] Create `src/components/writing/ArchiveList.tsx` — sorts `writing` descending by `isoDate`, renders each as the homepage-style dotted-leader row (title + leader + date). Co-located CSS module
-- [ ] T073 [US3] Rewrite `src/app/(main)/writing/page.tsx`: `<h1>Writing</h1>` (display italic), `<SelectedList />`, `<SectionLabel>Archive</SectionLabel>`, `<ArchiveList />`, then a footer "RSS →" link pointing at `https://${NEXT_PUBLIC_SUBSTACK_SUBDOMAIN ?? "mrjasongrant"}.substack.com/feed`. Page `<head>` includes `<link rel="alternate" type="application/rss+xml" title="Designing Forward" href="...feed">` via the `metadata.alternates.types` API. Add `metadata` for title/description/OG
-- [ ] T074 [US3] Run Lighthouse against `/writing` (mobile + desktop) — ≥95 on all four. Verify RSS discovery (`curl -s https://localhost:3000/writing | grep 'rel="alternate"'`). Verify every post link opens to a Substack URL (no relative links accidentally introduced). axe scan clean
+- [x] T070 [US3] Augment `src/content/writing.ts` so that the five `selected: true` entries each carry a `blurb` field per data-model.md (≤160 chars). For now blurbs can be one-line summaries derived from the post titles; final copy will be edited closer to launch
+- [x] T071 [P] [US3] Create `src/components/writing/SelectedList.tsx` — filters `writing` for `selected === true`, renders each as a richer card-less row with title + blurb + date, linking out. Co-located CSS module
+- [x] T072 [P] [US3] Create `src/components/writing/ArchiveList.tsx` — sorts `writing` descending by `isoDate`, renders each as the homepage-style dotted-leader row (title + leader + date). Co-located CSS module
+- [x] T073 [US3] Rewrite `src/app/(main)/writing/page.tsx`: `<h1>Writing</h1>` (display italic), `<SelectedList />`, `<SectionLabel>Archive</SectionLabel>`, `<ArchiveList />`, then a footer "RSS →" link pointing at `https://${NEXT_PUBLIC_SUBSTACK_SUBDOMAIN ?? "mrjasongrant"}.substack.com/feed`. Page `<head>` includes `<link rel="alternate" type="application/rss+xml" title="Designing Forward" href="...feed">` via the `metadata.alternates.types` API. Add `metadata` for title/description/OG
+- [x] T074 [US3] Run Lighthouse against `/writing` (mobile + desktop) — ≥95 on all four. Verify RSS discovery (`curl -s https://localhost:3000/writing | grep 'rel="alternate"'`). Verify every post link opens to a Substack URL (no relative links accidentally introduced). axe scan clean
 
 **Checkpoint**: US1 + US2 + US3 ship. The full three-page rebuild is functional.
 
@@ -201,9 +201,9 @@ phase is verification and small polish.
 
 ### Implementation for User Story 4
 
-- [ ] T080 [US4] Manually verify every Cmd+K action listed in `contracts/keyboard.md` works end-to-end: 6 Navigate, 4 Work, 5 External, 4 Meta. Document any palette item that fails and fix it in `src/components/chrome/CommandPalette.tsx` or `src/content/palette.ts`
-- [ ] T081 [US4] Verify the View-Source contract: open the deployed (or local prod-build) page, View Source, confirm the first child of `<head>` is the HTML comment from `site.buildCredit.headComment`, with the literal substrings `Repo: https://`, `hello@jasongrant.me`, and `Next.js` present
-- [ ] T082 [US4] Verify ARIA and keyboard a11y on the palette via VoiceOver: opens announces as dialog; arrow-key navigation announces each item; Escape returns focus to the trigger that opened it (TopBar or Footer button)
+- [x] T080 [US4] Manually verify every Cmd+K action listed in `contracts/keyboard.md` works end-to-end: 6 Navigate, 4 Work, 5 External, 4 Meta. Document any palette item that fails and fix it in `src/components/chrome/CommandPalette.tsx` or `src/content/palette.ts`
+- [x] T081 [US4] Verify the View-Source contract: open the deployed (or local prod-build) page, View Source, confirm the first child of `<head>` is the HTML comment from `site.buildCredit.headComment`, with the literal substrings `Repo: https://`, `hello@jasongrant.me`, and `Next.js` present
+- [x] T082 [US4] Verify ARIA and keyboard a11y on the palette via VoiceOver: opens announces as dialog; arrow-key navigation announces each item; Escape returns focus to the trigger that opened it (TopBar or Footer button)
 
 **Checkpoint**: All four user stories ship. The site is feature-complete for v1.
 
@@ -214,15 +214,15 @@ phase is verification and small polish.
 **Purpose**: Optional `/colophon` page, View Transitions on nav, sitemap +
 robots, OG images for non-home pages, final pre-launch verification.
 
-- [ ] T090 [P] Create `src/app/(main)/colophon/page.tsx` per FR-002 — a single short page (≤300 words) naming Petrona / Funnel Sans / DM Mono, Next.js 15 + React 19, Vercel hosting, the warm-dark token set, link to the GitHub repo. Use the same chrome as other pages. Add to Navigate group of `src/content/palette.ts`
-- [ ] T091 [P] Create `src/app/sitemap.ts` (Next.js metadata file) listing the four routes: `/`, `/experience`, `/writing`, `/colophon`. Lastmod = build time
-- [ ] T092 [P] Create `src/app/robots.ts` returning `{ rules: [{ userAgent: '*', allow: '/' }], sitemap: 'https://jasongrant.me/sitemap.xml' }`
-- [ ] T093 [P] Add per-page `metadata` exports with page-specific titles, descriptions, canonical URLs, and OG image URLs (`/api/og?page=experience`, `?page=writing`, `?page=colophon`) for all three non-home pages
-- [ ] T094 Verify View Transitions API is active on nav between `/`, `/experience`, `/writing`, `/colophon` on a supporting browser (Chrome 111+ / Safari 18+). On Firefox the navigation should still work (no jank, no broken state)
-- [ ] T095 [P] Rewrite the footer build-credit copy to be truthful for the Next.js production build (per Assumptions): "Built by hand · Next.js · view source" (or similar) — the mockup's "no build step" line MUST NOT ship as-is
-- [ ] T096 Add a `<noscript>` fallback in `src/app/layout.tsx` for the newsletter form (renders a plain `<a href="https://mrjasongrant.substack.com">Subscribe on Substack</a>`) so the form is reachable when JS is disabled
-- [ ] T097 Run a final whole-site verification pass per `quickstart.md` §4: `tsc --noEmit` clean, `biome check` clean, `npm run build` clean. For each of `/`, `/experience`, `/writing`, `/colophon`: Lighthouse ≥95 on all four categories mobile + desktop; axe scan zero serious/critical; CLS = 0; manual keyboard pass; VoiceOver smoke; visual check under both normal AND `prefers-reduced-motion: reduce`. Record scores in the PR description
-- [ ] T098 Run the pre-launch checklist from `quickstart.md` §5 to confirm operational items: `public/resume.pdf` is current, `src/content/now.ts::updated` is current, outbound links resolve, Substack subdomain is correct in `.env.local` (and Vercel env). The remaining cleanup items (Hypoth DNS to `hypoth.ai`, Hypoth footer reconciliation, Substack tagline) are tracked outside this codebase per FR-093
+- [x] T090 [P] Create `src/app/(main)/colophon/page.tsx` per FR-002 — a single short page (≤300 words) naming Petrona / Funnel Sans / DM Mono, Next.js 15 + React 19, Vercel hosting, the warm-dark token set, link to the GitHub repo. Use the same chrome as other pages. Add to Navigate group of `src/content/palette.ts`
+- [x] T091 [P] Create `src/app/sitemap.ts` (Next.js metadata file) listing the four routes: `/`, `/experience`, `/writing`, `/colophon`. Lastmod = build time
+- [x] T092 [P] Create `src/app/robots.ts` returning `{ rules: [{ userAgent: '*', allow: '/' }], sitemap: 'https://jasongrant.me/sitemap.xml' }`
+- [x] T093 [P] Add per-page `metadata` exports with page-specific titles, descriptions, canonical URLs, and OG image URLs (`/api/og?page=experience`, `?page=writing`, `?page=colophon`) for all three non-home pages
+- [x] T094 Verify View Transitions API is active on nav between `/`, `/experience`, `/writing`, `/colophon` on a supporting browser (Chrome 111+ / Safari 18+). On Firefox the navigation should still work (no jank, no broken state)
+- [x] T095 [P] Rewrite the footer build-credit copy to be truthful for the Next.js production build (per Assumptions): "Built by hand · Next.js · view source" (or similar) — the mockup's "no build step" line MUST NOT ship as-is
+- [x] T096 Add a `<noscript>` fallback in `src/app/layout.tsx` for the newsletter form (renders a plain `<a href="https://mrjasongrant.substack.com">Subscribe on Substack</a>`) so the form is reachable when JS is disabled
+- [x] T097 Run a final whole-site verification pass per `quickstart.md` §4: `tsc --noEmit` clean, `biome check` clean, `npm run build` clean. For each of `/`, `/experience`, `/writing`, `/colophon`: Lighthouse ≥95 on all four categories mobile + desktop; axe scan zero serious/critical; CLS = 0; manual keyboard pass; VoiceOver smoke; visual check under both normal AND `prefers-reduced-motion: reduce`. Record scores in the PR description
+- [x] T098 Run the pre-launch checklist from `quickstart.md` §5 to confirm operational items: `public/resume.pdf` is current, `src/content/now.ts::updated` is current, outbound links resolve, Substack subdomain is correct in `.env.local` (and Vercel env). The remaining cleanup items (Hypoth DNS to `hypoth.ai`, Hypoth footer reconciliation, Substack tagline) are tracked outside this codebase per FR-093
 
 ---
 

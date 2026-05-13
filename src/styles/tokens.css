@@ -1,16 +1,17 @@
 :root {
-  /* Surface — warm dark, paper soaked in oil */
-  --bg: #15120d;
-  --bg-elev: #1e1a13;
-  --ink: #ece3cf;
-  --ink-soft: #a39c8b;
-  /* WCAG AA: 5.29:1 on --bg, 4.86:1 on --bg-elev. Don't darken below #8B8576
-     without verifying contrast for small (10–13px) mono labels. */
-  --ink-mute: #908a7b;
+  /* Surface — warm dark, paper soaked in oil. All tokens in oklch for a
+     single color space across the palette (matches --accent below). */
+  --bg: oklch(0.184 0.011 80.5);
+  --bg-elev: oklch(0.22 0.014 81.6);
+  --ink: oklch(0.918 0.028 86.6);
+  --ink-soft: oklch(0.694 0.026 88.3);
+  /* WCAG AA: 5.29:1 on --bg, 4.86:1 on --bg-elev. Don't darken --ink-mute
+     below L≈0.62 without verifying contrast for small (10–13px) mono labels. */
+  --ink-mute: oklch(0.634 0.023 88.8);
 
-  /* Hairlines */
-  --rule: rgba(236, 227, 207, 0.1);
-  --rule-strong: rgba(236, 227, 207, 0.2);
+  /* Hairlines — same hue as --ink, with alpha. */
+  --rule: oklch(0.918 0.028 86.6 / 0.1);
+  --rule-strong: oklch(0.918 0.028 86.6 / 0.2);
 
   /* Accent — teal, tuned for warm dark */
   --accent: oklch(0.78 0.1 195);

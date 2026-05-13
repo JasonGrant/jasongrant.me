@@ -7,6 +7,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 40px;
+  /* Tell the browser this is a dark-themed UI so form inputs, scrollbars,
+     and other UA-painted chrome use dark defaults regardless of the user's
+     system color preference. */
+  color-scheme: dark;
 }
 
 body {

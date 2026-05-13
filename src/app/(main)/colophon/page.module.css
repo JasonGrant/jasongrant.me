@@ -1,0 +1,119 @@
+.h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-wrap: pretty;
+}
+
+.body a,
+.dl dd a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.body a:hover,
+.dl dd a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.spec {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: minmax(120px, max-content) 1fr;
+  column-gap: 24px;
+  row-gap: 14px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.dl dt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  align-self: baseline;
+}
+
+.dl dd {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.dl dd .mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.swatchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+.swatchItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--rule-strong);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 720px) {
+  .h1 {
+    font-size: 36px;
+  }
+  .dl {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
+  .dl dd {
+    margin-bottom: 12px;
+  }
+}

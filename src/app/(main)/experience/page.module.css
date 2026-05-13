@@ -1,0 +1,70 @@
+.intro {
+  margin: 0 0 16px;
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.lede {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-top: 24px;
+  max-width: 620px;
+  text-wrap: pretty;
+}
+
+.entries {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.resumeBlock {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resumeLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.resumeLink {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: border-color 0.15s;
+}
+
+.resumeLink:hover {
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .h1 {
+    font-size: 36px;
+  }
+  .entries {
+    margin-top: 40px;
+  }
+}

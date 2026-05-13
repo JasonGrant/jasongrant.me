@@ -25,6 +25,7 @@ export function WorkEntry({ entry, first = false }: { entry: TWorkEntry; first?:
         </span>
         <span className={styles.role}>{entry.role}</span>
         <span className={styles.dates}>{entry.dates}</span>
+        {entry.companyStage && <span className={styles.stage}>{entry.companyStage}</span>}
       </div>
       <div className={styles.body}>
         <p className={styles.desc}>{entry.homeDescription}</p>

@@ -2,20 +2,10 @@ import type { CommandPaletteItem } from "@/types/content";
 import { site } from "./site";
 
 export const paletteItems: CommandPaletteItem[] = [
-  // Navigate
-  { group: "Navigate", label: "Now", hint: "jump", action: { kind: "scroll-to", targetId: "now" } },
-  {
-    group: "Navigate",
-    label: "Selected work",
-    hint: "jump",
-    action: { kind: "scroll-to", targetId: "work" },
-  },
-  {
-    group: "Navigate",
-    label: "Writing",
-    hint: "jump",
-    action: { kind: "scroll-to", targetId: "writing" },
-  },
+  // Navigate — page-level only. In-page anchor jumps were removed because
+  // labels like "Selected work" / "Experience" and "Writing" / "Writing (page)"
+  // are too easy to confuse and miss-click.
+  { group: "Navigate", label: "Home", hint: "page", action: { kind: "navigate", href: "/" } },
   {
     group: "Navigate",
     label: "Experience",
@@ -24,7 +14,7 @@ export const paletteItems: CommandPaletteItem[] = [
   },
   {
     group: "Navigate",
-    label: "Writing (page)",
+    label: "Writing",
     hint: "page",
     action: { kind: "navigate", href: "/writing" },
   },
@@ -33,32 +23,6 @@ export const paletteItems: CommandPaletteItem[] = [
     label: "Colophon",
     hint: "page",
     action: { kind: "navigate", href: "/colophon" },
-  },
-
-  // Work
-  {
-    group: "Work",
-    label: "Hi Marley",
-    hint: "role",
-    action: { kind: "scroll-to", targetId: "hi-marley" },
-  },
-  {
-    group: "Work",
-    label: "Hypoth",
-    hint: "studio",
-    action: { kind: "scroll-to", targetId: "hypoth" },
-  },
-  {
-    group: "Work",
-    label: "Klaviyo",
-    hint: "role",
-    action: { kind: "scroll-to", targetId: "klaviyo" },
-  },
-  {
-    group: "Work",
-    label: "Vertex",
-    hint: "role",
-    action: { kind: "scroll-to", targetId: "vertex" },
   },
 
   // External
@@ -91,6 +55,12 @@ export const paletteItems: CommandPaletteItem[] = [
     label: "Wren",
     hint: "↗",
     action: { kind: "open-external", href: "https://wrenpod.com" },
+  },
+  {
+    group: "External",
+    label: "Olllo",
+    hint: "↗",
+    action: { kind: "open-external", href: "https://www.hypoth.ai/olllo" },
   },
 
   // Meta

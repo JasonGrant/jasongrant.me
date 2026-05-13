@@ -1,6 +1,7 @@
 "use client";
 
 import { paletteItems } from "@/content/palette";
+import { trackPaletteAction } from "@/lib/analytics";
 import { CMDK_OPEN_EVENT, useEscape, useGlobalCmdK } from "@/lib/keyboard";
 import type { CommandPaletteItem, PaletteAction } from "@/types/content";
 import classNames from "classnames";
@@ -75,6 +76,14 @@ export function CommandPalette() {
     setIdx(0);
   }, []);
 
+  // Keep the highlighted palette item in view when arrow-key nav drives it
+  // outside the visible scroll area of the listbox.
+  useEffect(() => {
+    if (!open) return;
+    const el = document.getElementById(`cmdk-item-${idx}`);
+    el?.scrollIntoView({ block: "nearest" });
+  }, [idx, open]);
+
   const filtered = useMemo<CommandPaletteItem[]>(() => {
     const q = query.trim().toLowerCase();
     if (!q) return paletteItems;
@@ -86,6 +95,7 @@ export function CommandPalette() {
   const run = useCallback(
     (item: CommandPaletteItem) => {
       setOpen(false);
+      trackPaletteAction(item.group, item.label);
       setTimeout(() => runAction(item.action, router), 50);
     },
     [router],
@@ -149,6 +159,7 @@ export function CommandPalette() {
             autoCorrect="off"
             autoCapitalize="off"
             enterKeyHint="go"
+            className={styles.input}
             aria-label="Command palette search"
             aria-activedescendant={filtered[idx] ? `cmdk-item-${idx}` : undefined}
             aria-controls="cmdk-list"
