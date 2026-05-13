@@ -64,7 +64,15 @@ export function CommandPalette() {
     if (open) {
       setQuery("");
       setIdx(0);
-      requestAnimationFrame(() => inputRef.current?.focus());
+      // On touch devices, auto-focusing the input raises the soft keyboard.
+      // That breaks list scrolling on iOS (keyboard masks gesture area) and
+      // the palette is primarily a tap-to-navigate surface on mobile anyway.
+      // Desktop users still get instant search-as-you-type focus.
+      const isTouch =
+        typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+      if (!isTouch) {
+        requestAnimationFrame(() => inputRef.current?.focus());
+      }
     } else if (triggerRef.current instanceof HTMLElement) {
       triggerRef.current.focus();
       triggerRef.current = null;
@@ -194,7 +202,14 @@ export function CommandPalette() {
             aria-activedescendant={filtered[idx] ? `cmdk-item-${idx}` : undefined}
             aria-controls="cmdk-list"
           />
-          <span className={styles.kbd}>esc</span>
+          <button
+            type="button"
+            className={styles.kbd}
+            onClick={close}
+            aria-label="Close command palette"
+          >
+            esc
+          </button>
         </div>
         <div className={styles.list} id="cmdk-list" role="listbox">
           {groups.length === 0 && <div className={styles.empty}>No matches</div>}
@@ -222,7 +237,7 @@ export function CommandPalette() {
         <div className={styles.foot}>
           <span>↑↓ navigate</span>
           <span>⏎ select</span>
-          <span>built by hand · Next.js · view source</span>
+          <span className={styles.footEnd}>built by hand · Next.js · view source</span>
         </div>
       </div>
     </div>
