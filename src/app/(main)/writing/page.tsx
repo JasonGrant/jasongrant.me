@@ -1,3 +1,4 @@
+import { WritingJsonLd } from "@/components/chrome/WritingJsonLd";
 import { SectionLabel } from "@/components/primitives/SectionLabel";
 import { ArchiveList } from "@/components/writing/ArchiveList";
 import { SelectedList } from "@/components/writing/SelectedList";
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 export default function Writing() {
   return (
     <>
+      <WritingJsonLd />
       <header className={styles.intro}>
         <h1 className={styles.h1}>Writing</h1>
         <p className={styles.lede}>
