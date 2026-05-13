@@ -92,7 +92,11 @@
 }
 
 .list {
+  /* dvh sizes against the visible viewport — without it, an iOS soft keyboard
+     pushes part of the list behind itself and swipes never reach the scroll
+     container. vh fallback for very old browsers (effectively none in scope). */
   max-height: 52vh;
+  max-height: 52dvh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;

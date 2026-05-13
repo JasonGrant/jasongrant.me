@@ -196,7 +196,12 @@ export function CommandPalette() {
           />
           <span className={styles.kbd}>esc</span>
         </div>
-        <div className={styles.list} id="cmdk-list" role="listbox">
+        <div
+          className={styles.list}
+          id="cmdk-list"
+          role="listbox"
+          onTouchStart={() => inputRef.current?.blur()}
+        >
           {groups.length === 0 && <div className={styles.empty}>No matches</div>}
           {groups.map((g) => (
             <div key={g.name} className={styles.group}>
