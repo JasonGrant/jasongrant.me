@@ -28,7 +28,13 @@ const person = {
     { "@type": "Organization", name: site.org.vertex.name, url: site.org.vertex.url },
   ],
   knowsAbout: [...site.expertise],
-  sameAs: [site.socials.linkedin, site.socials.github, site.socials.bluesky, site.socials.substack],
+  sameAs: [
+    site.socials.linkedin,
+    site.socials.github,
+    site.socials.bluesky,
+    site.socials.substack,
+    site.org.hypoth.url,
+  ],
 };
 
 const website = {

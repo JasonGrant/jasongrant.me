@@ -1,3 +1,4 @@
+import { HomeJsonLd } from "@/components/chrome/HomeJsonLd";
 import { Hero } from "@/components/home/Hero";
 import { NowBlock } from "@/components/home/NowBlock";
 import { WorkShelf } from "@/components/home/WorkShelf";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <HomeJsonLd />
       <Hero />
       <NowBlock />
       <WorkShelf />
