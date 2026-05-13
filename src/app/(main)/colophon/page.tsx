@@ -104,6 +104,48 @@ export default function Colophon() {
           </div>
         </dd>
 
+        <dt>Quality gates</dt>
+        <dd>
+          <div className={styles.gates}>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>lighthouse · desktop</span>
+              <span className={styles.scores}>
+                <span>perf 100</span>
+                <span>a11y 100</span>
+                <span>bp 100</span>
+                <span>seo 100</span>
+              </span>
+            </div>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>lighthouse · mobile</span>
+              <span className={styles.scores}>
+                <span>perf 98</span>
+                <span>a11y 100</span>
+                <span>bp 100</span>
+                <span>seo 100</span>
+              </span>
+            </div>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>wcag 2.1 aa</span>
+              <span className={styles.scores}>
+                <span>0 axe-core violations</span>
+              </span>
+            </div>
+          </div>
+          <p className={styles.gateNote}>
+            Last verified 2026-05-12. Categories below 95 or any serious axe violation block the
+            merge — see{" "}
+            <a
+              href={`${site.github}/blob/main/.github/workflows/quality.yml`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              .github/workflows/quality.yml
+            </a>
+            .
+          </p>
+        </dd>
+
         <dt>Reveal</dt>
         <dd>IntersectionObserver, JS-opt-in (no-JS visitors see content immediately)</dd>
 

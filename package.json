@@ -25,10 +25,18 @@
     "@types/node": "20.17.23",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
+    "critters": "^0.0.25",
     "typescript": "5.8.2"
   },
   "overrides": {
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2"
-  }
+  },
+  "browserslist": [
+    "Chrome >= 105",
+    "Edge >= 105",
+    "Firefox >= 102",
+    "Safari >= 15.4",
+    "iOS >= 15.4"
+  ]
 }

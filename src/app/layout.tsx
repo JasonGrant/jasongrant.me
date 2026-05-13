@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     images: ["/api/og?page=home"],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: "/icon.jpg", type: "image/jpeg", sizes: "128x128" }],
+    apple: [{ url: "/icon.jpg", type: "image/jpeg", sizes: "128x128" }],
+  },
 };
 
 export const viewport: Viewport = {
@@ -52,8 +56,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         {children}
-        <Analytics />
-        <SpeedInsights />
+        {process.env.VERCEL ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );
