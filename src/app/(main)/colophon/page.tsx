@@ -83,7 +83,7 @@ export default function Colophon() {
                 style={{ background: "var(--bg)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--bg oklch(0.184 0.011 80.5)</span>
+              <span className={styles.mono}>--bg #15120d</span>
             </span>
             <span className={styles.swatchItem}>
               <span
@@ -91,7 +91,7 @@ export default function Colophon() {
                 style={{ background: "var(--ink)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--ink oklch(0.918 0.028 86.6)</span>
+              <span className={styles.mono}>--ink #ece3cf</span>
             </span>
             <span className={styles.swatchItem}>
               <span
@@ -99,9 +99,51 @@ export default function Colophon() {
                 style={{ background: "var(--accent)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--accent oklch(0.78 0.10 195)</span>
+              <span className={styles.mono}>--accent #5ecbcb</span>
             </span>
           </div>
+        </dd>
+
+        <dt>Quality gates</dt>
+        <dd>
+          <div className={styles.gates}>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>lighthouse · desktop</span>
+              <span className={styles.scores}>
+                <span>perf 100</span>
+                <span>a11y 100</span>
+                <span>bp 100</span>
+                <span>seo 100</span>
+              </span>
+            </div>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>lighthouse · mobile</span>
+              <span className={styles.scores}>
+                <span>perf 98</span>
+                <span>a11y 100</span>
+                <span>bp 100</span>
+                <span>seo 100</span>
+              </span>
+            </div>
+            <div className={styles.gateRow}>
+              <span className={styles.mono}>wcag 2.1 aa</span>
+              <span className={styles.scores}>
+                <span>0 axe-core violations</span>
+              </span>
+            </div>
+          </div>
+          <p className={styles.gateNote}>
+            Last verified 2026-05-12. Categories below 95 or any serious axe violation block the
+            merge — see{" "}
+            <a
+              href={`${site.github}/blob/main/.github/workflows/quality.yml`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              .github/workflows/quality.yml
+            </a>
+            .
+          </p>
         </dd>
 
         <dt>Reveal</dt>

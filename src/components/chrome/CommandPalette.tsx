@@ -71,6 +71,18 @@ export function CommandPalette() {
     }
   }, [open]);
 
+  // Lock body scroll while open. On mobile, swiping inside the palette would
+  // otherwise scroll the page underneath. Captures the original overflow value
+  // and restores it on close.
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [open]);
+
   const onQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setIdx(0);

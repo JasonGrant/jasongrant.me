@@ -83,6 +83,37 @@
   color: var(--ink-soft);
 }
 
+.gates {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gateRow {
+  display: grid;
+  grid-template-columns: minmax(150px, max-content) 1fr;
+  column-gap: 14px;
+  align-items: baseline;
+}
+
+.scores {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.gateNote {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
 .swatchRow {
   display: flex;
   flex-wrap: wrap;
@@ -115,5 +146,9 @@
   }
   .dl dd {
     margin-bottom: 12px;
+  }
+  .gateRow {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
   }
 }

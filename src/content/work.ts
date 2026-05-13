@@ -12,7 +12,7 @@ export const workEntries: WorkEntry[] = [
     dates: "2025 — present",
     companyStage: "Insurtech · Series B",
     homeDescription:
-      "Consolidated four component libraries into one design system. Designed the AI Writing Assistant end-to-end, including prompt engineering. Built a live React/Next.js prototype system on Vercel that runs alongside production and Figma. Three fidelity tiers, chosen by intent rather than default.",
+      "Lead design across every product surface, reporting to the CPO. Established a three-tier design fidelity model — production code, Figma overlays, and an interactive Vercel prototype site — chosen by intent rather than default. Consolidated four legacy component libraries into one production design system. Designed the AI Writing Assistant end-to-end, including prompt engineering, for 26,000+ users across enterprise insurance carriers.",
     experienceBullets: [
       "Established a three-tier design fidelity model (production code, Figma overlays, and an interactive Vercel prototype site) chosen by intent rather than default. Replaced single-fidelity handoffs with a system where each tier earns its use.",
       "Consolidated four legacy component libraries into one production design system used by every product surface.",

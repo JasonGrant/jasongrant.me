@@ -7,7 +7,7 @@ type Props = {
   ariaLabel?: string;
 };
 
-export function CmdKTrigger({ className, ariaLabel = "Open command palette" }: Props) {
+export function CmdKTrigger({ className, ariaLabel = "⌘K — open command palette" }: Props) {
   return (
     <button type="button" className={className} onClick={dispatchOpenCmdK} aria-label={ariaLabel}>
       <kbd>⌘</kbd>
