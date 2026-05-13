@@ -1,22 +1,24 @@
 :root {
-  /* Surface — warm dark, paper soaked in oil. All tokens in oklch for a
-     single color space across the palette (matches --accent below). */
-  --bg: oklch(0.184 0.011 80.5);
-  --bg-elev: oklch(0.22 0.014 81.6);
-  --ink: oklch(0.918 0.028 86.6);
-  --ink-soft: oklch(0.694 0.026 88.3);
-  /* WCAG AA: 5.29:1 on --bg, 4.86:1 on --bg-elev. Don't darken --ink-mute
-     below L≈0.62 without verifying contrast for small (10–13px) mono labels. */
-  --ink-mute: oklch(0.634 0.023 88.8);
+  /* Surface — warm dark, paper soaked in oil. Hex values are the canonical
+     sRGB conversion of the oklch source noted in comments; axe-core 4.11 and
+     some headless Chrome builds mis-compute oklch() in contrast checks, so we
+     ship the resolved values. */
+  --bg: #15120d; /* oklch(0.184 0.011 80.5) */
+  --bg-elev: #1e1a13; /* oklch(0.22 0.014 81.6) */
+  --ink: #ece3cf; /* oklch(0.918 0.028 86.6) */
+  --ink-soft: #a39c8b; /* oklch(0.694 0.026 88.3) — 6.34:1 on --bg-elev */
+  /* WCAG AA: 5.43:1 on --bg, 5.04:1 on --bg-elev. Don't darken below #898371
+     (L≈0.62) without re-verifying contrast for 10–13px mono labels. */
+  --ink-mute: #908a7b; /* oklch(0.634 0.023 88.8) */
 
   /* Hairlines — same hue as --ink, with alpha. */
-  --rule: oklch(0.918 0.028 86.6 / 0.1);
-  --rule-strong: oklch(0.918 0.028 86.6 / 0.2);
+  --rule: rgb(236 227 207 / 0.1); /* --ink @ 0.1 */
+  --rule-strong: rgb(236 227 207 / 0.2); /* --ink @ 0.2 */
 
   /* Accent — teal, tuned for warm dark */
-  --accent: oklch(0.78 0.1 195);
-  --accent-strong: oklch(0.84 0.1 195);
-  --accent-soft: oklch(0.78 0.1 195 / 0.14);
+  --accent: #5ecbcb; /* oklch(0.78 0.10 195) */
+  --accent-strong: #7ddada; /* oklch(0.84 0.10 195) */
+  --accent-soft: rgb(94 203 203 / 0.14); /* --accent @ 0.14 */
 
   /* Type stack — references next/font/google CSS variables set in src/lib/fonts.ts */
   --font-display: var(--font-petrona, "Times New Roman", serif);

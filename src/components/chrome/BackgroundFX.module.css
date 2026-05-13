@@ -11,13 +11,13 @@
   inset: 0;
   background: radial-gradient(
       440px circle at var(--mx, 50vw) var(--my, 50vh),
-      oklch(0.78 0.1 195 / 0.045) 0%,
-      oklch(0.78 0.1 195 / 0.02) 30%,
+      rgb(94 203 203 / 0.045) 0%,
+      rgb(94 203 203 / 0.02) 30%,
       transparent 60%
     ),
     radial-gradient(
       720px circle at var(--mx, 50vw) var(--my, 50vh),
-      oklch(0.62 0.08 60 / 0.025) 0%,
+      rgb(165 124 79 / 0.025) 0%,
       transparent 65%
     );
   mix-blend-mode: screen;

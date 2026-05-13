@@ -83,7 +83,7 @@ export default function Colophon() {
                 style={{ background: "var(--bg)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--bg oklch(0.184 0.011 80.5)</span>
+              <span className={styles.mono}>--bg #15120d</span>
             </span>
             <span className={styles.swatchItem}>
               <span
@@ -91,7 +91,7 @@ export default function Colophon() {
                 style={{ background: "var(--ink)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--ink oklch(0.918 0.028 86.6)</span>
+              <span className={styles.mono}>--ink #ece3cf</span>
             </span>
             <span className={styles.swatchItem}>
               <span
@@ -99,7 +99,7 @@ export default function Colophon() {
                 style={{ background: "var(--accent)" }}
                 aria-hidden="true"
               />
-              <span className={styles.mono}>--accent oklch(0.78 0.10 195)</span>
+              <span className={styles.mono}>--accent #5ecbcb</span>
             </span>
           </div>
         </dd>
