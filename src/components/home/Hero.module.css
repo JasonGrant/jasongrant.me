@@ -1,0 +1,60 @@
+.hero {
+  padding: 0 0 96px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--fs-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.em {
+  font-style: italic;
+  color: var(--accent-strong);
+  font-weight: inherit;
+  letter-spacing: -0.005em;
+}
+
+/* Trailing punctuation that visually attaches to an .em phrase but should not
+   carry the accent color — keeps the italic typographic flow, uses ink. */
+.emPunct {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: inherit;
+}
+
+.context {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-top: 36px;
+  max-width: 620px;
+  text-wrap: pretty;
+}
+
+.context a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.context a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .headline {
+    font-size: 40px;
+  }
+  .hero {
+    padding: 0 0 64px;
+  }
+}

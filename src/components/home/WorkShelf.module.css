@@ -1,0 +1,8 @@
+.work {
+  margin-bottom: 96px;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+}

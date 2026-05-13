@@ -1,0 +1,90 @@
+.footer {
+  padding-top: 36px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.links {
+  display: flex;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.links a:hover {
+  color: var(--accent);
+}
+
+.buildCredit {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.buildCredit a {
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+}
+
+.buildCredit a:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+.sep {
+  color: var(--ink-mute);
+}
+
+.cmdkTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 4px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.cmdkTrigger:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+  background: var(--accent-soft);
+}
+
+.cmdkTrigger kbd {
+  font: inherit;
+  font-size: 10px;
+}
+
+.right {
+  text-align: right;
+}
+
+.colophon {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.02em;
+}
+
+.sig {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}

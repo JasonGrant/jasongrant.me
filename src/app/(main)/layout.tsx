@@ -1,55 +1,23 @@
-import { Column, Flex } from "@once-ui-system/core";
-import { Navigation } from '@/components/Navigation';
+import { BackgroundFX } from "@/components/chrome/BackgroundFX";
+import { ClickTracker } from "@/components/chrome/ClickTracker";
+import { CommandPalette } from "@/components/chrome/CommandPalette";
+import { Footer } from "@/components/chrome/Footer";
+import { LeftRail } from "@/components/chrome/LeftRail";
+import { TopBar } from "@/components/chrome/TopBar";
+import styles from "./layout.module.css";
 
-export default function MainLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      {/* Desktop Layout: Side-by-side navigation and content */}
-      <Flex 
-        fillWidth 
-        style={{ 
-          height: '100vh',
-          overflow: 'hidden'
-        }}
-        className="desktop-layout"
-      >
-        <Navigation />
-        <Column 
-          fillWidth 
-          style={{ 
-            overflowY: 'auto',
-            height: '100vh',
-          }}
-        >
-          {children}
-        </Column>
-      </Flex>
-
-      {/* Mobile Layout: Navigation over content */}
-      <Column 
-        fillWidth 
-        style={{ 
-          height: '100vh',
-          overflow: 'hidden'
-        }}
-        className="mobile-layout"
-      >
-        <Navigation />
-        <Column 
-          fillWidth 
-          style={{ 
-            overflowY: 'auto',
-            height: '100vh',
-            paddingTop: '80px'
-          }}
-        >
-          {children}
-        </Column>
-      </Column>
+      <BackgroundFX />
+      <LeftRail />
+      <div className={styles.page}>
+        <TopBar />
+        <main>{children}</main>
+        <Footer />
+      </div>
+      <CommandPalette />
+      <ClickTracker />
     </>
   );
 }

@@ -1,0 +1,50 @@
+:root {
+  /* Surface — warm dark, paper soaked in oil. All tokens in oklch for a
+     single color space across the palette (matches --accent below). */
+  --bg: oklch(0.184 0.011 80.5);
+  --bg-elev: oklch(0.22 0.014 81.6);
+  --ink: oklch(0.918 0.028 86.6);
+  --ink-soft: oklch(0.694 0.026 88.3);
+  /* WCAG AA: 5.29:1 on --bg, 4.86:1 on --bg-elev. Don't darken --ink-mute
+     below L≈0.62 without verifying contrast for small (10–13px) mono labels. */
+  --ink-mute: oklch(0.634 0.023 88.8);
+
+  /* Hairlines — same hue as --ink, with alpha. */
+  --rule: oklch(0.918 0.028 86.6 / 0.1);
+  --rule-strong: oklch(0.918 0.028 86.6 / 0.2);
+
+  /* Accent — teal, tuned for warm dark */
+  --accent: oklch(0.78 0.1 195);
+  --accent-strong: oklch(0.84 0.1 195);
+  --accent-soft: oklch(0.78 0.1 195 / 0.14);
+
+  /* Type stack — references next/font/google CSS variables set in src/lib/fonts.ts */
+  --font-display: var(--font-petrona, "Times New Roman", serif);
+  --font-body: var(--font-funnel-sans, system-ui, sans-serif);
+  --font-mono: var(--font-dm-mono, ui-monospace, monospace);
+
+  /* Type scale */
+  --fs-hero: 58px;
+  --fs-h2: 30px;
+  --fs-body: 17px;
+  --fs-meta: 11px;
+
+  --lh-hero: 1.04;
+  --lh-body: 1.65;
+
+  /* Spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 56px;
+  --sp-9: 80px;
+  --sp-10: 96px;
+
+  /* Layout */
+  --measure: 720px;
+  --rail-width: 18px;
+}
