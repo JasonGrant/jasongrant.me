@@ -54,8 +54,5 @@ export const site = {
 
   newsletter: {
     name: "Designing Forward",
-    cadence: "on Substack · ~monthly",
-    pitch:
-      "Notes on design leadership, AI-native product work, and the post-Figma craft. No spam, easy to leave.",
   },
 } as const;

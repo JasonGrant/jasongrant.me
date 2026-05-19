@@ -2,7 +2,6 @@ import { ArrowOut } from "@/components/primitives/ArrowOut";
 import { SectionLabel } from "@/components/primitives/SectionLabel";
 import { site } from "@/content/site";
 import { writing } from "@/content/writing";
-import { Newsletter } from "./Newsletter";
 import styles from "./WritingShelf.module.css";
 
 export function WritingShelf() {
@@ -28,7 +27,6 @@ export function WritingShelf() {
       <a href={site.socials.substack} target="_blank" rel="noreferrer" className={styles.archive}>
         All writing on Substack <ArrowOut />
       </a>
-      <Newsletter />
     </section>
   );
 }

@@ -11,7 +11,7 @@ export const nowLines: NowLine[] = [
     "building ",
     { kind: "link", label: "Wren", href: "https://wrenpod.com", external: true },
     " and ",
-    { kind: "link", label: "Olllo", href: "https://olllo.app", external: true },
+    { kind: "link", label: "Olllo", href: "https://hypoth.ai/olllo", external: true },
     " @ Hypoth",
   ],
   [

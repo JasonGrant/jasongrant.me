@@ -39,10 +39,3 @@ export function trackPaletteAction(group: string, label: string): void {
   }
 }
 
-export function trackNewsletterSubscribe(): void {
-  try {
-    track("newsletter_subscribe");
-  } catch {
-    // noop
-  }
-}

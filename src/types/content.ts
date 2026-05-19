@@ -65,12 +65,3 @@ export interface CommandPaletteItem {
   action: PaletteAction;
 }
 
-export interface NewsletterSubmission {
-  email: string;
-  firstReferrer?: string;
-}
-
-export type NewsletterSubmitResult =
-  | { state: "ok" }
-  | { state: "validation-error"; reason: "empty" | "invalid-format" }
-  | { state: "network-error"; message?: string };
