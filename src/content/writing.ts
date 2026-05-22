@@ -14,6 +14,12 @@ const SUBSTACK = "https://mrjasongrant.substack.com";
 // accordingly).
 export const writing: WritingEntry[] = [
   {
+    title: "I Shipped a Real Problem and Nobody Showed Up",
+    date: "May 2026",
+    isoDate: "2026-05-19",
+    href: `${SUBSTACK}/p/i-shipped-a-real-problem-and-nobody`,
+  },
+  {
     title: "Your Org Chart Decides Your Speed",
     date: "May 2026",
     isoDate: "2026-05-01",
