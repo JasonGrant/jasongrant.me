@@ -136,4 +136,16 @@ export const writing: WritingEntry[] = [
     isoDate: "2024-03-15",
     href: `${SUBSTACK}/p/your-velocity-is-droppingheres-why`,
   },
+  {
+    title: "Everyone Got Faster. Nothing Shipped Sooner.",
+    date: "Aug 2026",
+    isoDate: "2026-08-18",
+    href: `${SUBSTACK}/p/everyone-got-faster-nothing-shipped`,
+  },
+  {
+    title: "Scrappy Is No Longer Faster. It's Just Worse, on a Delay",
+    date: "Jun 2026",
+    isoDate: "2026-06-09",
+    href: `${SUBSTACK}/p/scrappy-is-no-longer-faster-its-just`,
+  },
 ];
