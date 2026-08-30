@@ -1,0 +1,153 @@
+.demo {
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.pairRow {
+  display: grid;
+  gap: var(--sp-1);
+  font-size: var(--fs-meta);
+}
+
+.pairRow .lang {
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  margin-right: var(--sp-2);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+.sliderRow input[type="range"] {
+  flex: 1;
+}
+
+.buttonPreviewRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.buttonPreview {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: 13px;
+  background: var(--bg);
+}
+
+.tooltipTrigger {
+  background: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  cursor: help;
+}
+
+.tooltipTrigger:hover,
+.tooltipTrigger:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipBody {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  z-index: 5;
+  background: var(--bg);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-meta);
+  max-width: 320px;
+  white-space: normal;
+}
+
+.resultLine {
+  font-size: var(--fs-meta);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.resultLine.broken {
+  background: rgb(200 90 70 / 0.16);
+}
+
+.calcRow {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.calcInput {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  padding: var(--sp-2);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--ink);
+  width: 100%;
+  max-width: 360px;
+}
+
+.tierBar {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--rule-strong);
+  overflow: hidden;
+  max-width: 360px;
+}
+
+.tierFill {
+  height: 100%;
+  background: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .demo {
+    padding: var(--sp-3);
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,66 @@
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--sp-4) var(--sp-10);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-style: italic;
+  /* clamp rather than the fixed --fs-hero token: this page's title is a
+     single long word ("Internationalization") with no natural break
+     point, so at a fixed 58px it overflows narrow viewports. */
+  font-size: clamp(32px, 8vw, var(--fs-hero));
+  line-height: var(--lh-hero);
+  margin: var(--sp-2) 0 var(--sp-4);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.metaRows {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--sp-1) var(--sp-4);
+  font-size: var(--fs-meta);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--sp-3) 0;
+  margin-bottom: var(--sp-9);
+}
+
+.metaLabel {
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+}
+
+.section {
+  margin-top: var(--sp-9);
+}
+
+.sectionHeading {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--sp-4);
+}
+
+.body p {
+  margin: 0 0 var(--sp-3);
+  max-width: 68ch;
+}
+
+.demoIntro {
+  margin-bottom: var(--sp-3);
+}
+
+.noscriptNote {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  margin-top: var(--sp-2);
+}

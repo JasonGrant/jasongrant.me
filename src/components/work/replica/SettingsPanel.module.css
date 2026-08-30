@@ -1,0 +1,50 @@
+.panel {
+  padding: var(--sp-4);
+  display: grid;
+  gap: var(--sp-3);
+  max-width: var(--measure);
+  position: relative;
+}
+
+.select {
+  font: inherit;
+  padding: var(--sp-1) var(--sp-2);
+  border: 1px solid var(--rf-border-strong);
+  border-radius: 4px;
+  background: var(--rf-bg);
+  color: var(--rf-ink);
+  max-width: 220px;
+}
+
+.checkGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 12px;
+}
+
+.saveRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.saveButton {
+  font: inherit;
+  font-size: 13px;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--rf-accent);
+  border-radius: 4px;
+  background: var(--rf-accent);
+  color: #fff;
+}
+
+.saveButton[data-highlighted="true"] {
+  outline: 2px solid var(--rf-ink);
+  outline-offset: 2px;
+}

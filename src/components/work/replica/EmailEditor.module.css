@@ -1,0 +1,63 @@
+.frame {
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  position: relative;
+}
+
+.field {
+  padding: var(--sp-2);
+  border-radius: 4px;
+  margin-bottom: var(--sp-3);
+}
+
+.field.highlighted {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: 2px;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  color: var(--rf-ink-mute);
+  margin-bottom: var(--sp-1);
+}
+
+.subjectValue {
+  font-size: 14px;
+}
+
+.previewBar {
+  height: 10px;
+  width: 60%;
+  background: var(--rf-border);
+  border-radius: 2px;
+}
+
+.blockList {
+  border: 1px dashed var(--rf-border-strong);
+  border-radius: 4px;
+  padding: var(--sp-3);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.blockBar {
+  height: 8px;
+  background: var(--rf-border);
+  border-radius: 2px;
+}
+
+.translateRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.translateButton {
+  font: inherit;
+  font-size: 13px;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--rf-accent);
+  border-radius: 4px;
+  background: var(--rf-accent);
+  color: #fff;
+}

@@ -1,0 +1,37 @@
+/* Fictional-brand ("Meridian") tokens for the replica kit, scoped under
+   .replicaFrame so they never leak into site chrome. Flat per constitution
+   Principle IV / FR-013a: hairline borders + elevated background tone for
+   elevation — no shadows, gradients, or patterned backgrounds. Focus rings
+   must stay visible (outline is never overridden here). */
+
+.replicaFrame {
+  --rf-bg: #ffffff;
+  --rf-bg-elev: #f4f5f7;
+  --rf-ink: #1b1e24;
+  --rf-ink-soft: #5b6270;
+  --rf-ink-mute: #5c6472; /* darkened from #8891a1 for AA 4.5:1 on --rf-bg/--rf-bg-elev (axe caught the original; verified via computed luminance) */
+  --rf-border: #d8dce3;
+  --rf-border-strong: #b9c0cc;
+  --rf-accent: #3454d1;
+  --rf-accent-soft: rgb(52 84 209 / 0.1);
+  --rf-danger: #b3261e;
+  --rf-danger-soft: rgb(179 38 30 / 0.08);
+
+  background: var(--rf-bg);
+  color: var(--rf-ink);
+  border: 1px solid var(--rf-border-strong);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  isolation: isolate;
+}
+
+.replicaFrame * {
+  box-sizing: border-box;
+}
+
+.replicaFrame :focus-visible {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: 2px;
+}

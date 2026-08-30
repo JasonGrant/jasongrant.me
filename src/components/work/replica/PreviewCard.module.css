@@ -1,0 +1,32 @@
+.card {
+  background: var(--rf-bg-elev);
+  border: 1px solid var(--rf-border);
+  border-radius: 4px;
+  padding: var(--sp-3);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.card.highlighted {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: 2px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  height: 16px;
+  align-items: center;
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+  color: var(--rf-ink);
+}
+
+.label {
+  color: var(--rf-ink-mute);
+}

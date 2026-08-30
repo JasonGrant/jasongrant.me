@@ -1,0 +1,70 @@
+.demo {
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.section {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.label {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.pill.ambiguous {
+  border-color: #c85a46;
+  color: #c85a46;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: none;
+  color: var(--ink);
+  align-self: start;
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.resultLine {
+  font-size: var(--fs-meta);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--ink);
+}
