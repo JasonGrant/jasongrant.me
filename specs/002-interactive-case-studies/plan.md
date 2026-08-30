@@ -6,7 +6,7 @@
 ## Summary
 
 Ship soft-unlisted interactive case studies at `/work/[slug]` under constitution
-v1.2.0's two named exceptions: a reusable framework (typed content DSL, walkthrough
+v1.2.1's two named exceptions: a reusable framework (typed content DSL, walkthrough
 player, fictional-brand replica kit, five concept demos) plus the first study,
 "Internationalization at Klaviyo." The study opens with a language-switch break
 demo, teaches through direct-manipulation concept demos grounded verbatim in
@@ -32,7 +32,7 @@ names); CI gains the study URL in both Lighthouse configs and the axe script.
   holds; native elements + CSS Modules cover every control (research D7)
 **Primary Dependencies (kept)**: `next`, `react`, `react-dom`, `classnames`,
   `@vercel/analytics`, `@vercel/speed-insights`, `sharp`, `react-icons`
-**Storage**: N/A — typed content modules under `src/content/work/`; no database,
+**Storage**: N/A — typed content modules under `src/content/studies/`; no database,
   no CMS, no runtime fetching
 **Testing**: No functional test suites (Principle III). Gates: `tsc --noEmit`,
   Biome, Lighthouse ≥95 ×4 categories mobile+desktop incl. the study route,
@@ -45,7 +45,7 @@ names); CI gains the study URL in both Lighthouse configs and the axe script.
   network egress — demos run entirely client-side on public browser APIs)
 **Performance Goals**: Lighthouse ≥95 all four categories on
   `/work/internationalization`, mobile + desktop; CLS = 0; core pages byte-identical
-**Constraints**: WCAG 2.1 AA; constitution v1.2.0 scripted-demonstrations
+**Constraints**: WCAG 2.1 AA; constitution v1.2.1 scripted-demonstrations
   exception conditions (a)–(f); Principle IV visual bans inside replicas
   (FR-013a); soft-unlisted (no sitemap, noindex, no nav); no horizontal page
   scroll on mobile (FR-012a); Safari 15.4 floor rules out container queries (D9)
@@ -101,6 +101,7 @@ specs/002-interactive-case-studies/
 │   ├── routes.md                  # /work/[slug] route + metadata + CI contract
 │   ├── study-content-schema.md    # Authoring contract (US4's guarantee)
 │   └── accessibility.md           # Keyboard, announcements, motion, no-JS
+├── verification-notes.md          # TBT record, provenance, SC-004 tables, study-2 notes (T017 creates)
 ├── checklists/requirements.md     # Spec quality checklist (16/16)
 └── tasks.md             # Phase 2 — /speckit-tasks (not yet created)
 ```
@@ -119,6 +120,7 @@ src/
 ├── components/
 │   └── work/                          # NEW — framework (no study-specific content)
 │       ├── StudyPage.tsx              # Block renderer (prose/demo/walkthrough)
+│       ├── usePrefersReducedMotion.ts # local hook — deliberate D8 duplicate
 │       ├── GlossaryChip.tsx
 │       ├── player/
 │       │   ├── Player.tsx             # State machine, controls, transcript, aria-live
@@ -137,15 +139,17 @@ src/
 │           ├── EmailEditor.tsx TranslateModal.tsx Toast.tsx
 │           └── (Tabs, FieldRow, …)
 ├── content/
-│   └── work/                          # NEW — authorable content only
+│   └── studies/                       # NEW — authorable content only ('work' name
+│                                      #   is taken: src/content/work.ts is Experience data)
 │       ├── index.ts                   # Study registry + build-time assertions
 │       ├── types.ts                   # CaseStudy / ContentBlock / WalkthroughStep
 │       ├── glossary.ts
 │       └── internationalization/
 │           └── index.ts               # The i18n study (blocks + steps)
-├── lib/motion.ts                      # EXISTING — reused (useReducedMotion)
+├── lib/motion.ts                      # EXISTING — NOT imported by work components (D8)
 └── styles/…                           # UNTOUCHED
 
+src/app/api/og/route.tsx               # extended: accepts study pages (closed enum today)
 lighthouserc.desktop.json              # +1 URL
 lighthouserc.mobile.json               # +1 URL
 scripts/axe-check.mjs                  # +1 URL

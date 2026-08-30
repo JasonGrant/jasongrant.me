@@ -12,11 +12,16 @@
 
 ## Metadata contract (every study route)
 
-- `robots: { index: false, follow: false }` — overrides root layout's permissive
-  default. Verified by inspecting the built HTML `<meta name="robots">`.
+- `robots: { index: false, follow: false }` — emitted by the study page's
+  `generateMetadata`, derived from the study's `listed` flag (noindex whenever
+  unlisted), overriding the root layout's permissive default. `listed` is thus
+  the single flip point FR-003 requires — no shared file changes on a future
+  publicizing flip. Verified by inspecting the built HTML `<meta name="robots">`.
 - `title`/`description`: from `CaseStudy.title`/`.description`; written safe for
   link previews (research D16).
-- OG image via existing `/api/og` pattern; no new endpoint types.
+- OG image via the existing `/api/og` endpoint, EXTENDED to accept study pages —
+  today it is a closed enum of the four core pages and falls back to the Home
+  card for unknown values (research D16); no new endpoint types.
 - Not present in `sitemap.ts` output (allowlist — verified by build inspection).
 - No `Disallow` line added to `robots.ts` (research D3 — must stay absent).
 
@@ -24,7 +29,7 @@
 
 - The work route group (`src/app/work/`) imports NOTHING from `(main)`'s layout
   tree, and `(main)` imports nothing from `src/components/work/` or
-  `src/content/work/`. Enforced by review + SC-004's manifest diff: the three core pages' file
+  `src/content/studies/`. Enforced by review + SC-004's manifest diff: the three core pages' file
   lists in `.next/app-build-manifest.json` reference no file containing
   work-route modules, and per-page totals stay unchanged at route-table
   precision (runtime-chunk hash exempt).

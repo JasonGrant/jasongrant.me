@@ -4,7 +4,7 @@
 **Consumers**: study authors (Jason / future studies); the player and page scaffold.
 
 This is the authoring contract US4 depends on: a new study adds content under
-`src/content/work/<slug>/`, a registry entry, and its URL in the three CI files
+`src/content/studies/<slug>/`, a registry entry, and its URL in the three CI files
 (both Lighthouse configs + the axe script — unlisted routes are shipped pages
 for every gate). It MAY add new replica screens (component + anchor union); it
 NEVER modifies the player, existing replica components, or the page scaffold.
@@ -12,7 +12,7 @@ NEVER modifies the player, existing replica components, or the page scaffold.
 ## Authoring surface
 
 ```ts
-// src/content/work/<slug>/index.ts
+// src/content/studies/<slug>/index.ts
 export const study: CaseStudy = {
   slug: 'internationalization',
   title: '…', description: '…', listed: false,
@@ -45,7 +45,7 @@ export const study: CaseStudy = {
 
 - Player, replica kit, and scaffold contain zero study-specific copy, data, or
   branching. Grep-level check: study strings appear only under
-  `src/content/work/` (demo factual constants under `src/components/work/demos/`
+  `src/content/studies/` (demo factual constants under `src/components/work/demos/`
   are guideline facts, not study copy).
 - Study #2 (candidate: the free-to-paid experiments — see private cortex corpus)
   must be addable per this contract alone. Anticipated needs are already

@@ -1,6 +1,6 @@
 # Quickstart: 002-interactive-case-studies
 
-**Local dev + the verification gates for this feature.** Constitution v1.2.0.
+**Local dev + the verification gates for this feature.** Constitution v1.2.1.
 
 ## Develop
 
@@ -9,7 +9,7 @@ npm run dev          # Turbopack dev server
 open http://localhost:3000/work/internationalization
 ```
 
-Content lives in `src/content/work/internationalization/`; framework in
+Content lives in `src/content/studies/internationalization/`; framework in
 `src/components/work/` (player, demos, replica kit); route in `src/app/work/[slug]/`.
 
 ## Gate checklist (per PR touching this feature)

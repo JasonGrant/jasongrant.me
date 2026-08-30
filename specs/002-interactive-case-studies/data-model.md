@@ -3,8 +3,8 @@
 **Feature**: 002-interactive-case-studies | **Date**: 2026-08-29
 **Source**: spec.md Key Entities + research.md D6/D7/D12
 
-All content is version-controlled TypeScript under `src/content/work/` — no
-database, no CMS, no runtime fetching. Types live in `src/content/work/types.ts`;
+All content is version-controlled TypeScript under `src/content/studies/` — no
+database, no CMS, no runtime fetching. Types live in `src/content/studies/types.ts`;
 `tsc --noEmit` is the validator.
 
 ## Entity: CaseStudy
@@ -22,9 +22,10 @@ The root artifact, one per study, registered in the study registry.
 | `timeline` | `string` | e.g. "Q4 2023 – Q2 2024" |
 | `blocks` | `ContentBlock[]` | Ordered page composition (FR-005) |
 
-**Registry**: `src/content/work/index.ts` exports `studies: CaseStudy[]`.
-`generateStaticParams` and the 404 rule (D2) derive from it. `listed` drives
-nothing today (all unlisted) but is the single flip point FR-003 requires.
+**Registry**: `src/content/studies/index.ts` exports `studies: CaseStudy[]`.
+`generateStaticParams` and the 404 rule (D2) derive from it. `listed` drives the
+study page's robots metadata (noindex/nofollow whenever false) and is the single
+flip point FR-003 requires; every study ships with `listed: false`.
 
 ## Union: ContentBlock
 
@@ -114,7 +115,7 @@ US1 scenario 7.
 | `label` | `string` | Chip text as it appears inline |
 | `definition` | `string` | Disclosure body; sourced per FR-024 |
 
-Stored once in `src/content/work/glossary.ts`; studies reference by id.
+Stored once in `src/content/studies/glossary.ts`; studies reference by id.
 
 ## Page heading contract (Principle I)
 

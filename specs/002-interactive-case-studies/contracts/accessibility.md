@@ -1,6 +1,6 @@
 # Contract: Interaction & Accessibility
 
-**Feature**: 002-interactive-case-studies | Constitution v1.2.0 Principles I & IV
+**Feature**: 002-interactive-case-studies | Constitution v1.2.1 Principles I & IV
 
 ## Keyboard map
 
@@ -25,7 +25,7 @@ No shortcut conflicts with the site's `Cmd+K` (palette is absent on work routes)
 - Toasts in the replica are decorative-in-frame but still text-rendered and
   announced once via the player's live region (not a second live region storm).
 
-## Motion (constitution v1.2.0 scripted-demonstrations exception, all six conditions)
+## Motion (constitution v1.2.1 scripted-demonstrations exception, all six conditions)
 
 - (a) No motion before an explicit press of a labeled control; nothing on load or scroll.
 - (b) Pause and Stop visible whenever a sequence runs.

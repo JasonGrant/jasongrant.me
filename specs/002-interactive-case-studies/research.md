@@ -35,8 +35,10 @@ guarantee for FR-004.
 
 ## D3 — Noindex without touching global robots
 
-**Decision**: Per-route `metadata.robots = { index: false, follow: false }` in the
-work layout, overriding the root layout's `robots: { index: true, follow: true }`.
+**Decision**: `metadata.robots = { index: false, follow: false }` emitted by the
+study page's `generateMetadata`, derived from the study's `listed` flag (noindex
+whenever unlisted) — making `listed` the single flip point FR-003 requires —
+overriding the root layout's `robots: { index: true, follow: true }`.
 `src/app/robots.ts` stays permissive (no `Disallow: /work`) — a Disallow line would
 *advertise* the path in a public file while also preventing crawlers from ever seeing
 the noindex directive.
@@ -81,7 +83,7 @@ demo region ("interactive version requires JavaScript").
 
 ## D6 — Walkthrough script DSL
 
-**Decision**: Study content is TypeScript modules under `src/content/work/<slug>/`.
+**Decision**: Study content is TypeScript modules under `src/content/studies/<slug>/`.
 A study exports `CaseStudy` whose `blocks` is a discriminated union:
 `ProseSection | ConceptDemoBlock | WalkthroughSegment` — glossary terms bind
 inline inside prose RichText nodes (FR-015), not as a block type. Each
@@ -220,7 +222,9 @@ score-recording practice).
 ## D16 — Share metadata for unlisted pages
 
 **Decision**: Study routes get title/description written safe-for-preview (spec edge
-case) and an OG image via the existing `/api/og` endpoint pattern. noindex and OG
+case) and an OG image via the existing `/api/og` endpoint, extended to accept
+study pages (today it is a closed enum of the four core pages, falling back to
+the Home card for unknown values). noindex and OG
 coexist fine — link previews in DMs/Slack are exactly how an unlisted study gets
 shared.
 
