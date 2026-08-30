@@ -1,0 +1,102 @@
+/* Bespoke dropdown — Nord/Graphite style: styled trigger + floating listbox
+   with a soft shadow and checkmark on the selected option. Accessible
+   listbox pattern (roving via aria-activedescendant). Palette inherited from
+   the parent .frame's custom properties. */
+.root {
+  position: relative;
+}
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  height: 34px;
+  padding: 0 11px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--r-ink);
+  background: var(--r-surface);
+  border: 1px solid var(--r-border-strong);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 1.5px rgba(var(--r-shadow), 0.04);
+  cursor: pointer;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.trigger:hover {
+  border-color: #cbc3b1;
+}
+.trigger[aria-expanded="true"],
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--r-accent);
+  box-shadow: 0 0 0 3px var(--r-accent-ring), inset 0 1px 1.5px rgba(var(--r-shadow), 0.04);
+}
+.chevron {
+  color: var(--r-ink-3);
+  font-size: 14px;
+  flex: none;
+  transition: transform 0.16s ease;
+}
+.trigger[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 100%;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  background: var(--r-surface);
+  border: 1px solid var(--r-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(var(--r-shadow), 0.06), 0 12px 30px -8px rgba(var(--r-shadow), 0.28);
+  animation: pop 0.13s ease;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 10px 0 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--r-ink);
+  cursor: pointer;
+  user-select: none;
+}
+.option[data-active="true"] {
+  background: var(--r-accent-tint);
+}
+.check {
+  width: 15px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--r-accent);
+  font-size: 13px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+  .chevron,
+  .trigger {
+    transition: none;
+  }
+}
