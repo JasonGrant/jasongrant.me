@@ -138,3 +138,48 @@ experiments map to new replica screens (new `ReplicaScreenId` + anchor union,
 following the exact pattern `SidebarNav`/`SettingsPanel` already establish); no
 player change needed. Per-study CI touchpoint (its URL joining both Lighthouse
 configs + axe script) is a mechanical addition, same as this study's.
+
+## Review round 2 — 2026-08-30 (Jason's feedback on the live page)
+
+Four items from Jason's first look, all addressed and re-verified:
+
+1. **Reused site chrome.** The work route now has `work/[slug]/layout.tsx` that
+   renders the same `TopBar` (jasongrant.me wordmark + ⌘K + portrait),
+   `LeftRail`, `CommandPalette`, `Footer`, and `BackgroundFX` as the primary
+   pages — a study reads as part of the site. The old minimal
+   `work/layout.tsx` (bare wordmark + skip link) was removed.
+2. **Section jump-nav.** `LeftRail` was generalized to accept an optional
+   `sections` prop; the `[slug]` layout derives the rail from the study's prose
+   spine (Overview / Kickoff / The design work / Impact). Verified in-browser.
+3. **Auto-scroll-to-email bug fixed.** Root cause: every `Player`'s
+   focus-region `scrollIntoView` fired on mount, and the last player (email
+   segment) won, yanking the page down on load. Fixed with a mount guard + a
+   scrollable-viewport check so the scroll only manages the player's OWN
+   viewport on mobile, never the page, and never on mount. Verified:
+   `window.scrollY === 0` on load/refresh.
+4. **13px font floor, sitewide.** `--fs-meta` raised 11px→13px, and every
+   hardcoded sub-13px `font-size` across chrome, home, experience, writing,
+   colophon, primitives, and the work components raised to 13px (51
+   declarations, 27 files). No new type sizes introduced (the ≤4-voices count
+   is unchanged; this collapsed the 10/10.5/11/12px zoo into the 13px floor).
+   The replicas were bumped too for consistency — flag for Jason if he wants
+   the product-authentic look to keep smaller replica text.
+
+Re-verification after all four changes (clean prod build):
+- **axe: 0 violations on all 5 routes** (home, experience, writing, colophon,
+  work) — the sitewide font bump introduced no contrast/label regressions.
+- **Lighthouse desktop: 100/100/100/100 on all four core pages; work
+  100/100/100/(SEO 66, noindex-exempt). CLS = 0 everywhere.**
+- **Lighthouse mobile: 98/100/100/100 core pages; work 96/100/100/(66).**
+- **SC-004 re-checked against a fresh `main` worktree build:** no core page
+  references any work module (`workLeak: []` on all four), core-page First Load
+  JS unchanged (112–113 kB). The shared-chunk hash changed because `LeftRail`
+  (a component the `(main)` layout already loads) was edited to take the
+  `sections` prop, and the font CSS changed — both deliberate, neither adds
+  case-study weight. Isolation is one-directional and intact (see
+  contracts/routes.md).
+
+Note: the 500s briefly seen during this round were a dev/prod `.next`
+collision (running `npm run dev` after `npm run build` clobbers the shared
+`.next`), NOT a code bug — a clean `rm -rf .next && npm run build && npm start`
+serves all routes 200.

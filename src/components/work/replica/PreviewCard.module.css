@@ -3,7 +3,7 @@
   border: 1px solid var(--rf-border);
   border-radius: 4px;
   padding: var(--sp-3);
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   display: grid;
   gap: var(--sp-1);

@@ -27,12 +27,18 @@
 
 ## Isolation contract
 
-- The work route group (`src/app/work/`) imports NOTHING from `(main)`'s layout
-  tree, and `(main)` imports nothing from `src/components/work/` or
-  `src/content/studies/`. Enforced by review + SC-004's manifest diff: the three core pages' file
-  lists in `.next/app-build-manifest.json` reference no file containing
-  work-route modules, and per-page totals stay unchanged at route-table
-  precision (runtime-chunk hash exempt).
+- Isolation is ONE-DIRECTIONAL: `(main)` imports nothing from
+  `src/components/work/` or `src/content/studies/`, so no case-study code ever
+  enters a core-page bundle. The reverse is deliberately NOT true — the work
+  route group REUSES the shared site chrome (`TopBar`, `LeftRail`,
+  `CommandPalette`, `Footer`, `BackgroundFX`) so a study reads as part of
+  jasongrant.me rather than a detached page (Jason, 2026-08-30). Reusing a
+  shared component (e.g. generalizing `LeftRail` to take a `sections` prop) can
+  change a shared chunk's hash, but that is not case-study bloat. Enforced by
+  review + SC-004's manifest diff: the three core pages' file lists in
+  `.next/app-build-manifest.json` reference NO work-route module, and their
+  First Load JS totals stay unchanged (shared-chunk-repartition and
+  runtime-chunk-hash noise exempt).
 - `src/content/palette.ts` and LeftRail contain no study references.
 
 ## CI contract (constitution: unlisted routes are shipped pages)

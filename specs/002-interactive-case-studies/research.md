@@ -10,9 +10,17 @@ All Technical Context unknowns resolved. Sixteen decisions.
 ## D1 — Route placement: dedicated route group outside `(main)`
 
 **Decision**: Case studies live at `src/app/work/[slug]/page.tsx` — a sibling of the
-`(main)` route group, NOT inside it. The work route gets its own minimal `layout.tsx`
-(skip link, small wordmark link home, footer line) instead of inheriting TopBar,
-LeftRail, CommandPalette, Footer, and BackgroundFX.
+`(main)` route group, NOT inside it. The work route gets its own
+`work/[slug]/layout.tsx`. **Revised 2026-08-30** (Jason's review): rather than a
+minimal chrome-free frame, that layout REUSES the shared site chrome — `TopBar`
+(wordmark + ⌘K + portrait), `LeftRail` (section jump-nav, fed study-derived
+sections since this layout owns the slug), `CommandPalette`, `Footer`, and
+`BackgroundFX` — so a study reads as part of jasongrant.me. The reason to keep it
+a SEPARATE route group (rather than moving under `(main)`) is precisely that the
+`[slug]` layout owns the slug and can derive the rail's sections from the study's
+prose spine; the shared `(main)` layout cannot. SC-004 still holds because
+isolation is one-directional — `(main)` imports nothing from work — see
+contracts/routes.md.
 
 **Rationale**: (a) FR-012/SC-004 demand zero added script on the three core pages —
 keeping every case-study import outside `(main)` makes that guarantee structural

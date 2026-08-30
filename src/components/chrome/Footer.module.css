@@ -12,7 +12,7 @@
   display: flex;
   gap: 18px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -25,7 +25,7 @@
 .buildCredit {
   margin-top: 20px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--ink-mute);
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +67,7 @@
 
 .cmdkTrigger kbd {
   font: inherit;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .right {
@@ -76,14 +76,14 @@
 
 .colophon {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--ink-mute);
   letter-spacing: 0.02em;
 }
 
 .sig {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 13px;
   color: var(--ink-mute);
   letter-spacing: 0.08em;
   margin-top: 4px;

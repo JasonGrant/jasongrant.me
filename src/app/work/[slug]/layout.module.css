@@ -1,0 +1,15 @@
+/* Mirrors src/app/(main)/layout.module.css so case-study pages share the
+   exact page frame (measure, margins) of the primary pages. */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 56px 56px 64px;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 40px 24px 56px;
+  }
+}

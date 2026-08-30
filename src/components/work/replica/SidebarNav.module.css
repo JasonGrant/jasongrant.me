@@ -21,7 +21,7 @@
 }
 
 .navItem {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--rf-ink-soft);
 }
 
@@ -40,7 +40,7 @@
   border-radius: 4px;
   background: var(--rf-bg);
   padding: var(--sp-2) var(--sp-2);
-  font-size: 11px;
+  font-size: 13px;
   text-align: left;
 }
 

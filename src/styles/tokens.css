@@ -29,7 +29,7 @@
   --fs-hero: 58px;
   --fs-h2: 30px;
   --fs-body: 17px;
-  --fs-meta: 11px;
+  --fs-meta: 13px; /* floor raised from 11px — smallest text on the site is 13px (Jason, 2026-08-30) */
 
   --lh-hero: 1.04;
   --lh-body: 1.65;

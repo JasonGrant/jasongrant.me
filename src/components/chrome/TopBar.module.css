@@ -27,7 +27,7 @@
   border-radius: 5px;
   color: var(--ink-soft);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.04em;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
@@ -40,7 +40,7 @@
 
 .cmdkTrigger kbd {
   font: inherit;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .portrait {

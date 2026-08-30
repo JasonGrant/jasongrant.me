@@ -57,13 +57,29 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
     };
   }, [status, stepIndex, reducedMotion, steps]);
 
-  // Mobile framing (FR-012a/D9): scroll the step's focus region into view
-  // inside the (narrow-screen-only, scrollable) viewport rather than
-  // shrinking the whole replica.
+  // Mobile framing (FR-012a/D9): keep the active step's focus region visible
+  // WITHIN the player's own scrollable viewport on narrow screens. Two guards
+  // matter: (1) never on the initial mount — otherwise every player on the
+  // page scrolls itself into view at load and the last one wins, yanking the
+  // page down to the email segment; (2) only when the viewport is actually
+  // scrollable (mobile), and then scroll the container itself, never the page.
+  const hasMountedRef = useRef(false);
   useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+    const viewport = viewportRef.current;
+    if (!viewport || viewport.scrollHeight <= viewport.clientHeight) return;
     const region = step.focusRegion ?? step.target;
-    const el = viewportRef.current?.querySelector(`[data-anchor="${region}"]`);
-    el?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+    const el = viewport.querySelector<HTMLElement>(`[data-anchor="${region}"]`);
+    if (!el) return;
+    // Element offset within the viewport's scroll content, robust to any
+    // positioning context (offsetTop would depend on the offsetParent).
+    const offsetWithin =
+      el.getBoundingClientRect().top - viewport.getBoundingClientRect().top + viewport.scrollTop;
+    const target = offsetWithin - viewport.clientHeight / 2 + el.clientHeight / 2;
+    viewport.scrollTo({ top: Math.max(0, target), behavior: reducedMotion ? "auto" : "smooth" });
   }, [step, reducedMotion]);
 
   function goTo(index: number) {

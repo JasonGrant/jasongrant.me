@@ -12,12 +12,12 @@
 }
 
 .label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--rf-ink-soft);
 }
 
 .help {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--rf-ink-mute);
 }
