@@ -1,12 +1,13 @@
 .card {
   background: var(--rf-bg-elev);
   border: 1px solid var(--rf-border);
-  border-radius: 4px;
-  padding: var(--sp-3);
+  border-radius: var(--rf-radius-sm);
+  box-shadow: var(--rf-elev-inset);
+  padding: 11px 13px;
   font-size: 13px;
-  font-family: var(--font-mono);
   display: grid;
-  gap: var(--sp-1);
+  gap: 2px;
+  margin: 10px 6px 4px;
 }
 
 .card.highlighted {
@@ -18,11 +19,15 @@
   display: flex;
   justify-content: space-between;
   gap: var(--sp-3);
-  height: 16px;
+  min-height: 26px;
   align-items: center;
+}
+.row + .row {
+  border-top: 1px solid var(--rf-border);
 }
 
 .value {
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   color: var(--rf-ink);
 }

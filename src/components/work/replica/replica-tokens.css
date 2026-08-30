@@ -1,28 +1,55 @@
-/* Fictional-brand ("Meridian") tokens for the replica kit, scoped under
-   .replicaFrame so they never leak into site chrome. Flat per constitution
-   Principle IV / FR-013a: hairline borders + elevated background tone for
-   elevation — no shadows, gradients, or patterned backgrounds. Focus rings
-   must stay visible (outline is never overridden here). */
+/* Fictional-brand ("Meridian") replica kit tokens, scoped under .replicaFrame.
+   Warm-tinted LIGHT product UI that pops on the dark portfolio site; deep
+   blue-leaning teal derived from the site accent; layered depth. Permitted by
+   constitution v1.2.2's "Replica craft" exception (depth strictly inside the
+   frame; sitewide flat bans hold everywhere else). WCAG AA contrast + visible
+   focus preserved. */
 
 .replicaFrame {
-  --rf-bg: #ffffff;
-  --rf-bg-elev: #f4f5f7;
-  --rf-ink: #1b1e24;
-  --rf-ink-soft: #5b6270;
-  --rf-ink-mute: #5c6472; /* darkened from #8891a1 for AA 4.5:1 on --rf-bg/--rf-bg-elev (axe caught the original; verified via computed luminance) */
-  --rf-border: #d8dce3;
-  --rf-border-strong: #b9c0cc;
-  --rf-accent: #3454d1;
-  --rf-accent-soft: rgb(52 84 209 / 0.1);
-  --rf-danger: #b3261e;
-  --rf-danger-soft: rgb(179 38 30 / 0.08);
+  /* warm-light surfaces */
+  --rf-surface-top: #fdfbf7;
+  --rf-surface-bot: #fbf8f1;
+  --rf-bg: #ffffff; /* inputs / raised controls */
+  --rf-bg-elev: #f5f1e8; /* recessed surfaces (preview, nav, toast) */
+  --rf-footer: #f7f3eb;
+  /* warm ink ramp (AA-verified) */
+  --rf-ink: #2a251d;
+  --rf-ink-soft: #6b6353;
+  --rf-ink-mute: #726a58; /* 4.75:1 worst-case on the warm surfaces */
+  /* borders */
+  --rf-border: #ece6d9;
+  --rf-border-strong: #ddd6c6;
+  /* blue-leaning teal accent (white text 5.52:1 AA) */
+  --rf-accent: #0b7385;
+  --rf-accent-hover: #096376;
+  --rf-accent-soft: rgba(11, 115, 133, 0.09);
+  --rf-accent-tint: rgba(11, 115, 133, 0.14);
+  --rf-accent-ring: rgba(11, 115, 133, 0.3);
+  /* danger (the break-demo / stale states) */
+  --rf-danger: #b3402f;
+  --rf-danger-soft: rgba(179, 64, 47, 0.08);
+  /* warm shadow base + depth tokens */
+  --rf-shadow: 60, 48, 28;
+  --rf-radius: 11px;
+  --rf-radius-sm: 8px;
+  --rf-elev-card: 0 1px 1px rgba(var(--rf-shadow), 0.05), 0 10px 26px -12px
+    rgba(var(--rf-shadow), 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --rf-elev-input: inset 0 1px 1.5px rgba(var(--rf-shadow), 0.04);
+  --rf-elev-inset: inset 0 1px 2px rgba(var(--rf-shadow), 0.06);
+  --rf-elev-menu: 0 1px 2px rgba(var(--rf-shadow), 0.06), 0 12px 30px -8px
+    rgba(var(--rf-shadow), 0.28);
+  --rf-elev-btn: 0 1px 2px rgba(8, 55, 65, 0.32), 0 2px 7px -1px rgba(11, 115, 133, 0.4), inset 0
+    1px 0 rgba(255, 255, 255, 0.2);
+  --rf-elev-dialog: 0 4px 8px -2px rgba(var(--rf-shadow), 0.12), 0 24px 48px -12px
+    rgba(var(--rf-shadow), 0.36);
 
-  background: var(--rf-bg);
+  background: linear-gradient(180deg, var(--rf-surface-top), var(--rf-surface-bot));
   color: var(--rf-ink);
-  border: 1px solid var(--rf-border-strong);
-  border-radius: 6px;
+  border: 1px solid var(--rf-border);
+  border-radius: var(--rf-radius);
+  box-shadow: var(--rf-elev-card);
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   isolation: isolate;
 }

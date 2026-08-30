@@ -1,50 +1,77 @@
 .panel {
-  padding: var(--sp-4);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
   display: grid;
-  gap: var(--sp-3);
+  gap: 0;
   max-width: var(--measure);
   position: relative;
 }
 
+/* crafted select trigger (disabled/display in the walkthrough — matches the
+   bespoke Dropdown's closed state; a disabled native select never opens the
+   OS menu, so its chevron + surface read as product chrome) */
 .select {
+  appearance: none;
+  width: 100%;
+  height: 34px;
+  padding: 0 32px 0 11px;
   font: inherit;
-  padding: var(--sp-1) var(--sp-2);
-  border: 1px solid var(--rf-border-strong);
-  border-radius: 4px;
-  background: var(--rf-bg);
+  font-size: 13px;
+  font-weight: 500;
   color: var(--rf-ink);
-  max-width: 220px;
+  opacity: 1;
+  background: var(--rf-bg)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23726a58' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  border: 1px solid var(--rf-border-strong);
+  border-radius: var(--rf-radius-sm);
+  box-shadow: var(--rf-elev-input);
 }
 
 .checkGroup {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-3);
+  gap: 6px;
 }
 
+/* language toggles as compact pills */
 .checkItem {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--sp-1);
+  gap: 7px;
+  height: 30px;
+  padding: 0 11px 0 9px;
   font-size: 13px;
+  color: var(--rf-ink-soft);
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border-strong);
+  border-radius: var(--rf-radius-sm);
+}
+.checkItem input {
+  accent-color: var(--rf-accent);
+  width: 15px;
+  height: 15px;
 }
 
 .saveRow {
   display: flex;
   justify-content: flex-end;
+  padding-top: var(--sp-3);
 }
 
 .saveButton {
   font: inherit;
   font-size: 13px;
-  padding: var(--sp-2) var(--sp-4);
-  border: 1px solid var(--rf-accent);
-  border-radius: 4px;
+  font-weight: 600;
+  height: 34px;
+  padding: 0 15px;
+  border: none;
+  border-radius: var(--rf-radius-sm);
   background: var(--rf-accent);
   color: #fff;
+  box-shadow: var(--rf-elev-btn);
 }
 
 .saveButton[data-highlighted="true"] {
-  outline: 2px solid var(--rf-ink);
+  outline: 2px solid var(--rf-accent-hover);
   outline-offset: 2px;
 }

@@ -19,7 +19,7 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
   const [active, setActive] = useState(() => Math.max(0, options.indexOf(value)));
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const listRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const baseId = useId();
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
         <FiChevronDown className={styles.chevron} />
       </button>
       {open ? (
-        <ul
+        <div
           ref={listRef}
           className={styles.menu}
           role="listbox"
@@ -96,7 +96,11 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
           onKeyDown={onListKey}
         >
           {options.map((opt, i) => (
-            <li
+            // Keyboard selection is handled by the listbox container above
+            // (arrows + Enter via onListKey), per the WAI-ARIA listbox pattern;
+            // the option's onClick is the pointer affordance.
+            // biome-ignore lint/a11y/useKeyWithClickEvents: listbox owns keyboard nav
+            <div
               key={opt}
               id={`${baseId}-${i}`}
               role="option"
@@ -108,9 +112,9 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
             >
               <span className={styles.check}>{opt === value ? <FiCheck /> : null}</span>
               {opt}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : null}
     </div>
   );

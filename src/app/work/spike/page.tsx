@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Bespoke replica craft iteration surface (noindex, throwaway). The
-// bespoke-vs-shadcn comparison is resolved (bespoke chosen); shadcn source
-// stays under _ui/ _components/ShadcnOrgSettings until the final rip-out.
+// Bespoke replica-kit reference (noindex): the crafted card + the accessible
+// Nord/Graphite-style Dropdown, standalone and fully interactive. The real
+// study at /work/internationalization uses the same system, player-driven.
 export default function SpikePage() {
   return (
     <div className={styles.wrap}>

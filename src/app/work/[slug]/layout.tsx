@@ -1,3 +1,4 @@
+import "@/components/work/replica/replica-tokens.css";
 import { BackgroundFX } from "@/components/chrome/BackgroundFX";
 import { ClickTracker } from "@/components/chrome/ClickTracker";
 import { CommandPalette } from "@/components/chrome/CommandPalette";
