@@ -16,16 +16,18 @@ export default function SpikePage() {
     <div className={styles.wrap}>
       <div className={styles.head}>
         <p className={styles.eyebrow}>Craft spike</p>
-        <h1>Replica craft: bespoke vs shadcn</h1>
+        <h1>Replica craft — bespoke, v2 direction</h1>
         <p>
-          The same org-settings replica, built two ways, on the real site background. Judge the
-          pixels here; the source lives under <code>src/app/work/spike/_components/</code>.
+          The bespoke card, rebuilt: warm-tinted light UI that pops on the dark site, Nord/Graphite
+          calm at Linear density, Porsche-grade state detail, deep-teal primary derived from the site
+          accent. The shadcn column is the earlier reference. Source under{" "}
+          <code>src/app/work/spike/_components/</code>.
         </p>
       </div>
       <div className={styles.grid}>
         <div className={styles.col}>
           <span className={styles.colLabel}>
-            <b>Bespoke</b> — CSS Modules
+            <b>Bespoke v2</b> — warm-light · teal · Nord/Linear
           </span>
           <div className={styles.stage}>
             <BespokeOrgSettings />
@@ -33,7 +35,7 @@ export default function SpikePage() {
         </div>
         <div className={styles.col}>
           <span className={styles.colLabel}>
-            <b>shadcn</b> — Tailwind + Radix
+            <b>shadcn</b> — earlier reference
           </span>
           <div className={styles.stage}>
             <ShadcnOrgSettings />
