@@ -183,3 +183,13 @@ Note: the 500s briefly seen during this round were a dev/prod `.next`
 collision (running `npm run dev` after `npm run build` clobbers the shared
 `.next`), NOT a code bug — a clean `rm -rf .next && npm run build && npm start`
 serves all routes 200.
+
+**Follow-up in the same round — 375px horizontal-overflow fix.** Testing at
+375px (iPhone-SE width, narrower than Lighthouse's 412px) surfaced ~65px of
+horizontal scroll on BOTH the home page and the study — a regression the font
+bump caused: the Footer's four inline links widened past 375px and `.links`
+had no `flex-wrap`, and the TextExpansionDemo's simulated fixed-width button
+carried an inline px `max-width` that could exceed the container. Fixed:
+`Footer .links` now wraps (sitewide); the demo grid children get `min-width: 0`
+and the button preview uses `min(…px, 100%)`. Re-verified: 0 horizontal
+overflow at 375px on home and work; axe still 0 violations on all 5 routes.

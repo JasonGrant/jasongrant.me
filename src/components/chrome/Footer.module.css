@@ -10,7 +10,8 @@
 
 .links {
   display: flex;
-  gap: 18px;
+  flex-wrap: wrap;
+  gap: 8px 18px;
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.08em;

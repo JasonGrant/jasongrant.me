@@ -12,6 +12,13 @@
   display: grid;
   gap: var(--sp-1);
   font-size: var(--fs-meta);
+  overflow-wrap: anywhere;
+}
+
+/* Grid items default to min-width:auto and won't shrink below their content;
+   this lets the demo fit narrow viewports without horizontal overflow. */
+.demo > * {
+  min-width: 0;
 }
 
 .pairRow .lang {

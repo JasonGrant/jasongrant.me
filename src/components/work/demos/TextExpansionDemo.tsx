@@ -62,7 +62,9 @@ export function TextExpansionDemo() {
         <div className={styles.buttonPreviewRow}>
           <span
             className={styles.buttonPreview}
-            style={{ maxWidth: `${Math.max(120, truncateAt * 7)}px` }}
+            // min(..., 100%) so the simulated fixed-width button never exceeds
+            // its container on narrow viewports (no horizontal page scroll).
+            style={{ maxWidth: `min(${Math.max(120, truncateAt * 7)}px, 100%)` }}
           >
             {truncated}
           </span>
