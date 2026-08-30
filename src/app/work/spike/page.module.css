@@ -1,0 +1,68 @@
+.wrap {
+  min-height: 100dvh;
+  padding: 56px 24px 96px;
+}
+.head {
+  max-width: 980px;
+  margin: 0 auto 40px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 40px;
+  line-height: 1.05;
+  margin: 8px 0 10px;
+}
+.head p {
+  color: var(--ink-soft);
+  max-width: 60ch;
+  font-size: 15px;
+}
+.grid {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.colLabel {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  align-self: flex-start;
+}
+.colLabel b {
+  color: var(--ink);
+  font-weight: 500;
+}
+.stage {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 28px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(94, 203, 203, 0.04), transparent 60%),
+    var(--bg-elev);
+}

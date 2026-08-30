@@ -226,12 +226,15 @@ content data consumed by the framework.
 - **FR-013**: Every study page MUST remain readable as a static document when scripting is
   unavailable, with each demo region showing a representative static state.
 
-- **FR-013a**: Replica-kit components MUST comply with Principle IV's visual constraints —
-  hairline borders and elevated background tones for elevation; no drop shadows, gradients,
-  or patterned backgrounds — treating each replica as a framed device. The v1.2.0 exceptions
-  relax motion and page count only, never the visual bans. If product-authentic styling
-  (e.g., real shadows) ever proves essential to a demonstration, that requires a further
-  constitution amendment before it ships.
+- **FR-013a**: Replica-kit components MUST render as authentic, high-craft
+  recreations of the depicted product — this is a portfolio surface judged on
+  craft. Per the constitution v1.2.2 "Replica craft" exception, product-authentic
+  depth styling (drop shadows, gradients, layered elevation, richer borders) is
+  permitted STRICTLY inside `.replicaFrame` on `/work/[slug]` routes, bounded by
+  WCAG AA contrast, preserved focus visibility, and static-depth-only (no
+  depth-driven motion). Everywhere outside the replica frame — the study prose,
+  the section chrome, the site frame — the sitewide flat-styling bans remain in
+  full force.
 
 **Internationalization study content**
 

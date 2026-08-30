@@ -35,14 +35,17 @@ No shortcut conflicts with the site's `Cmd+K` (palette is absent on work routes)
 - (f) Scripted animation exists only inside the player. Concept demos are
   direct-manipulation with instant outcomes. Sitewide bans hold everywhere else.
 
-## Visual (Principle IV inside the frame — FR-013a)
+## Visual (Principle IV — FR-013a, constitution v1.2.2 replica-craft exception)
 
-Replica styling: hairline borders + elevated background tones; no shadows,
-gradients, or patterned backgrounds; fictional-brand tokens scoped under
-`.replicaFrame` (research D7). AA contrast holds inside the frame too — the
-replica is shipped UI, not an image. Focus indicators stay visible on every
-control inside and outside `.replicaFrame`: replica styles must not override
-`outline`, and the ring keeps ≥3:1 contrast against replica background tones.
+Inside `.replicaFrame` on `/work/[slug]`, product-authentic depth is permitted —
+drop shadows, gradients, layered elevation, richer borders — so the recreation
+reads like a real, high-craft product (FR-013a). Bounds that still hold inside
+the frame: WCAG AA contrast (the replica is shipped UI, not an image); visible
+focus indicators on every control (replica styles must not remove `outline`,
+and the ring keeps ≥3:1 contrast against the replica surface); and static depth
+only — no depth-driven motion (frame motion stays governed by the
+scripted-demonstrations exception). Everywhere OUTSIDE the frame the sitewide
+flat-styling bans remain in force.
 
 ## No-JS / degradation
 

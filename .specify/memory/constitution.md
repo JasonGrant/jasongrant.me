@@ -1,6 +1,41 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.1 → 1.2.2
+Rationale: MINOR. Adds a third named exception to Principle IV — "Replica
+  craft" — permitting product-authentic depth styling (drop shadows,
+  gradients, layered elevation, richer borders) INSIDE `.replicaFrame` on
+  `/work/[slug]` routes only. The replicas recreate real SaaS products whose
+  craft depends on depth cues; the sitewide flat-styling bans exist for the
+  editorial site surface, not for a depicted product. No sitewide ban is
+  relaxed — the bans stay fully in force everywhere outside the replica frame,
+  including the case-study page chrome. Supersedes spec 002's FR-013a
+  (previously "flat only" for replicas).
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Replica craft
+    (`.replicaFrame` on /work)": drop shadows, gradients, and layered
+    elevation permitted strictly inside the replica frame, bounded by WCAG AA
+    contrast, preserved focus visibility, and the standing motion rules (depth
+    is static; no depth-driven animation outside the scripted-demonstration
+    exception).
+
+Added sections: None (the exception lives inside Principle IV).
+Removed sections: None.
+Removed rules: None — the sitewide gradient/shadow/pattern bans are unchanged
+  outside `.replicaFrame`.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — FR-013a updated to cite
+    this exception instead of mandating flat replicas.
+  - ✅ specs/002-interactive-case-studies/contracts/accessibility.md — the
+    "Visual (inside the frame)" note updated to match.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.1)
+==================
 Version change: 1.2.0 → 1.2.1
 Rationale: PATCH. Resolves an internal contradiction v1.2.0 introduced: the
   unlisted-case-studies exception REQUIRES noindex on /work routes while the
@@ -319,6 +354,30 @@ UI-state transitions IF AND ONLY IF all of the following hold:
   case-study routes. Every sitewide ban above stays in force everywhere
   else, including the rest of the case-study page surrounding the player.
 
+**Named exception — Replica craft (`.replicaFrame` on `/work/[slug]`)**:
+Interactive case studies recreate real SaaS products (see the Principle V
+unlisted-case-studies exception). Inside a `.replicaFrame` on a `/work/[slug]`
+route ONLY, the sitewide flat-styling bans are lifted so the recreation can
+carry the depth real product UI depends on: drop shadows, gradients, layered
+elevation, and richer borders MAY ship — IF AND ONLY IF all of the following
+hold:
+
+- (a) The styling is scoped to elements inside `.replicaFrame`. Everywhere
+  else on the page — the study prose, the section chrome, the site frame — the
+  sitewide bans (no gradients, drop shadows, patterned backgrounds) remain in
+  full force.
+- (b) WCAG AA contrast holds inside the frame (the replica is shipped UI, not
+  an image), and focus indicators stay visible on every control.
+- (c) Depth is static. It introduces no motion of its own; any motion inside
+  the frame is still governed by the scripted-demonstrations exception.
+- (d) The intent is fidelity to a real product's craft, not decoration for its
+  own sake — the frame should read as an authentic recreation, not a showcase
+  of effects.
+
+This is the one place on jasongrant.me where the editorial-restraint bans
+yield, precisely because the content is a depicted product rather than the
+site's own surface. It supersedes spec 002's FR-013a.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -473,4 +532,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.2.1 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-29
+**Version**: 1.2.2 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-30

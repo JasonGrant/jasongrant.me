@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--sh-bg);
+  --color-foreground: var(--sh-fg);
+  --color-card: var(--sh-card);
+  --color-card-foreground: var(--sh-fg);
+  --color-primary: var(--sh-primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--sh-muted);
+  --color-secondary-foreground: var(--sh-fg);
+  --color-muted: var(--sh-muted);
+  --color-muted-foreground: var(--sh-muted-fg);
+  --color-accent: var(--sh-accent);
+  --color-accent-foreground: var(--sh-primary);
+  --color-border: var(--sh-border);
+  --color-input: var(--sh-input);
+  --color-ring: var(--sh-ring);
+  --radius: 0.75rem;
+
+  --shadow-card: 0 1px 2px rgba(16, 18, 26, 0.04), 0 12px 32px -8px rgba(16, 18, 26, 0.18);
+  --shadow-btn: 0 1px 2px rgba(16, 18, 26, 0.2), 0 2px 8px -1px rgba(91, 91, 214, 0.5), inset 0 1px
+    0 rgba(255, 255, 255, 0.28);
+  --shadow-inset: inset 0 1px 3px rgba(16, 18, 26, 0.05);
+  --shadow-ring-accent: inset 0 0 0 1px rgba(91, 91, 214, 0.14);
+  --shadow-check: 0 1px 2px rgba(91, 91, 214, 0.4);
+}
+
+:root {
+  --sh-bg: #fbfbfc;
+  --sh-fg: #1a1d21;
+  --sh-card: #ffffff;
+  --sh-primary: #5b5bd6;
+  --sh-muted: #f5f6f8;
+  --sh-muted-fg: #8b8f98;
+  --sh-accent: #eeeefb;
+  --sh-border: #e6e7eb;
+  --sh-input: #d5d7dd;
+  --sh-ring: #5b5bd6;
+}

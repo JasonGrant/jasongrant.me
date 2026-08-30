@@ -1,0 +1,269 @@
+/* Bespoke replica craft — refined light product UI with layered depth.
+   Its own cool, self-contained palette (a depicted product "Meridian"),
+   scoped so nothing leaks to the site. Constitution v1.2.2 replica-craft
+   exception: shadows/gradients/elevation permitted inside .frame here. */
+.frame {
+  --s-bg: #fbfbfc;
+  --s-surface: #ffffff;
+  --s-recess: #f5f6f8;
+  --s-border: #e6e7eb;
+  --s-border-strong: #d5d7dd;
+  --s-ink: #1a1d21;
+  --s-ink-2: #5f636b;
+  --s-ink-3: #8b8f98;
+  --s-accent: #5b5bd6;
+  --s-accent-2: #6e6ef0;
+  --s-accent-tint: #eeeefb;
+  --s-radius: 12px;
+  --s-radius-sm: 8px;
+
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--s-bg) 100%);
+  border: 1px solid var(--s-border);
+  border-radius: var(--s-radius);
+  /* layered elevation: ambient + key + a 1px top highlight */
+  box-shadow: 0 0 0 1px rgba(16, 18, 26, 0.02), 0 1px 2px rgba(16, 18, 26, 0.04), 0 12px 32px -8px
+    rgba(16, 18, 26, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: var(--s-ink);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--s-border);
+  background: linear-gradient(180deg, rgba(91, 91, 214, 0.03), transparent);
+}
+.headerIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 9px;
+  color: var(--s-accent);
+  background: var(--s-accent-tint);
+  box-shadow: inset 0 0 0 1px rgba(91, 91, 214, 0.14);
+  font-size: 17px;
+}
+.headerText h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 1px 0 2px;
+}
+.headerText p {
+  font-size: 13px;
+  color: var(--s-ink-3);
+  margin: 0;
+}
+
+.body {
+  padding: 6px 22px 8px;
+}
+
+.field {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--s-border);
+}
+.field:last-child {
+  border-bottom: none;
+}
+.fieldTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--s-ink);
+}
+.hint {
+  font-size: 12px;
+  color: var(--s-ink-3);
+}
+
+/* Custom select — native <select> hidden behind a styled shell wouldn't show
+   craft; here it's a styled trigger with a chevron. */
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.select select {
+  appearance: none;
+  width: 100%;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--s-ink);
+  padding: 9px 34px 9px 12px;
+  background: var(--s-surface);
+  border: 1px solid var(--s-border-strong);
+  border-radius: var(--s-radius-sm);
+  box-shadow: inset 0 1px 2px rgba(16, 18, 26, 0.03);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.select select:hover {
+  border-color: #c3c6cd;
+}
+.select select:focus-visible {
+  outline: none;
+  border-color: var(--s-accent);
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.18), inset 0 1px 2px rgba(16, 18, 26, 0.03);
+}
+.select .chevron {
+  position: absolute;
+  right: 12px;
+  color: var(--s-ink-3);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--s-ink-2);
+  padding: 6px 11px 6px 9px;
+  background: var(--s-surface);
+  border: 1px solid var(--s-border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+.chip:hover {
+  border-color: #c3c6cd;
+  color: var(--s-ink);
+}
+.chip[data-on="true"] {
+  color: var(--s-accent);
+  background: var(--s-accent-tint);
+  border-color: rgba(91, 91, 214, 0.35);
+}
+.chipDot {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  border: 1.5px solid var(--s-border-strong);
+  color: #fff;
+  font-size: 10px;
+  transition: all 0.14s ease;
+}
+.chip[data-on="true"] .chipDot {
+  background: linear-gradient(180deg, var(--s-accent-2), var(--s-accent));
+  border-color: var(--s-accent);
+  box-shadow: 0 1px 2px rgba(91, 91, 214, 0.4);
+}
+
+/* Recessed preview surface */
+.preview {
+  margin-top: 4px;
+  background: var(--s-recess);
+  border: 1px solid var(--s-border);
+  border-radius: var(--s-radius-sm);
+  box-shadow: inset 0 1px 3px rgba(16, 18, 26, 0.05);
+  padding: 12px 14px;
+}
+.previewHead {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--s-ink-3);
+  margin-bottom: 8px;
+}
+.previewRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 4px 0;
+}
+.previewRow + .previewRow {
+  border-top: 1px solid var(--s-border);
+}
+.previewRow .k {
+  color: var(--s-ink-3);
+}
+.previewRow .v {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--s-ink);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 22px;
+  border-top: 1px solid var(--s-border);
+  background: var(--s-recess);
+}
+.dirty {
+  font-size: 12.5px;
+  color: var(--s-ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.dirty::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e0a53f;
+  box-shadow: 0 0 0 3px rgba(224, 165, 63, 0.16);
+}
+.save {
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #fff;
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--s-radius-sm);
+  background: linear-gradient(180deg, var(--s-accent-2), var(--s-accent));
+  box-shadow: 0 1px 2px rgba(16, 18, 26, 0.2), 0 2px 8px -1px rgba(91, 91, 214, 0.5), inset 0 1px 0
+    rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, filter 0.12s;
+}
+.save:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 1px 2px rgba(16, 18, 26, 0.2), 0 4px 14px -1px rgba(91, 91, 214, 0.6), inset 0 1px 0
+    rgba(255, 255, 255, 0.3);
+}
+.save:active {
+  transform: translateY(1px);
+}
+.save:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.3), 0 2px 8px -1px rgba(91, 91, 214, 0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .save,
+  .select select,
+  .chipDot {
+    transition: none;
+  }
+}
