@@ -1,6 +1,26 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.0 → 1.2.1
+Rationale: PATCH. Resolves an internal contradiction v1.2.0 introduced: the
+  unlisted-case-studies exception REQUIRES noindex on /work routes while the
+  Workflow gates require Lighthouse SEO 95+ on every shipped page — impossible
+  together, because Lighthouse's SEO category contains a crawlability audit
+  that fails by design on a deliberately noindexed page. The gates note now
+  names the single permitted deduction. No rule inverted; every other gate
+  applies to unlisted routes unchanged.
+
+Modified principles: None (Workflow & Quality Gates note clarified).
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/* — plan artifacts cite the v1.2.1
+    gates note; updated in the same change set.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.0)
+==================
 Version change: 1.1.1 → 1.2.0
 Rationale: MINOR. Two named, bounded exceptions added to enable feature
   002-interactive-case-studies: (1) Principle V gains an "Unlisted interactive
@@ -402,7 +422,12 @@ gates before merge to `main`:
 
 Unlisted routes (e.g., `/work/[slug]` case studies) are shipped pages for
 the purposes of every gate above — soft-unlisting reduces discoverability,
-never the quality bar.
+never the quality bar. One measured consequence is acknowledged: the
+deliberate noindex directive fails Lighthouse's crawlability audit inside
+the SEO category by design. On unlisted routes, gate 4 therefore asserts
+Performance, Accessibility, and Best Practices at 95+ unchanged, and asserts
+SEO at the maximum score achievable with that noindex deduction — no other
+SEO deduction is permitted.
 
 If a Lighthouse score drops below 95 on any category, the change MUST NOT
 ship. Either fix the regression or revert. Negotiating the gate downward
@@ -448,4 +473,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.2.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-29
+**Version**: 1.2.1 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-29
