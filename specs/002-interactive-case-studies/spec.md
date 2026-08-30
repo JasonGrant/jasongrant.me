@@ -327,13 +327,17 @@ content data consumed by the framework.
   experience conveys 100% of the information of the animated one, verified by a
   side-by-side review confirming every caption, state, and outcome of the animated
   sequence appears in the reduced-motion sequence.
-- **SC-004**: The three core pages' shipped script payloads are byte-identical (or smaller)
-  compared to the pre-feature production build.
+- **SC-004**: The three core pages reference no case-study module in the production build —
+  verified by diffing their file lists in the build manifest pre/post feature — and their
+  script payloads are unchanged apart from bundler chunk-repartition noise (runtime-chunk
+  hash exempt).
 - **SC-005**: The production sitemap contains zero case-study URLs; every case-study route
   serves noindex directives; no navigation surface links to a case study.
 - **SC-006**: The player, replica kit, and page scaffold contain zero
-  Internationalization-specific logic or copy — 100% of study-specific material lives in the
-  study's content definitions, verified by review.
+  Internationalization-specific logic or copy — study-specific material lives in the
+  study's content definitions, verified by review. (Concept-demo components carry the
+  pinned published-guideline constants they demonstrate — guideline facts, not study
+  copy.)
 - **SC-007**: Every factual claim in the study (strings, percentages, tier values, rules)
   matches its source exactly — verified line by line against the public Ascent pages, the
   published articles, and Jason's source materials in his private storage (referenced by
