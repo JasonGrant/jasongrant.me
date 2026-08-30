@@ -1,63 +1,146 @@
-.panel {
-  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+.header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 18px 13px;
+  border-bottom: 1px solid var(--rf-border);
+}
+.headerIcon {
   display: grid;
-  gap: 0;
-  max-width: var(--measure);
-  position: relative;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 8px;
+  color: var(--rf-accent);
+  background: var(--rf-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--rf-accent-tint);
+  font-size: 16px;
 }
-
-/* crafted select trigger (disabled/display in the walkthrough — matches the
-   bespoke Dropdown's closed state; a disabled native select never opens the
-   OS menu, so its chevron + surface read as product chrome) */
-.select {
-  appearance: none;
-  width: 100%;
-  height: 34px;
-  padding: 0 32px 0 11px;
-  font: inherit;
+.headerText h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.006em;
+  margin: 0 0 1px;
+}
+.headerText p {
   font-size: 13px;
-  font-weight: 500;
-  color: var(--rf-ink);
-  opacity: 1;
-  background: var(--rf-bg)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23726a58' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
-    no-repeat right 10px center;
-  border: 1px solid var(--rf-border-strong);
-  border-radius: var(--rf-radius-sm);
-  box-shadow: var(--rf-elev-input);
+  line-height: 1.35;
+  color: var(--rf-ink-mute);
+  margin: 0;
 }
 
-.checkGroup {
+.body {
+  padding: 2px 18px;
+}
+.field {
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--rf-border);
+  border-radius: 8px;
+}
+.field:last-child {
+  border-bottom: none;
+}
+.field.hl {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: -2px;
+  background: var(--rf-accent-soft);
+}
+.fieldTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--rf-ink);
+  letter-spacing: -0.003em;
+}
+.hint {
+  font-size: 13px;
+  color: var(--rf-ink-mute);
+}
+
+/* localization language toggles — crafted teal pills */
+.chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
-
-/* language toggles as compact pills */
-.checkItem {
+.chip {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--rf-ink-soft);
   height: 30px;
   padding: 0 11px 0 9px;
-  font-size: 13px;
-  color: var(--rf-ink-soft);
   background: var(--rf-bg);
   border: 1px solid var(--rf-border-strong);
   border-radius: var(--rf-radius-sm);
+  cursor: pointer;
+  transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
 }
-.checkItem input {
-  accent-color: var(--rf-accent);
+.chip:hover:not(:disabled) {
+  border-color: #cbc3b1;
+  color: var(--rf-ink);
+}
+.chip:disabled {
+  cursor: default;
+}
+.chip[data-on="true"] {
+  color: var(--rf-accent-hover);
+  background: var(--rf-accent-soft);
+  border-color: var(--rf-accent-ring);
+}
+.chipDot {
+  display: grid;
+  place-items: center;
   width: 15px;
   height: 15px;
+  border-radius: 5px;
+  border: 1.5px solid var(--rf-border-strong);
+  background: var(--rf-bg);
+  color: #fff;
+  font-size: 10px;
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+.chip[data-on="true"] .chipDot {
+  background: var(--rf-accent);
+  border-color: var(--rf-accent);
+  box-shadow: 0 1px 1.5px rgba(8, 60, 70, 0.45);
 }
 
-.saveRow {
+.footer {
   display: flex;
-  justify-content: flex-end;
-  padding-top: var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-top: 1px solid var(--rf-border);
+  background: var(--rf-footer);
+  border-radius: 0 0 var(--rf-radius) var(--rf-radius);
 }
-
+.dirty {
+  font-size: 13px;
+  color: var(--rf-ink-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.dirty::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cf9a3f;
+  box-shadow: 0 0 0 3px rgba(207, 154, 63, 0.16);
+}
 .saveButton {
   font: inherit;
   font-size: 13px;
@@ -69,8 +152,11 @@
   background: var(--rf-accent);
   color: #fff;
   box-shadow: var(--rf-elev-btn);
+  cursor: pointer;
 }
-
+.saveButton:disabled {
+  cursor: default;
+}
 .saveButton[data-highlighted="true"] {
   outline: 2px solid var(--rf-accent-hover);
   outline-offset: 2px;

@@ -10,17 +10,22 @@ import { reduceEmailSteps, reduceSettingsSteps } from "./stepReducer";
 
 type Status = "idle" | "running" | "paused" | "complete";
 
+interface SettingsValues {
+  languageValue: string;
+  formatValue: string;
+  localizationLanguages: string[];
+}
+
 export interface PlayerProps {
   segment: WalkthroughSegment<"org-settings" | "personal-settings" | "email-editor">;
-  /** Only meaningful when segment.screen === "email-editor" (FR-021 continuity). */
   orgSelectedLanguages?: string[];
 }
 
-// Idle -> running (Play) -> paused (Pause) -> running (Play) | idle (Stop,
-// resets to step 0) -> ... -> complete (last step's timer elapses), Play at
-// complete restarts. Prev/Next work at any status and pause a running
-// sequence. Reduced motion drops autoplay entirely: no Play/Pause/Stop,
-// Prev/Next only, identical captions (constitution v1.2.1 condition c).
+// Interaction model (Jason, 2026-08-30): the replica card is LIVE by default —
+// the visitor operates it. Pressing "Play walkthrough" hands control to a
+// scripted guided tour (card disabled, driven step by step); pausing/stopping
+// returns control to the visitor. So `disabled` === the tour is actively
+// running.
 export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [stepIndex, setStepIndex] = useState(0);
@@ -34,6 +39,18 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
   const step = steps[stepIndex];
   const isLast = stepIndex === steps.length - 1;
   const isFirst = stepIndex === 0;
+  const running = status === "running";
+
+  const isSettings = segment.screen === "org-settings" || segment.screen === "personal-settings";
+
+  // Live settings state (only for settings segments). Seeded from the tour's
+  // opening state so the card starts on the "before" values the visitor can
+  // then change (or watch the tour change).
+  const seed = () =>
+    isSettings
+      ? pickValues(reduceSettingsSteps(segment.steps as never, 0))
+      : { languageValue: "", formatValue: "", localizationLanguages: [] };
+  const [sv, setSv] = useState<SettingsValues>(seed);
 
   useEffect(() => {
     return () => {
@@ -41,54 +58,59 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
     };
   }, []);
 
+  // Advance the guided tour a step and drive the settings values from the script.
+  const applyStep = (i: number) => {
+    setStepIndex(i);
+    if (isSettings) setSv(pickValues(reduceSettingsSteps(segment.steps as never, i)));
+  };
+
+  // While the tour runs, drive the settings values from the scripted step.
   useEffect(() => {
-    if (status !== "running" || reducedMotion) return;
-    const atLastStep = stepIndex === steps.length - 1;
-    if (atLastStep) {
+    if (!running || !isSettings) return;
+    setSv(pickValues(reduceSettingsSteps(segment.steps as never, stepIndex)));
+  }, [running, isSettings, stepIndex, segment.steps]);
+
+  // Auto-advance timer while playing.
+  useEffect(() => {
+    if (!running || reducedMotion) return;
+    if (stepIndex === steps.length - 1) {
       setStatus("complete");
       return;
     }
     const duration = steps[stepIndex].durationMs;
-    timerRef.current = setTimeout(() => {
-      setStepIndex((i) => i + 1);
-    }, duration);
+    timerRef.current = setTimeout(() => setStepIndex((i) => i + 1), duration);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [status, stepIndex, reducedMotion, steps]);
+  }, [running, stepIndex, reducedMotion, steps]);
 
-  // Mobile framing (FR-012a/D9): keep the active step's focus region visible
-  // WITHIN the player's own scrollable viewport on narrow screens. Two guards
-  // matter: (1) never on the initial mount — otherwise every player on the
-  // page scrolls itself into view at load and the last one wins, yanking the
-  // page down to the email segment; (2) only when the viewport is actually
-  // scrollable (mobile), and then scroll the container itself, never the page.
-  const hasMountedRef = useRef(false);
+  // Mobile framing (FR-012a): keep the active step's region in view within the
+  // player's own scrollable viewport while the tour plays. Never on mount.
+  const mounted = useRef(false);
   useEffect(() => {
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
+    if (!mounted.current) {
+      mounted.current = true;
       return;
     }
-    const viewport = viewportRef.current;
-    if (!viewport || viewport.scrollHeight <= viewport.clientHeight) return;
+    if (!running) return;
+    const vp = viewportRef.current;
+    if (!vp || vp.scrollHeight <= vp.clientHeight) return;
     const region = step.focusRegion ?? step.target;
-    const el = viewport.querySelector<HTMLElement>(`[data-anchor="${region}"]`);
+    const el = vp.querySelector<HTMLElement>(`[data-anchor="${region}"]`);
     if (!el) return;
-    // Element offset within the viewport's scroll content, robust to any
-    // positioning context (offsetTop would depend on the offsetParent).
-    const offsetWithin =
-      el.getBoundingClientRect().top - viewport.getBoundingClientRect().top + viewport.scrollTop;
-    const target = offsetWithin - viewport.clientHeight / 2 + el.clientHeight / 2;
-    viewport.scrollTo({ top: Math.max(0, target), behavior: reducedMotion ? "auto" : "smooth" });
-  }, [step, reducedMotion]);
+    const off = el.getBoundingClientRect().top - vp.getBoundingClientRect().top + vp.scrollTop;
+    vp.scrollTo({
+      top: Math.max(0, off - vp.clientHeight / 2 + el.clientHeight / 2),
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [step, reducedMotion, running]);
 
-  function goTo(index: number) {
-    setStepIndex(Math.max(0, Math.min(steps.length - 1, index)));
-    setStatus((s) => (s === "running" ? "paused" : s === "complete" ? "paused" : s));
+  function tourGoTo(index: number) {
+    applyStep(Math.max(0, Math.min(steps.length - 1, index)));
+    setStatus((s) => (s === "running" || s === "complete" ? "paused" : s));
   }
-
   function handlePlay() {
-    if (status === "complete") setStepIndex(0);
+    if (status === "complete") applyStep(0);
     setStatus("running");
   }
   function handlePause() {
@@ -96,18 +118,16 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
   }
   function handleStop() {
     setStatus("idle");
-    setStepIndex(0);
+    applyStep(0);
   }
-
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      goTo(stepIndex + 1);
+      tourGoTo(stepIndex + 1);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      goTo(stepIndex - 1);
+      tourGoTo(stepIndex - 1);
     }
-    // Deliberately no Tab handling — Tab must never be captured (contracts/accessibility.md).
   }
 
   const liveText = `${statusLabel(status, reducedMotion)} — Step ${stepIndex + 1} of ${steps.length}: ${step.caption}`;
@@ -115,7 +135,33 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
   return (
     <section className={styles.player} aria-label={segment.title} onKeyDown={handleKeyDown}>
       <div ref={viewportRef} className={styles.viewport}>
-        {renderScreen(segment, stepIndex, orgSelectedLanguages)}
+        {isSettings ? (
+          <SettingsPanel
+            screen={segment.screen as "org-settings" | "personal-settings"}
+            languageValue={sv.languageValue}
+            formatValue={sv.formatValue}
+            localizationLanguages={sv.localizationLanguages}
+            highlighted={running && step.highlight ? (step.target as never) : null}
+            toast={running && step.action === "toast" ? (step.value ?? step.caption) : null}
+            disabled={running}
+            onLanguageChange={(v) => setSv((s) => ({ ...s, languageValue: v }))}
+            onFormatChange={(v) => setSv((s) => ({ ...s, formatValue: v }))}
+            onToggleLanguage={(lang) =>
+              setSv((s) => ({
+                ...s,
+                localizationLanguages: s.localizationLanguages.includes(lang)
+                  ? s.localizationLanguages.filter((x) => x !== lang)
+                  : [...s.localizationLanguages, lang],
+              }))
+            }
+          />
+        ) : (
+          renderEmail(
+            segment as WalkthroughSegment<"email-editor">,
+            stepIndex,
+            orgSelectedLanguages,
+          )
+        )}
       </div>
 
       <div className={styles.controlsRow}>
@@ -125,12 +171,12 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
         <button
           type="button"
           className={styles.button}
-          onClick={() => goTo(stepIndex - 1)}
+          onClick={() => tourGoTo(stepIndex - 1)}
           disabled={isFirst}
         >
           ◁ Prev
         </button>
-        {reducedMotion ? null : status === "running" ? (
+        {reducedMotion ? null : running ? (
           <button type="button" className={styles.button} onClick={handlePause}>
             ❚❚ Pause
           </button>
@@ -156,7 +202,7 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
         <button
           type="button"
           className={styles.button}
-          onClick={() => goTo(stepIndex + 1)}
+          onClick={() => tourGoTo(stepIndex + 1)}
           disabled={isLast}
         >
           Next ▷
@@ -183,32 +229,31 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
   );
 }
 
+function pickValues(s: {
+  languageValue: string;
+  formatValue: string;
+  localizationLanguages: string[];
+}): SettingsValues {
+  return {
+    languageValue: s.languageValue,
+    formatValue: s.formatValue,
+    localizationLanguages: s.localizationLanguages,
+  };
+}
+
 function statusLabel(status: Status, reducedMotion: boolean): string {
   if (reducedMotion) return "Step through";
   if (status === "running") return "Playing";
   if (status === "paused") return "Paused";
   if (status === "complete") return "Complete";
-  return "Ready";
+  return "Interactive";
 }
 
-function renderScreen(
-  segment: PlayerProps["segment"],
+function renderEmail(
+  segment: WalkthroughSegment<"email-editor">,
   stepIndex: number,
   orgSelectedLanguages: string[],
 ) {
-  if (segment.screen === "org-settings" || segment.screen === "personal-settings") {
-    const state = reduceSettingsSteps(segment.steps, stepIndex);
-    return (
-      <SettingsPanel
-        screen={segment.screen}
-        languageValue={state.languageValue}
-        formatValue={state.formatValue}
-        localizationLanguages={state.localizationLanguages}
-        highlighted={state.highlighted}
-        toast={state.toast}
-      />
-    );
-  }
   const state = reduceEmailSteps(segment.steps, stepIndex, orgSelectedLanguages);
   return (
     <EmailEditor

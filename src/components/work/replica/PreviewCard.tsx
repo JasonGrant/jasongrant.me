@@ -6,18 +6,17 @@ const ANCHOR: OrgSettingsAnchorId & PersonalSettingsAnchorId = "preview-card";
 
 export interface PreviewCardProps {
   highlighted?: boolean;
+  region?: string;
   rows: { label: string; value: string }[];
 }
 
-// Fixed row heights + tabular-nums so a locale/format swap can never shift
-// layout (research D10 CLS rule).
-export function PreviewCard({ highlighted, rows }: PreviewCardProps) {
+export function PreviewCard({ highlighted, region, rows }: PreviewCardProps) {
   return (
     <div
       data-anchor={ANCHOR}
       className={classNames(styles.card, highlighted && styles.highlighted)}
     >
-      <p className={styles.label}>Preview</p>
+      <p className={styles.head}>Preview{region ? ` · ${region}` : ""}</p>
       {rows.map((row) => (
         <div key={row.label} className={styles.row}>
           <span className={styles.label}>{row.label}</span>
