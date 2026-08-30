@@ -1,6 +1,56 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.1.1 → 1.2.0
+Rationale: MINOR. Two named, bounded exceptions added to enable feature
+  002-interactive-case-studies: (1) Principle V gains an "Unlisted interactive
+  case studies" exception permitting soft-unlisted, noindexed routes under
+  `/work/[slug]`; (2) Principle IV gains a "Scripted demonstrations" exception
+  permitting user-initiated walkthrough motion inside the case-study player.
+  No rule is removed or inverted; the three-page IA, the proprietary-screens
+  ban, and every motion ban remain the sitewide default. Previously compliant
+  code remains compliant.
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Scripted demonstrations
+    (case-study player)": motion only after explicit user initiation, visible
+    pause/stop controls, first-class reduced-motion variant (discrete state
+    steps, no transitional motion), gesture-gated narration with in-place
+    transcript, demonstration-serving motion only, scoped to the player
+    component on `/work/[slug]` routes.
+  - V. Content Discipline & Network Coherence — added named exception
+    "Unlisted interactive case studies (`/work/[slug]`)": excluded from
+    sitemap, robots noindex, not linked from primary navigation; every route
+    is a shipped page for all Workflow & Quality Gates; recreated/sanitized
+    UI with fictional data only (proprietary-screens rule reaffirmed);
+    per-study publicizing is a deliberate decision recorded in the PR.
+    Page-count clause updated to reference the exception.
+
+Added sections: None (both exceptions live inside existing principles).
+Removed sections: None.
+Removed rules: None.
+
+Other changes:
+  - Workflow & Quality Gates — clarifying note: unlisted routes are shipped
+    pages for the purposes of every gate; soft-unlisting reduces
+    discoverability, never the quality bar.
+
+Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md — Constitution Check is generic;
+    no edits required.
+  - ✅ .specify/templates/spec-template.md — generic; no edits required.
+  - ✅ .specify/templates/tasks-template.md — generic; no edits required.
+  - ✅ .specify/templates/checklist-template.md — generic; no edits required.
+  - ✅ CLAUDE.md — points to the active plan; no constitution-specific
+    references to reconcile.
+  - ✅ specs/001-personal-site-rebuild/spec.md — cites the constitution for
+    banned patterns; the new exceptions are enumerated in the constitution
+    itself, so no rewrite is needed and 001 scope is untouched.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.1.1)
+==================
 Version change: 1.1.0 → 1.1.1
 Rationale: PATCH. Adds a narrow fourth exception under Principle IV's
   "Subtle-craft exceptions" — a single playful avatar/portrait may scale on
@@ -225,6 +275,30 @@ Banned (MUST NOT ship):
   single deliberate playful moment — the general ban on scale/bounce
   hovers still applies to every other interactive element.
 
+**Named exception — Scripted demonstrations (case-study player)**: Within
+the interactive case-study player on `/work/[slug]` routes (see the
+Principle V exception), scripted demonstration sequences MAY animate
+UI-state transitions IF AND ONLY IF all of the following hold:
+
+- (a) Motion begins only after explicit user initiation via a clearly
+  labeled control (e.g., "Play walkthrough"). Nothing animates on page
+  load and nothing animates on scroll.
+- (b) Visible pause and stop controls are present the entire time a
+  sequence is running.
+- (c) A first-class reduced-motion variant ships with the player: under
+  `prefers-reduced-motion: reduce`, sequences advance as discrete state
+  changes with no transitional motion, at a user-controlled pace. This
+  variant is a peer experience, not a degraded one.
+- (d) Narration audio, where present, is gesture-gated per interaction —
+  it never autoplays — and a text transcript is available in place.
+- (e) The motion demonstrates the product behavior being explained (state
+  changes, highlights, focus movement, screen transitions). Decorative
+  motion, parallax, and scroll-driven effects remain banned inside the
+  player.
+- (f) The exception applies only within the player component on
+  case-study routes. Every sitewide ban above stays in force everywhere
+  else, including the rest of the case-study page surrounding the player.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -237,7 +311,9 @@ louder is a violation, not an interpretation.
 
 Content structure MUST follow the rebuild plan: three pages only — Home (`/`),
 Experience (`/experience`), Writing (`/writing`) — plus an optional
-`/colophon`. No portfolio pages, no `/about`, no `/contact`.
+`/colophon`. No portfolio pages, no `/about`, no `/contact`. Unlisted
+interactive case-study routes under `/work/[slug]` are permitted solely
+under the named exception below.
 
 Required:
 
@@ -254,6 +330,28 @@ Required:
   the PR.
 - A downloadable resume PDF remains the long-form artifact for recruiters;
   the Experience page is the public-facing chronological proof.
+
+**Named exception — Unlisted interactive case studies (`/work/[slug]`)**:
+Interactive case-study routes MAY ship under `/work/[slug]` without
+violating the page-count rule, IF AND ONLY IF all of the following hold:
+
+- *Soft-unlisted by default*: each route is excluded from the sitemap,
+  carries `noindex` robots metadata, and is not linked from primary
+  navigation. Reach is by direct URL. The "no portfolio pages" rule above
+  governs the listed, navigable IA — an unlisted case study joins that IA
+  only through the deliberate publicizing step below.
+- *Fully gated*: every case-study route is a shipped page for the purposes
+  of the Workflow & Quality Gates — Lighthouse 95+ in all four categories
+  on mobile and desktop, axe zero violations, CLS 0, and the manual
+  keyboard/screen-reader/visual passes all apply without exception.
+- *Recreated content only*: all product UI shown is a purpose-built
+  recreation populated with fictional data. Proprietary screenshots,
+  pixels, and customer data MUST NOT be published — this restates, not
+  relaxes, the operator-work rule above.
+- *Deliberate publicizing*: an individual case study MAY later be linked
+  and/or indexed as a per-study content decision recorded in the PR that
+  makes the change. The default for every new study remains unlisted and
+  noindexed.
 
 Rationale: The information architecture and content rules are load-bearing
 for the positioning. Adding a portfolio page, an `/about`, or a `/contact`
@@ -302,6 +400,10 @@ gates before merge to `main`:
 8. The change does not introduce any banned visual pattern (Principle IV)
    or violate content rules (Principle V).
 
+Unlisted routes (e.g., `/work/[slug]` case studies) are shipped pages for
+the purposes of every gate above — soft-unlisting reduces discoverability,
+never the quality bar.
+
 If a Lighthouse score drops below 95 on any category, the change MUST NOT
 ship. Either fix the regression or revert. Negotiating the gate downward
 is not permitted; amending the gate requires a constitution amendment.
@@ -346,4 +448,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.1.1 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-12
+**Version**: 1.2.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-29
