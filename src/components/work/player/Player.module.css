@@ -1,24 +1,23 @@
+/* No enclosing box (Jason, 2026-08-30): the replica card carries its own frame
+   and shadow (.replicaFrame), so the player is just a layout wrapper. The
+   transport controls sit beneath the card as a plain row — like the controls
+   under a video — rather than inside a surrounding container. */
 .player {
-  border: 1px solid var(--rule-strong);
-  border-radius: 4px;
-  background: var(--bg-elev);
-  max-width: var(--measure);
-}
-
-.viewport {
-  padding: var(--sp-4);
+  display: block;
 }
 
 @media (max-width: 640px) {
   .viewport {
-    max-height: 60vh;
+    max-height: 70vh;
     overflow-y: auto;
+    /* room so the card's shadow isn't clipped by the scroll box */
+    padding: 2px;
+    margin: -2px;
   }
 }
 
 .controlsRow {
-  border-top: 1px solid var(--rule);
-  padding: var(--sp-3) var(--sp-4);
+  margin-top: var(--sp-4);
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
@@ -58,8 +57,9 @@
 }
 
 .transcriptRow {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
   border-top: 1px solid var(--rule);
-  padding: var(--sp-3) var(--sp-4);
 }
 
 .transcriptToggle {

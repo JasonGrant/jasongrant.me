@@ -1,70 +1,115 @@
 "use client";
 
-import classNames from "classnames";
 import { useState } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 import styles from "./WordOrderDemo.module.css";
 import { WORD_ORDER_FACTS as F } from "./facts";
 
+type Lang = "en" | "de" | "fr";
+
 export function WordOrderDemo() {
-  const [lang, setLang] = useState<"en" | "de">("en");
-  const broken = lang === "de";
+  const [lang, setLang] = useState<Lang>("en");
+  const I = F.inputs;
+  const L = F.links;
 
   return (
-    <div className={styles.demo}>
-      <div className={styles.toggleRow} role="group" aria-label="Language">
-        <button
-          type="button"
-          className={styles.toggle}
-          aria-pressed={lang === "en"}
-          onClick={() => setLang("en")}
-        >
-          EN
-        </button>
-        <button
-          type="button"
-          className={styles.toggle}
-          aria-pressed={lang === "de"}
-          onClick={() => setLang("de")}
-        >
-          DE
-        </button>
+    <div className={`workDemoCard ${styles.demo}`}>
+      <div className={styles.langRow}>
+        <span className={styles.langLabel}>Language</span>
+        <div className={styles.segmented} role="group" aria-label="Preview language">
+          {F.languages.map((l) => (
+            <button
+              key={l.code}
+              type="button"
+              className={styles.seg}
+              aria-pressed={lang === l.code}
+              onClick={() => setLang(l.code as Lang)}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <p className={classNames(styles.sentence, broken && styles.broken)}>
-        {broken ? (
-          <>
-            {F.broken.prefix}{" "}
-            <select disabled aria-label="timing value" defaultValue={F.broken.control}>
-              <option>{F.broken.control}</option>
-            </select>{" "}
-            {F.broken.suffix}
-          </>
-        ) : (
-          <>
-            Send an email{" "}
-            <select disabled aria-label="timing value" defaultValue="5 minutes">
-              <option>5 minutes</option>
-            </select>{" "}
-            after signup
-          </>
-        )}
-      </p>
+      {/* Inputs in a sentence */}
+      <section className={styles.part}>
+        <h3 className={styles.partTitle}>An input inside a sentence</h3>
+        <div className={styles.pair}>
+          <div className={styles.example}>
+            <div className={styles.ui}>
+              <span className={styles.fieldLabel}>{I.label[lang]}</span>
+              <span className={styles.inputRow}>
+                <span className={styles.miniInput}>{I.control}</span>
+                <span className={styles.unit}>{I.unit[lang]}</span>
+              </span>
+            </div>
+            <p className={styles.verdict} data-kind="do">
+              <span aria-hidden="true">✓</span> Do
+            </p>
+            <p className={styles.caption}>Label the input and keep it out of the sentence.</p>
+          </div>
 
-      <p className={styles.resultLine} aria-live="polite">
-        {broken
-          ? "The control strands mid-sentence as the verb moves — this pattern breaks across languages with different word order."
-          : "In English the embedded control reads fine, but that's not guaranteed once translated."}
-      </p>
+          <div className={styles.example}>
+            <div className={styles.ui}>
+              <p className={styles.sentence}>
+                {I.dont[lang].before} <span className={styles.miniInput}>{I.control}</span>{" "}
+                {I.dont[lang].after}
+              </p>
+            </div>
+            <p className={styles.verdict} data-kind="dont">
+              <span aria-hidden="true">✗</span> Don&rsquo;t
+            </p>
+            <p className={styles.caption}>Embed the input and word order strands it.</p>
+          </div>
+        </div>
+        <p className={styles.helper} aria-live="polite">
+          {I.helper[lang]}
+        </p>
+      </section>
 
       <hr className={styles.divider} />
 
-      <p className={styles.correctedLabel}>✓ Corrected pattern — {F.rule}</p>
-      <div className={styles.correctedBlock}>
-        <span>{F.corrected.label}</span>
-        <select disabled aria-label="corrected timing value" defaultValue={F.corrected.control}>
-          <option>{F.corrected.control}</option>
-        </select>
-      </div>
+      {/* Links in a sentence */}
+      <section className={styles.part}>
+        <h3 className={styles.partTitle}>A link inside a sentence</h3>
+        <div className={styles.pair}>
+          <div className={styles.example}>
+            <div className={styles.ui}>
+              <p className={styles.sentence}>{L.doText[lang]}</p>
+              <span className={styles.link}>
+                {L.doLink[lang]}
+                <FiArrowUpRight aria-hidden="true" />
+              </span>
+            </div>
+            <p className={styles.verdict} data-kind="do">
+              <span aria-hidden="true">✓</span> Do
+            </p>
+            <p className={styles.caption}>Keep the link on its own line.</p>
+          </div>
+
+          <div className={styles.example}>
+            <div className={styles.ui}>
+              <p className={styles.sentence}>
+                {L.dont[lang].before}{" "}
+                <span className={styles.linkInline}>{L.dont[lang].anchor}</span>{" "}
+                {L.dont[lang].after}
+              </p>
+            </div>
+            <p className={styles.verdict} data-kind="dont">
+              <span aria-hidden="true">✗</span> Don&rsquo;t
+            </p>
+            <p className={styles.caption}>Embed the link and its text won&rsquo;t hold.</p>
+          </div>
+        </div>
+        <p className={styles.helper} aria-live="polite">
+          {L.helper[lang]}
+        </p>
+        <ul className={styles.benefits}>
+          {L.benefits.map((b) => (
+            <li key={b}>{b}</li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }

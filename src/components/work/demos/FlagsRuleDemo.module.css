@@ -1,6 +1,5 @@
 .demo {
   border: 1px solid var(--rule-strong);
-  border-radius: 4px;
   background: var(--bg-elev);
   padding: var(--sp-4);
   max-width: var(--measure);
@@ -10,12 +9,25 @@
 
 .section {
   display: grid;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
+}
+
+.partTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
 }
 
 .label {
   font-size: var(--fs-meta);
   color: var(--ink-mute);
+}
+
+.caption {
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
 }
 
 .pillRow {
@@ -34,8 +46,8 @@
 }
 
 .pill.ambiguous {
-  border-color: #c85a46;
-  color: #c85a46;
+  border-color: #b23c28;
+  color: #b23c28;
 }
 
 .divider {

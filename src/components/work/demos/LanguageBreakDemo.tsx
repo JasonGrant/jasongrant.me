@@ -1,9 +1,8 @@
 "use client";
 
-import { SidebarNav } from "@/components/work/replica/SidebarNav";
+import { KlaviyoAppScreen } from "@/components/work/replica/KlaviyoAppScreen";
 import { useState } from "react";
 import styles from "./LanguageBreakDemo.module.css";
-import { TEXT_EXPANSION_FACTS } from "./facts";
 
 const ANNOTATIONS = [
   { key: "truncation", label: "Truncated button label" },
@@ -39,46 +38,36 @@ export function LanguageBreakDemo({ annotationLinks = {} }: LanguageBreakDemoPro
         </select>
       </div>
 
-      <SidebarNav
-        brand="Meridian"
-        navItems={
-          broken
-            ? ["Start", "Kampagnen", "Abläufe", "Zielgruppe"]
-            : ["Home", "Campaigns", "Flows", "Audience"]
-        }
-        ctaText={broken ? "Erstellen Sie einen Ablauf für abgebro…" : TEXT_EXPANSION_FACTS.pair.en}
-        ctaBroken={broken}
-        sentencePrefix={broken ? "Senden" : "Send"}
-        controlValue="immediately"
-        sentenceSuffix={broken ? "nach der Registrierung" : "after signup"}
-        sentenceBroken={broken}
-        statLabel={broken ? "Monatliche Sendungen" : "Monthly sends"}
-        statValue="5,123,456.59"
-        statBroken={broken}
-      />
+      <KlaviyoAppScreen broken={broken} />
 
       {broken ? (
         <>
-          <div className={styles.pinRow}>
-            {ANNOTATIONS.map((a, i) => {
-              const target = annotationLinks[a.key];
-              return target ? (
-                <a key={a.key} href={`#${target}`} className={styles.pinLink}>
-                  <span className={styles.pinNumber}>{i + 1}</span>
-                  {a.label}
-                </a>
-              ) : (
-                <span key={a.key} className={styles.pinLink}>
-                  <span className={styles.pinNumber}>{i + 1}</span>
-                  {a.label}
-                </span>
-              );
-            })}
-          </div>
           <p className={styles.resultLine} aria-live="polite">
             Switching to Deutsch broke three things at once: a truncated button label, a form
             control stranded mid-sentence, and a number kept in US formatting.
           </p>
+          <ol className={styles.pinList}>
+            {ANNOTATIONS.map((a, i) => {
+              const target = annotationLinks[a.key];
+              const inner = (
+                <>
+                  <span className={styles.pinNumber}>{i + 1}</span>
+                  <span className={styles.pinDesc}>{a.label}</span>
+                </>
+              );
+              return (
+                <li key={a.key}>
+                  {target ? (
+                    <a href={`#${target}`} className={styles.pinLink}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <span className={styles.pinLink}>{inner}</span>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
         </>
       ) : (
         <p className={styles.resultLine} aria-live="polite">

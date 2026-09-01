@@ -14,38 +14,50 @@ export const internationalizationStudy: CaseStudy = {
   slug: "internationalization",
   title: "Internationalization at Klaviyo",
   description:
-    "How a design-system initiative caught a product before it shipped broken in German — and the settings, formats, and translation flow that came out of it.",
+    "How a design-system initiative caught a product before it shipped broken in German, and the settings, formats, and translation flow that came out of it.",
   listed: false,
   company: "Klaviyo",
-  role: "Design Strategy, Design Lead, Hands-on Design, People Leader",
-  timeline: "Q4 2023 – Q2 2024",
-  blocks: [
+  role: "Design Strategy, Design Lead, Hands-on Design, People Leader, Company Initiative Owner (one of three)",
+  milestones: [
+    { quarter: "Q4", year: 2023, showYear: true, label: "Audit and design system i18n enablement" },
     {
-      kind: "demo",
-      id: "break-demo",
-      demo: "language-break",
-      intro: [
-        "Switch the language below. Watch what a straight machine translation actually did to this product before this initiative existed.",
-      ],
-      staticCaption:
-        "In English, the interface renders normally. Switching to German breaks a truncated button label, a form control stranded mid-sentence, and a number kept in US formatting.",
-      annotationLinks: {
-        truncation: "text-expansion-demo",
-        "word-order": "word-order-demo",
-        formatting: "formatting-demo",
-      },
+      quarter: "Q1",
+      year: 2024,
+      showYear: true,
+      label: "Vendor selection, frameworks, tools, and hiring",
     },
+    {
+      quarter: "Q2",
+      year: 2024,
+      showYear: false,
+      label: "Cross-engineering support for the French launch",
+    },
+    {
+      quarter: "Q3",
+      year: 2024,
+      showYear: false,
+      label: "Five more languages: German, Portuguese, Korean, Spanish, Italian",
+    },
+    {
+      quarter: "Q4",
+      year: 2024,
+      showYear: false,
+      label: "Customers localizing for their own customers",
+    },
+  ],
+  blocks: [
     {
       kind: "prose",
       id: "overview",
       heading: "Overview",
+      showTimeline: true,
       body: [
         [
           "This had been an informal, ",
           { term: "i18n" },
           " expectation inside the company for nearly two years before it became an official, funded initiative. In anticipation, the design systems team had already started aligning component work toward ",
           { term: "globalization" },
-          " — so that whenever the initiative went official, the product wouldn't be starting from zero.",
+          ", so that whenever the initiative went official, the product wouldn't be starting from zero.",
         ],
         "Once it was formally established, I took charge of defining what internationalization would mean for the design team specifically: which patterns needed to change, which guidelines didn't exist yet, and how design work would get evaluated for it going forward.",
       ],
@@ -54,13 +66,19 @@ export const internationalizationStudy: CaseStudy = {
       kind: "prose",
       id: "kickoff",
       heading: "Kickoff: the audit",
+      embedDemo: "language-break",
+      embedDemoLinks: {
+        truncation: "text-expansion-demo",
+        "word-order": "word-order-demo",
+        formatting: "formatting-demo",
+      },
       body: [
         [
-          "As soon as the initiative became official, I ran an audit of the product's actual readiness — not a spec review, a real one. I switched the interface to German using machine translation and went looking for what broke.",
+          "As soon as the initiative became official, I ran an audit of the product's actual readiness. Not a spec review, a real one. I switched the interface to German using machine translation and went looking for what broke.",
         ],
-        "It didn't take long. Buttons truncated mid-word. Dropdowns embedded inside sentences stranded themselves when the sentence reordered. Numbers kept US formatting regardless of locale. The findings became a company-wide report, and that report became the design team's actual roadmap — not a wishlist, a punch list.",
+        "It didn't take long. Buttons truncated mid-word. Dropdowns embedded inside sentences stranded themselves when the sentence reordered. Numbers kept US formatting regardless of locale. The findings became a company-wide report, and that report became the design team's actual roadmap. Not a wishlist, a punch list.",
         [
-          "The rest of this study walks through what came out of that punch list: the guidelines the team adopted (grounded in real, published rules — try the demos below), and the settings and ",
+          "The rest of this study walks through what came out of that punch list: the guidelines the team adopted (grounded in real, published rules; try the demos below), and the settings and ",
           { term: "translation" },
           " flow the product needed to actually act on a chosen ",
           { term: "locale" },
@@ -73,8 +91,12 @@ export const internationalizationStudy: CaseStudy = {
       id: "text-expansion-demo",
       demo: "text-expansion",
       intro: [
-        "The single biggest source of new bugs. German alone can run 80%+ longer than the English source string — and a truncated translation doesn't just look bad, it can silently say something different.",
+        "The single biggest source of new bugs. German alone can run 80%+ longer than the English source string. A truncated translation doesn't just look bad; it can silently say something different.",
       ],
+      callout: {
+        figure: "~10%",
+        text: "of new internationalization bugs during the French launch were text-expansion bugs.",
+      },
       staticCaption:
         "The English/German string pair renders at full width with no truncation, alongside the W3C expansion-tier table.",
     },
@@ -83,7 +105,7 @@ export const internationalizationStudy: CaseStudy = {
       id: "word-order-demo",
       demo: "word-order",
       intro: [
-        "Embedding a live control inside a sentence assumes the sentence's word order never changes. It does — constantly, across languages.",
+        "Embedding a live control inside a sentence assumes the sentence's word order never changes. It does, constantly, across languages.",
       ],
       staticCaption:
         "The English sentence with its embedded control renders correctly; the corrected pattern is shown below it.",
@@ -94,7 +116,7 @@ export const internationalizationStudy: CaseStudy = {
       demo: "formatting",
       intro: [
         [
-          "Numbers, percentages, and currency don't just translate — they reformat by ",
+          "Numbers, percentages, and currency don't just translate; they reformat by ",
           { term: "locale" },
           ". This table is live: it's calling your browser's own formatting API, the same one the product uses.",
         ],
@@ -107,7 +129,7 @@ export const internationalizationStudy: CaseStudy = {
       id: "flags-demo",
       demo: "flags-rule",
       intro: [
-        "A flag represents a country. It has never reliably represented a language — and treating the two as interchangeable causes real problems.",
+        "A flag represents a country. It has never reliably represented a language, and treating the two as interchangeable causes real problems.",
       ],
       staticCaption:
         "The country-flag example and the corrected text-only language list render statically.",
@@ -116,6 +138,7 @@ export const internationalizationStudy: CaseStudy = {
       kind: "prose",
       id: "design-work-intro",
       heading: "The design work",
+      navLabel: "Design",
       body: [
         [
           "Guidelines catch problems in individual components. The bigger structural question was the ",
@@ -146,9 +169,9 @@ export const internationalizationStudy: CaseStudy = {
           value: "French",
           highlight: true,
           caption:
-            "Switching it to French changes what every new signup sees by default — not just this one user.",
+            "Switching it to French changes what every new signup sees by default, not just this one user.",
           narrationText:
-            "Switching it to French changes what every new signup sees by default — not just this one user.",
+            "Switching it to French changes what every new signup sees by default, not just this one user.",
           durationMs: 4000,
         },
         {
@@ -156,9 +179,9 @@ export const internationalizationStudy: CaseStudy = {
           action: "highlight",
           highlight: true,
           caption:
-            "Business format is separate — it controls how every report renders numbers, dates, and currency.",
+            "Business format is separate; it controls how every report renders numbers, dates, and currency.",
           narrationText:
-            "Business format is separate — it controls how every report renders numbers, dates, and currency.",
+            "Business format is separate; it controls how every report renders numbers, dates, and currency.",
           durationMs: 4000,
         },
         {
@@ -176,8 +199,8 @@ export const internationalizationStudy: CaseStudy = {
           target: "preview-card",
           action: "highlight",
           highlight: true,
-          caption: "The preview updates immediately — before anyone commits to the change.",
-          narrationText: "The preview updates immediately — before anyone commits to the change.",
+          caption: "The preview updates immediately, before anyone commits to the change.",
+          narrationText: "The preview updates immediately, before anyone commits to the change.",
           durationMs: 3500,
         },
         {
@@ -194,9 +217,9 @@ export const internationalizationStudy: CaseStudy = {
           value: "French,German",
           highlight: true,
           caption:
-            "French and German are selected here — these are the only languages the email flow will offer later in this study.",
+            "French and German are selected here; these are the only languages the email flow will offer later in this study.",
           narrationText:
-            "French and German are selected here — these are the only languages the email flow will offer later in this study.",
+            "French and German are selected here; these are the only languages the email flow will offer later in this study.",
           durationMs: 5000,
         },
         {
@@ -229,9 +252,9 @@ export const internationalizationStudy: CaseStudy = {
           action: "highlight",
           highlight: true,
           caption:
-            "Personal settings override the business default — but only for this one account.",
+            "Personal settings override the business default, but only for this one account.",
           narrationText:
-            "Personal settings override the business default — but only for this one account.",
+            "Personal settings override the business default, but only for this one account.",
           durationMs: 4000,
         },
         {
@@ -249,9 +272,9 @@ export const internationalizationStudy: CaseStudy = {
           value: "Germany",
           highlight: true,
           caption:
-            "Their personal format follows the same override — German date, number, and currency conventions.",
+            "Their personal format follows the same override: German date, number, and currency conventions.",
           narrationText:
-            "Their personal format follows the same override — German date, number, and currency conventions.",
+            "Their personal format follows the same override: German date, number, and currency conventions.",
           durationMs: 4000,
         },
         {
@@ -288,9 +311,9 @@ export const internationalizationStudy: CaseStudy = {
           action: "highlight",
           highlight: true,
           caption:
-            "This subject line leans on an English idiom — exactly the kind of phrase that doesn't survive translation intact.",
+            "This subject line leans on an English idiom, exactly the kind of phrase that doesn't survive translation intact.",
           narrationText:
-            "This subject line leans on an English idiom — exactly the kind of phrase that doesn't survive translation intact.",
+            "This subject line leans on an English idiom, exactly the kind of phrase that doesn't survive translation intact.",
           durationMs: 4000,
         },
         {
@@ -306,9 +329,9 @@ export const internationalizationStudy: CaseStudy = {
           action: "transition",
           highlight: false,
           caption:
-            "The flow opens showing who actually reads in which language — not a guess, the real breakdown.",
+            "The flow opens showing who actually reads in which language. Not a guess, the real breakdown.",
           narrationText:
-            "The flow opens showing who actually reads in which language — not a guess, the real breakdown.",
+            "The flow opens showing who actually reads in which language. Not a guess, the real breakdown.",
           durationMs: 3000,
         },
         {
@@ -326,9 +349,9 @@ export const internationalizationStudy: CaseStudy = {
           value: "French,German",
           highlight: true,
           caption:
-            "Only French and German are offered here — exactly the two languages Organization settings allowed earlier.",
+            "Only French and German are offered here, exactly the two languages Organization settings allowed earlier.",
           narrationText:
-            "Only French and German are offered here — exactly the two languages Organization settings allowed earlier.",
+            "Only French and German are offered here, exactly the two languages Organization settings allowed earlier.",
           durationMs: 4500,
         },
         {
@@ -337,9 +360,9 @@ export const internationalizationStudy: CaseStudy = {
           value: "Knock your socks off ☕|Schlag deine Socken ab",
           highlight: true,
           caption:
-            'Machine translation takes the idiom literally — "knock your socks off" becomes a phrase about physically striking socks.',
+            'Machine translation takes the idiom literally: "knock your socks off" becomes a phrase about physically striking socks.',
           narrationText:
-            'Machine translation takes the idiom literally — "knock your socks off" becomes a phrase about physically striking socks.',
+            'Machine translation takes the idiom literally: "knock your socks off" becomes a phrase about physically striking socks.',
           durationMs: 5000,
         },
         {
@@ -348,15 +371,15 @@ export const internationalizationStudy: CaseStudy = {
           value: "Knock your socks off ☕|Du wirst aus den Socken sein",
           highlight: true,
           caption:
-            "The marketer catches it and fixes the line by hand before it ships — this is exactly the moment automated translation alone can't cover.",
+            "The marketer catches it and fixes the line by hand before it ships. This is exactly the moment automated translation alone can't cover.",
           narrationText:
-            "The marketer catches it and fixes the line by hand before it ships — this is exactly the moment automated translation alone can't cover.",
+            "The marketer catches it and fixes the line by hand before it ships. This is exactly the moment automated translation alone can't cover.",
           durationMs: 5000,
         },
         {
           target: "subject-field",
           action: "input",
-          value: "Knock your socks off ☕ — plus free shipping",
+          value: "Knock your socks off ☕, plus free shipping",
           highlight: true,
           caption: "Later, someone edits the English source line to add a shipping callout.",
           narrationText: "Later, someone edits the English source line to add a shipping callout.",
@@ -367,9 +390,9 @@ export const internationalizationStudy: CaseStudy = {
           action: "highlight",
           highlight: true,
           caption:
-            "The existing translation no longer matches the source — it's flagged stale automatically, not silently left wrong.",
+            "The existing translation no longer matches the source. It's flagged stale automatically, not silently left wrong.",
           narrationText:
-            "The existing translation no longer matches the source — it's flagged stale automatically, not silently left wrong.",
+            "The existing translation no longer matches the source. It's flagged stale automatically, not silently left wrong.",
           durationMs: 4500,
         },
         {
@@ -404,7 +427,7 @@ export const internationalizationStudy: CaseStudy = {
         // This section is qualitative-only until Jason confirms a source or
         // approves a different quantified figure — flagged in the
         // implementation report rather than guessed.
-        "The kickoff audit turned a vague company expectation into a concrete, shared punch list — the guidelines above were adopted across the design team, not just documented. The organization/personal/localization settings model and the translation flow shipped as the structural foundation the rest of internationalization work built on.",
+        "The kickoff audit turned a vague company expectation into a concrete, shared punch list. The guidelines above were adopted across the design team, not just documented. The organization/personal/localization settings model and the translation flow shipped as the structural foundation the rest of internationalization work built on.",
         "The team itself was new: Design Systems, Content Design, and Internationalization were all built from zero during this window, alongside the Ascent design system the guidelines above live in.",
       ],
     },

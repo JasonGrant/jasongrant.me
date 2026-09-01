@@ -14,7 +14,7 @@ export const glossary: Record<GlossaryTermId, GlossaryEntry> = {
     id: "i18n",
     label: "internationalization (i18n)",
     definition:
-      "Designing and building a product so it CAN be adapted to different languages and regions without further engineering work — the groundwork, not the translation itself.",
+      "Designing and building a product so it CAN be adapted to different languages and regions without further engineering work. The groundwork, not the translation itself.",
   },
   l10n: {
     id: "l10n",
@@ -26,7 +26,7 @@ export const glossary: Record<GlossaryTermId, GlossaryEntry> = {
     id: "globalization",
     label: "globalization",
     definition:
-      "The broader capability to operate across languages, currencies, and regions at once — internationalization and localization are the two halves that get you there.",
+      "The broader capability to operate across languages, currencies, and regions at once. Internationalization and localization are the two halves that get you there.",
   },
   translation: {
     id: "translation",
@@ -37,6 +37,6 @@ export const glossary: Record<GlossaryTermId, GlossaryEntry> = {
     id: "locale",
     label: "locale",
     definition:
-      "A specific language-plus-region combination (e.g. fr-CA is French as used in Canada) — languages and countries don't map one to one.",
+      "A specific language-plus-region combination (e.g. fr-CA is French as used in Canada). Languages and countries don't map one to one.",
   },
 };

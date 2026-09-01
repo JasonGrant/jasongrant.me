@@ -1,27 +1,16 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 11px;
+  justify-content: space-between;
+  gap: 16px;
   padding: 15px 18px 13px;
   border-bottom: 1px solid var(--rf-border);
 }
-.headerIcon {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  flex: none;
-  border-radius: 8px;
-  color: var(--rf-accent);
-  background: var(--rf-accent-soft);
-  box-shadow: inset 0 0 0 1px var(--rf-accent-tint);
-  font-size: 16px;
-}
 .headerText h3 {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
-  letter-spacing: -0.006em;
-  margin: 0 0 1px;
+  letter-spacing: -0.01em;
+  margin: 0 0 2px;
 }
 .headerText p {
   font-size: 13px;
@@ -29,17 +18,60 @@
   color: var(--rf-ink-mute);
   margin: 0;
 }
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.cancelButton {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 550;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--rf-border-strong);
+  border-radius: var(--rf-radius-sm);
+  background: var(--rf-bg);
+  color: var(--rf-ink);
+  cursor: pointer;
+}
+.cancelButton:hover {
+  border-color: var(--rf-accent-ring);
+  color: var(--rf-accent-hover);
+}
 
+/* 50/50 split: form fields left, live preview right (Jason, 2026-08-30).
+   Stacks on narrow widths. */
 .body {
-  padding: 2px 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 28px;
+  align-items: start;
+  padding: 4px 18px 18px;
+}
+@media (max-width: 720px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.previewCol {
+  min-width: 0;
+  padding-top: 12px;
+}
+@media (max-width: 720px) {
+  .previewCol {
+    padding-top: 0;
+  }
 }
 .field {
   padding: 12px 6px;
-  border-bottom: 1px solid var(--rf-border);
   border-radius: 8px;
-}
-.field:last-child {
-  border-bottom: none;
 }
 .field.hl {
   outline: 2px solid var(--rf-accent);
@@ -61,6 +93,12 @@
 }
 .hint {
   font-size: 13px;
+  color: var(--rf-ink-mute);
+}
+.fieldDesc {
+  margin: -2px 0 4px;
+  font-size: 12.5px;
+  line-height: 1.4;
   color: var(--rf-ink-mute);
 }
 
@@ -116,31 +154,6 @@
   box-shadow: 0 1px 1.5px rgba(8, 60, 70, 0.45);
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 18px;
-  border-top: 1px solid var(--rf-border);
-  background: var(--rf-footer);
-  border-radius: 0 0 var(--rf-radius) var(--rf-radius);
-}
-.dirty {
-  font-size: 13px;
-  color: var(--rf-ink-mute);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.dirty::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #cf9a3f;
-  box-shadow: 0 0 0 3px rgba(207, 154, 63, 0.16);
-}
 .saveButton {
   font: inherit;
   font-size: 13px;
@@ -155,6 +168,8 @@
   cursor: pointer;
 }
 .saveButton:disabled {
+  opacity: 0.45;
+  box-shadow: none;
   cursor: default;
 }
 .saveButton[data-highlighted="true"] {

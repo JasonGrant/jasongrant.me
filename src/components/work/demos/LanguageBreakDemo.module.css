@@ -22,17 +22,18 @@
   color: var(--ink);
 }
 
-.pinRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3);
+.pinList {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .pinLink {
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--fs-meta);
+  gap: var(--sp-3);
   color: var(--ink-soft);
   text-decoration: none;
 }
@@ -42,17 +43,22 @@
   color: var(--accent);
 }
 
+.pinDesc {
+  font-size: var(--fs-body);
+}
+
 .pinNumber {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--accent);
   color: var(--bg);
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
   flex: none;
 }
 

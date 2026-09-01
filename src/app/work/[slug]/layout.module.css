@@ -1,5 +1,7 @@
-/* Mirrors src/app/(main)/layout.module.css so case-study pages share the
-   exact page frame (measure, margins) of the primary pages. */
+/* 720px reading column, centered — identical to the primary pages so the
+   LeftRail sits clear of the content. Interactive walkthrough players break
+   out to the RIGHT of this column (StudyPage .wide), never left, so they
+   never collide with the rail (constitution v1.2.3). */
 .page {
   position: relative;
   z-index: 1;

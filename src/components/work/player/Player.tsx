@@ -4,6 +4,7 @@ import { EmailEditor } from "@/components/work/replica/EmailEditor";
 import { SettingsPanel } from "@/components/work/replica/SettingsPanel";
 import { usePrefersReducedMotion } from "@/components/work/usePrefersReducedMotion";
 import type { WalkthroughSegment } from "@/content/studies/types";
+import { FEATURES } from "@/lib/featureFlags";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./Player.module.css";
 import { reduceEmailSteps, reduceSettingsSteps } from "./stepReducer";
@@ -130,10 +131,14 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
     }
   }
 
-  const liveText = `${statusLabel(status, reducedMotion)} — Step ${stepIndex + 1} of ${steps.length}: ${step.caption}`;
+  const liveText = `${statusLabel(status, reducedMotion)} (step ${stepIndex + 1} of ${steps.length}): ${step.caption}`;
 
   return (
-    <section className={styles.player} aria-label={segment.title} onKeyDown={handleKeyDown}>
+    <section
+      className={styles.player}
+      aria-label={segment.title}
+      onKeyDown={FEATURES.walkthroughControls ? handleKeyDown : undefined}
+    >
       <div ref={viewportRef} className={styles.viewport}>
         {isSettings ? (
           <SettingsPanel
@@ -164,67 +169,71 @@ export function Player({ segment, orgSelectedLanguages = [] }: PlayerProps) {
         )}
       </div>
 
-      <div className={styles.controlsRow}>
-        <span className={styles.caption} aria-live="polite">
-          {liveText}
-        </span>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => tourGoTo(stepIndex - 1)}
-          disabled={isFirst}
-        >
-          ◁ Prev
-        </button>
-        {reducedMotion ? null : running ? (
-          <button type="button" className={styles.button} onClick={handlePause}>
-            ❚❚ Pause
-          </button>
-        ) : (
-          <button
-            type="button"
-            className={`${styles.button} ${styles.primary}`}
-            onClick={handlePlay}
-          >
-            {status === "complete" ? "↻ Restart" : "▷ Play walkthrough"}
-          </button>
-        )}
-        {reducedMotion ? null : (
-          <button
-            type="button"
-            className={styles.button}
-            onClick={handleStop}
-            disabled={status === "idle"}
-          >
-            ◻ Stop
-          </button>
-        )}
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => tourGoTo(stepIndex + 1)}
-          disabled={isLast}
-        >
-          Next ▷
-        </button>
-      </div>
+      {FEATURES.walkthroughControls ? (
+        <>
+          <div className={styles.controlsRow}>
+            <span className={styles.caption} aria-live="polite">
+              {liveText}
+            </span>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => tourGoTo(stepIndex - 1)}
+              disabled={isFirst}
+            >
+              ◁ Prev
+            </button>
+            {reducedMotion ? null : running ? (
+              <button type="button" className={styles.button} onClick={handlePause}>
+                ❚❚ Pause
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={`${styles.button} ${styles.primary}`}
+                onClick={handlePlay}
+              >
+                {status === "complete" ? "↻ Restart" : "▷ Play walkthrough"}
+              </button>
+            )}
+            {reducedMotion ? null : (
+              <button
+                type="button"
+                className={styles.button}
+                onClick={handleStop}
+                disabled={status === "idle"}
+              >
+                ◻ Stop
+              </button>
+            )}
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => tourGoTo(stepIndex + 1)}
+              disabled={isLast}
+            >
+              Next ▷
+            </button>
+          </div>
 
-      <div className={styles.transcriptRow}>
-        <button
-          type="button"
-          className={styles.transcriptToggle}
-          aria-expanded={transcriptOpen}
-          aria-controls={transcriptId}
-          onClick={() => setTranscriptOpen((v) => !v)}
-        >
-          {transcriptOpen ? "▾" : "▸"} Transcript
-        </button>
-        {transcriptOpen ? (
-          <p id={transcriptId} className={styles.transcriptBody}>
-            {step.narrationText}
-          </p>
-        ) : null}
-      </div>
+          <div className={styles.transcriptRow}>
+            <button
+              type="button"
+              className={styles.transcriptToggle}
+              aria-expanded={transcriptOpen}
+              aria-controls={transcriptId}
+              onClick={() => setTranscriptOpen((v) => !v)}
+            >
+              {transcriptOpen ? "▾" : "▸"} Transcript
+            </button>
+            {transcriptOpen ? (
+              <p id={transcriptId} className={styles.transcriptBody}>
+                {step.narrationText}
+              </p>
+            ) : null}
+          </div>
+        </>
+      ) : null}
     </section>
   );
 }

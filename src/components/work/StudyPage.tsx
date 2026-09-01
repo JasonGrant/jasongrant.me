@@ -1,4 +1,5 @@
 import { GlossaryChip } from "@/components/work/GlossaryChip";
+import { MilestoneTimeline } from "@/components/work/Timeline";
 import { FlagsRuleDemo } from "@/components/work/demos/FlagsRuleDemo";
 import { FormattingDemo } from "@/components/work/demos/FormattingDemo";
 import { LanguageBreakDemo } from "@/components/work/demos/LanguageBreakDemo";
@@ -10,6 +11,7 @@ import type {
   CaseStudy,
   ConceptDemoBlock,
   DemoId,
+  Milestone,
   ProseSection,
   RichText,
   StudyWalkthroughSegment,
@@ -44,13 +46,26 @@ function renderRichText(body: RichText) {
   });
 }
 
-function ProseBlock({ block }: { block: ProseSection }) {
+function ProseBlock({
+  block,
+  milestones,
+}: {
+  block: ProseSection;
+  milestones: readonly Milestone[];
+}) {
+  const EmbeddedDemo = block.embedDemo ? DEMO_COMPONENTS[block.embedDemo] : null;
   return (
     <section id={block.id} className={styles.section} aria-labelledby={`${block.id}-heading`}>
       <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
         {block.heading}
       </h2>
       <div className={styles.body}>{renderRichText(block.body)}</div>
+      {block.showTimeline ? <MilestoneTimeline milestones={milestones} /> : null}
+      {EmbeddedDemo ? (
+        <div className={styles.embeddedDemo}>
+          <EmbeddedDemo annotationLinks={block.embedDemoLinks} />
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -63,6 +78,12 @@ function DemoBlock({ block }: { block: ConceptDemoBlock }) {
         {block.demo === "language-break" ? "See it break" : demoTitle(block.demo)}
       </h2>
       <div className={styles.demoIntro}>{renderRichText(block.intro)}</div>
+      {block.callout ? (
+        <p className={styles.demoCallout}>
+          <span className={styles.calloutFigure}>{block.callout.figure}</span>
+          <span className={styles.calloutText}>{block.callout.text}</span>
+        </p>
+      ) : null}
       <DemoComponent annotationLinks={block.annotationLinks} />
       <noscript>
         <p className={styles.noscriptNote}>
@@ -96,7 +117,11 @@ function WalkthroughBlock({
   orgSelectedLanguages: string[];
 }) {
   return (
-    <section id={block.id} className={styles.section} aria-labelledby={`${block.id}-heading`}>
+    <section
+      id={block.id}
+      className={`${styles.section} ${styles.wide}`}
+      aria-labelledby={`${block.id}-heading`}
+    >
       <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
         {block.title}
       </h2>
@@ -117,6 +142,12 @@ export function StudyPage({ study }: { study: CaseStudy }) {
     ? reduceSettingsSteps(orgSegment.steps, orgSegment.steps.length - 1).localizationLanguages
     : [];
 
+  // Meta row shows only the span (first to last milestone); the full
+  // milestone breakdown lives in the Overview timeline below.
+  const firstMilestone = study.milestones[0];
+  const lastMilestone = study.milestones[study.milestones.length - 1];
+  const timelineRange = `${firstMilestone.quarter} ${firstMilestone.year} to ${lastMilestone.quarter} ${lastMilestone.year}`;
+
   return (
     <article className={styles.page}>
       <p className={styles.eyebrow}>Case study</p>
@@ -127,11 +158,12 @@ export function StudyPage({ study }: { study: CaseStudy }) {
         <span className={styles.metaLabel}>Role</span>
         <span>{study.role}</span>
         <span className={styles.metaLabel}>Timeline</span>
-        <span>{study.timeline}</span>
+        <span>{timelineRange}</span>
       </div>
 
       {study.blocks.map((block) => {
-        if (block.kind === "prose") return <ProseBlock key={block.id} block={block} />;
+        if (block.kind === "prose")
+          return <ProseBlock key={block.id} block={block} milestones={study.milestones} />;
         if (block.kind === "demo") return <DemoBlock key={block.id} block={block} />;
         return (
           <WalkthroughBlock

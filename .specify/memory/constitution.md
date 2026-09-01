@@ -1,6 +1,58 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.3 → 1.2.4
+Rationale: MINOR. Scopes the "Recreated content only" clause of the Unlisted
+  interactive case-studies exception (Principle V) so a recreation on an
+  unlisted, noindexed `/work/[slug]` route MAY carry the real operator's
+  branding (logo, product chrome). Data stays fictional and actual proprietary
+  screenshots/pixels remain prohibited; a study MUST be re-sanitized to a
+  fictional brand before any Deliberate publicizing. These routes are not part
+  of the public, crawlable IA, so the proprietary-screens concern (public
+  exposure) does not apply the same way.
+
+Modified principles:
+  - V. Site Structure & Content Integrity — the Unlisted case-studies named
+    exception: "Recreated content only" broadened to "Recreated content,
+    sanitized data" (real branding permitted on unlisted routes; fictional
+    data and the no-real-screenshots rule unchanged).
+
+Added sections: None. Removed sections: None. Removed rules: None — the
+  no-proprietary-screenshots and fictional-data rules are preserved.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — recreation notes; the
+    exception is enumerated here, no spec rewrite required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.3)
+==================
+Version change: 1.2.2 → 1.2.3
+Rationale: MINOR. Adds a fourth named exception to Principle IV — "Breakout
+  demonstrations" — permitting interactive demo/player blocks on `/work/[slug]`
+  to exceed the ~640–720px content measure (breaking out wider, left-aligned
+  with the prose) so recreated product UI has room to read like a real app.
+  Prose sections still hold the measure; the single-column, left-aligned page
+  is preserved. Scoped to case-study routes only.
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Breakout demonstrations
+    (`/work/[slug]`)": demo/player blocks may exceed the content measure up to
+    a bounded page width; prose keeps the ~640–720px measure.
+
+Added sections: None. Removed sections: None. Removed rules: None — the measure
+  rule is unchanged for prose and for the rest of the site.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — FR-012a / layout notes; the
+    exception is enumerated in the constitution, no spec rewrite required.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.2)
+==================
 Version change: 1.2.1 → 1.2.2
 Rationale: MINOR. Adds a third named exception to Principle IV — "Replica
   craft" — permitting product-authentic depth styling (drop shadows,
@@ -378,6 +430,25 @@ This is the one place on jasongrant.me where the editorial-restraint bans
 yield, precisely because the content is a depicted product rather than the
 site's own surface. It supersedes spec 002's FR-013a.
 
+**Named exception — Breakout demonstrations (`/work/[slug]`)**: On interactive
+case-study routes, the interactive demonstration blocks (concept demos and the
+walkthrough player) MAY exceed the ~640–720px content measure and break out to
+a wider bounded width — IF AND ONLY IF:
+
+- (a) Prose sections still hold the ~640–720px reading measure; only the
+  interactive figures break out.
+- (b) The breakout stays left-aligned with the prose column (same left edge)
+  and within a bounded page width — it is a wider figure, not a full-bleed
+  band, and never forces horizontal page scroll (the mobile no-scroll rule
+  still holds).
+- (c) It applies only on `/work/[slug]`. Everywhere else — and for all prose —
+  the single-column ~640–720px measure stays in force.
+
+Recreated product UI (a settings app, an email editor) needs room to read like
+the real thing; a demonstration crushed into the reading measure reads as a
+screenshot, not a working interface. This is the layout counterpart to the
+motion and replica-craft exceptions.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -423,10 +494,15 @@ violating the page-count rule, IF AND ONLY IF all of the following hold:
   of the Workflow & Quality Gates — Lighthouse 95+ in all four categories
   on mobile and desktop, axe zero violations, CLS 0, and the manual
   keyboard/screen-reader/visual passes all apply without exception.
-- *Recreated content only*: all product UI shown is a purpose-built
-  recreation populated with fictional data. Proprietary screenshots,
-  pixels, and customer data MUST NOT be published — this restates, not
-  relaxes, the operator-work rule above.
+- *Recreated content, sanitized data*: all product UI shown is a
+  purpose-built recreation (never an actual proprietary screenshot), and
+  every value in it is fictional. Because these routes are unlisted and
+  noindexed — outside the public, crawlable IA — a recreation MAY carry the
+  real operator's branding (logo, product chrome) to show the work in its
+  true context. Actual proprietary screenshots, pixels, and real customer
+  data still MUST NOT be published. If a study is later surfaced under
+  *Deliberate publicizing* below, its recreations MUST first be re-sanitized
+  to a fictional brand.
 - *Deliberate publicizing*: an individual case study MAY later be linked
   and/or indexed as a per-study content decision recorded in the PR that
   makes the change. The default for every new study remains unlisted and
@@ -532,4 +608,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.2.2 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-30
+**Version**: 1.2.4 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-31

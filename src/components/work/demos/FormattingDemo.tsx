@@ -1,5 +1,6 @@
 "use client";
 
+import { formatLocaleSamples } from "@/components/work/localeFormat";
 import { useEffect, useState } from "react";
 import styles from "./FormattingDemo.module.css";
 import { FORMATTING_FACTS as F } from "./facts";
@@ -24,39 +25,100 @@ const CURRENCY_BY_LOCALE: Record<string, string> = {
 // any small inaccuracy here is invisible after that swap (research D10 —
 // never compare pinned constants against live output as a correctness
 // check, they exist only to avoid a render-time flash of unformatted data).
-const SSR_PLACEHOLDER: Record<
-  string,
-  { number: string; percent: string; currency: string; compact: string }
-> = {
-  "en-US": { number: "5,123,456.59", percent: "59.8%", currency: "$145.79", compact: "$23K" },
-  "de-DE": { number: "5.123.456,59", percent: "59,8 %", currency: "145,79 €", compact: "23.000 €" },
-  "fr-FR": { number: "5 123 456,59", percent: "59,8 %", currency: "145,79 €", compact: "23 k€" },
-  "fr-CA": { number: "5 123 456,59", percent: "59,8 %", currency: "145,79 $", compact: "23 k$" },
-  "it-CH": { number: "5’123’456.59", percent: "59.8%", currency: "CHF 145.79", compact: "CHF 23k" },
-  "cs-CZ": {
-    number: "5 123 456,59",
-    percent: "59,8 %",
-    currency: "145,79 Kč",
-    compact: "23 tis. Kč",
+const SSR_PLACEHOLDER: Record<string, Omit<Row, "unsupported">> = {
+  "en-US": {
+    longDate: "Sep 30, 2023, 07:11:12 PM EDT",
+    shortDate: "09/30/2023",
+    number: "5,123,456.59",
+    percent: "59.76%",
+    currency: "$3,456.59",
+    compact: "$23K",
   },
-  "tr-TR": { number: "5.123.456,59", percent: "%59,8", currency: "₺145,79", compact: "23 B ₺" },
-  "ja-JP": { number: "5,123,456.59", percent: "59.8%", currency: "¥146", compact: "¥2.3万" },
-  "ko-KR": { number: "5,123,456.59", percent: "59.8%", currency: "₩146", compact: "₩2.3만" },
+  "de-DE": {
+    longDate: "30. Sept. 2023, 19:11:12 GMT-4",
+    shortDate: "30.09.2023",
+    number: "5.123.456,59",
+    percent: "59,76 %",
+    currency: "3.456,59 €",
+    compact: "23.000 €",
+  },
+  "fr-FR": {
+    longDate: "30 sept. 2023, 19:11:12 UTC−4",
+    shortDate: "30/09/2023",
+    number: "5 123 456,59",
+    percent: "59,76 %",
+    currency: "3 456,59 €",
+    compact: "23 k €",
+  },
+  "fr-CA": {
+    longDate: "30 sept. 2023, 19 h 11 min 12 s HAE",
+    shortDate: "2023-09-30",
+    number: "5 123 456,59",
+    percent: "59,76 %",
+    currency: "3 456,59 $",
+    compact: "23 k$",
+  },
+  "it-CH": {
+    longDate: "30 set 2023, 19:11:12 GMT-4",
+    shortDate: "30.09.2023",
+    number: "5’123’456.59",
+    percent: "59.76%",
+    currency: "CHF 3456.59",
+    compact: "CHF 23’000",
+  },
+  "cs-CZ": {
+    longDate: "30. 9. 2023 19:11:12 EDT",
+    shortDate: "30. 09. 2023",
+    number: "5 123 456,59",
+    percent: "59,76 %",
+    currency: "3 456,59 Kč",
+    compact: "23 tis. Kč",
+  },
+  "tr-TR": {
+    longDate: "30 Eyl 2023 19:11:12 GMT-4",
+    shortDate: "30.09.2023",
+    number: "5.123.456,59",
+    percent: "%59,76",
+    currency: "₺3.456,59",
+    compact: "23 B ₺",
+  },
+  "ja-JP": {
+    longDate: "2023年9月30日 19:11:12 GMT-4",
+    shortDate: "2023/09/30",
+    number: "5,123,456.59",
+    percent: "59.76%",
+    currency: "￥3,457",
+    compact: "￥2.3万",
+  },
+  "ko-KR": {
+    longDate: "2023년 9월 30일 오후 07시 11분 12초 GMT-4",
+    shortDate: "2023. 09. 30.",
+    number: "5,123,456.59",
+    percent: "59.76%",
+    currency: "₩3,457",
+    compact: "₩2.3만",
+  },
   "pl-PL": {
-    number: "5 123 456,59",
-    percent: "59,8%",
-    currency: "145,79 zł",
-    compact: "23 tys. zł",
+    longDate: "30 wrz 2023, 19:11:12 GMT-4",
+    shortDate: "30.09.2023",
+    number: "5 123 456,59",
+    percent: "59,76%",
+    currency: "3456,59 zł",
+    compact: "23 tys. zł",
   },
   "ar-KW": {
+    longDate: "٣٠ سبتمبر ٢٠٢٣، ٠٧:١١:١٢ م غرينتش-٤",
+    shortDate: "٣٠‏/٠٩‏/٢٠٢٣",
     number: "٥٬١٢٣٬٤٥٦٫٥٩",
-    percent: "٥٩٫٨٪",
-    currency: "١٤٥٫٧٩٠ د.ك.‏",
-    compact: "٢٣ ألف د.ك.‏",
+    percent: "٥٩٫٧٦٪؜",
+    currency: "‏٣٬٤٥٦٫٥٩٠ د.ك.‏",
+    compact: "٢٣ ألف د.ك.‏",
   },
 };
 
 interface Row {
+  longDate: string;
+  shortDate: string;
   number: string;
   percent: string;
   currency: string;
@@ -67,24 +129,17 @@ interface Row {
 function computeLive(localeCode: string): Row {
   const currency = CURRENCY_BY_LOCALE[localeCode] ?? "USD";
   if (Intl.NumberFormat.supportedLocalesOf([localeCode]).length === 0) {
-    return { number: "", percent: "", currency: "", compact: "", unsupported: true };
+    return {
+      longDate: "",
+      shortDate: "",
+      number: "",
+      percent: "",
+      currency: "",
+      compact: "",
+      unsupported: true,
+    };
   }
-  return {
-    number: new Intl.NumberFormat(localeCode).format(F.sampleNumber),
-    percent: new Intl.NumberFormat(localeCode, {
-      style: "percent",
-      minimumFractionDigits: 1,
-    }).format(F.samplePercent),
-    currency: new Intl.NumberFormat(localeCode, { style: "currency", currency }).format(
-      F.sampleCurrency,
-    ),
-    compact: new Intl.NumberFormat(localeCode, {
-      style: "currency",
-      currency,
-      notation: "compact",
-    }).format(F.sampleCompactCurrency),
-    unsupported: false,
-  };
+  return { ...formatLocaleSamples({ formatLocale: localeCode, currency }), unsupported: false };
 }
 
 export function FormattingDemo() {
@@ -100,7 +155,7 @@ export function FormattingDemo() {
   const note = F.notes[localeCode];
 
   return (
-    <div className={styles.demo}>
+    <div className={`workDemoCard ${styles.demo}`}>
       <label htmlFor="locale-select">Locale</label>
       <select
         id="locale-select"
@@ -120,6 +175,18 @@ export function FormattingDemo() {
       ) : (
         <table className={styles.table}>
           <tbody>
+            <tr>
+              <td>Date &amp; time</td>
+              <td>
+                <bdi>{row.longDate}</bdi>
+              </td>
+            </tr>
+            <tr>
+              <td>Short date</td>
+              <td>
+                <bdi>{row.shortDate}</bdi>
+              </td>
+            </tr>
             <tr>
               <td>Number</td>
               <td>

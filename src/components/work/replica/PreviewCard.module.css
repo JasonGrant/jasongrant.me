@@ -16,10 +16,17 @@
 }
 
 .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
   font-size: 13px;
   font-weight: 600;
   color: var(--rf-ink-mute);
   margin-bottom: 6px;
+}
+.headRegion {
+  color: var(--rf-ink);
 }
 
 .row {

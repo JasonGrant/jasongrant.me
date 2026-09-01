@@ -45,6 +45,30 @@
   margin-top: var(--sp-9);
 }
 
+/* Walkthrough players break out to the RIGHT of the reading column
+   (constitution v1.2.3): left edge stays put (rail-safe), the block grows
+   rightward toward the viewport edge, capped so the page never scrolls. Full
+   width on small screens. */
+.section.wide {
+  max-width: none;
+}
+@media (min-width: 900px) {
+  .section.wide {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+
+/* Embedded concept demo (e.g. the Klaviyo break screen inside Kickoff) breaks
+   out to the walkthrough-panel width, like .section.wide. */
+.embeddedDemo {
+  margin-top: var(--sp-6);
+}
+@media (min-width: 900px) {
+  .embeddedDemo {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+
 .sectionHeading {
   font-size: var(--fs-h2);
   margin-bottom: var(--sp-4);
@@ -57,6 +81,32 @@
 
 .demoIntro {
   margin-bottom: var(--sp-3);
+}
+
+/* Standout stat between the intro and the demo card: a large figure in the
+   display face with the accent, set off by a rule. */
+.demoCallout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin: var(--sp-6) 0;
+  padding-left: var(--sp-4);
+  border-left: 3px solid var(--accent);
+}
+
+.calloutFigure {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  line-height: 0.95;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.calloutText {
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  color: var(--ink-soft);
 }
 
 .noscriptNote {

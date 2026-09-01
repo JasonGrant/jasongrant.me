@@ -83,7 +83,29 @@ export interface ProseSection {
   kind: "prose";
   id: string;
   heading: string;
+  /** Optional terse label for the left rail jump-nav; defaults to `heading`
+   *  (split on ":"). Keep short so the rail label clears the reading column
+   *  on narrow-desktop widths. */
+  navLabel?: string;
+  /** When true, the study's milestone timeline renders after this section's
+   *  prose, breaking out to the walkthrough-panel width. */
+  showTimeline?: boolean;
+  /** Renders a concept demo (breaking out to the walkthrough-panel width) after
+   *  this section's prose — e.g. the language-break screen inside Kickoff. */
+  embedDemo?: DemoId;
+  /** Deep links passed to the embedded demo's annotations. */
+  embedDemoLinks?: Record<string, string>;
   body: RichText;
+}
+
+/** One row of the project timeline, shown both stacked in the meta block and
+ *  horizontally under the Overview. */
+export interface Milestone {
+  quarter: string;
+  year: number;
+  /** Only the first quarter of each year prints its year above the node. */
+  showYear: boolean;
+  label: string;
 }
 
 export interface ConceptDemoBlock {
@@ -91,6 +113,9 @@ export interface ConceptDemoBlock {
   id: string;
   demo: DemoId;
   intro: RichText;
+  /** Optional standout stat rendered between the intro and the demo: a large
+   *  figure plus a short completing phrase. */
+  callout?: { figure: string; text: string };
   /** Describes the server-rendered initial state for no-JS/noscript (FR-013). */
   staticCaption: string;
   /** Break demo only: annotation id -> block id, for FR-014's deep links. */
@@ -142,6 +167,6 @@ export interface CaseStudy {
   listed: boolean;
   company: string;
   role: string;
-  timeline: string;
+  milestones: readonly Milestone[];
   blocks: ContentBlock[];
 }

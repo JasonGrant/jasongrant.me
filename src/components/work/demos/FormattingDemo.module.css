@@ -1,6 +1,5 @@
 .demo {
   border: 1px solid var(--rule-strong);
-  border-radius: 4px;
   background: var(--bg-elev);
   padding: var(--sp-4);
   max-width: var(--measure);

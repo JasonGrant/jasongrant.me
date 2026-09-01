@@ -51,7 +51,6 @@
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.5;
-  isolation: isolate;
 }
 
 .replicaFrame * {
@@ -61,4 +60,31 @@
 .replicaFrame :focus-visible {
   outline: 2px solid var(--rf-accent);
   outline-offset: 2px;
+}
+
+/* ── Concept-demo cards ──────────────────────────────────────────────────
+   The interactive concept demos (text expansion, word order, formatting,
+   flags) read as warm-light "product" cards sitting on the dark page, the same
+   system as the replica UI. Each demo's own CSS references the site tokens
+   (--ink, --bg, --rule*, --accent*); redefining those on this wrapper flips the
+   whole card to light without editing every demo rule. The demo root keeps its
+   own border/background (now resolved from the warm tokens); this adds the lift
+   shadow and the 11px radius that matches the replica cards. */
+.workDemoCard {
+  --bg: #ffffff;
+  --bg-elev: #fbf8f1;
+  --ink: #2a251d;
+  --ink-soft: #6b6353;
+  --ink-mute: #726a58;
+  --rule: #ece6d9;
+  --rule-strong: #ddd6c6;
+  --accent: #0b7385;
+  --accent-strong: #096376;
+  --accent-soft: rgba(11, 115, 133, 0.1);
+
+  /* base ink for text that doesn't set its own color (otherwise it inherits
+     the page's light-on-dark cream and fails contrast on the light card) */
+  color: var(--ink);
+  border-radius: 11px;
+  box-shadow: 0 1px 1px rgba(60, 48, 28, 0.05), 0 12px 30px -14px rgba(0, 0, 0, 0.5);
 }

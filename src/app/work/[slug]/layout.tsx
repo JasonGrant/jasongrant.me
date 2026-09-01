@@ -26,7 +26,10 @@ export default async function WorkStudyLayout({
   const sections =
     study?.blocks
       .filter((b) => b.kind === "prose")
-      .map((b) => ({ id: b.id, label: b.heading.split(":")[0].trim() })) ?? [];
+      .map((b) => ({
+        id: b.id,
+        label: b.navLabel ?? b.heading.split(":")[0].trim(),
+      })) ?? [];
 
   return (
     <>
