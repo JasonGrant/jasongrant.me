@@ -1,0 +1,17 @@
+/* 720px reading column, centered — identical to the primary pages so the
+   LeftRail sits clear of the content. Interactive walkthrough players break
+   out to the RIGHT of this column (StudyPage .wide), never left, so they
+   never collide with the rail (constitution v1.2.3). */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 56px 56px 64px;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 40px 24px 56px;
+  }
+}

@@ -1,0 +1,96 @@
+/* No enclosing box (Jason, 2026-08-30): the replica card carries its own frame
+   and shadow (.replicaFrame), so the player is just a layout wrapper. The
+   transport controls sit beneath the card as a plain row — like the controls
+   under a video — rather than inside a surrounding container. */
+.player {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .viewport {
+    max-height: 70vh;
+    overflow-y: auto;
+    /* room so the card's shadow isn't clipped by the scroll box */
+    padding: 2px;
+    margin: -2px;
+  }
+}
+
+.controlsRow {
+  margin-top: var(--sp-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.caption {
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  flex: 1 1 100%;
+}
+
+.button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: none;
+  color: var(--ink);
+}
+
+.button:hover:not(:disabled),
+.button:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.button.primary {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.transcriptRow {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--rule);
+}
+
+.transcriptToggle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  padding: 0;
+}
+
+.transcriptToggle:hover,
+.transcriptToggle:focus-visible {
+  color: var(--accent);
+}
+
+.transcriptBody {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  max-width: 60ch;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

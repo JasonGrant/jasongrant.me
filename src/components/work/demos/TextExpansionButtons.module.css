@@ -1,0 +1,95 @@
+.card {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-4);
+}
+
+.head {
+  display: grid;
+  gap: 6px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4) var(--sp-5);
+}
+
+@media (max-width: 560px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+}
+
+.colHead {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink-mute);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 66px max-content;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.lang {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
+
+/* Dashed reserved slot, uniform per column (sized to the widest translation) */
+.slot {
+  width: var(--slotw);
+  display: flex;
+  padding: 3px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 7px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--bg-elev);
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: nowrap;
+}

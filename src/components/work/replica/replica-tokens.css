@@ -1,0 +1,93 @@
+/* Fictional-brand ("Meridian") replica kit tokens, scoped under .replicaFrame.
+   Warm-tinted LIGHT product UI that pops on the dark portfolio site; deep
+   blue-leaning teal derived from the site accent; layered depth. Permitted by
+   constitution v1.2.2's "Replica craft" exception (depth strictly inside the
+   frame; sitewide flat bans hold everywhere else). WCAG AA contrast + visible
+   focus preserved. */
+
+.replicaFrame {
+  /* warm-light surfaces */
+  --rf-surface-top: #fdfbf7;
+  --rf-surface-bot: #fbf8f1;
+  --rf-bg: #ffffff; /* inputs / raised controls */
+  --rf-bg-elev: #f5f1e8; /* recessed surfaces (preview, nav, toast) */
+  --rf-footer: #f7f3eb;
+  /* warm ink ramp (AA-verified) */
+  --rf-ink: #2a251d;
+  --rf-ink-soft: #6b6353;
+  --rf-ink-mute: #726a58; /* 4.75:1 worst-case on the warm surfaces */
+  /* borders */
+  --rf-border: #ece6d9;
+  --rf-border-strong: #ddd6c6;
+  /* blue-leaning teal accent (white text 5.52:1 AA) */
+  --rf-accent: #0b7385;
+  --rf-accent-hover: #096376;
+  --rf-accent-soft: rgba(11, 115, 133, 0.09);
+  --rf-accent-tint: rgba(11, 115, 133, 0.14);
+  --rf-accent-ring: rgba(11, 115, 133, 0.3);
+  /* danger (the break-demo / stale states) */
+  --rf-danger: #b3402f;
+  --rf-danger-soft: rgba(179, 64, 47, 0.08);
+  /* warm shadow base + depth tokens */
+  --rf-shadow: 60, 48, 28;
+  --rf-radius: 11px;
+  --rf-radius-sm: 8px;
+  --rf-elev-card: 0 1px 1px rgba(var(--rf-shadow), 0.05), 0 10px 26px -12px
+    rgba(var(--rf-shadow), 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --rf-elev-input: inset 0 1px 1.5px rgba(var(--rf-shadow), 0.04);
+  --rf-elev-inset: inset 0 1px 2px rgba(var(--rf-shadow), 0.06);
+  --rf-elev-menu: 0 1px 2px rgba(var(--rf-shadow), 0.06), 0 12px 30px -8px
+    rgba(var(--rf-shadow), 0.28);
+  --rf-elev-btn: 0 1px 2px rgba(8, 55, 65, 0.32), 0 2px 7px -1px rgba(11, 115, 133, 0.4), inset 0
+    1px 0 rgba(255, 255, 255, 0.2);
+  --rf-elev-dialog: 0 4px 8px -2px rgba(var(--rf-shadow), 0.12), 0 24px 48px -12px
+    rgba(var(--rf-shadow), 0.36);
+
+  background: linear-gradient(180deg, var(--rf-surface-top), var(--rf-surface-bot));
+  color: var(--rf-ink);
+  border: 1px solid var(--rf-border);
+  border-radius: var(--rf-radius);
+  box-shadow: var(--rf-elev-card);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  /* positioning context for the save-confirmation toast (no z-index, so no
+     stacking context that would trap floating menus inside the frame) */
+  position: relative;
+}
+
+.replicaFrame * {
+  box-sizing: border-box;
+}
+
+.replicaFrame :focus-visible {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: 2px;
+}
+
+/* ── Concept-demo cards ──────────────────────────────────────────────────
+   The interactive concept demos (text expansion, word order, formatting,
+   flags) read as warm-light "product" cards sitting on the dark page, the same
+   system as the replica UI. Each demo's own CSS references the site tokens
+   (--ink, --bg, --rule*, --accent*); redefining those on this wrapper flips the
+   whole card to light without editing every demo rule. The demo root keeps its
+   own border/background (now resolved from the warm tokens); this adds the lift
+   shadow and the 11px radius that matches the replica cards. */
+.workDemoCard {
+  --bg: #ffffff;
+  --bg-elev: #fbf8f1;
+  --ink: #2a251d;
+  --ink-soft: #6b6353;
+  --ink-mute: #726a58;
+  --rule: #ece6d9;
+  --rule-strong: #ddd6c6;
+  --accent: #0b7385;
+  --accent-strong: #096376;
+  --accent-soft: rgba(11, 115, 133, 0.1);
+
+  /* base ink for text that doesn't set its own color (otherwise it inherits
+     the page's light-on-dark cream and fails contrast on the light card) */
+  color: var(--ink);
+  border-radius: 11px;
+  box-shadow: 0 1px 1px rgba(60, 48, 28, 0.05), 0 12px 30px -14px rgba(0, 0, 0, 0.5);
+}

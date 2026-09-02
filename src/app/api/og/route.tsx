@@ -1,3 +1,4 @@
+import { getStudy } from "@/content/studies";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
@@ -32,11 +33,7 @@ function parsePage(value: string | null): Page {
   return "home";
 }
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const page = parsePage(searchParams.get("page"));
-  const copy = COPY[page];
-
+function card(display: string, sub: string, eyebrow: string) {
   return new ImageResponse(
     <div
       style={{
@@ -59,7 +56,7 @@ export async function GET(request: Request) {
           color: "#A39C8B",
         }}
       >
-        jasongrant.me
+        {eyebrow}
       </div>
       <div
         style={{
@@ -73,7 +70,7 @@ export async function GET(request: Request) {
           display: "flex",
         }}
       >
-        {copy.display}
+        {display}
       </div>
       <div
         style={{
@@ -86,10 +83,29 @@ export async function GET(request: Request) {
           color: "#A39C8B",
         }}
       >
-        <div>{copy.sub}</div>
+        <div>{sub}</div>
         <div style={{ color: "oklch(0.78 0.10 195)" }}>Jason Grant</div>
       </div>
     </div>,
     SIZE,
   );
+}
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+
+  // Unlisted case-study pages (research D16): look the slug up in the study
+  // registry so the OG card always reflects real content rather than
+  // trusting an arbitrary query value.
+  const studySlug = searchParams.get("study");
+  if (studySlug) {
+    const study = getStudy(studySlug);
+    if (study) {
+      return card(study.title, `Case study · ${study.company}`, "jasongrant.me");
+    }
+  }
+
+  const page = parsePage(searchParams.get("page"));
+  const copy = COPY[page];
+  return card(copy.display, copy.sub, "jasongrant.me");
 }

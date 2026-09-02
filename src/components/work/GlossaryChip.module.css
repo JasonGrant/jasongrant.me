@@ -1,0 +1,103 @@
+.root {
+  /* inline wrapper; the popover is fixed, so no positioning context needed */
+}
+
+.trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  border-bottom: 1.5px dotted var(--accent);
+  cursor: help;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  color: var(--accent);
+}
+
+.trigger[aria-expanded="true"] {
+  color: var(--accent);
+}
+
+/* Floating definition card — anchored, over the prose, never in flow.
+   Inverted from the dark page: a warm-light surface with dark ink (the
+   conventional tooltip contrast), drawn from the replica kit's warm palette. */
+.popover {
+  --gloss-surface: #faf6ee;
+  --gloss-border: #e4dccb;
+  --gloss-ink: #2a251d;
+
+  position: fixed;
+  z-index: 40;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 20px));
+  padding: 10px 14px;
+  background: var(--gloss-surface);
+  border: 1px solid var(--gloss-border);
+  border-radius: 11px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 14px 34px -10px rgb(0 0 0 / 0.6);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--gloss-ink);
+  text-align: left;
+}
+
+.popover[data-ready="false"] {
+  visibility: hidden;
+}
+
+.popover[data-ready="true"] {
+  visibility: visible;
+  animation: pop 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.popover[data-place="bottom"] {
+  --rise: 4px;
+  transform-origin: top center;
+}
+
+.popover[data-place="top"] {
+  --rise: -4px;
+  transform-origin: bottom center;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popover[data-ready="true"] {
+    animation: none;
+  }
+}
+
+/* Caret: a rotated square sharing the card's fill + two edges of its border. */
+.arrow {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  background: var(--gloss-surface);
+  transform: rotate(45deg);
+}
+
+.popover[data-place="bottom"] .arrow {
+  top: -6px;
+  border-left: 1px solid var(--gloss-border);
+  border-top: 1px solid var(--gloss-border);
+}
+
+.popover[data-place="top"] .arrow {
+  bottom: -6px;
+  border-right: 1px solid var(--gloss-border);
+  border-bottom: 1px solid var(--gloss-border);
+}

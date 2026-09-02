@@ -1,0 +1,251 @@
+/* Bespoke replica craft — v2 direction (Jason, 2026-08-30):
+   warm-tinted LIGHT UI that pops on the dark portfolio site; Nord/Graphite
+   calm; Linear density (tight rhythm, not chunky Porsche sizing); Porsche-grade
+   micro-detail on states. Deep saturated teal derived from the site accent
+   (--accent-strong #7ddada -> solid #0c7d78, 4.98:1 with white text).
+   Self-contained palette scoped to .frame. Constitution v1.2.2 replica-craft
+   exception permits the depth here. */
+.frame {
+  /* warm-light surfaces */
+  --r-card-top: #fdfbf7;
+  --r-card-bot: #fbf8f1;
+  --r-surface: #ffffff;
+  --r-recess: #f5f1e8;
+  --r-border: #ece6d9;
+  --r-border-strong: #ddd6c6;
+  --r-footer: #f7f3eb;
+  /* warm ink ramp */
+  --r-ink: #2a251d;
+  --r-ink-2: #6b6353;
+  --r-ink-3: #726a58;
+  /* deep-teal accent */
+  --r-accent: #0b7385;
+  --r-accent-hover: #096376;
+  --r-accent-tint: rgba(11, 115, 133, 0.09);
+  --r-accent-tint-2: rgba(11, 115, 133, 0.14);
+  --r-accent-ring: rgba(11, 115, 133, 0.3);
+  /* warm shadow color (sits on warm-dark page) */
+  --r-shadow: 60, 48, 28;
+
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(180deg, var(--r-card-top), var(--r-card-bot));
+  border: 1px solid var(--r-border);
+  border-radius: 11px;
+  box-shadow: 0 1px 1px rgba(var(--r-shadow), 0.05), 0 10px 26px -12px rgba(var(--r-shadow), 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  color: var(--r-ink);
+  font-family: var(--font-body);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 18px 13px;
+  border-bottom: 1px solid var(--r-border);
+}
+.headerIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 8px;
+  color: var(--r-accent);
+  background: var(--r-accent-tint);
+  box-shadow: inset 0 0 0 1px var(--r-accent-tint-2);
+  font-size: 16px;
+}
+.headerText h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.006em;
+  margin: 0 0 1px;
+}
+.headerText p {
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--r-ink-3);
+  margin: 0;
+}
+
+.body {
+  padding: 2px 18px;
+}
+.field {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--r-border);
+}
+.field:last-child {
+  border-bottom: none;
+}
+.fieldTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--r-ink);
+  letter-spacing: -0.003em;
+}
+.hint {
+  font-size: 13px;
+  color: var(--r-ink-3);
+}
+
+/* Language toggles — compact pills */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--r-ink-2);
+  height: 30px;
+  padding: 0 11px 0 8px;
+  background: var(--r-surface);
+  border: 1px solid var(--r-border-strong);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+.chip:hover {
+  border-color: #cbc3b1;
+  color: var(--r-ink);
+}
+.chip[data-on="true"] {
+  color: var(--r-accent-hover);
+  background: var(--r-accent-tint);
+  border-color: rgba(11, 115, 133, 0.34);
+}
+.chip:focus-visible {
+  outline: none;
+  border-color: var(--r-accent);
+  box-shadow: 0 0 0 3px var(--r-accent-ring);
+}
+.chipDot {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  border: 1.5px solid var(--r-border-strong);
+  background: var(--r-surface);
+  color: #fff;
+  font-size: 10px;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+.chip[data-on="true"] .chipDot {
+  background: var(--r-accent);
+  border-color: var(--r-accent);
+  box-shadow: 0 1px 1.5px rgba(8, 60, 70, 0.45);
+}
+
+/* Preview — recessed warm surface */
+.preview {
+  background: var(--r-recess);
+  border: 1px solid var(--r-border);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 2px rgba(var(--r-shadow), 0.06);
+  padding: 11px 13px;
+}
+.previewHead {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--r-ink-3);
+  margin-bottom: 7px;
+}
+.previewRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 4px 0;
+}
+.previewRow + .previewRow {
+  border-top: 1px solid var(--r-border);
+}
+.previewRow .k {
+  color: var(--r-ink-3);
+}
+.previewRow .v {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--r-ink);
+}
+
+/* Footer + primary */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--r-border);
+  background: var(--r-footer);
+  border-radius: 0 0 11px 11px;
+}
+.dirty {
+  font-size: 13px;
+  color: var(--r-ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.dirty::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cf9a3f;
+  box-shadow: 0 0 0 3px rgba(207, 154, 63, 0.16);
+}
+.save {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  height: 34px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 8px;
+  background: var(--r-accent);
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.32), 0 2px 7px -1px rgba(11, 115, 133, 0.4), inset 0 1px 0
+    rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+.save:hover {
+  background: var(--r-accent-hover);
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.32), 0 4px 12px -1px rgba(11, 115, 133, 0.5), inset 0 1px
+    0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-0.5px);
+}
+.save:active {
+  transform: translateY(0.5px);
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.32), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.save:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--r-accent-ring), 0 2px 7px -1px rgba(11, 115, 133, 0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .chipDot,
+  .save,
+  .select select {
+    transition: none;
+  }
+}

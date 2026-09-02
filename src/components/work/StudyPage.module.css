@@ -1,0 +1,169 @@
+/* Width, centering, and side padding come from the route layout's .page
+   wrapper (shared with the primary pages); this just spaces the article. */
+.page {
+  padding-bottom: var(--sp-8);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-style: italic;
+  /* clamp rather than the fixed --fs-hero token: this page's title is a
+     single long word ("Internationalization") with no natural break
+     point, so at a fixed 58px it overflows narrow viewports. */
+  font-size: clamp(32px, 8vw, var(--fs-hero));
+  line-height: var(--lh-hero);
+  margin: var(--sp-2) 0 var(--sp-4);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.metaRows {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--sp-1) var(--sp-4);
+  font-size: var(--fs-meta);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--sp-3) 0;
+  margin-bottom: var(--sp-9);
+}
+
+.metaLabel {
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+}
+
+.section {
+  margin-top: var(--sp-9);
+}
+
+/* Walkthrough players break out to the RIGHT of the reading column
+   (constitution v1.2.3): left edge stays put (rail-safe), the block grows
+   rightward toward the viewport edge, capped so the page never scrolls. Full
+   width on small screens. */
+.section.wide {
+  max-width: none;
+}
+@media (min-width: 900px) {
+  .section.wide {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+
+/* Embedded concept demo (e.g. the Klaviyo break screen inside Kickoff) breaks
+   out to the walkthrough-panel width, like .section.wide. */
+.embeddedDemo {
+  margin-top: var(--sp-6);
+}
+@media (min-width: 900px) {
+  .embeddedDemo {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+
+.figure {
+  margin: var(--sp-6) 0 0;
+}
+@media (min-width: 900px) {
+  .figure {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+.figureFrame {
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+.figureImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.figureCaption {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
+
+.sectionHeading {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--sp-4);
+}
+
+.body p {
+  margin: 0 0 var(--sp-3);
+  max-width: 68ch;
+}
+
+.demoIntro {
+  margin-bottom: var(--sp-3);
+}
+
+/* Standout stat between the intro and the demo card: a large figure in the
+   display face with the accent, set off by a rule. */
+.demoCallout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin: var(--sp-6) 0;
+  padding-left: var(--sp-4);
+  border-left: 3px solid var(--accent);
+}
+
+.calloutFigure {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  line-height: 0.95;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.calloutBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.calloutText {
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Small link to the figure's public source, under the completing phrase. */
+.calloutSource {
+  width: max-content;
+  max-width: 100%;
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.calloutSource:hover {
+  color: var(--accent);
+}
+
+/* Inline citation link inside prose. */
+.sourceLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sourceLink:hover {
+  text-decoration-thickness: 2px;
+}
+
+.noscriptNote {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  margin-top: var(--sp-2);
+}

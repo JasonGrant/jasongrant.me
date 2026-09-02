@@ -10,6 +10,9 @@ const URLS = [
   "http://localhost:3000/experience",
   "http://localhost:3000/writing",
   "http://localhost:3000/colophon",
+  // Unlisted case-study route (constitution v1.2.1: unlisted routes are
+  // shipped pages for every gate). See specs/002-interactive-case-studies/.
+  "http://localhost:3000/work/internationalization",
 ];
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];

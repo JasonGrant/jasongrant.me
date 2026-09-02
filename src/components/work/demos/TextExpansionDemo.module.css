@@ -1,0 +1,310 @@
+/* Plain block wrapper (not a grid) so each card sizes exactly as a block the
+   width of the reading column — a grid stack imposes intrinsic-min sizing that
+   the range input and the wide menu inflate into horizontal page scroll. */
+.stack > * + * {
+  margin-top: var(--sp-5);
+}
+
+.demo {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-4);
+}
+
+.demo > * {
+  min-width: 0;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-3);
+}
+
+.blockTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+/* Target-language segmented control */
+.langRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.langMeta {
+  font-size: var(--fs-meta);
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: rgba(60, 48, 28, 0.06);
+  border-radius: 9px;
+}
+
+.seg {
+  font: inherit;
+  font-size: var(--fs-meta);
+  font-weight: 550;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 7px;
+  background: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.seg:hover:not([aria-pressed="true"]) {
+  color: var(--ink);
+}
+
+.seg[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.28);
+}
+
+/* EN/DE reference: string on the left, character counts grouped on the right
+   and left-aligned to each other within a shared column. */
+.pairRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--sp-4);
+  row-gap: var(--sp-1);
+  align-items: baseline;
+  font-size: var(--fs-meta);
+  overflow-wrap: anywhere;
+}
+
+.pairText {
+  min-width: 0;
+}
+
+.pairCount {
+  white-space: nowrap;
+  text-align: left;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.lang {
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  margin-right: var(--sp-2);
+}
+
+/* Form field — mirrors the Organization-settings fields. */
+.field {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.fieldTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nord-style range: teal filled track, white thumb. --fill (set inline) is the
+   filled fraction for the WebKit track gradient; Firefox uses range-progress. */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--fill, 50%),
+    var(--rule-strong) var(--fill, 50%) 100%
+  );
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--rule-strong);
+  box-shadow: 0 1px 3px rgba(60, 48, 28, 0.28);
+}
+
+.slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rule-strong);
+}
+
+.slider::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(60, 48, 28, 0.28);
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.slider:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* A real primary button (which truncates) paired with Cancel. */
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.previewButton {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  height: 34px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.32), 0 2px 7px -1px rgba(11, 115, 133, 0.4);
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.previewButton:hover {
+  background: var(--accent-strong);
+}
+
+.previewButton:active {
+  transform: translateY(0.5px);
+}
+
+.cancelButton {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 550;
+  height: 34px;
+  padding: 0 15px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  flex: none;
+}
+
+.cancelButton:hover,
+.cancelButton:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.resultLine {
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  /* Reserve two text lines so the box height stays stable as the reading
+     grows from one line to two. */
+  min-height: calc(3em + 2 * var(--sp-2));
+}
+
+.resultLine.broken {
+  background: rgba(178, 60, 40, 0.12);
+}
+
+/* W3C expansion reference table. */
+.tierTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-meta);
+  text-align: left;
+}
+
+.tierTable th,
+.tierTable td {
+  padding: 8px 10px;
+  border-top: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.tierTable thead th {
+  border-top: none;
+  border-bottom: 1px solid var(--rule-strong);
+  font-weight: 600;
+  color: var(--ink-mute);
+}
+
+.tierTable tbody th {
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tierTable td {
+  color: var(--ink-soft);
+}
+
+.tierTable td:first-of-type {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}

@@ -37,9 +37,12 @@ const CLICK_LOCK_MS = 800;
 // "Resume" or "Subscribe" rarely satisfy the IntersectionObserver's rootMargin.
 const BOTTOM_THRESHOLD_PX = 80;
 
-export function LeftRail() {
+// `sections` overrides the pathname map — used by dynamic routes (e.g.
+// /work/[slug]) whose section list is derived from content, not a static
+// per-path entry.
+export function LeftRail({ sections: sectionsProp }: { sections?: Section[] } = {}) {
   const pathname = usePathname();
-  const sections = SECTIONS_BY_PATH[pathname] ?? [];
+  const sections = sectionsProp ?? SECTIONS_BY_PATH[pathname] ?? [];
   const firstId = sections[0]?.id ?? "";
   const lastId = sections[sections.length - 1]?.id ?? "";
   const [active, setActive] = useState<string>(firstId);

@@ -1,0 +1,29 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 6px;
+  border-radius: 8px;
+  border-bottom: 1px solid var(--rf-border);
+}
+.row:last-of-type {
+  border-bottom: none;
+}
+
+.row.highlighted {
+  outline: 2px solid var(--rf-accent);
+  outline-offset: -2px;
+  background: var(--rf-accent-soft);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--rf-ink);
+  letter-spacing: -0.003em;
+}
+
+.help {
+  font-size: 13px;
+  color: var(--rf-ink-mute);
+}

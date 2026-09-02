@@ -1,0 +1,236 @@
+.demo {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-4);
+}
+
+/* Language segmented control */
+.langRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.langLabel {
+  font-size: var(--fs-meta);
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: rgba(60, 48, 28, 0.06);
+  border-radius: 9px;
+}
+
+.seg {
+  font: inherit;
+  font-size: var(--fs-meta);
+  font-weight: 550;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 7px;
+  background: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.seg:hover:not([aria-pressed="true"]) {
+  color: var(--ink);
+}
+
+.seg[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(8, 55, 65, 0.28);
+}
+
+.part {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-3);
+}
+
+.partTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+/* Do / Don't comparison */
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+@media (max-width: 560px) {
+  .pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.example {
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+}
+
+/* Mockup panel (a light "product" surface on the warm card) */
+.ui {
+  min-height: 96px;
+  padding: var(--sp-3);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  display: grid;
+  gap: var(--sp-2);
+  align-content: center;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+}
+.fieldHelp {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.unit {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.miniInput {
+  display: inline-flex;
+  align-items: center;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  vertical-align: middle;
+}
+
+.sentence {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  justify-self: start;
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.linkInline {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* Verdict pills */
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  justify-self: start;
+  margin: 2px 0 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+}
+
+.verdict[data-kind="do"] {
+  background: rgba(18, 122, 82, 0.12);
+  color: #0c6344;
+}
+
+.verdict[data-kind="dont"] {
+  background: rgba(178, 60, 40, 0.12);
+  color: #b23c28;
+}
+
+.verdictRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+/* Per-language insight */
+.helper {
+  margin: 0;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.benefits li {
+  position: relative;
+  padding-left: 20px;
+  font-size: var(--fs-meta);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.benefits li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}

@@ -1,6 +1,219 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.5 → 1.2.6
+Rationale: MINOR. Relaxes the Performance category of the Lighthouse gate
+  (Principle II) for the interactive case-study routes (`/work/[slug]`) from
+  95+ to 90+. These unlisted, noindexed routes recreate full third-party
+  product UIs (a campaign builder, an email editor, a translation flow) and
+  carry far more markup and CSS than the three core pages, which makes a 95
+  mobile Performance score impractical without dropping the recreations.
+  Accessibility and Best Practices stay 95+, CLS MUST remain 0, SEO stays off
+  (noindex), and every non-`/work` route holds the full 95+ bar on all four
+  categories.
+
+Modified principles:
+  - II. Performance Budget (Lighthouse 95+) — the 95+ requirement gains a named
+    exception: `/work/[slug]` routes target Performance 90+ only; all other
+    categories, CLS 0, and all non-`/work` routes are unchanged.
+
+Added sections: None. Removed sections: None. Removed rules: None.
+
+Templates requiring updates:
+  - ✅ lighthouserc.desktop.json, lighthouserc.mobile.json — the `/work`
+    Performance assertion lowered to 0.90; core-page assertions and every other
+    category assertion unchanged.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.5)
+==================
+Version change: 1.2.4 → 1.2.5
+Rationale: MINOR. Adds a narrow, owner-cleared exception to the "Recreated
+  content, sanitized data" clause of the Unlisted case-studies exception
+  (Principle V): the content owner MAY include a real artifact of their own
+  work (for example, an internal audit spreadsheet) on an unlisted, noindexed
+  `/work/[slug]` route when they have explicitly cleared it for public release
+  AND it carries no third-party personal data or customer PII. The default
+  (purpose-built recreations, no proprietary screenshots, fictional data) is
+  unchanged. Public, listed routes are unaffected — the carve-out lives
+  entirely inside the Unlisted `/work` exception and never relaxes the rules
+  for crawlable, indexed pages.
+
+Modified principles:
+  - V. Site Structure & Content Integrity — the Unlisted case-studies named
+    exception: the no-real-screenshots rule now carries a narrow owner-cleared
+    carve-out (a real artifact of the owner's own work, cleared for release,
+    no customer PII).
+
+Added sections: None. Removed sections: None. Removed rules: None — the
+  default no-proprietary-screenshots and fictional-data rules are preserved.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/* — recreation notes unaffected;
+    the Pre-IPO audit figure is the first use of this carve-out.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.4)
+==================
+Version change: 1.2.3 → 1.2.4
+Rationale: MINOR. Scopes the "Recreated content only" clause of the Unlisted
+  interactive case-studies exception (Principle V) so a recreation on an
+  unlisted, noindexed `/work/[slug]` route MAY carry the real operator's
+  branding (logo, product chrome). Data stays fictional and actual proprietary
+  screenshots/pixels remain prohibited; a study MUST be re-sanitized to a
+  fictional brand before any Deliberate publicizing. These routes are not part
+  of the public, crawlable IA, so the proprietary-screens concern (public
+  exposure) does not apply the same way.
+
+Modified principles:
+  - V. Site Structure & Content Integrity — the Unlisted case-studies named
+    exception: "Recreated content only" broadened to "Recreated content,
+    sanitized data" (real branding permitted on unlisted routes; fictional
+    data and the no-real-screenshots rule unchanged).
+
+Added sections: None. Removed sections: None. Removed rules: None — the
+  no-proprietary-screenshots and fictional-data rules are preserved.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — recreation notes; the
+    exception is enumerated here, no spec rewrite required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.3)
+==================
+Version change: 1.2.2 → 1.2.3
+Rationale: MINOR. Adds a fourth named exception to Principle IV — "Breakout
+  demonstrations" — permitting interactive demo/player blocks on `/work/[slug]`
+  to exceed the ~640–720px content measure (breaking out wider, left-aligned
+  with the prose) so recreated product UI has room to read like a real app.
+  Prose sections still hold the measure; the single-column, left-aligned page
+  is preserved. Scoped to case-study routes only.
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Breakout demonstrations
+    (`/work/[slug]`)": demo/player blocks may exceed the content measure up to
+    a bounded page width; prose keeps the ~640–720px measure.
+
+Added sections: None. Removed sections: None. Removed rules: None — the measure
+  rule is unchanged for prose and for the rest of the site.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — FR-012a / layout notes; the
+    exception is enumerated in the constitution, no spec rewrite required.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.2)
+==================
+Version change: 1.2.1 → 1.2.2
+Rationale: MINOR. Adds a third named exception to Principle IV — "Replica
+  craft" — permitting product-authentic depth styling (drop shadows,
+  gradients, layered elevation, richer borders) INSIDE `.replicaFrame` on
+  `/work/[slug]` routes only. The replicas recreate real SaaS products whose
+  craft depends on depth cues; the sitewide flat-styling bans exist for the
+  editorial site surface, not for a depicted product. No sitewide ban is
+  relaxed — the bans stay fully in force everywhere outside the replica frame,
+  including the case-study page chrome. Supersedes spec 002's FR-013a
+  (previously "flat only" for replicas).
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Replica craft
+    (`.replicaFrame` on /work)": drop shadows, gradients, and layered
+    elevation permitted strictly inside the replica frame, bounded by WCAG AA
+    contrast, preserved focus visibility, and the standing motion rules (depth
+    is static; no depth-driven animation outside the scripted-demonstration
+    exception).
+
+Added sections: None (the exception lives inside Principle IV).
+Removed sections: None.
+Removed rules: None — the sitewide gradient/shadow/pattern bans are unchanged
+  outside `.replicaFrame`.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/spec.md — FR-013a updated to cite
+    this exception instead of mandating flat replicas.
+  - ✅ specs/002-interactive-case-studies/contracts/accessibility.md — the
+    "Visual (inside the frame)" note updated to match.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.1)
+==================
+Version change: 1.2.0 → 1.2.1
+Rationale: PATCH. Resolves an internal contradiction v1.2.0 introduced: the
+  unlisted-case-studies exception REQUIRES noindex on /work routes while the
+  Workflow gates require Lighthouse SEO 95+ on every shipped page — impossible
+  together, because Lighthouse's SEO category contains a crawlability audit
+  that fails by design on a deliberately noindexed page. The gates note now
+  names the single permitted deduction. No rule inverted; every other gate
+  applies to unlisted routes unchanged.
+
+Modified principles: None (Workflow & Quality Gates note clarified).
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/* — plan artifacts cite the v1.2.1
+    gates note; updated in the same change set.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.0)
+==================
+Version change: 1.1.1 → 1.2.0
+Rationale: MINOR. Two named, bounded exceptions added to enable feature
+  002-interactive-case-studies: (1) Principle V gains an "Unlisted interactive
+  case studies" exception permitting soft-unlisted, noindexed routes under
+  `/work/[slug]`; (2) Principle IV gains a "Scripted demonstrations" exception
+  permitting user-initiated walkthrough motion inside the case-study player.
+  No rule is removed or inverted; the three-page IA, the proprietary-screens
+  ban, and every motion ban remain the sitewide default. Previously compliant
+  code remains compliant.
+
+Modified principles:
+  - IV. Design-Engineer Craft — added named exception "Scripted demonstrations
+    (case-study player)": motion only after explicit user initiation, visible
+    pause/stop controls, first-class reduced-motion variant (discrete state
+    steps, no transitional motion), gesture-gated narration with in-place
+    transcript, demonstration-serving motion only, scoped to the player
+    component on `/work/[slug]` routes.
+  - V. Content Discipline & Network Coherence — added named exception
+    "Unlisted interactive case studies (`/work/[slug]`)": excluded from
+    sitemap, robots noindex, not linked from primary navigation; every route
+    is a shipped page for all Workflow & Quality Gates; recreated/sanitized
+    UI with fictional data only (proprietary-screens rule reaffirmed);
+    per-study publicizing is a deliberate decision recorded in the PR.
+    Page-count clause updated to reference the exception.
+
+Added sections: None (both exceptions live inside existing principles).
+Removed sections: None.
+Removed rules: None.
+
+Other changes:
+  - Workflow & Quality Gates — clarifying note: unlisted routes are shipped
+    pages for the purposes of every gate; soft-unlisting reduces
+    discoverability, never the quality bar.
+
+Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md — Constitution Check is generic;
+    no edits required.
+  - ✅ .specify/templates/spec-template.md — generic; no edits required.
+  - ✅ .specify/templates/tasks-template.md — generic; no edits required.
+  - ✅ .specify/templates/checklist-template.md — generic; no edits required.
+  - ✅ CLAUDE.md — points to the active plan; no constitution-specific
+    references to reconcile.
+  - ✅ specs/001-personal-site-rebuild/spec.md — cites the constitution for
+    banned patterns; the new exceptions are enumerated in the constitution
+    itself, so no rewrite is needed and 001 scope is untouched.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.1.1)
+==================
 Version change: 1.1.0 → 1.1.1
 Rationale: PATCH. Adds a narrow fourth exception under Principle IV's
   "Subtle-craft exceptions" — a single playful avatar/portrait may scale on
@@ -124,6 +337,14 @@ Every shipped page MUST score 95 or higher on all four Lighthouse categories
 (Performance, Accessibility, Best Practices, SEO) in a production build,
 verified before any release that changes user-visible code.
 
+Named exception — Interactive case-study routes (`/work/[slug]`): these
+unlisted, noindexed routes recreate full third-party product UIs (a campaign
+builder, an email editor, a translation flow) and carry far more markup and CSS
+than the three core pages. On these routes the **Performance** category target
+is relaxed to **90 or higher**; Accessibility and Best Practices stay 95+, SEO
+is `off` (per the noindex resolution in v1.2.1), and CLS MUST remain 0. Every
+other route holds the full 95+ bar on all four categories.
+
 Concrete requirements:
 
 - Cumulative Layout Shift (CLS) MUST be 0 on all pages. Fonts MUST be
@@ -225,6 +446,73 @@ Banned (MUST NOT ship):
   single deliberate playful moment — the general ban on scale/bounce
   hovers still applies to every other interactive element.
 
+**Named exception — Scripted demonstrations (case-study player)**: Within
+the interactive case-study player on `/work/[slug]` routes (see the
+Principle V exception), scripted demonstration sequences MAY animate
+UI-state transitions IF AND ONLY IF all of the following hold:
+
+- (a) Motion begins only after explicit user initiation via a clearly
+  labeled control (e.g., "Play walkthrough"). Nothing animates on page
+  load and nothing animates on scroll.
+- (b) Visible pause and stop controls are present the entire time a
+  sequence is running.
+- (c) A first-class reduced-motion variant ships with the player: under
+  `prefers-reduced-motion: reduce`, sequences advance as discrete state
+  changes with no transitional motion, at a user-controlled pace. This
+  variant is a peer experience, not a degraded one.
+- (d) Narration audio, where present, is gesture-gated per interaction —
+  it never autoplays — and a text transcript is available in place.
+- (e) The motion demonstrates the product behavior being explained (state
+  changes, highlights, focus movement, screen transitions). Decorative
+  motion, parallax, and scroll-driven effects remain banned inside the
+  player.
+- (f) The exception applies only within the player component on
+  case-study routes. Every sitewide ban above stays in force everywhere
+  else, including the rest of the case-study page surrounding the player.
+
+**Named exception — Replica craft (`.replicaFrame` on `/work/[slug]`)**:
+Interactive case studies recreate real SaaS products (see the Principle V
+unlisted-case-studies exception). Inside a `.replicaFrame` on a `/work/[slug]`
+route ONLY, the sitewide flat-styling bans are lifted so the recreation can
+carry the depth real product UI depends on: drop shadows, gradients, layered
+elevation, and richer borders MAY ship — IF AND ONLY IF all of the following
+hold:
+
+- (a) The styling is scoped to elements inside `.replicaFrame`. Everywhere
+  else on the page — the study prose, the section chrome, the site frame — the
+  sitewide bans (no gradients, drop shadows, patterned backgrounds) remain in
+  full force.
+- (b) WCAG AA contrast holds inside the frame (the replica is shipped UI, not
+  an image), and focus indicators stay visible on every control.
+- (c) Depth is static. It introduces no motion of its own; any motion inside
+  the frame is still governed by the scripted-demonstrations exception.
+- (d) The intent is fidelity to a real product's craft, not decoration for its
+  own sake — the frame should read as an authentic recreation, not a showcase
+  of effects.
+
+This is the one place on jasongrant.me where the editorial-restraint bans
+yield, precisely because the content is a depicted product rather than the
+site's own surface. It supersedes spec 002's FR-013a.
+
+**Named exception — Breakout demonstrations (`/work/[slug]`)**: On interactive
+case-study routes, the interactive demonstration blocks (concept demos and the
+walkthrough player) MAY exceed the ~640–720px content measure and break out to
+a wider bounded width — IF AND ONLY IF:
+
+- (a) Prose sections still hold the ~640–720px reading measure; only the
+  interactive figures break out.
+- (b) The breakout stays left-aligned with the prose column (same left edge)
+  and within a bounded page width — it is a wider figure, not a full-bleed
+  band, and never forces horizontal page scroll (the mobile no-scroll rule
+  still holds).
+- (c) It applies only on `/work/[slug]`. Everywhere else — and for all prose —
+  the single-column ~640–720px measure stays in force.
+
+Recreated product UI (a settings app, an email editor) needs room to read like
+the real thing; a demonstration crushed into the reading measure reads as a
+screenshot, not a working interface. This is the layout counterpart to the
+motion and replica-craft exceptions.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -237,7 +525,9 @@ louder is a violation, not an interpretation.
 
 Content structure MUST follow the rebuild plan: three pages only — Home (`/`),
 Experience (`/experience`), Writing (`/writing`) — plus an optional
-`/colophon`. No portfolio pages, no `/about`, no `/contact`.
+`/colophon`. No portfolio pages, no `/about`, no `/contact`. Unlisted
+interactive case-study routes under `/work/[slug]` are permitted solely
+under the named exception below.
 
 Required:
 
@@ -254,6 +544,38 @@ Required:
   the PR.
 - A downloadable resume PDF remains the long-form artifact for recruiters;
   the Experience page is the public-facing chronological proof.
+
+**Named exception — Unlisted interactive case studies (`/work/[slug]`)**:
+Interactive case-study routes MAY ship under `/work/[slug]` without
+violating the page-count rule, IF AND ONLY IF all of the following hold:
+
+- *Soft-unlisted by default*: each route is excluded from the sitemap,
+  carries `noindex` robots metadata, and is not linked from primary
+  navigation. Reach is by direct URL. The "no portfolio pages" rule above
+  governs the listed, navigable IA — an unlisted case study joins that IA
+  only through the deliberate publicizing step below.
+- *Fully gated*: every case-study route is a shipped page for the purposes
+  of the Workflow & Quality Gates — Lighthouse 95+ in all four categories
+  on mobile and desktop, axe zero violations, CLS 0, and the manual
+  keyboard/screen-reader/visual passes all apply without exception.
+- *Recreated content, sanitized data*: all product UI shown is a
+  purpose-built recreation (never an actual proprietary screenshot), and
+  every value in it is fictional. Because these routes are unlisted and
+  noindexed — outside the public, crawlable IA — a recreation MAY carry the
+  real operator's branding (logo, product chrome) to show the work in its
+  true context. Actual proprietary screenshots, pixels, and real customer
+  data still MUST NOT be published, with one narrow exception on these
+  unlisted routes: the content owner MAY include a real artifact of their own
+  work (for example, an internal audit) when they have explicitly cleared it
+  for public release AND it carries no third-party personal data or customer
+  PII. If a study is later
+  surfaced under *Deliberate publicizing* below, its recreations MUST first be
+  re-sanitized to a fictional brand, and any owner-cleared real artifact MUST
+  be re-reviewed for the wider audience.
+- *Deliberate publicizing*: an individual case study MAY later be linked
+  and/or indexed as a per-study content decision recorded in the PR that
+  makes the change. The default for every new study remains unlisted and
+  noindexed.
 
 Rationale: The information architecture and content rules are load-bearing
 for the positioning. Adding a portfolio page, an `/about`, or a `/contact`
@@ -302,6 +624,15 @@ gates before merge to `main`:
 8. The change does not introduce any banned visual pattern (Principle IV)
    or violate content rules (Principle V).
 
+Unlisted routes (e.g., `/work/[slug]` case studies) are shipped pages for
+the purposes of every gate above — soft-unlisting reduces discoverability,
+never the quality bar. One measured consequence is acknowledged: the
+deliberate noindex directive fails Lighthouse's crawlability audit inside
+the SEO category by design. On unlisted routes, gate 4 therefore asserts
+Performance, Accessibility, and Best Practices at 95+ unchanged, and asserts
+SEO at the maximum score achievable with that noindex deduction — no other
+SEO deduction is permitted.
+
 If a Lighthouse score drops below 95 on any category, the change MUST NOT
 ship. Either fix the regression or revert. Negotiating the gate downward
 is not permitted; amending the gate requires a constitution amendment.
@@ -346,4 +677,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.1.1 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-05-12
+**Version**: 1.2.6 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-09-02

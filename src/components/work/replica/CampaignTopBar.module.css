@@ -1,0 +1,114 @@
+/* Dark top bar shared by the recreated Klaviyo campaign-builder screens. */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  padding: 0 18px;
+  background: #23252a;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.back {
+  flex: none;
+  color: #fff;
+  font-size: 20px;
+}
+.logo {
+  height: 18px;
+  width: auto;
+  flex: none;
+}
+.campaign {
+  min-width: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stepWrap {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.stepLabel {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.stepper {
+  display: inline-flex;
+  gap: 6px;
+}
+.step {
+  width: 26px;
+  height: 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.stepActive {
+  background: #fff;
+  border-color: #fff;
+}
+.stepDone {
+  background: #2fbf71;
+  border-color: #2fbf71;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  justify-self: end;
+}
+.saved {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.iconBtn {
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+.exitBtn {
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.nextBtn {
+  padding: 6px 18px;
+  border-radius: 7px;
+  background: #fff;
+  color: #23252a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  .stepWrap {
+    display: none;
+  }
+  .saved {
+    display: none;
+  }
+}

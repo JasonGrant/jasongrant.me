@@ -1,0 +1,108 @@
+.card {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-elev);
+  padding: var(--sp-4);
+  max-width: var(--measure);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-4);
+}
+
+.head {
+  display: grid;
+  gap: 6px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+/* Italian can exceed the reading column; let the diagram scroll in its own
+   box rather than the page. */
+.scroll {
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.menus {
+  display: grid;
+  gap: var(--sp-4);
+  width: max-content;
+}
+
+.menuRow {
+  display: grid;
+  grid-template-columns: 66px max-content;
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+.lang {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  padding-top: 7px;
+}
+
+.menu {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  width: max-content;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 32px;
+  min-width: 96px;
+  padding: 0 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 7px;
+  background: var(--bg-elev);
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.chevron {
+  color: var(--ink-mute);
+  flex: none;
+}
+
+.panel {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  width: max-content;
+  background: var(--bg);
+  border: 1px solid var(--rule-strong);
+  border-radius: 9px;
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.4);
+}
+
+.item {
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.item:first-child {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
