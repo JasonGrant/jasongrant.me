@@ -64,6 +64,24 @@ export const internationalizationStudy: CaseStudy = {
     },
     {
       kind: "prose",
+      id: "pre-ipo-audit",
+      heading: "Pre-IPO audit",
+      image: {
+        src: "/work/pre-ipo-audit.png",
+        alt: "The Q1 2023 pre-IPO audit spreadsheet: one row per app page, with color-coded columns for design-system adoption, internationalization and RTL issues, accessibility violations, and Lighthouse performance scores.",
+        caption:
+          "The audit itself: one row per page, color-coded across design-system adoption, internationalization, accessibility, and Lighthouse performance.",
+        width: 4032,
+        height: 2138,
+      },
+      body: [
+        "In Q1 2023, ahead of the IPO, leadership wanted a clear baseline of how far along the product actually was on four fronts: performance (Lighthouse scores), design-system adoption, internationalization, and accessibility compliance.",
+        "Every page of the app was scored on all four. The marketing and support sites were scored for accessibility only.",
+        "Internationalization was one of those four columns, and it is what set up this initiative: the audit showed how much of the product still assumed one language and one locale, and gave leadership the evidence to fund the work.",
+      ],
+    },
+    {
+      kind: "prose",
       id: "kickoff",
       heading: "Kickoff: the audit",
       embedDemo: "language-break",
@@ -137,13 +155,13 @@ export const internationalizationStudy: CaseStudy = {
     {
       kind: "prose",
       id: "design-work-intro",
-      heading: "The design work",
-      navLabel: "Design",
+      heading: "Phase 1 Designs",
+      navLabel: "Phase 1 designs",
       body: [
         [
-          "Guidelines catch problems in individual components. The bigger structural question was the ",
+          "Guidelines catch problems inside individual components. The first structural build was the ",
           { term: "locale" },
-          " model itself: where does a language setting live, who does it apply to, and how does a marketer actually get content translated without breaking the source. Here's the flow, end to end.",
+          " model itself: where a language setting lives and who it applies to. Two levels, an organization default and a personal override, each with a live preview before anything is saved.",
         ],
       ],
     },
@@ -301,135 +319,91 @@ export const internationalizationStudy: CaseStudy = {
       ],
     },
     {
-      kind: "walkthrough",
-      id: "email-segment",
-      title: "Email translation",
-      screen: "email-editor",
-      steps: [
-        {
-          target: "subject-field",
-          action: "highlight",
-          highlight: true,
-          caption:
-            "This subject line leans on an English idiom, exactly the kind of phrase that doesn't survive translation intact.",
-          narrationText:
-            "This subject line leans on an English idiom, exactly the kind of phrase that doesn't survive translation intact.",
-          durationMs: 4000,
-        },
-        {
-          target: "translate-button",
-          action: "highlight",
-          highlight: true,
-          caption: "Translate starts the audience-aware translation flow.",
-          narrationText: "Translate starts the audience-aware translation flow.",
-          durationMs: 3000,
-        },
-        {
-          target: "translate-button",
-          action: "transition",
-          highlight: false,
-          caption:
-            "The flow opens showing who actually reads in which language. Not a guess, the real breakdown.",
-          narrationText:
-            "The flow opens showing who actually reads in which language. Not a guess, the real breakdown.",
-          durationMs: 3000,
-        },
-        {
-          target: "audience-breakdown",
-          action: "highlight",
-          highlight: true,
-          caption: "Roughly a fifth of this audience prefers French; almost as many prefer German.",
-          narrationText:
-            "Roughly a fifth of this audience prefers French; almost as many prefer German.",
-          durationMs: 4000,
-        },
-        {
-          target: "language-checklist",
-          action: "select",
-          value: "French,German",
-          highlight: true,
-          caption:
-            "Only French and German are offered here, exactly the two languages Organization settings allowed earlier.",
-          narrationText:
-            "Only French and German are offered here, exactly the two languages Organization settings allowed earlier.",
-          durationMs: 4500,
-        },
-        {
-          target: "translation-row",
-          action: "input",
-          value: "Knock your socks off ☕|Schlag deine Socken ab",
-          highlight: true,
-          caption:
-            'Machine translation takes the idiom literally: "knock your socks off" becomes a phrase about physically striking socks.',
-          narrationText:
-            'Machine translation takes the idiom literally: "knock your socks off" becomes a phrase about physically striking socks.',
-          durationMs: 5000,
-        },
-        {
-          target: "translation-row",
-          action: "input",
-          value: "Knock your socks off ☕|Du wirst aus den Socken sein",
-          highlight: true,
-          caption:
-            "The marketer catches it and fixes the line by hand before it ships. This is exactly the moment automated translation alone can't cover.",
-          narrationText:
-            "The marketer catches it and fixes the line by hand before it ships. This is exactly the moment automated translation alone can't cover.",
-          durationMs: 5000,
-        },
-        {
-          target: "subject-field",
-          action: "input",
-          value: "Knock your socks off ☕, plus free shipping",
-          highlight: true,
-          caption: "Later, someone edits the English source line to add a shipping callout.",
-          narrationText: "Later, someone edits the English source line to add a shipping callout.",
-          durationMs: 4000,
-        },
-        {
-          target: "translation-row",
-          action: "highlight",
-          highlight: true,
-          caption:
-            "The existing translation no longer matches the source. It's flagged stale automatically, not silently left wrong.",
-          narrationText:
-            "The existing translation no longer matches the source. It's flagged stale automatically, not silently left wrong.",
-          durationMs: 4500,
-        },
-        {
-          target: "retranslate-button",
-          action: "click",
-          highlight: true,
-          caption: "Retranslate clears the stale flag and regenerates the affected content.",
-          narrationText: "Retranslate clears the stale flag and regenerates the affected content.",
-          durationMs: 3500,
-        },
-        {
-          target: "retranslate-button",
-          action: "transition",
-          highlight: false,
-          caption: "Translations are back in sync with the current source line.",
-          narrationText: "Translations are back in sync with the current source line.",
-          durationMs: 3000,
-        },
+      kind: "prose",
+      id: "phase-1-impact",
+      heading: "Phase 1 Impact",
+      navLabel: "Phase 1 impact",
+      // Metric (FR-023 verification): PUBLIC. On Klaviyo's Q2 2024 earnings call
+      // (2024-08-07) CFO Amanda Whalen said France was "our fastest-growing
+      // country in new business in the quarter, up more than 65%" quarter over
+      // quarter, and credited the French-language product launch ("we have seen
+      // extremely strong trends there as a result"). Directly on-point here.
+      body: [
+        [
+          "French shipped first, on its own, in Q2 2024, the first non-English language the platform had ever offered. It ran directly on the model above: an organization default, personal overrides, and formatting that followed the ",
+          { term: "locale" },
+          " instead of the source string.",
+        ],
+        "The response was immediate. On its Q2 2024 earnings call, Klaviyo named France its fastest-growing country in new business that quarter and credited the French-language launch.",
       ],
+      callout: {
+        figure: "65%",
+        text: "quarter-over-quarter growth in new business from France the quarter the French product shipped.",
+        source: {
+          label: "Klaviyo Q2 2024 earnings call",
+          href: "https://www.fool.com/earnings/call-transcripts/2024/08/07/klaviyo-kvyo-q2-2024-earnings-call-transcript/",
+        },
+      },
+    },
+    {
+      kind: "prose",
+      id: "phase-2-designs",
+      heading: "Phase 2 Designs",
+      navLabel: "Phase 2 designs",
+      body: [
+        "With French proven, the work expanded on two fronts. Five more languages, German, Portuguese, Korean, Spanish, and Italian, scaled together to reach seven by Q3 2024.",
+        [
+          "The larger design problem was the second front: letting customers localize their own content for their own audiences, not just the app interface they worked in. The clearest case is email, where a marketer writes one campaign for a multilingual list and needs every ",
+          { term: "translation" },
+          " to stay in sync with the source as it changes. The flow below walks through it, from choosing languages to catching a translation gone stale.",
+        ],
+      ],
+    },
+    {
+      kind: "email-flow",
+      id: "email-flow",
+      heading: "Email translation flow",
     },
     {
       kind: "prose",
       id: "impact",
-      heading: "Impact",
+      heading: "Overall impact",
+      navLabel: "Overall impact",
+      // Metrics (FR-023 verification), all from Klaviyo's public filings/earnings:
+      // - International GROWTH: ~42% YoY in 2025 (the hero figure), per the
+      //   FY2025 / Q4 2025 call (reported 2026-02-11). NOTE: the corpus draft
+      //   mislabeled this ~42% growth rate as a "41.5% share" — the error that
+      //   prompted this pass.
+      // - International SHARE: the 424B4 prospectus put revenue outside the
+      //   Americas at 29.3% (FY2022) / 30.7% (H1 2023); the same Q4 2025 call
+      //   put it at "more than one-third" (~34%).
+      // - Country new business: France/Germany/Spain each >100% YoY in Q1 2025,
+      //   stated on the Q1 2025 earnings call.
       body: [
-        // NOTE (T025, pending Jason): the candidate figure discussed at spec
-        // time — an international revenue share moving 31% -> 41.5% — is
-        // NOT currently verifiable against any live published article
-        // (checked 2026-08-30: it does not appear on mrjasongrant.substack.com's
-        // 12 published posts, nor in the public work.ts Klaviyo entry). Per
-        // FR-023, an unverified figure is dropped rather than approximated.
-        // This section is qualitative-only until Jason confirms a source or
-        // approves a different quantified figure — flagged in the
-        // implementation report rather than guessed.
-        "The kickoff audit turned a vague company expectation into a concrete, shared punch list. The guidelines above were adopted across the design team, not just documented. The organization/personal/localization settings model and the translation flow shipped as the structural foundation the rest of internationalization work built on.",
-        "The team itself was new: Design Systems, Content Design, and Internationalization were all built from zero during this window, alongside the Ascent design system the guidelines above live in.",
+        "Internationalization shipped as a foundation, not a feature, and the results compounded from there.",
+        [
+          "France, Germany, and Spain each grew new business more than 100% year over year in ",
+          {
+            href: "https://finance.yahoo.com/news/klaviyo-inc-kvyo-q1-2025-072159084.html",
+            text: "Q1 2025",
+          },
+          ". Revenue from outside the Americas climbed from about 31% of the total at the ",
+          {
+            href: "https://www.sec.gov/Archives/edgar/data/1835830/000162828023032570/klaviyoincfinalprospectus.htm",
+            text: "IPO",
+          },
+          " to more than a third by the end of 2025.",
+        ],
+        "Seven languages were live by Q3 2024, less than a year after the product was English-only. The teams were new too: Design Systems, Content Design, and Internationalization were all built from zero across this window, alongside the Ascent design system the guidelines above live in.",
       ],
+      callout: {
+        figure: "~42%",
+        text: "year-over-year growth in international revenue in 2025, outpacing the overall business.",
+        source: {
+          label: "Klaviyo Q4 2025 earnings call",
+          href: "https://www.fool.com/earnings/call-transcripts/2026/02/11/klaviyo-kvyo-q4-2025-earnings-call-transcript/",
+        },
+      },
     },
   ],
 };

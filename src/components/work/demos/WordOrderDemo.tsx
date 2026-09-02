@@ -38,15 +38,18 @@ export function WordOrderDemo() {
           <div className={styles.example}>
             <div className={styles.ui}>
               <span className={styles.fieldLabel}>{I.label[lang]}</span>
+              <span className={styles.fieldHelp}>{I.labelHelp[lang]}</span>
               <span className={styles.inputRow}>
                 <span className={styles.miniInput}>{I.control}</span>
                 <span className={styles.unit}>{I.unit[lang]}</span>
               </span>
             </div>
-            <p className={styles.verdict} data-kind="do">
-              <span aria-hidden="true">✓</span> Do
-            </p>
-            <p className={styles.caption}>Label the input and keep it out of the sentence.</p>
+            <div className={styles.verdictRow}>
+              <p className={styles.verdict} data-kind="do">
+                <span aria-hidden="true">✓</span> Do
+              </p>
+              <p className={styles.caption}>Labeled, out of the sentence.</p>
+            </div>
           </div>
 
           <div className={styles.example}>
@@ -56,10 +59,12 @@ export function WordOrderDemo() {
                 {I.dont[lang].after}
               </p>
             </div>
-            <p className={styles.verdict} data-kind="dont">
-              <span aria-hidden="true">✗</span> Don&rsquo;t
-            </p>
-            <p className={styles.caption}>Embed the input and word order strands it.</p>
+            <div className={styles.verdictRow}>
+              <p className={styles.verdict} data-kind="dont">
+                <span aria-hidden="true">✗</span> Don&rsquo;t
+              </p>
+              <p className={styles.caption}>Word order strands it.</p>
+            </div>
           </div>
         </div>
         <p className={styles.helper} aria-live="polite">
@@ -81,10 +86,12 @@ export function WordOrderDemo() {
                 <FiArrowUpRight aria-hidden="true" />
               </span>
             </div>
-            <p className={styles.verdict} data-kind="do">
-              <span aria-hidden="true">✓</span> Do
-            </p>
-            <p className={styles.caption}>Keep the link on its own line.</p>
+            <div className={styles.verdictRow}>
+              <p className={styles.verdict} data-kind="do">
+                <span aria-hidden="true">✓</span> Do
+              </p>
+              <p className={styles.caption}>Link on its own line.</p>
+            </div>
           </div>
 
           <div className={styles.example}>
@@ -95,10 +102,12 @@ export function WordOrderDemo() {
                 {L.dont[lang].after}
               </p>
             </div>
-            <p className={styles.verdict} data-kind="dont">
-              <span aria-hidden="true">✗</span> Don&rsquo;t
-            </p>
-            <p className={styles.caption}>Embed the link and its text won&rsquo;t hold.</p>
+            <div className={styles.verdictRow}>
+              <p className={styles.verdict} data-kind="dont">
+                <span aria-hidden="true">✗</span> Don&rsquo;t
+              </p>
+              <p className={styles.caption}>Its text won&rsquo;t hold.</p>
+            </div>
           </div>
         </div>
         <p className={styles.helper} aria-live="polite">

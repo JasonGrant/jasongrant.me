@@ -1,0 +1,265 @@
+/* "Select languages" overlay over the recreated Klaviyo editor. Fills the
+   frame; a light scrim grays the top bar, the white panel covers the rest. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.panel {
+  position: absolute;
+  /* overlap the bottom third of the 56px top bar */
+  top: 37px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  color: #23252a;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.14);
+}
+
+/* Header (sticky so it stays while the field list scrolls) */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 28px;
+  background: #fff;
+  border-bottom: 1px solid #e6e9eb;
+}
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+.sub {
+  margin: 0;
+  font-size: 15px;
+  color: #6b7278;
+  white-space: nowrap;
+}
+.headActions {
+  display: inline-flex;
+  flex: none;
+  gap: 12px;
+}
+.cancelBtn {
+  padding: 8px 16px;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #23252a;
+}
+.translateBtn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #23252a;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Two columns */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 460px;
+  grid-template-rows: minmax(0, 1fr);
+}
+/* Only the left column scrolls; the donut card on the right stays fixed. */
+.left {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px 28px;
+}
+.right {
+  min-width: 0;
+  padding: 20px 28px;
+  background: #f6f7f8;
+  border-left: 1px solid #e6e9eb;
+}
+
+.fieldLabel {
+  margin: 0 0 7px;
+  font-size: 15px;
+  color: #23252a;
+}
+.fieldHelp {
+  margin: -3px 0 10px;
+  font-size: 14px;
+  color: #6b7278;
+}
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 0 14px;
+  margin-bottom: 20px;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #23252a;
+}
+.select svg {
+  flex: none;
+  color: #6b7278;
+  font-size: 18px;
+}
+.selectPh {
+  color: #6f757b;
+}
+
+.langList {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.langRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid #dfe3e7;
+  border-radius: 10px;
+}
+.langRowOn {
+  border-color: #2f6fd0;
+  box-shadow: inset 0 0 0 1px #2f6fd0;
+}
+.checkbox {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1.5px solid #b7bec5;
+  background: #fff;
+  color: #fff;
+  font-size: 14px;
+}
+.checkboxOn {
+  background: #2f6fd0;
+  border-color: #2f6fd0;
+}
+.langName {
+  font-size: 16px;
+  font-weight: 500;
+}
+.pct {
+  margin-left: auto;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: #eef0f1;
+  color: #5c626a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Right card + donut */
+.card {
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #e6e9eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(20, 30, 40, 0.04);
+}
+.cardTitle {
+  margin: 0 0 18px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #23252a;
+}
+.legendBox {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+}
+.donutWrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 24px auto 10px;
+}
+.donut {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#eab308 0 17%, #43a878 17% 39%, #3b7dd8 39% 67%, #e5e7eb 67% 100%);
+  -webkit-mask: radial-gradient(closest-side, transparent 63%, #000 64%);
+  mask: radial-gradient(closest-side, transparent 63%, #000 64%);
+}
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  text-align: center;
+}
+.donutPct {
+  font-size: 30px;
+  font-weight: 700;
+  color: #23252a;
+}
+.donutLabel {
+  font-size: 16px;
+  color: #6b7278;
+}
+
+@media (max-width: 860px) {
+  /* stacked: the whole panel scrolls again, left no longer scrolls alone */
+  .panel {
+    overflow-y: auto;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .left {
+    overflow-y: visible;
+  }
+  .right {
+    border-left: none;
+    border-top: 1px solid #e6e9eb;
+  }
+}

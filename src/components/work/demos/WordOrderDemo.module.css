@@ -101,6 +101,10 @@
   font-weight: 550;
   color: var(--ink);
 }
+.fieldHelp {
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
 
 .inputRow {
   display: flex;
@@ -175,6 +179,13 @@
 .verdict[data-kind="dont"] {
   background: rgba(178, 60, 40, 0.12);
   color: #b23c28;
+}
+
+.verdictRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
 }
 
 .caption {

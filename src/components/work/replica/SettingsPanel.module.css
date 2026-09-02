@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 15px 18px 13px;
+  padding: 15px 24px 13px;
   border-bottom: 1px solid var(--rf-border);
 }
 .headerText h3 {
@@ -48,7 +48,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 0 28px;
   align-items: start;
-  padding: 4px 18px 18px;
+  padding: 4px 24px 18px;
 }
 @media (max-width: 720px) {
   .body {
@@ -70,7 +70,7 @@
   }
 }
 .field {
-  padding: 12px 6px;
+  padding: 12px 0;
   border-radius: 8px;
 }
 .field.hl {
@@ -175,4 +175,76 @@
 .saveButton[data-highlighted="true"] {
   outline: 2px solid var(--rf-accent-hover);
   outline-offset: 2px;
+}
+
+/* Save-confirmation toast: a standard informational message that slides down
+   from above the card, rests over the header, then retreats. Re-keyed per save
+   so the animation replays. Light card with a teal success edge, no icon —
+   title plus a line naming what was saved. */
+.savedToast {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  width: max-content;
+  max-width: min(340px, calc(100% - 28px));
+  padding: 10px 15px;
+  text-align: left;
+  border-radius: 10px;
+  background: var(--rf-accent);
+  color: #fff;
+  box-shadow: var(--rf-elev-menu);
+  pointer-events: none;
+  animation: savedToastCycle 5s ease forwards;
+}
+.savedToastTitle {
+  font-size: 13px;
+  font-weight: 650;
+  color: #fff;
+}
+.savedToastDetail {
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.92);
+}
+@keyframes savedToastCycle {
+  0% {
+    transform: translate(-50%, -70%);
+    opacity: 0;
+  }
+  12% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  88% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -70%);
+    opacity: 0;
+  }
+}
+/* Reduced motion: no slide — hold centered and cross-fade only. */
+@keyframes savedToastFade {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .savedToast {
+    transform: translate(-50%, 0);
+    animation-name: savedToastFade;
+  }
 }

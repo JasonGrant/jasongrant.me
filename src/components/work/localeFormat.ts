@@ -53,6 +53,15 @@ function longDate(formatLocale: string, languageLocale: string): string {
   return parts.map((p) => (p.type === "month" ? month : p.value)).join("");
 }
 
+// Intl inserts locale-specific spaces — a narrow no-break space (U+202F)
+// before AM/PM, a no-break space (U+00A0) as a group separator — whose exact
+// code point can differ between the build-time Node ICU and the visitor's
+// browser ICU. That invisible difference alone fails hydration on the SSR'd
+// preview, so collapse them to a plain space on both server and client.
+function normalizeSpaces(value: string): string {
+  return value.replace(/[\u00a0\u202f\u2007\u2009]/g, " ");
+}
+
 // The six formatting elements every locale-formatting surface shows (the
 // Formatting concept demo and the settings Preview panel), computed live from
 // the visitor's own Intl implementation so both surfaces stay identical.
@@ -66,7 +75,7 @@ export function formatLocaleSamples(opts: LocaleSampleOptions): LocaleSample {
     currency,
     currencyLocale = formatLocale,
   } = opts;
-  return {
+  const raw: LocaleSample = {
     longDate: longDate(formatLocale, languageLocale),
     shortDate: new Intl.DateTimeFormat(formatLocale, {
       year: "numeric",
@@ -91,5 +100,13 @@ export function formatLocaleSamples(opts: LocaleSampleOptions): LocaleSample {
       currency,
       notation: "compact",
     }).format(F.sampleCompactCurrency),
+  };
+  return {
+    longDate: normalizeSpaces(raw.longDate),
+    shortDate: normalizeSpaces(raw.shortDate),
+    number: normalizeSpaces(raw.number),
+    percent: normalizeSpaces(raw.percent),
+    currency: normalizeSpaces(raw.currency),
+    compact: normalizeSpaces(raw.compact),
   };
 }

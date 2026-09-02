@@ -51,6 +51,9 @@
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.5;
+  /* positioning context for the save-confirmation toast (no z-index, so no
+     stacking context that would trap floating menus inside the frame) */
+  position: relative;
 }
 
 .replicaFrame * {

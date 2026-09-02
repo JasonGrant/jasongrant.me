@@ -1,0 +1,99 @@
+/* Editable email creative (Coastal Brew — fictional brand, real supplied
+   assets). Scales to its container via a container query, so the same markup
+   reads as a small template thumbnail (Page 2) and full-size in the editor
+   canvas (Page 3). Deep-teal / cream palette from the supplied logo. */
+.emailBox {
+  container-type: inline-size;
+  width: 100%;
+  background: #faf6f0;
+}
+.email {
+  font-size: clamp(8px, 2.7cqw, 16px);
+  font-family: var(--font-body);
+  color: #2a2622;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.header {
+  padding: 1.5em 1em 1.35em;
+  background: #faf6f0;
+}
+.logo {
+  display: block;
+  width: 5.67em;
+  height: auto;
+  margin: 0 auto;
+}
+
+.promo {
+  padding: 0.85em 1em;
+  background: #17505b;
+  color: #fff;
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.intro {
+  padding: 1.5em 1.2em 0.6em;
+}
+.headline {
+  margin: 0 0 0.45em;
+  font-family: var(--font-display);
+  font-size: 2em;
+  font-weight: 800;
+  line-height: 1.04;
+  color: #17505b;
+}
+.tagline {
+  display: grid;
+  gap: 0.12em;
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3em;
+  color: #17505b;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1em;
+}
+
+.ctaWrap {
+  padding: 1.5em 1em;
+  background: #faf6f0;
+}
+.cta {
+  display: inline-block;
+  padding: 0.8em 1.9em;
+  border-radius: 0.4em;
+  background: #17505b;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.footer {
+  padding: 1.6em 1em 1.9em;
+  background: #17505b;
+}
+.footerLogo {
+  display: block;
+  width: 6.5em;
+  height: auto;
+  margin: 0 auto 0.6em;
+  /* recolor the teal mark to white for the dark footer */
+  filter: brightness(0) invert(1);
+}
+.footerText {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+}

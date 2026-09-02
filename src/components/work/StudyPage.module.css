@@ -69,6 +69,30 @@
   }
 }
 
+.figure {
+  margin: var(--sp-6) 0 0;
+}
+@media (min-width: 900px) {
+  .figure {
+    width: min(1080px, calc(50vw + 264px));
+  }
+}
+.figureFrame {
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+.figureImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.figureCaption {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+}
+
 .sectionHeading {
   font-size: var(--fs-h2);
   margin-bottom: var(--sp-4);
@@ -103,10 +127,39 @@
   font-variant-numeric: tabular-nums;
 }
 
+.calloutBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
 .calloutText {
   font-size: var(--fs-body);
   line-height: 1.4;
   color: var(--ink-soft);
+}
+
+/* Small link to the figure's public source, under the completing phrase. */
+.calloutSource {
+  width: max-content;
+  max-width: 100%;
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.calloutSource:hover {
+  color: var(--accent);
+}
+
+/* Inline citation link inside prose. */
+.sourceLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sourceLink:hover {
+  text-decoration-thickness: 2px;
 }
 
 .noscriptNote {

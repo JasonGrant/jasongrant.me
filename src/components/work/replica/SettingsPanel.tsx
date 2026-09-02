@@ -2,7 +2,7 @@
 
 import { formatLocaleSamples } from "@/components/work/localeFormat";
 import type { OrgSettingsAnchorId, PersonalSettingsAnchorId } from "@/content/studies/types";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ContentLanguagePicker } from "./ContentLanguagePicker";
 import { Dropdown } from "./Dropdown";
 import { PreviewCard } from "./PreviewCard";
@@ -52,6 +52,9 @@ interface Chrome {
   selected: string;
   preview: string;
   save: string;
+  saved: string;
+  savedDetailOrg: string;
+  savedDetailPersonal: string;
   cancel: string;
   rowDateTime: string;
   rowShortDate: string;
@@ -86,6 +89,9 @@ const CHROME: Record<string, Chrome> = {
     selected: "selected",
     preview: "Preview",
     save: "Save",
+    saved: "Settings saved",
+    savedDetailOrg: "Business language, regional format, and content languages updated.",
+    savedDetailPersonal: "Language and regional format updated.",
     cancel: "Cancel",
     rowDateTime: "Date & time",
     rowShortDate: "Short date",
@@ -115,6 +121,9 @@ const CHROME: Record<string, Chrome> = {
     selected: "sélectionnée(s)",
     preview: "Aperçu",
     save: "Enregistrer",
+    saved: "Paramètres enregistrés",
+    savedDetailOrg: "Langue de l'organisation, format régional et langues de contenu mis à jour.",
+    savedDetailPersonal: "Langue et format régional mis à jour.",
     cancel: "Annuler",
     rowDateTime: "Date et heure",
     rowShortDate: "Date courte",
@@ -144,6 +153,9 @@ const CHROME: Record<string, Chrome> = {
     selected: "ausgewählt",
     preview: "Vorschau",
     save: "Speichern",
+    saved: "Einstellungen gespeichert",
+    savedDetailOrg: "Unternehmenssprache, regionales Format und Inhaltssprachen aktualisiert.",
+    savedDetailPersonal: "Sprache und regionales Format aktualisiert.",
     cancel: "Abbrechen",
     rowDateTime: "Datum und Uhrzeit",
     rowShortDate: "Kurzes Datum",
@@ -219,6 +231,16 @@ export function SettingsPanel({
   });
   const [personalOverride, setPersonalOverride] = useState<{ lang: string; fmt: string } | null>(
     null,
+  );
+  // Save confirmation toast: a nonce (0 = hidden) that re-keys the element on
+  // every save so its slide-in animation replays; a timer clears it.
+  const [savedNonce, setSavedNonce] = useState(0);
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    },
+    [],
   );
   const committed = isOrg
     ? orgCommitted
@@ -300,6 +322,9 @@ export function SettingsPanel({
     } else {
       setPersonalOverride({ lang: draftLang, fmt: draftFmt });
     }
+    setSavedNonce((n) => n + 1);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setSavedNonce(0), 5000);
   }
   function handleCancel() {
     setDraftLang(committed.lang);
@@ -309,6 +334,14 @@ export function SettingsPanel({
 
   return (
     <div className="replicaFrame">
+      {savedNonce > 0 ? (
+        <div key={savedNonce} className={styles.savedToast} role="status">
+          <span className={styles.savedToastTitle}>{t.saved}</span>
+          <span className={styles.savedToastDetail}>
+            {isOrg ? t.savedDetailOrg : t.savedDetailPersonal}
+          </span>
+        </div>
+      ) : null}
       <div className={styles.header}>
         <div className={styles.headerText}>
           <h3>{t.title}</h3>

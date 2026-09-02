@@ -12,7 +12,7 @@ export type GlossaryTermId = "i18n" | "l10n" | "globalization" | "translation" |
 // (plain string or a glossary chip standing alone) or an array of runs mixed
 // inline within one <p> (FR-015: chips appear inline at first use).
 
-export type TextRun = string | { term: GlossaryTermId };
+export type TextRun = string | { term: GlossaryTermId } | { href: string; text: string };
 export type RichText = (TextRun | TextRun[])[];
 
 // ---------------------------------------------------------------------------
@@ -95,6 +95,17 @@ export interface ProseSection {
   embedDemo?: DemoId;
   /** Deep links passed to the embedded demo's annotations. */
   embedDemoLinks?: Record<string, string>;
+  /** Optional standout stat rendered after the prose: a large figure plus a
+   *  short completing phrase (same treatment as ConceptDemoBlock.callout). */
+  callout?: { figure: string; text: string; source?: { label: string; href: string } };
+  /** Optional figure rendered after the prose, breaking out to the wide panel. */
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+    width: number;
+    height: number;
+  };
   body: RichText;
 }
 
@@ -115,7 +126,7 @@ export interface ConceptDemoBlock {
   intro: RichText;
   /** Optional standout stat rendered between the intro and the demo: a large
    *  figure plus a short completing phrase. */
-  callout?: { figure: string; text: string };
+  callout?: { figure: string; text: string; source?: { label: string; href: string } };
   /** Describes the server-rendered initial state for no-JS/noscript (FR-013). */
   staticCaption: string;
   /** Break demo only: annotation id -> block id, for FR-014's deep links. */
@@ -154,7 +165,20 @@ export type StudyWalkthroughSegment =
   | WalkthroughSegment<"personal-settings">
   | WalkthroughSegment<"email-editor">;
 
-export type ContentBlock = ProseSection | ConceptDemoBlock | StudyWalkthroughSegment;
+/** Marks where the scripted email-translation walkthrough renders. The flow's
+ *  screens and captions live in EmailTranslationFlow (study-specific), so the
+ *  block itself only carries a heading. */
+export interface EmailFlowBlock {
+  kind: "email-flow";
+  id: string;
+  heading: string;
+}
+
+export type ContentBlock =
+  | ProseSection
+  | ConceptDemoBlock
+  | StudyWalkthroughSegment
+  | EmailFlowBlock;
 
 // ---------------------------------------------------------------------------
 // Case study root

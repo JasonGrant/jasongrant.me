@@ -196,6 +196,11 @@ export const WORD_ORDER_FACTS = {
   inputs: {
     control: "5",
     label: { en: "Time window", de: "Zeitraum", fr: "Période" },
+    labelHelp: {
+      en: "Emails from the last few days",
+      de: "E-Mails der letzten Tage",
+      fr: "E-mails des derniers jours",
+    },
     unit: { en: "days", de: "Tage", fr: "jours" },
     dont: {
       en: { before: "Include emails from the last", after: "days" },
@@ -275,11 +280,39 @@ export const FORMATTING_FACTS = {
 } as const;
 
 export const FLAGS_FACTS = {
-  doRule: "Use flags to represent countries, for example in a phone-number country selector.",
-  dontRule: "Never use flags to represent a language.",
-  spanishAmbiguity: ["Spain", "Mexico", "Argentina"],
-  multilingualCountryExample: {
-    country: "Switzerland",
-    languages: ["Deutsch", "Français", "Italiano"],
+  // OK: a flag stands for a country.
+  doRule:
+    "Use a flag for a country: a phone-number country selector, a shipping destination, a store region.",
+  disputedNote:
+    "Even then, flags are political: borders and the flag that represents a region are often disputed, so a flag can still misrepresent the people you are trying to serve.",
+  // Not OK: a flag for a language. Spanish is official in 20 countries, so no
+  // single flag can stand for it.
+  spanishCountries: [
+    "Spain",
+    "Mexico",
+    "Colombia",
+    "Argentina",
+    "Peru",
+    "Venezuela",
+    "Chile",
+    "Guatemala",
+    "Ecuador",
+    "Bolivia",
+    "Cuba",
+    "Dominican Republic",
+    "Honduras",
+    "Paraguay",
+    "El Salvador",
+    "Nicaragua",
+    "Costa Rica",
+    "Panama",
+    "Uruguay",
+    "Equatorial Guinea",
+  ],
+  spanishWhy:
+    "Spanish is official in 20 countries. Any flag you pick badges one of them and tells the other nineteen they are on the wrong site.",
+  switzerland: {
+    languages: ["Deutsch", "Français", "Italiano", "Rumantsch"],
+    note: "Switzerland has four official languages: German (about 63%), French (about 23%), Italian (about 8%), and Romansh (under 1%). The Swiss flag points to none of them.",
   },
 } as const;

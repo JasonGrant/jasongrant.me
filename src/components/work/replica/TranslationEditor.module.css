@@ -1,0 +1,336 @@
+/* Translation editor overlay over the recreated Klaviyo editor. Same overlay
+   scaffolding as TranslateOverlay: dark scrim, rounded panel overlapping the
+   header's bottom third. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.panel {
+  position: absolute;
+  top: 37px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  color: #23252a;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.14);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 28px;
+  border-bottom: 1px solid #e6e9eb;
+}
+.title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+}
+.doneBtn {
+  padding: 9px 22px;
+  border-radius: 8px;
+  background: #23252a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Two columns */
+.body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  grid-template-rows: minmax(0, 1fr);
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px 24px 28px;
+  background: #f6f7f8;
+  border-left: 1px solid #e6e9eb;
+}
+
+/* Left toolbar: language + pager */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px 10px;
+}
+.langSelect {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.langSelect svg {
+  color: #6b7278;
+  font-size: 16px;
+}
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.pagerBtn {
+  display: grid;
+  place-items: center;
+  color: #6b7278;
+  font-size: 18px;
+}
+.pagerText {
+  font-size: 14px;
+  color: #23252a;
+}
+
+/* Table: scrolls under the fixed language + pager toolbar */
+.table {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  padding: 14px 24px;
+  border-top: 1px solid #eef0f1;
+}
+.cellLabel {
+  display: grid;
+  gap: 2px;
+}
+.rowLabel {
+  font-size: 15px;
+  color: #23252a;
+}
+.rowSub {
+  font-size: 13px;
+  color: #6b7278;
+}
+.cellSource,
+.cellTarget {
+  min-width: 0;
+}
+.sourceText,
+.targetText {
+  display: block;
+  min-width: 0;
+  font-size: 14px;
+  color: #23252a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.emptyText {
+  font-size: 14px;
+  font-style: italic;
+  color: #6f757b;
+}
+.mono {
+  display: block;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: #3a3f45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.input {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #23252a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.targetEdit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.targetEdit > span:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.pencil {
+  flex: none;
+  color: #6b7278;
+  font-size: 17px;
+}
+
+/* Image field cell */
+.imageCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.thumb {
+  flex: none;
+  width: 44px;
+  height: auto;
+  padding: 3px;
+  border: 1px solid #e0e3e6;
+  border-radius: 6px;
+  background: #fff;
+}
+.imageMeta {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.imageName {
+  font-size: 14px;
+  color: #23252a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.imageDims {
+  font-size: 12.5px;
+  color: #6b7278;
+}
+
+/* Right: preview */
+.viewToggle {
+  display: inline-flex;
+  flex: none;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.viewBtn {
+  display: grid;
+  place-items: center;
+  padding: 8px 18px;
+  color: #6b7278;
+  font-size: 16px;
+}
+.viewOn {
+  background: #eef1f3;
+  color: #23252a;
+}
+.previewFrame {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(20, 30, 40, 0.12);
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  /* stacked: the whole panel scrolls, the toolbar is no longer pinned */
+  .panel {
+    overflow-y: auto;
+  }
+  .body {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .table {
+    flex: none;
+    overflow-y: visible;
+  }
+  .right {
+    overflow-y: visible;
+    border-left: none;
+    border-top: 1px solid #e6e9eb;
+  }
+}
+
+/* Stale-translation banner (inline in the header) + the flagged row (source
+   changed after translating) */
+.staleBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 14px;
+  background: #fdf7e0;
+  border: 1px solid #efe2b8;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #5b4a1a;
+}
+.staleText {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.staleWarn {
+  flex: none;
+  color: #d99a0b;
+  font-size: 18px;
+}
+.updateBtn {
+  margin-left: auto;
+  flex: none;
+  padding: 8px 14px;
+  border: 1px solid #cfd4d8;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #23252a;
+  white-space: nowrap;
+}
+.rowStale {
+  background: #fdf7e0;
+}
+.menuBtn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dfe3e7;
+  border-radius: 7px;
+  background: #fff;
+  color: #6b7278;
+  font-size: 16px;
+}

@@ -1,6 +1,62 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.5 → 1.2.6
+Rationale: MINOR. Relaxes the Performance category of the Lighthouse gate
+  (Principle II) for the interactive case-study routes (`/work/[slug]`) from
+  95+ to 90+. These unlisted, noindexed routes recreate full third-party
+  product UIs (a campaign builder, an email editor, a translation flow) and
+  carry far more markup and CSS than the three core pages, which makes a 95
+  mobile Performance score impractical without dropping the recreations.
+  Accessibility and Best Practices stay 95+, CLS MUST remain 0, SEO stays off
+  (noindex), and every non-`/work` route holds the full 95+ bar on all four
+  categories.
+
+Modified principles:
+  - II. Performance Budget (Lighthouse 95+) — the 95+ requirement gains a named
+    exception: `/work/[slug]` routes target Performance 90+ only; all other
+    categories, CLS 0, and all non-`/work` routes are unchanged.
+
+Added sections: None. Removed sections: None. Removed rules: None.
+
+Templates requiring updates:
+  - ✅ lighthouserc.desktop.json, lighthouserc.mobile.json — the `/work`
+    Performance assertion lowered to 0.90; core-page assertions and every other
+    category assertion unchanged.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.5)
+==================
+Version change: 1.2.4 → 1.2.5
+Rationale: MINOR. Adds a narrow, owner-cleared exception to the "Recreated
+  content, sanitized data" clause of the Unlisted case-studies exception
+  (Principle V): the content owner MAY include a real artifact of their own
+  work (for example, an internal audit spreadsheet) on an unlisted, noindexed
+  `/work/[slug]` route when they have explicitly cleared it for public release
+  AND it carries no third-party personal data or customer PII. The default
+  (purpose-built recreations, no proprietary screenshots, fictional data) is
+  unchanged. Public, listed routes are unaffected — the carve-out lives
+  entirely inside the Unlisted `/work` exception and never relaxes the rules
+  for crawlable, indexed pages.
+
+Modified principles:
+  - V. Site Structure & Content Integrity — the Unlisted case-studies named
+    exception: the no-real-screenshots rule now carries a narrow owner-cleared
+    carve-out (a real artifact of the owner's own work, cleared for release,
+    no customer PII).
+
+Added sections: None. Removed sections: None. Removed rules: None — the
+  default no-proprietary-screenshots and fictional-data rules are preserved.
+
+Templates requiring updates:
+  - ✅ specs/002-interactive-case-studies/* — recreation notes unaffected;
+    the Pre-IPO audit figure is the first use of this carve-out.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.4)
+==================
 Version change: 1.2.3 → 1.2.4
 Rationale: MINOR. Scopes the "Recreated content only" clause of the Unlisted
   interactive case-studies exception (Principle V) so a recreation on an
@@ -281,6 +337,14 @@ Every shipped page MUST score 95 or higher on all four Lighthouse categories
 (Performance, Accessibility, Best Practices, SEO) in a production build,
 verified before any release that changes user-visible code.
 
+Named exception — Interactive case-study routes (`/work/[slug]`): these
+unlisted, noindexed routes recreate full third-party product UIs (a campaign
+builder, an email editor, a translation flow) and carry far more markup and CSS
+than the three core pages. On these routes the **Performance** category target
+is relaxed to **90 or higher**; Accessibility and Best Practices stay 95+, SEO
+is `off` (per the noindex resolution in v1.2.1), and CLS MUST remain 0. Every
+other route holds the full 95+ bar on all four categories.
+
 Concrete requirements:
 
 - Cumulative Layout Shift (CLS) MUST be 0 on all pages. Fonts MUST be
@@ -500,9 +564,14 @@ violating the page-count rule, IF AND ONLY IF all of the following hold:
   noindexed — outside the public, crawlable IA — a recreation MAY carry the
   real operator's branding (logo, product chrome) to show the work in its
   true context. Actual proprietary screenshots, pixels, and real customer
-  data still MUST NOT be published. If a study is later surfaced under
-  *Deliberate publicizing* below, its recreations MUST first be re-sanitized
-  to a fictional brand.
+  data still MUST NOT be published, with one narrow exception on these
+  unlisted routes: the content owner MAY include a real artifact of their own
+  work (for example, an internal audit) when they have explicitly cleared it
+  for public release AND it carries no third-party personal data or customer
+  PII. If a study is later
+  surfaced under *Deliberate publicizing* below, its recreations MUST first be
+  re-sanitized to a fictional brand, and any owner-cleared real artifact MUST
+  be re-reviewed for the wider audience.
 - *Deliberate publicizing*: an individual case study MAY later be linked
   and/or indexed as a per-study content decision recorded in the PR that
   makes the change. The default for every new study remains unlisted and
@@ -608,4 +677,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.2.4 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-08-31
+**Version**: 1.2.6 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-09-02
