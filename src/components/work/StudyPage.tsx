@@ -1,5 +1,13 @@
 import { GlossaryChip } from "@/components/work/GlossaryChip";
 import { MilestoneTimeline } from "@/components/work/Timeline";
+import { AccordionExample } from "@/components/work/app-shell/AccordionExample";
+import { ContextStrip } from "@/components/work/app-shell/ContextStrip";
+import { DesignHandoffScreens } from "@/components/work/app-shell/DesignHandoffScreens";
+import { NavFootprintBefore } from "@/components/work/app-shell/NavFootprintBefore";
+import { OptionsExplored } from "@/components/work/app-shell/OptionsExplored";
+import { RiskTiers } from "@/components/work/app-shell/RiskTiers";
+import { ShellAfterScreen } from "@/components/work/app-shell/ShellAfterScreen";
+import { ShellBeforeScreens } from "@/components/work/app-shell/ShellBeforeScreens";
 import { FlagsRuleDemo } from "@/components/work/demos/FlagsRuleDemo";
 import { FormattingDemo } from "@/components/work/demos/FormattingDemo";
 import { LanguageBreakDemo } from "@/components/work/demos/LanguageBreakDemo";
@@ -13,6 +21,8 @@ import type {
   ConceptDemoBlock,
   DemoId,
   EmailFlowBlock,
+  FigureBlock,
+  FigureId,
   Milestone,
   ProseSection,
   RichText,
@@ -35,9 +45,24 @@ const DEMO_COMPONENTS: Record<
   "flags-rule": FlagsRuleDemo,
 };
 
+// App Shell study (feature 007) figures — static recreations + annotated
+// diagrams. Each reads its data from the shared fixture / constants, so the
+// map values take no props.
+const FIGURE_COMPONENTS: Record<FigureId, ComponentType> = {
+  "context-strip": ContextStrip,
+  "shell-before": ShellBeforeScreens,
+  "accordion-example": AccordionExample,
+  "nav-footprint-before": NavFootprintBefore,
+  "options-explored": OptionsExplored,
+  "design-handoff": DesignHandoffScreens,
+  "shell-after": ShellAfterScreen,
+  "risk-tiers": RiskTiers,
+};
+
 function renderRun(run: TextRun, key: number) {
   if (typeof run === "string") return <span key={key}>{run}</span>;
   if ("term" in run) return <GlossaryChip key={key} term={run.term} />;
+  if ("em" in run) return <em key={key}>{run.em}</em>;
   return (
     <a
       key={key}
@@ -60,9 +85,28 @@ function renderRichText(body: RichText) {
         ? firstRun.slice(0, 32)
         : "term" in firstRun
           ? firstRun.term
-          : firstRun.href;
+          : "em" in firstRun
+            ? firstRun.em.slice(0, 32)
+            : firstRun.href;
     return <p key={key}>{runs.map(renderRun)}</p>;
   });
+}
+
+// Inserts an <h3> between two body paragraphs (see ProseSection.subheading) —
+// a secondary point that earns its own label without breaking out to a new
+// top-level section.
+function renderBody(body: RichText, subheading: ProseSection["subheading"]) {
+  const paragraphs = renderRichText(body);
+  if (!subheading) return paragraphs;
+  const result = paragraphs.slice();
+  result.splice(
+    subheading.afterParagraph + 1,
+    0,
+    <h3 key="subheading" className={styles.subheading}>
+      {subheading.text}
+    </h3>,
+  );
+  return result;
 }
 
 // Standout stat: a large figure plus a completing phrase, with an optional
@@ -96,12 +140,24 @@ function ProseBlock({
   milestones: readonly Milestone[];
 }) {
   const EmbeddedDemo = block.embedDemo ? DEMO_COMPONENTS[block.embedDemo] : null;
-  return (
-    <section id={block.id} className={styles.section} aria-labelledby={`${block.id}-heading`}>
-      <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
-        {block.heading}
-      </h2>
-      <div className={styles.body}>{renderRichText(block.body)}</div>
+  const MidFigure = block.midFigure ? FIGURE_COMPONENTS[block.midFigure.figure] : null;
+
+  const mainContent = (
+    <>
+      <div className={styles.body}>{renderBody(block.body, block.subheading)}</div>
+      {MidFigure ? (
+        <div className={styles.midFigure}>
+          <MidFigure />
+          <p className={styles.srOnly}>{block.midFigure?.staticDescription}</p>
+        </div>
+      ) : null}
+      {block.list ? (
+        <ul className={styles.list}>
+          {block.list.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
       {block.callout ? <Callout callout={block.callout} /> : null}
       {block.image ? (
         <figure className={styles.figure}>
@@ -126,6 +182,37 @@ function ProseBlock({
           <EmbeddedDemo annotationLinks={block.embedDemoLinks} />
         </div>
       ) : null}
+    </>
+  );
+
+  if (block.sideFigure) {
+    const SideFigure = FIGURE_COMPONENTS[block.sideFigure.figure];
+    return (
+      <section
+        id={block.id}
+        className={`${styles.section} ${styles.wide}`}
+        aria-labelledby={`${block.id}-heading`}
+      >
+        <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
+          {block.heading}
+        </h2>
+        <div className={styles.withSideFigure}>
+          <div className={styles.withSideFigureMain}>{mainContent}</div>
+          <div className={styles.withSideFigureAside}>
+            <SideFigure />
+            <p className={styles.srOnly}>{block.sideFigure.staticDescription}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id={block.id} className={styles.section} aria-labelledby={`${block.id}-heading`}>
+      <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
+        {block.heading}
+      </h2>
+      {mainContent}
     </section>
   );
 }
@@ -185,6 +272,30 @@ function WalkthroughBlock({
   );
 }
 
+function FigureSection({ block }: { block: FigureBlock }) {
+  const Figure = FIGURE_COMPONENTS[block.figure];
+  return (
+    <section
+      id={block.id}
+      className={`${styles.section} ${styles.wide} ${block.heading ? "" : styles.attached}`}
+      aria-labelledby={block.heading ? `${block.id}-heading` : undefined}
+    >
+      {block.heading ? (
+        <h2 id={`${block.id}-heading`} className={styles.sectionHeading}>
+          {block.heading}
+        </h2>
+      ) : null}
+      {block.intro ? <div className={styles.demoIntro}>{renderRichText(block.intro)}</div> : null}
+      {block.callout ? <Callout callout={block.callout} /> : null}
+      <div className={styles.figureBlock}>
+        <Figure />
+      </div>
+      {block.caption ? <p className={styles.figureBlockCaption}>{block.caption}</p> : null}
+      <p className={styles.srOnly}>{block.staticDescription}</p>
+    </section>
+  );
+}
+
 function EmailFlowSection({ block }: { block: EmailFlowBlock }) {
   return (
     <section
@@ -212,11 +323,14 @@ export function StudyPage({ study }: { study: CaseStudy }) {
     ? reduceSettingsSteps(orgSegment.steps, orgSegment.steps.length - 1).localizationLanguages
     : [];
 
-  // Meta row shows only the span (first to last milestone); the full
-  // milestone breakdown lives in the Overview timeline below.
+  // Meta row shows only the span (first to last milestone) unless the study
+  // overrides it; the full milestone breakdown lives in the Overview timeline
+  // below regardless.
   const firstMilestone = study.milestones[0];
   const lastMilestone = study.milestones[study.milestones.length - 1];
-  const timelineRange = `${firstMilestone.quarter} ${firstMilestone.year} to ${lastMilestone.quarter} ${lastMilestone.year}`;
+  const timelineRange =
+    study.timelineLabel ??
+    `${firstMilestone.quarter} ${firstMilestone.year} to ${lastMilestone.quarter} ${lastMilestone.year}`;
 
   return (
     <article className={styles.page}>
@@ -235,6 +349,7 @@ export function StudyPage({ study }: { study: CaseStudy }) {
         if (block.kind === "prose")
           return <ProseBlock key={block.id} block={block} milestones={study.milestones} />;
         if (block.kind === "demo") return <DemoBlock key={block.id} block={block} />;
+        if (block.kind === "figure") return <FigureSection key={block.id} block={block} />;
         if (block.kind === "email-flow") return <EmailFlowSection key={block.id} block={block} />;
         return (
           <WalkthroughBlock

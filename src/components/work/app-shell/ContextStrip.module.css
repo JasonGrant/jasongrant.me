@@ -1,0 +1,119 @@
+/* Flat sequence strip on the dark site page. Hairline borders + tone only —
+   no shadows, no gradients (sitewide strict-flat ban). */
+
+.wrap {
+  margin: var(--sp-6) 0 0;
+}
+
+.strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-4);
+  /* Grid items otherwise use content's min-content size as a width floor,
+     which can pull one column wider than its 1fr share — this keeps all
+     four columns genuinely equal regardless of title length. */
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  height: 100%;
+  padding: var(--sp-4);
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.cardAccent {
+  border-color: var(--accent);
+}
+
+.quarter {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.titleAccent {
+  color: var(--accent);
+}
+
+.line {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Sequence connector — arrow between steps. On mobile it points down. */
+.connector {
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-mute);
+  transform: rotate(90deg);
+}
+
+.caption {
+  max-width: 68ch;
+  margin: var(--sp-5) 0 0;
+  font-size: var(--fs-meta);
+  line-height: 1.6;
+  color: var(--ink-mute);
+}
+
+@media (min-width: 640px) {
+  .strip {
+    grid-template-columns: repeat(4, 1fr);
+    /* Wider than the base --sp-4: the connector arrow is centered in this
+       gap (below), and --sp-4 isn't wide enough to hold it without spilling
+       onto the next card. */
+    gap: var(--sp-6);
+    align-items: stretch;
+  }
+
+  .item {
+    /* The connector is taken out of flow (below) so it can't steal width
+       from the card — every card fills its full grid-column share. */
+    position: relative;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .connector {
+    position: absolute;
+    top: 50%;
+    /* left:100% anchors to the item's right edge — the START of the gap,
+       not its middle. The transform centers the connector on the gap's true
+       midpoint regardless of its own rendered width: -50% self-centers the
+       box, then the fixed offset shifts it the rest of the way to sp-6/2. */
+    left: 100%;
+    padding: 0;
+    transform: translate(calc(var(--sp-6) / 2 - 50%), -50%);
+  }
+}

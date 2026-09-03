@@ -1,18 +1,20 @@
 #!/usr/bin/env node
+import AxeBuilder from "@axe-core/playwright";
 // Run axe-core via Playwright's bundled Chromium so the browser is
 // version-locked to whatever this script depends on, not the runner's
 // system Chrome. Fails the process on any WCAG 2.1 AA violation.
 import { chromium } from "playwright";
-import AxeBuilder from "@axe-core/playwright";
 
 const URLS = [
   "http://localhost:3000/",
   "http://localhost:3000/experience",
   "http://localhost:3000/writing",
   "http://localhost:3000/colophon",
-  // Unlisted case-study route (constitution v1.2.1: unlisted routes are
-  // shipped pages for every gate). See specs/002-interactive-case-studies/.
+  // Unlisted case-study routes (constitution: unlisted routes are shipped
+  // pages for every gate). See specs/002-interactive-case-studies/ and
+  // specs/007-app-shell-case-study/.
   "http://localhost:3000/work/internationalization",
+  "http://localhost:3000/work/app-shell",
 ];
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];

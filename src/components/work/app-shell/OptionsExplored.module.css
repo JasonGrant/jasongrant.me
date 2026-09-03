@@ -1,0 +1,250 @@
+/* Flat, schematic figure on the dark site page. Hairlines + tone only — no
+   shadows, no gradients (sitewide flat ban). */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--rule);
+}
+.option:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+@media (min-width: 720px) {
+  .option {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+}
+
+.optionMain {
+  min-width: 0;
+}
+
+.optionTitle {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.optionDesc {
+  margin: 0 0 var(--sp-4);
+  max-width: 60ch;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.listsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+@media (max-width: 480px) {
+  .listsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listHeading {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.prosList,
+.consList {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: disc; /* reset.css zeroes ul/ol list-style globally */
+}
+.prosList li,
+.consList li {
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.prosList li::marker {
+  color: var(--accent);
+}
+.consList li::marker {
+  color: var(--ink-mute);
+}
+
+.criteriaList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: var(--sp-4) 0 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.criteriaList li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.criteriaLabel {
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Verdict pills — matches the Do/Don't badge treatment from the
+   Internationalization study's WordOrderDemo, retuned for this page's dark
+   surface (soft-tinted pill + bright saturated text, same shape/weight). */
+.pill {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pillDo {
+  background: var(--accent-soft);
+  /* --accent fails 4.5:1 on the (now solid) --accent-soft background;
+     --accent-strong is the token built for exactly this case. */
+  color: var(--accent-strong);
+}
+
+.pillDont {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+}
+
+.optionAside {
+  min-width: 0;
+}
+
+/* ── Schematic diagrams ───────────────────────────────────────────────── */
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Accordion variant — the open row shows content and actions pinned to the
+   top of the box (not centered), illustrating the con that they aren't
+   separated. */
+.accHeader {
+  flex: none;
+  height: 26px;
+  margin: 3px var(--sp-2) 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-2);
+  border: 1px solid var(--ink);
+}
+.accHeaderOpen {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 3px var(--sp-2);
+  padding: var(--sp-2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  background: var(--accent-soft);
+  border: 1px solid var(--ink);
+}
+.accActions {
+  /* No opacity reduction: a de-emphasized "Actions" would also fail 4.5:1 on
+     the (now solid) --accent-soft background, and full-strength both ways
+     better illustrates the con this diagram is making (content and actions
+     aren't visually separated). */
+  flex: none;
+}
+
+/* Vertical-buttons variant — a full-width Details/Actions header spans the
+   top (over both the nav rail and the content), with a square icon rail
+   (the icons themselves ship later) below it beside the content. */
+.contentHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-2);
+  border-bottom: 1px solid var(--ink);
+}
+.diagramBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+.iconRail {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 10%;
+  padding: var(--sp-2) 6px;
+  gap: 6px;
+  border-right: 1px solid var(--ink);
+}
+.iconBtn {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--ink);
+}
+.btnContent {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--sp-2);
+  background: var(--accent-soft);
+}
+
+/* Dropdown variant — actions sit in the header, far right of the control. */
+.ddHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-2);
+  border-bottom: 1px solid var(--ink);
+}
+.ddControl {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid var(--ink);
+}
+.ddContent {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--sp-2);
+  background: var(--accent-soft);
+}

@@ -18,7 +18,7 @@
   /* Accent — teal, tuned for warm dark */
   --accent: #5ecbcb; /* oklch(0.78 0.10 195) */
   --accent-strong: #7ddada; /* oklch(0.84 0.10 195) */
-  --accent-soft: rgb(94 203 203 / 0.14); /* --accent @ 0.14 */
+  --accent-soft: #445757;
 
   /* Type stack — references next/font/google CSS variables set in src/lib/fonts.ts */
   --font-display: var(--font-petrona, "Times New Roman", serif);

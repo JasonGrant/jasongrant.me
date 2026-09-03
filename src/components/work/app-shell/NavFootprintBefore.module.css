@@ -1,0 +1,87 @@
+/* Flat, schematic companion figure on the dark site page. Hairlines + tone
+   only: no shadows, no gradients (sitewide flat ban). Compact — box on the
+   left, stats on the right — not the full breakout width. */
+
+.root {
+  max-width: 480px;
+  margin: var(--sp-6) 0 0;
+}
+
+.eyebrow {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+/* Schematic page rectangle: ~16:10, nav zones shaded proportionally —
+   matches NavFootprintDiagram's Before state exactly. */
+.screen {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.topBar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 7%;
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--ink);
+}
+
+.rail {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 16%;
+  background: var(--accent-soft);
+  border-right: 1px solid var(--ink);
+}
+
+.stats {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.figure {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 0.95;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.note {
+  margin: var(--sp-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

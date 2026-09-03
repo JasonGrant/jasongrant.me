@@ -1,0 +1,55 @@
+/* Flat risk-tier figure on the dark site page. Cards are visually uniform —
+   no accent-colored highlight; the tier is carried by the label text alone. */
+
+.wrap {
+  margin: var(--sp-6) 0 0;
+}
+
+.tiers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.line {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 640px) {
+  .tiers {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+}

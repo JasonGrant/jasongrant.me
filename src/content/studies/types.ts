@@ -12,7 +12,11 @@ export type GlossaryTermId = "i18n" | "l10n" | "globalization" | "translation" |
 // (plain string or a glossary chip standing alone) or an array of runs mixed
 // inline within one <p> (FR-015: chips appear inline at first use).
 
-export type TextRun = string | { term: GlossaryTermId } | { href: string; text: string };
+export type TextRun =
+  | string
+  | { term: GlossaryTermId }
+  | { href: string; text: string }
+  | { em: string };
 export type RichText = (TextRun | TextRun[])[];
 
 // ---------------------------------------------------------------------------
@@ -106,6 +110,24 @@ export interface ProseSection {
     width: number;
     height: number;
   };
+  /** Optional figure rendered between the prose and the list — in the main
+   *  (left) column, not beside it like sideFigure. For a compact figure that
+   *  belongs right where a specific claim lands, ahead of the list that
+   *  follows it. */
+  midFigure?: { figure: FigureId; staticDescription: string };
+  /** Optional <h3> inserted between two of this section's body paragraphs —
+   *  for a secondary point that deserves its own label without breaking out
+   *  to a new top-level section. `afterParagraph` is the 0-based index of the
+   *  paragraph it follows (0 = right after the first paragraph). */
+  subheading?: { text: string; afterParagraph: number };
+  /** Optional bullet list rendered after the prose (before callout/image), as
+   *  a real <ul>/<li> — plain strings, no inline runs. */
+  list?: string[];
+  /** Optional figure rendered BESIDE the prose (right column, breaking the
+   *  section out to the wide breakout width) rather than stacked below it —
+   *  for a compact illustration that supports the argument in place, next to
+   *  the text making it. Stacks below on narrow widths. */
+  sideFigure?: { figure: FigureId; staticDescription: string };
   body: RichText;
 }
 
@@ -174,11 +196,53 @@ export interface EmailFlowBlock {
   heading: string;
 }
 
+// ---------------------------------------------------------------------------
+// Figure blocks (App Shell study, feature 007)
+//
+// A generic block that names a recreated/diagram figure the renderer looks up
+// in a registry — the same shape as `DemoId`/`embedDemo`, so a new study means
+// new figure ids + components, not a fork of StudyPage. Figures are
+// static-first (server-rendered final state); animation, if any, is
+// progressive enhancement gated on reduced motion (FR-019a).
+
+export type AppShellFigureId =
+  | "context-strip" // four-step sequenced thumbnails (beat 1)
+  | "shell-before" // recreated accordion shell, cramped/dated (beat 2/3)
+  | "accordion-example" // labeled single-panel illustration, beside the problem bullets (beat 2)
+  | "nav-footprint-before" // compact standalone 10% panel, beside the problem bullets (beat 2)
+  | "options-explored" // three explored options, each with pros/cons + criteria (beat 2b)
+  | "design-handoff" // real design-system spec exports, stepped through (beat 2c)
+  | "shell-after" // recreated rail + details bar, resolved (beat 3)
+  | "risk-tiers"; // high / medium / low positional-memory illustration (beat 4)
+
+/** Widen this union as future studies add figures. */
+export type FigureId = AppShellFigureId;
+
+export interface FigureBlock {
+  kind: "figure";
+  id: string;
+  figure: FigureId;
+  /** Optional section heading; when set, the block gets a rail-visible <h2>. */
+  heading?: string;
+  /** Optional terse label for the section rail (only meaningful with heading). */
+  navLabel?: string;
+  /** Rendered above the figure at the reading measure. */
+  intro?: RichText;
+  /** Standout stat — reuses the callout treatment (e.g. the two headline numbers). */
+  callout?: { figure: string; text: string; source?: { label: string; href: string } };
+  /** Figure caption, rendered below at the reading measure. */
+  caption?: string;
+  /** Non-visual equivalent for no-JS / assistive tech (FR-019a): the
+   *  before/after contrast and the exact numbers in words. Required. */
+  staticDescription: string;
+}
+
 export type ContentBlock =
   | ProseSection
   | ConceptDemoBlock
   | StudyWalkthroughSegment
-  | EmailFlowBlock;
+  | EmailFlowBlock
+  | FigureBlock;
 
 // ---------------------------------------------------------------------------
 // Case study root
@@ -191,6 +255,9 @@ export interface CaseStudy {
   listed: boolean;
   company: string;
   role: string;
+  /** Optional override for the meta row's Timeline value; defaults to the
+   *  computed "Q# YYYY to Q# YYYY" span across all milestones. */
+  timelineLabel?: string;
   milestones: readonly Milestone[];
   blocks: ContentBlock[];
 }
