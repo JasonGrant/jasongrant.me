@@ -126,7 +126,9 @@
 
 .pillDo {
   background: var(--accent-soft);
-  color: var(--accent);
+  /* --accent fails 4.5:1 on the (now solid) --accent-soft background;
+     --accent-strong is the token built for exactly this case. */
+  color: var(--accent-strong);
 }
 
 .pillDont {
@@ -180,8 +182,11 @@
   border: 1px solid var(--ink);
 }
 .accActions {
+  /* No opacity reduction: a de-emphasized "Actions" would also fail 4.5:1 on
+     the (now solid) --accent-soft background, and full-strength both ways
+     better illustrates the con this diagram is making (content and actions
+     aren't visually separated). */
   flex: none;
-  opacity: 0.7;
 }
 
 /* Vertical-buttons variant — a full-width Details/Actions header spans the

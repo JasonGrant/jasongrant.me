@@ -56,7 +56,9 @@
 }
 .segmentOn {
   background: var(--accent-soft);
-  color: var(--accent);
+  /* --accent fails 4.5:1 on the (now solid) --accent-soft background;
+     --accent-strong is the token built for exactly this case. */
+  color: var(--accent-strong);
 }
 
 .frame {
