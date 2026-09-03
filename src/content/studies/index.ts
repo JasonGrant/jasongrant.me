@@ -1,7 +1,8 @@
+import { appShellStudy } from "./app-shell";
 import { internationalizationStudy } from "./internationalization";
 import type { CaseStudy } from "./types";
 
-export const studies: CaseStudy[] = [internationalizationStudy];
+export const studies: CaseStudy[] = [internationalizationStudy, appShellStudy];
 
 function assertStudy(study: CaseStudy): void {
   if (study.blocks.length === 0) {
@@ -22,6 +23,17 @@ function assertStudy(study: CaseStudy): void {
           );
         }
       }
+    }
+    // Figure blocks (feature 007): the FigureId → component mapping is
+    // compile-checked in StudyPage's FIGURE_COMPONENTS record; here we enforce
+    // the non-visual text equivalent every figure must carry (FR-019a).
+    if (
+      block.kind === "figure" &&
+      (!block.staticDescription || block.staticDescription.trim() === "")
+    ) {
+      throw new Error(
+        `Figure block "${block.id}" in study "${study.slug}" is missing a staticDescription.`,
+      );
     }
   }
 

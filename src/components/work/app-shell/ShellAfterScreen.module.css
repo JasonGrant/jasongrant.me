@@ -1,0 +1,15 @@
+/* Real screenshot — matches the frame treatment of ImageStepper's .screen/.img
+   so the "before" and "after" figures read as one visual language. */
+
+.frame {
+  width: 100%;
+  margin: 0;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
