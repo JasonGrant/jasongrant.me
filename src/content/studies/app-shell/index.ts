@@ -17,7 +17,7 @@ export const appShellStudy: CaseStudy = {
     "How an accordion-bound insurance platform earned a new application shell, a collapsible nav rail and a rebuilt details bar, without breaking muscle memory for enterprise users.",
   listed: false,
   company: "Hi Marley",
-  role: "Product Architecture, Front-End Systems, Design Lead",
+  role: "Design Lead",
   timelineLabel: "Q3 2026",
   milestones: [
     {
