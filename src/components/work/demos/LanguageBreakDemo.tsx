@@ -6,7 +6,7 @@ import styles from "./LanguageBreakDemo.module.css";
 
 const ANNOTATIONS = [
   { key: "truncation", label: "Truncated button label" },
-  { key: "word-order", label: "Stranded mid-sentence control" },
+  { key: "word-order", label: "Control in wrong position with translation" },
   { key: "formatting", label: "Wrong number format" },
 ] as const;
 

@@ -92,9 +92,9 @@ export const internationalizationStudy: CaseStudy = {
       },
       body: [
         [
-          "As soon as the initiative became official, I ran an audit of the product's actual readiness. Not a spec review, a real one. I switched the interface to German using machine translation and went looking for what broke.",
+          "As soon as the initiative became official, I ran an audit of the product’s actual readiness. I switched the interface to German using machine translation and tested the experience firsthand to identify where the product began to break down.",
         ],
-        "It didn't take long. Buttons truncated mid-word. Dropdowns embedded inside sentences stranded themselves when the sentence reordered. Numbers kept US formatting regardless of locale. The findings became a company-wide report, and that report became the design team's actual roadmap. Not a wishlist, a punch list.",
+        "The audit surfaced issues immediately. Buttons truncated mid-word. Dropdowns embedded inside sentences stranded themselves when the sentence reordered. Numbers kept US formatting regardless of locale. The findings became a company-wide report, and that report became the design team’s working roadmap, a concrete set of issues to resolve rather than a list of future enhancements.",
         [
           "The rest of this study walks through what came out of that punch list: the guidelines the team adopted (grounded in real, published rules; try the demos below), and the settings and ",
           { term: "translation" },
@@ -374,9 +374,6 @@ export const internationalizationStudy: CaseStudy = {
       //   FY2025 / Q4 2025 call (reported 2026-02-11). NOTE: the corpus draft
       //   mislabeled this ~42% growth rate as a "41.5% share" — the error that
       //   prompted this pass.
-      // - International SHARE: the 424B4 prospectus put revenue outside the
-      //   Americas at 29.3% (FY2022) / 30.7% (H1 2023); the same Q4 2025 call
-      //   put it at "more than one-third" (~34%).
       // - Country new business: France/Germany/Spain each >100% YoY in Q1 2025,
       //   stated on the Q1 2025 earnings call.
       body: [
@@ -387,12 +384,7 @@ export const internationalizationStudy: CaseStudy = {
             href: "https://finance.yahoo.com/news/klaviyo-inc-kvyo-q1-2025-072159084.html",
             text: "Q1 2025",
           },
-          ". Revenue from outside the Americas climbed from about 31% of the total at the ",
-          {
-            href: "https://www.sec.gov/Archives/edgar/data/1835830/000162828023032570/klaviyoincfinalprospectus.htm",
-            text: "IPO",
-          },
-          " to more than a third by the end of 2025.",
+          ".",
         ],
         "Seven languages were live by Q3 2024, less than a year after the product was English-only. The teams were new too: Design Systems, Content Design, and Internationalization were all built from zero across this window, alongside the Ascent design system the guidelines above live in.",
       ],

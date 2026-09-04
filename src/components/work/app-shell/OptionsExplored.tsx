@@ -52,7 +52,7 @@ const OPTIONS: {
     id: "buttons",
     title: "Vertical navigation buttons",
     description:
-      "An icon button with hover/focus label for each category vertically on the left or right and selecting one swaps the content shown beside it.",
+      "An icon button with a hover/focus label for each category is positioned vertically on the left or right, and selecting one swaps the content shown beside it.",
     pros: [
       "One category shown at a time, at full panel height",
       "Switching categories never shifts the page",
@@ -71,7 +71,7 @@ const OPTIONS: {
     id: "dropdown",
     title: "Dropdown at the title",
     description:
-      "One dropdown in the panel's header; choosing a value swaps the content below it. No persistent category list at all.",
+      "One dropdown in the panel header; choosing a value swaps the content below it. There is no persistent category list.",
     pros: [
       "Minimal chrome: nearly the whole panel is content",
       "Scales to any number of categories without adding UI",
