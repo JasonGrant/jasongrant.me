@@ -14,7 +14,7 @@ const TIERS: readonly Tier[] = [
   {
     label: "High risk",
     heading: "Relocations with muscle memory",
-    line: "Create Case and case actions move. Handled deliberately and absorbed by an internal-only release before any carrier saw it.",
+    line: "Create case and case actions move. Handled deliberately and absorbed by an internal-only release before any carrier saw it.",
   },
   {
     label: "Medium risk",

@@ -54,7 +54,7 @@ export const appShellStudy: CaseStudy = {
       heading: "The state of Hi Marley in early 2025",
       navLabel: "Early 2025",
       body: [
-        "In early 2025 the product was a claims-messaging platform for adjusters to use SMS to converse with policyholders to deflect calls and increase policyholder experience by getting more timely responses.",
+        "In early 2025, the product was a claims-messaging platform for adjusters to use SMS to converse with policyholders, to deflect calls and increase policyholder experience by getting more timely responses.",
       ],
     },
     {
@@ -85,10 +85,10 @@ export const appShellStudy: CaseStudy = {
           "A schematic page rectangle with the top bar and left rail shaded, showing that navigation consumed about 10% of the page, measured at 1800×1169.",
       },
       list: [
-        "About 10% of the page given to navigation at 1800×1169, and worse on smaller screens.",
-        "Many roles saw only a handful of left-nav options, which leaves a lot of unused space.",
+        "About 10% of the page is given to navigation at 1800 × 1169, with that proportion increasing on smaller screens.",
+        "Most users only have 2 or 3 navigation options, leaving a lot of unused space.",
         "Global calls-to-action (CTA) were adjacent to case-specific ones.",
-        "Logo looked clickable but did nothing.",
+        "The logo looked clickable but did nothing.",
         "Icons had drifted out of sync across the app.",
         "Labels wouldn't survive translation as the product moved toward Canada.",
       ],
@@ -141,7 +141,7 @@ export const appShellStudy: CaseStudy = {
       kind: "figure",
       id: "shell-after",
       figure: "shell-after",
-      caption: "The shipped shell, real screen from an internal demo account.",
+      caption: "The shipped shell, shown on a real screen from an internal demo account.",
       staticDescription:
         "A real screen of the new Hi Marley shell: the left application-navigation rail collapsed to icons, an inbox and case thread in the center, and on the right a vertical icon strip of sections beside a single full-height Details panel (Customer Information, Case Details, and Incident Details) with room to breathe and a common action area at the bottom.",
     },
@@ -152,7 +152,7 @@ export const appShellStudy: CaseStudy = {
       heading: "Managing the risk",
       body: [
         "The hard part of a shell change isn't the design; it's shipping it to enterprise users who have memorized where everything is. So change was ranked by positional-memory disruption: the cognitive cost of moving something a user's hand already knows.",
-        "The highest-risk moves, relocating Create Case and the case actions, are only used by a small fraction of customers. Most customers create cases in their claims system of record.",
+        "The highest-risk moves, relocating Create Case and the case actions, affect only a small fraction of customers, since most create cases in their claims system of record.",
         "To keep an eye on the highest-risk moves specifically, Pendo and Datadog reporting was set up ahead of the release, comparing pre-change analytics against post-change expectations so a regression would surface immediately rather than after enough carriers had complained.",
       ],
     },
