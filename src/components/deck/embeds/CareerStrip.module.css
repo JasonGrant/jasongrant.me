@@ -1,0 +1,89 @@
+/* Flat sequence strip, scaled up from src/components/work/app-shell/
+   ContextStrip.module.css for the deck's 1920×1080 stage. */
+
+.wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.strip {
+  --strip-gap: 56px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--strip-gap);
+  align-items: stretch;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 28px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.cardAccent {
+  border-color: var(--accent);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.titleAccent {
+  color: var(--accent);
+}
+
+.line {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.connector {
+  /* Anchored at the midpoint of the gap track, not the card's own edge —
+     left:100% would center the glyph on the card boundary itself, leaving
+     half of it overlapping the card regardless of gap size. */
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--strip-gap) / 2);
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 24px;
+  color: var(--ink-mute);
+}
+
+.caption {
+  max-width: 90ch;
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--ink-mute);
+}

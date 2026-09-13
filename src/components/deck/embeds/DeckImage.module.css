@@ -1,0 +1,13 @@
+/* Scales to fit its allotted box on both axes — width and height — like the
+   Stage's own letterboxing, instead of rendering at intrinsic width and
+   needing a scrollbar to reach the rest of a tall image. */
+.frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.img {
+  object-fit: contain;
+}

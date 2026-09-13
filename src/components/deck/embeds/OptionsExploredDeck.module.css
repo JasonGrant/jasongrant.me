@@ -1,0 +1,275 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  min-height: 0;
+}
+
+/* inline-grid + 1fr columns, intrinsically sized: since the grid itself
+   shrinks to content and every column shares the fr unit equally, all three
+   columns end up exactly as wide as the single widest label's natural
+   width — an equal-width segmented control with no JS measuring. */
+.segmented {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-self: flex-start;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.segment {
+  padding: 12px 22px;
+  border: none;
+  border-left: 1px solid var(--rule-strong);
+  background: transparent;
+  color: var(--ink-mute);
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 21px;
+  text-align: center;
+  cursor: pointer;
+}
+.segment:first-child {
+  border-left: none;
+}
+.segment:hover {
+  background: var(--bg-elev);
+  color: var(--ink);
+}
+.segment:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.segmentOn {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+/* Higher specificity than .segment:hover, so hovering the already-active
+   segment keeps its active look instead of flashing the inactive hover
+   style. */
+.segment.segmentOn:hover {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.optionFrame {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* ── Content (deck-scale type — roughly double the site's) ────────────── */
+
+.option {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: start;
+  gap: 40px;
+}
+
+.optionMain {
+  min-width: 0;
+}
+
+.optionTitle {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--ink);
+}
+
+.optionDesc {
+  margin: 0 0 18px;
+  max-width: 60ch;
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.listsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.listHeading {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.prosList,
+.consList {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: disc;
+}
+.prosList li,
+.consList li {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+.prosList li::marker {
+  color: var(--accent);
+}
+.consList li::marker {
+  color: var(--ink-mute);
+}
+
+.criteriaList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 14px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.criteriaList li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.criteriaLabel {
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Verdict pills — matches the Do/Don't badge treatment used across the
+   deck's other embeds, retuned for this slide's dark surface. */
+.pill {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.pillDo {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.pillDont {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+}
+
+.optionAside {
+  min-width: 0;
+}
+
+/* ── Schematic diagrams ───────────────────────────────────────────────── */
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.accHeader {
+  flex: none;
+  height: 42px;
+  margin: 6px 12px 0;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--ink);
+}
+.accHeaderOpen {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 6px 12px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--ink);
+}
+.accActions {
+  flex: none;
+}
+
+.contentHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.diagramBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+.iconRail {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 12%;
+  padding: 12px 8px;
+  gap: 10px;
+  border-right: 1px solid var(--ink);
+}
+.iconBtn {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--ink);
+}
+.btnContent {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  background: var(--accent-soft);
+}
+
+.ddHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.ddControl {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--ink);
+}
+.ddContent {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  background: var(--accent-soft);
+}

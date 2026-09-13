@@ -9,7 +9,9 @@ import { ImageStepper, type StepperSlide } from "./ImageStepper";
 // static illustration couldn't carry the accordion's real density across
 // Details, Manage, Media, and Create Case the way an authentic capture does.
 // See research D8a.
-const SLIDES: StepperSlide[] = [
+// Exported so the presentation deck (feature 008) can step the same screens
+// through its own stage-sized stepper; this component's behavior is unchanged.
+export const SHELL_BEFORE_SLIDES: StepperSlide[] = [
   {
     src: "/work/app-shell/shell-before-inbox.png",
     alt: "The old Hi Marley shell: a labeled left navigation column, an inbox of cases, a claimant conversation, and a right panel showing the Details tab.",
@@ -55,5 +57,5 @@ const SLIDES: StepperSlide[] = [
 ];
 
 export function ShellBeforeScreens() {
-  return <ImageStepper slides={SLIDES} />;
+  return <ImageStepper slides={SHELL_BEFORE_SLIDES} />;
 }

@@ -15,6 +15,15 @@ const URLS = [
   // specs/007-app-shell-case-study/.
   "http://localhost:3000/work/internationalization",
   "http://localhost:3000/work/app-shell",
+  // Unlisted presentation deck (constitution v1.3.0). "ci" is the CI
+  // placeholder for the secret segment (DECK_SLUG=ci at build); the real
+  // value never appears in this repo. See specs/008-presentation-deck/.
+  "http://localhost:3000/deck/ci/intro/cover",
+  "http://localhost:3000/deck/ci/internationalization/the-cascade",
+  "http://localhost:3000/deck/ci/internationalization/translation-flow",
+  "http://localhost:3000/deck/ci/app-shell/overview",
+  "http://localhost:3000/deck/ci/app-shell/baseline",
+  "http://localhost:3000/deck/ci/app-shell/outcome",
 ];
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];

@@ -55,7 +55,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={classNames(petrona.variable, funnelSans.variable, dmMono.variable)}>
+    <html
+      lang="en"
+      className={classNames(petrona.variable, funnelSans.variable, dmMono.variable)}
+      // The presentation deck's Stage component (feature 008) mutates this
+      // element's class list and --deck-scale style before hydration, to
+      // scale its 16:9 stage with zero layout shift on first paint. That is
+      // an intentional, one-level-deep client/server divergence — the
+      // sanctioned escape hatch for it, not a bug to chase. Every other
+      // route never touches <html> from a script, so this changes nothing
+      // for them.
+      suppressHydrationWarning
+    >
       <head>
         <HeadComment />
         <JsonLd />

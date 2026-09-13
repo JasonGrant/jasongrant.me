@@ -1,0 +1,126 @@
+/* left:0/right:0 gives the expanded .panel below its full-width anchor —
+   the nav itself has no background or height of its own, so nothing is
+   reserved when collapsed; only the toggle button is visible. */
+.nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  font-family: var(--font-mono);
+}
+
+.toggle {
+  position: absolute;
+  right: var(--sp-3);
+  bottom: var(--sp-2);
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  color: var(--ink-mute);
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.toggle:hover {
+  color: var(--ink-soft);
+}
+.toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Collapsed by default (visibility, not display, so it stays measurable and
+   drops cleanly out of the tab order — contracts/navigator.md). Expands on
+   hover, focus-within, or the toggle. */
+.panel {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--rule);
+  padding: var(--sp-4) var(--sp-5);
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.nav:hover .panel,
+.nav:focus-within .panel,
+.navOpen .panel {
+  visibility: visible;
+}
+
+.sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sectionItem {
+  min-width: 0;
+}
+
+.sectionLink {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+  text-decoration: none;
+}
+.sectionLink:hover {
+  color: var(--ink-soft);
+}
+.sectionLink[aria-current="true"] {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.sectionLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.slides {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: var(--sp-2) 0 0;
+  padding: 0;
+}
+
+.slideLink {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--ink-mute);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.slideLink:hover {
+  color: var(--ink-soft);
+}
+.slideLink[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.slideLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

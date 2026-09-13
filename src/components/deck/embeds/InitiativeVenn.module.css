@@ -1,0 +1,69 @@
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+
+.svg {
+  /* Absolute + inset:0 + the SVG's own default preserveAspectRatio
+     ("xMidYMid meet") centers and scales-to-fit on both axes without
+     depending on a percentage max-height resolving correctly through the
+     grid/flex ancestor chain — that chain was the fragile part: it worked
+     at some viewport sizes and let the diagram render oversized (clipping
+     upward past its own container) at others. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle {
+  fill: var(--accent);
+  fill-opacity: 0.18;
+  stroke: var(--accent);
+  stroke-opacity: 0.6;
+  stroke-width: 1.5;
+}
+
+.centerLabel {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  fill: var(--ink);
+}
+
+.overlapLabel {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  fill: var(--ink-soft);
+}
+
+.personLink {
+  cursor: pointer;
+}
+.personLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.personName {
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 600;
+  fill: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s ease;
+}
+.personLink:hover .personName,
+.personLink:focus-visible .personName {
+  text-decoration-color: var(--accent);
+}
+
+.personTitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  fill: var(--ink-mute);
+}

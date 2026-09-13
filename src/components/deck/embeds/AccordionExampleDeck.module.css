@@ -1,0 +1,170 @@
+/* Deck-only copy of AccordionExample.module.css — same schematic, larger
+   type scale for stage viewing (readable from a distance, not a narrow site
+   column). .frame keeps the same 3:5 aspect ratio and .wrap the same
+   right-aligned max-width, so the diagram's own footprint is unchanged;
+   only the text inside it grows. */
+
+.root {
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 4px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.segmented {
+  display: inline-flex;
+  flex: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.segment {
+  padding: 5px 12px;
+  border: none;
+  border-left: 1px solid var(--rule-strong);
+  background: transparent;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.segment:first-child {
+  border-left: none;
+}
+.segment:hover {
+  background: var(--bg-elev);
+  color: var(--ink);
+}
+.segment:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.segmentOn {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 3 / 5;
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.tabRow {
+  display: flex;
+  flex: none;
+  border-bottom: 1px solid var(--ink);
+}
+
+.tab {
+  flex: 1 1 0;
+  padding: 5px 10px;
+  border-right: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: center;
+}
+.tab:last-child {
+  border-right: none;
+}
+
+.accordionStack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-basis: 0;
+  min-height: 0;
+  width: 100%;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.headerBar {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.contentSliver {
+  display: flex;
+  align-items: flex-start;
+  flex-basis: 0;
+  min-height: 0;
+  padding: 7px;
+  background: var(--accent-soft);
+  border-top: 1px solid var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accordionStack,
+  .contentSliver {
+    transition: flex-grow 200ms ease;
+  }
+}
+
+.frameTag {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.figure {
+  margin: 3px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.95rem, 4vw, 2.75rem);
+  line-height: 0.95;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  margin: 2px 0 0;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+
+.note {
+  margin: 2px 0 0;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}

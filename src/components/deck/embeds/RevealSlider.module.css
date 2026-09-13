@@ -1,0 +1,91 @@
+.wrap {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-elev);
+  /* aspect-ratio set inline per instance; this is a fallback only */
+  aspect-ratio: 16 / 9;
+  touch-action: none;
+}
+
+.img {
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.beforeLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.tag {
+  position: absolute;
+  top: 16px;
+  z-index: 1;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgb(21 18 13 / 0.72);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+.tag[data-side="before"] {
+  left: 16px;
+}
+.tag[data-side="after"] {
+  right: 16px;
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 3px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  cursor: ew-resize;
+}
+.handle:focus-visible {
+  outline: none;
+}
+.handle:focus-visible .grip {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.gripIcon {
+  width: 16px;
+  height: 16px;
+  margin: 0 -4px;
+}

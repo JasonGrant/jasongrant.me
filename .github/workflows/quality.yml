@@ -31,7 +31,11 @@ jobs:
 
       - run: npm ci
 
+      # DECK_SLUG=ci: the presentation deck's secret path segment is a
+      # placeholder in CI so the gate URLs below never carry the real value.
       - run: npm run build
+        env:
+          DECK_SLUG: ci
 
       - name: Run Lighthouse CI (${{ matrix.preset }})
         run: npx --yes @lhci/cli@0.14.x autorun --config=./lighthouserc.${{ matrix.preset }}.json
@@ -50,6 +54,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          DECK_SLUG: ci
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
