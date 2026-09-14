@@ -21,6 +21,7 @@ import { SettingsRevealDeck } from "./embeds/SettingsRevealDeck";
 import { ShellAfterDeck } from "./embeds/ShellAfterDeck";
 import { ShellBeforeDeck } from "./embeds/ShellBeforeDeck";
 import { ShellSequencing } from "./embeds/ShellSequencing";
+import { SkillThroughline } from "./embeds/SkillThroughline";
 
 // The deck's embed registry (data-model.md §3) — the compile-time
 // counterpart to StudyPage's DEMO_COMPONENTS/FIGURE_COMPONENTS. Adding a
@@ -35,6 +36,7 @@ const EMBEDS: Record<DeckEmbedId, ComponentType> = {
   "shell-before": ShellBeforeDeck,
   "design-handoff": DesignHandoffDeck,
   "career-strip": CareerStrip,
+  "skill-throughline": SkillThroughline,
   "initiative-venn": InitiativeVenn,
   "org-map": OrgMap,
   "hiring-timeline": HiringTimeline,
@@ -61,6 +63,7 @@ const EMBED_LABELS: Partial<Record<DeckEmbedId, string>> = {
   "shell-before": "Shell before",
   "design-handoff": "Design handoff spec",
   "career-strip": "Career strip",
+  "skill-throughline": "Skill mix by role",
   "initiative-venn": "Initiative leadership",
   "org-map": "Design org map",
   "hiring-timeline": "Hiring timeline",

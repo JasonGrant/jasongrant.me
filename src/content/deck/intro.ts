@@ -1,7 +1,7 @@
 import type { DeckSection } from "./types";
 
-// Intro (5 minutes): cover, a career strip, and a "how I work" slide. Two
-// content slides by design; resist a third.
+// Intro (5 minutes): cover, a career strip, a skill-mix chart, and a
+// "how I work" slide.
 export const introSection: DeckSection = {
   slug: "intro",
   title: "Intro",
@@ -29,7 +29,18 @@ export const introSection: DeckSection = {
       layout: "figure",
       figure: { kind: "embed", embed: "career-strip" },
       staticDescription:
-        "A horizontal career strip: Dassault Systèmes (manufacturing), where the presenter was PM and design lead for a new industry push into architecture, engineering, and construction: 12 apps, one launched, one in beta, one in development; Vertex Pharmaceuticals (pharma), where the presenter built the Experience Design team from zero to turn 300+ internal apps into platforms across biology, chemistry, clinical trials, and the C-suite; Klaviyo (martech), where the presenter helped build the design org across Design Systems, Content Design, Internationalization, and Growth; and Hi Marley, the current role, leading design and product operations for an insurtech communications platform. Hypoth runs alongside as an independent studio. Beneath it, the leadership shape in numbers: fifteen years in design, twelve years managing, teams built from zero at three companies, up to fifteen direct reports including managers, and an organization of eighty held through a transition.",
+        "A horizontal career strip: Dassault Systèmes (computer-aided design), where the presenter was PM and design lead for a new industry push into architecture, engineering, and construction: 12 apps, one launched, one in beta, one in development; Vertex Pharmaceuticals (pharma), where the presenter built the Experience Design team from zero to turn 300+ internal apps into platforms across biology, chemistry, clinical trials, and the C-suite; Klaviyo (martech), where the presenter helped build the design org across Design Systems, Content Design, Internationalization, and Growth; and Hi Marley, the current role, leading design and product operations for an insurtech communications platform. Hypoth runs alongside as an independent studio. Beneath it, the leadership shape in numbers: fifteen years in design, twelve years managing, teams built from zero at three companies, up to fifteen direct reports including managers, and an organization of eighty held through a transition.",
+    },
+    {
+      template: "content",
+      slug: "skill-throughline",
+      title: "Skill mix by role",
+      kicker: "Intro › The mix",
+      headline: "The shape of the work, role by role.",
+      layout: "figure",
+      figure: { kind: "embed", embed: "skill-throughline" },
+      staticDescription:
+        "A thread chart: one line per skill area (strategy & definition, design, user research, design systems, coding, and operations), each split into a named top half and bottom half that thicken independently with how much weight that half carried at each of the four roles. At Dassault Systèmes, the mix leaned toward strategy and design handoff, working directly with customers, with no design systems, coding, or reports. At Vertex Pharmaceuticals, the mix broadened across qualitative research, design, prototyping and production code, design systems, and light operations, with six direct reports. At Klaviyo, design feedback, documentation, quantitative research, and operations dominated, coding was minimal, and the org grew to fifteen reports. At Hi Marley, production code, design systems, and operations lead, with a lighter research mix and four direct reports.",
     },
     {
       template: "content",

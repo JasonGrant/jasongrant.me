@@ -1,0 +1,76 @@
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.headerRule {
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+}
+
+.boundaryRule {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.laneRule {
+  stroke: var(--ink);
+  stroke-width: 0.75;
+  stroke-opacity: 0.5;
+}
+
+.coName {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--ink-soft);
+}
+
+.coSub {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 12px;
+  fill: var(--ink-mute);
+}
+
+.laneLabel {
+  font-family: var(--font-body);
+  font-size: 15px;
+  fill: var(--ink);
+}
+
+.laneSub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  fill: var(--ink-mute);
+}
+
+/* Amber is local to this chart — it isn't a sitewide token — used only to
+   tell a lane's top half from its bottom half. */
+.lobeTop,
+.chipTop {
+  fill: #d3a25f;
+}
+.lobeBottom,
+.chipBottom {
+  fill: var(--accent);
+}
+
+.lobeTop,
+.lobeBottom {
+  fill-opacity: 0.55;
+  stroke: var(--ink);
+  stroke-width: 0.75;
+  stroke-opacity: 0.5;
+}

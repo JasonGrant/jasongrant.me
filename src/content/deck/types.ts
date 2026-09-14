@@ -21,6 +21,7 @@ export type ReusedFigureId = Extract<
 >;
 export type DeckOnlyEmbedId =
   | "career-strip" // intro figure (new, static)
+  | "skill-throughline" // intro figure: skill mix per role, static
   | "initiative-venn" // the three initiative-owner Venn diagram
   | "org-map" // simplified Klaviyo design org: verticals vs. horizontal teams
   | "hiring-timeline" // the three-phase team-building arc behind the i18n rollout

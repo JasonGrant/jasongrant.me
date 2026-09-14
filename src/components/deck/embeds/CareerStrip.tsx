@@ -7,7 +7,7 @@ type Stop = { label: string; title: string; line: string; emphasis?: boolean };
 
 const STOPS: readonly Stop[] = [
   {
-    label: "Manufacturing",
+    label: "Computer-Aided Design",
     title: "Dassault Systèmes",
     line: "PM and design lead for a new industry push into architecture, engineering, and construction: 12 apps, one launched, one in beta, one in development.",
   },
