@@ -3,8 +3,7 @@ import styles from "./RiskTiersDeck.module.css";
 // Deck-only copy of work/app-shell/RiskTiers, enlarged for the stage rather
 // than the site's three-column body-copy card. Kept as a full copy — not a
 // wrapped import — so its type scale can diverge freely from the site's
-// without touching the public case study. Low risk carries two examples,
-// the others one — the card renders however many a tier lists.
+// without touching the public case study.
 
 type Example = {
   heading: string;
@@ -40,11 +39,7 @@ const TIERS: readonly Tier[] = [
     examples: [
       {
         heading: "Component swaps",
-        line: "Templates replace overlays: same location, same flow, a different component.",
-      },
-      {
-        heading: "Case progress",
-        line: "Replaced legacy components with design-system components.",
+        line: "Templates replace overlays and legacy components move to the design system: same location, same flow, a different component.",
       },
     ],
   },

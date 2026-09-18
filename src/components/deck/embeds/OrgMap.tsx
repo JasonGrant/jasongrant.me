@@ -33,7 +33,7 @@ export function OrgMap() {
   const rowCount = HORIZONTALS.length + 2;
   return (
     <figure className={styles.wrap}>
-      <p className={styles.eyebrow}>Klaviyo product design, about eighty people</p>
+      <p className={styles.eyebrow}>Klaviyo product design, eighty people</p>
       <div
         className={styles.grid}
         style={{
@@ -65,10 +65,6 @@ export function OrgMap() {
           </div>
         ))}
       </div>
-      <figcaption className={styles.caption}>
-        Internationalization and content design also reach into documentation. Internationalization,
-        content design, and design systems were built from zero.
-      </figcaption>
     </figure>
   );
 }

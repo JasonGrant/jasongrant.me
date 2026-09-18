@@ -1,0 +1,105 @@
+/* Rendered as a sibling of Stage (LightboxContext/DeckShell), never as its
+   descendant, so this fixed overlay covers the real viewport instead of
+   being capped by --deck-scale. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(10 9 8 / 0.92);
+  cursor: zoom-out;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 88vw;
+  height: 82vh;
+  cursor: default;
+}
+
+.item {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.img {
+  object-fit: contain;
+}
+
+.close {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--ink);
+  font-size: 20px;
+  cursor: pointer;
+}
+.close:hover {
+  border-color: var(--accent);
+}
+.close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.navLeft,
+.navRight {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--ink);
+  font-size: 24px;
+  cursor: pointer;
+}
+.navLeft {
+  left: var(--sp-4);
+}
+.navRight {
+  right: var(--sp-4);
+}
+.navLeft:hover,
+.navRight:hover {
+  border-color: var(--accent);
+}
+.navLeft:focus-visible,
+.navRight:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.position {
+  position: fixed;
+  bottom: var(--sp-4);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}

@@ -1,5 +1,6 @@
-/* Deck-only copy of RiskTiers.module.css — same three-card layout, at least
-   double the site's type scale for stage viewing. */
+/* Deck-only copy of RiskTiers.module.css — same three-card layout. Sized to
+   share a slide with body text and the Pendo dashboards above it, not to
+   own the whole slide, so the scale is modest rather than stage-filling. */
 
 .wrap {
   margin: 0;
@@ -12,14 +13,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
-  gap: 28px;
+  gap: 20px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 24px;
+  gap: 8px;
+  padding: 12px 16px;
   background: var(--bg-elev);
   border: 1px solid var(--ink);
   border-radius: 8px;
@@ -27,7 +28,7 @@
 
 .label {
   font-family: var(--font-mono);
-  font-size: 21px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-mute);
@@ -39,24 +40,24 @@
 .example {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 .example + .example {
-  padding-top: 14px;
+  padding-top: 8px;
   border-top: 1px solid var(--rule);
 }
 
 .heading {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 33px;
+  font-size: 22px;
   line-height: 1.15;
   color: var(--ink);
 }
 
 .line {
   margin: 0;
-  font-size: 21px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.4;
   color: var(--ink-soft);
 }

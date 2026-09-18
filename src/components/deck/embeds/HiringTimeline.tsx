@@ -37,6 +37,7 @@ const STAGES: readonly Stage[] = [
     title: "Launching French",
     bullets: [
       "Cross-engineering support for the first non-English language",
+      "Every engineering team owned its own part of the rollout",
       "Proved the model once, before scaling to five more",
     ],
     role: "Player-coach",
@@ -46,7 +47,6 @@ const STAGES: readonly Stage[] = [
     title: "Scaling the org",
     bullets: [
       "Tooling, frameworks, and full-time design support scaled to the whole team",
-      "Every engineering team owned its own part of the rollout",
       "Five more languages shipped (German, Portuguese, Korean, Spanish, Italian); engineers asked how we did it without talking to them",
       "Customers could now send one campaign across multiple languages",
     ],

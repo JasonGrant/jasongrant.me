@@ -7,6 +7,7 @@ export function DesignHandoffDeck() {
       slides={DESIGN_HANDOFF_SLIDES}
       stageFraction={0.85}
       footnote="The full design-system spec engineering built against, stepped through."
+      enableLightbox
     />
   );
 }

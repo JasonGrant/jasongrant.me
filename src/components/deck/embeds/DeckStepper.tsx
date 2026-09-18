@@ -5,6 +5,8 @@ import classNames from "classnames";
 import Image from "next/image";
 import { type KeyboardEvent, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import type { LightboxGroup } from "../LightboxContext";
+import { LightboxTrigger } from "../LightboxTrigger";
 import styles from "./DeckStepper.module.css";
 import { stageSizes } from "./stageSizes";
 
@@ -16,15 +18,21 @@ export function DeckStepper({
   slides,
   stageFraction = 0.6,
   footnote,
+  enableLightbox = false,
 }: {
   slides: StepperSlide[];
   stageFraction?: number;
   /** Short static text under the caption column — e.g. a source note. */
   footnote?: string;
+  /** Opt-in: the current screen also opens in the shared lightbox, with all
+   *  of `slides` browsable there via left/right — independent of, and in
+   *  addition to, this stepper's own Back/Next/dots. */
+  enableLightbox?: boolean;
 }) {
   const [step, setStep] = useState(0);
   const go = (i: number) => setStep(Math.max(0, Math.min(slides.length - 1, i)));
   const current = slides[step];
+  const groups: LightboxGroup[] = slides.map((s) => [s]);
 
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (e.key === "ArrowRight") {
@@ -36,18 +44,31 @@ export function DeckStepper({
     }
   }
 
+  const screen = (
+    <Image
+      src={current.src}
+      alt={current.alt}
+      fill
+      className={styles.img}
+      sizes={stageSizes(stageFraction)}
+      priority={step === 0}
+    />
+  );
+
   return (
     <div className={styles.player} data-deck-keys="local" onKeyDown={onKeyDown}>
-      <figure className={styles.screen}>
-        <Image
-          src={current.src}
-          alt={current.alt}
-          fill
-          className={styles.img}
-          sizes={stageSizes(stageFraction)}
-          priority={step === 0}
-        />
-      </figure>
+      {enableLightbox ? (
+        <LightboxTrigger
+          groups={groups}
+          index={step}
+          label={`View ${current.title} larger`}
+          className={styles.screen}
+        >
+          {screen}
+        </LightboxTrigger>
+      ) : (
+        <figure className={styles.screen}>{screen}</figure>
+      )}
 
       <div className={styles.caption} aria-live="polite">
         <div className={styles.captionHead}>

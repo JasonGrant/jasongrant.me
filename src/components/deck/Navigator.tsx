@@ -16,9 +16,9 @@ export interface NavigatorProps {
 }
 
 // Subtle progress indicator that discloses two levels on hover/focus/toggle
-// (contracts/navigator.md): sections (major), and — within the current
-// section only — its slides (minor). All entries are real links so the
-// navigator works without scripting.
+// (contracts/navigator.md): sections (major), each with its own slide list
+// (minor) — all sections' slides shown at once, not just the current one.
+// All entries are real links so the navigator works without scripting.
 export const Navigator = forwardRef<HTMLElement, NavigatorProps>(function Navigator(
   { secret, outline, currentSection, currentSlide, open, onToggle },
   ref,
@@ -60,25 +60,23 @@ export const Navigator = forwardRef<HTMLElement, NavigatorProps>(function Naviga
                 >
                   {section.title}
                 </Link>
-                {isCurrentSection ? (
-                  <ol className={styles.slides}>
-                    {section.slides.map((slide) => {
-                      const isCurrentSlide = slide.slug === currentSlide;
-                      return (
-                        <li key={slide.slug}>
-                          <Link
-                            href={`/deck/${secret}/${section.slug}/${slide.slug}`}
-                            prefetch={false}
-                            className={styles.slideLink}
-                            aria-current={isCurrentSlide ? "page" : undefined}
-                          >
-                            {slide.title}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ol>
-                ) : null}
+                <ol className={styles.slides}>
+                  {section.slides.map((slide) => {
+                    const isCurrentSlide = isCurrentSection && slide.slug === currentSlide;
+                    return (
+                      <li key={slide.slug}>
+                        <Link
+                          href={`/deck/${secret}/${section.slug}/${slide.slug}`}
+                          prefetch={false}
+                          className={styles.slideLink}
+                          aria-current={isCurrentSlide ? "page" : undefined}
+                        >
+                          {slide.title}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ol>
               </li>
             );
           })}

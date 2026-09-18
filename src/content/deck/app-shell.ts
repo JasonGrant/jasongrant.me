@@ -27,6 +27,64 @@ export const appShellSection: DeckSection = {
     },
     {
       template: "content",
+      slug: "understanding-the-user",
+      title: "Understanding the user",
+      kicker: "App Shell › Understanding the user",
+      headline: "Two gaps, closed before the redesign began.",
+      layout: "text-figure",
+      body: [
+        [
+          "In early 2025, two gaps stood between the team and its carriers: conversations weren't captured beyond support tickets, and usage data was fragmented across Pendo and Fullstory.",
+        ],
+      ],
+      bullets: [
+        "Introduced Dovetail to retain the full record of carrier feedback, not just what became a ticket",
+        "Built a code-tagging approach that keeps usage data tied to features, durable through redesigns",
+      ],
+      figure: {
+        kind: "image",
+        image: {
+          src: "/work/app-shell/dovetail-supervisor-interview.jpeg",
+          alt: "A Dovetail interview session: a video call between two participants alongside a timestamped transcript, with sentiment and topic tags like Pain/Friction, Operations, and Workaround/Manual Process highlighting specific excerpts.",
+          width: 2444,
+          height: 1954,
+          stageFraction: 0.55,
+          rounded: true,
+        },
+      },
+      staticDescription:
+        "Understanding the user: in early 2025, two gaps stood between the team and its carriers. Conversations weren't captured beyond support tickets, and usage data was fragmented across Pendo and Fullstory. Dovetail was introduced to retain the full record of carrier feedback, not just what became a ticket. A code-tagging approach kept usage data tied to features, durable through redesigns. Beside the text, a Dovetail interview session shows a video call transcript tagged and highlighted by sentiment and topic: pain and friction, operations, and workaround or manual process.",
+    },
+    {
+      template: "content",
+      slug: "listening-to-customers",
+      title: "Listening to customers",
+      kicker: "App Shell › Listening to customers",
+      headline: "Two annual traditions keep the loop open.",
+      layout: "text-figure",
+      body: [
+        ["Beyond formal research, two recurring events keep customer input flowing year-round."],
+      ],
+      bullets: [
+        "Customer Forum, now four years running, brings carrier stakeholders together to see what's next and say what's still hard",
+        "Adjuster Day, in its second year, brings the adjusters themselves in, the people working every claim",
+      ],
+      figure: {
+        kind: "image",
+        image: {
+          src: "/deck/app-shell/customer-forum.jpeg",
+          alt: "A Hi Marley Customer Forum session: carrier attendees seated at round tables in a conference room, watching a presenter walk through a product screen on a large display.",
+          width: 1024,
+          height: 768,
+          stageFraction: 0.55,
+          rounded: true,
+        },
+      },
+      staticDescription:
+        "Listening to customers: beyond formal research, two recurring events keep customer input flowing year-round. Customer Forum, now four years running, brings carrier stakeholders together to see what's next and say what's still hard. Adjuster Day, in its second year, brings the adjusters themselves in, the people working every claim. Beside the text, a photo from a Customer Forum session: carrier attendees seated at round tables, watching a presenter walk through a product screen on a large display.",
+    },
+    {
+      template: "content",
       slug: "baseline",
       title: "The vision",
       kicker: "App Shell › The vision",
@@ -68,9 +126,9 @@ export const appShellSection: DeckSection = {
       kicker: "App Shell › Settings & Component Library",
       headline: "Building scalability and expansion while addressing debt.",
       layout: "figure",
-      figure: { kind: "embed", embed: "settings-reveal" },
+      figure: { kind: "embed", embed: "settings-before-after" },
       staticDescription:
-        "Before and after, revealed by a draggable handle. Before: a long, single-page Organization Settings form, scrolling through unrelated settings like Inactivity Auto Reply, System Message Prefix, and User Message Prefix with no grouping. After: the same settings reorganized into a grid of specific cards, including Case types, Active hours, Quiet Hours, Message prefixes, Inactive message reply, and Out of Office Messages.",
+        "Before and after, side by side. Before: a long, single-page Organization Settings form, scrolling through unrelated settings like Inactivity Auto Reply, System Message Prefix, and User Message Prefix with no grouping. After: the same settings reorganized into a grid of specific cards, including Case types, Active hours, Quiet Hours, Message prefixes, Inactive message reply, and Out of Office Messages.",
     },
     {
       template: "content",
@@ -79,9 +137,9 @@ export const appShellSection: DeckSection = {
       kicker: "App Shell › List Pages",
       headline: "Enhance experience with sorting and filtering.",
       layout: "figure",
-      figure: { kind: "embed", embed: "outreach-reveal" },
+      figure: { kind: "embed", embed: "outreach-before-after" },
       staticDescription:
-        "Before and after, revealed by a draggable handle. Before: a flat Notifications table listing individual outbound messages with no grouping or campaign context. After: a Bulk messaging table tracking 18 campaigns at once, each with categorized send status, applying the same list-page system proven on high-traffic surfaces.",
+        "Before and after, side by side. Before: a flat Notifications table listing individual outbound messages with no grouping or campaign context. After: a Bulk messaging table tracking 18 campaigns at once, each with categorized send status, applying the same list-page system proven on high-traffic surfaces.",
     },
     {
       template: "content",
@@ -90,9 +148,9 @@ export const appShellSection: DeckSection = {
       kicker: "App Shell › Thread Design",
       headline: "Expanding the thread.",
       layout: "figure",
-      figure: { kind: "embed", embed: "inbox-reveal" },
+      figure: { kind: "embed", embed: "inbox-before-after" },
       staticDescription:
-        "Before and after, revealed by a draggable handle. Before: the original Hi Marley inbox, a case's Details panel limited to a simple set of fields. After: a richer case thread with an AI summary, internal partner alerts from AGERO and Copart, and Case Progress, Partner Data, and Workflows sections, giving adjusters the fuller context needed on the conversation surface.",
+        "Before and after, side by side. Before: the original Hi Marley inbox, a case's Details panel limited to a simple set of fields. After: a richer case thread with an AI summary, internal partner alerts from AGERO and Copart, and Case Progress, Partner Data, and Workflows sections, giving adjusters the fuller context needed on the conversation surface.",
     },
     {
       template: "content",
@@ -106,7 +164,7 @@ export const appShellSection: DeckSection = {
         [
           "The platform was expanding into AI agents, workflows, network partners, and FNOL intake. Every new capability meant another accordion section, taking space from data. This was a business problem, not an aesthetic one.",
         ],
-        [{ em: "Try it: grow the category count and watch the space for data disappear." }],
+        [{ em: "Space utilization extended to global navigation too." }],
       ],
       bullets: [
         "About 10% of the page given to navigation at 1800×1169",
@@ -133,8 +191,7 @@ export const appShellSection: DeckSection = {
       slug: "enablement-decision",
       title: "The enablement decision",
       kicker: "App Shell › The enablement decision",
-      headline:
-        "The squads wanted to build it themselves. The job was making their success inevitable.",
+      headline: "Enabling the squads to build it themselves.",
       layout: "figure",
       figure: { kind: "embed", embed: "design-handoff" },
       staticDescription:
@@ -145,19 +202,21 @@ export const appShellSection: DeckSection = {
       slug: "risk-management",
       title: "Risk management",
       kicker: "App Shell › Risk management",
-      headline: "Change ranked by positional-memory disruption.",
-      layout: "figure",
-      figure: { kind: "embed", embed: "risk-tiers" },
+      headline: "Identifying and mitigating risks.",
+      layout: "text-figure",
       body: [
         [
-          "The hard part of a shell change isn't the design. It's shipping it to enterprise users who have memorized where everything is.",
-        ],
-        [
-          "The highest-risk move, relocating Create Case, affects only a small fraction of customers: smaller carriers, since most create cases through claims-system integrations instead.",
+          "The hard part of a shell change isn't the design, it's shipping it to enterprise users who've memorized where everything is. The highest-risk move, relocating Create Case, affects only a small fraction of customers.",
         ],
       ],
+      bullets: [
+        "Dovetail surfaced gaps ahead of the rollout; the change went to a couple of customers first, including one known to push back",
+        "Pendo tracked usage before and after; all but navigation is live for every customer, with nothing critical raised",
+      ],
+      figure: { kind: "embed", embed: "pendo-usage-stack" },
+      bottomFigure: { kind: "embed", embed: "risk-tiers" },
       staticDescription:
-        "Risk management: three tiers ranked by positional-memory disruption. High risk (relocating Create Case and case actions) was weighed against exposure of about 10% of customers, smaller carriers, since the rest create cases via claims-system integrations. Medium-risk consolidations kept trigger locations stable. Low-risk swaps changed components, not locations.",
+        "Risk management: the hard part of a shell change isn't the design, it's shipping it to enterprise users who've memorized where everything is. The highest-risk move, relocating Create Case, affects only a small fraction of customers, smaller carriers, since the rest create cases via claims-system integrations. Ahead of this rollout, Dovetail surfaced gaps, and the change went to a couple of customers first, including one known to push back. Pendo tracked usage before and after; all but navigation is live for every customer, with nothing critical raised. Beside the text, two Pendo dashboards show 90-day visitor and adoption trends for the inbox and for case creation, both up over the previous period. Below both, changes ranked into three risk tiers: high risk (relocations with muscle memory, like moving Create Case, handled deliberately and absorbed by an internal-only release first), medium risk (consolidations, several areas combined into one without changing where their triggers live), and low risk (component swaps, like replacing overlays with templates and moving legacy components to the design system, in the same location and flow).",
     },
     {
       template: "content",

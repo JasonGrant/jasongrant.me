@@ -8,6 +8,42 @@
   margin: 0;
   overflow: hidden;
 }
+/* next/image's `fill` sets inline inset:0 on the <img> itself, which is
+   relative to THIS wrapper's box — padding on .frame wouldn't reach it
+   (an absolutely positioned child with inset:0 fills its containing
+   block's padding box regardless of that box's own padding). Giving the
+   rounded variant's inset here, on a wrapper the img actually fills, is
+   what makes the padding real. */
+.inner {
+  position: absolute;
+  inset: 0;
+}
 .img {
   object-fit: contain;
+}
+
+/* A real photo, sized to its own aspect ratio instead of stretched to fill
+   the column (flex: 1 + object-fit: contain would letterbox it, and a
+   border on that oversized box reads as a container around the image
+   rather than a rounded photo). Width itself comes from the inline
+   `min(100%, …)` style in DeckImage.tsx, which picks whichever is
+   tighter — full column width for a landscape image, or a height-capped
+   width for a tall one — so a portrait image can't overflow into a
+   scroll the way a plain aspect-ratio + width:100% would. Applies whenever
+   that inline sizing is used, independent of whether the card chrome below
+   is also drawn — a "bare" photo sharing someone else's card still needs
+   its own box to stop at its aspect ratio instead of stretching. */
+.sized {
+  flex: none;
+}
+
+.rounded {
+  border-radius: 24px;
+}
+.frame.rounded {
+  border: 1px solid var(--ink);
+  background: #fff;
+}
+.frame.rounded .inner {
+  inset: 24px 20px;
 }

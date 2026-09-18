@@ -216,6 +216,26 @@
   overflow: auto;
 }
 
+/* A second figure spanning the full width, below the text/figure row (e.g.
+   a wide chart that doesn't belong in either column) — the row and this
+   block split the available height 5:2 via their own inline flex values,
+   favoring the row since its text content doesn't shrink to fit the way
+   an image does; a bottom figure needs to be sized to comfortably fit its
+   smaller share, not the other way around. */
+.textFigureWithBottom {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.textFigureBottom {
+  flex: 2 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 /* layout: figure / demo — the embed carries the slide */
 .figureOnly,
 .demoLayout {
@@ -267,6 +287,14 @@
   font-size: 34px;
   color: var(--ink);
 }
+.columnImage {
+  margin: 10px 0 4px;
+}
+.columnImagesRow {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
 .columnCell {
   display: flex;
   flex-direction: column;
@@ -274,18 +302,18 @@
   min-width: 0;
 }
 .columnCellSpaced {
-  margin-top: 14px;
+  margin-top: 10px;
 }
 .columnLabel {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.02em;
   color: var(--accent);
 }
 .columnText {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -296,7 +324,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.5;
   color: var(--ink-soft);
 }

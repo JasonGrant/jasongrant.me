@@ -22,13 +22,15 @@ export type ReusedFigureId = Extract<
 export type DeckOnlyEmbedId =
   | "career-strip" // intro figure (new, static)
   | "skill-throughline" // intro figure: skill mix per role, static
+  | "building-homes-gallery" // intro figure: exterior and kitchen before/after photo pairs
+  | "pendo-usage-stack" // app-shell figure: two Pendo dashboards, side by side
   | "initiative-venn" // the three initiative-owner Venn diagram
   | "org-map" // simplified Klaviyo design org: verticals vs. horizontal teams
   | "hiring-timeline" // the three-phase team-building arc behind the i18n rollout
   | "shell-sequencing" // the four-step platform sequence, with role/discipline per step
-  | "settings-reveal" // before/after drag-reveal: settings IA
-  | "outreach-reveal" // before/after drag-reveal: outreach/bulk messaging
-  | "inbox-reveal" // before/after drag-reveal: case Details panel
+  | "settings-before-after" // before/after side by side: settings IA
+  | "outreach-before-after" // before/after side by side: outreach/bulk messaging
+  | "inbox-before-after" // before/after side by side: case Details panel
   | "i18n-timeline" // MilestoneTimeline over the i18n study's milestones
   | "settings-cascade" // SettingsPanel(org) + SettingsPanel(personal) on one slide
   | "email-flow"; // EmailTranslationFlow
@@ -45,6 +47,10 @@ export interface DeckImage {
   height: number;
   /** Fraction of the 1920 stage width the image occupies; drives next/image `sizes`. */
   stageFraction: number;
+  /** Opt-in rounded corners — for a real screenshot/photo standing beside
+   *  body text, not the deck's default for every image (most are flat,
+   *  edge-to-edge product recreations). */
+  rounded?: boolean;
 }
 
 export type DeckFigureRef =
@@ -92,6 +98,11 @@ export interface DeckColumnRow {
 
 export interface DeckColumn {
   title: string;
+  /** A small real screenshot shown under the title, above the rows. */
+  image?: DeckImage;
+  /** A short row of small screenshots instead of one — for a column with
+   *  more than one worth showing. Takes precedence over `image`. */
+  images?: DeckImage[];
   rows: DeckColumnRow[];
 }
 
@@ -109,8 +120,21 @@ export type ContentLayout =
       columns?: [number, number];
       /** Column gap in px; default 56. */
       gap?: number;
+      /** Cross-axis alignment of the figure column's content; default start
+       *  (flush toward the body). "end" flushes a narrower-than-column
+       *  image (e.g. a portrait screenshot) toward the far edge instead. */
+      figureAlign?: "start" | "end";
+      /** A second figure spanning the full width, below the text/figure row
+       *  (e.g. a wide comparison chart that doesn't belong in either column). */
+      bottomFigure?: DeckFigureRef;
     }
-  | { layout: "figure"; figure: DeckFigureRef; caption?: string; body?: DeckText }
+  | {
+      layout: "figure";
+      figure: DeckFigureRef;
+      caption?: string;
+      body?: DeckText;
+      bullets?: string[];
+    }
   | { layout: "demo"; embed: DeckEmbedId; body?: DeckText; caption?: string }
   | {
       layout: "numbers";

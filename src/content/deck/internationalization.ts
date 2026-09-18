@@ -19,7 +19,7 @@ export const internationalizationSection: DeckSection = {
       title: "Internationalization at Klaviyo",
       kicker: "Klaviyo",
       headline: "Internationalization",
-      sub: "A company bet, with design at the ownership table.",
+      sub: "A company bet, co-owned by design from day one.",
       bullets: [
         "Marketing automation for 151,000+ businesses in 80+ countries",
         "IPO'd September 2023 with an English-only app limiting its global expansion",
@@ -36,7 +36,6 @@ export const internationalizationSection: DeckSection = {
         "Internationalization was a known future need before it was a funded cross-company initiative.",
       layout: "figure",
       figure: { kind: "embed", embed: "i18n-timeline" },
-      caption: "French shipped alone in Q2 2024; five more languages shipped together in Q3.",
       staticDescription:
         "Sequencing judgment: internationalization was a known future need before it was a funded cross-company initiative. A six-beat timeline: Q1 2022, Debt, removing blockers like multiple frameworks, inconsistent design-system adoption, and components not built for localization; Q4 2023, Audit, the audit and design-system i18n enablement; Q1 2024, Plan, vendor selection, frameworks, tools, and hiring; Q2 2024, Launch, cross-engineering support for the French launch; Q3 2024, Expand, five more languages (German, Portuguese, Korean, Spanish, Italian); and Q4 2024, Empower, customers localizing for their own customers. French alone first, then five languages together: proving the model once and amortizing everything learned across the batch.",
     },
@@ -124,22 +123,21 @@ export const internationalizationSection: DeckSection = {
       figure: { kind: "embed", embed: "initiative-venn" },
       body: [
         [
-          "Post-IPO, EMEA growth was constrained by a product that only spoke one language. Sending to more than one language at once was difficult too: a manual, confusing process with no real system behind it. Internationalization became one of a handful of initiatives the whole company organized around.",
+          "Post-IPO, EMEA growth was constrained by an English-only product. Sending to more than one language at once was difficult too: a manual, confusing process with no real system behind it. Internationalization became one of a handful of initiatives the whole company organized around.",
         ],
         [
-          { em: "Design had a seat at the ownership table." },
-          " I was the design representative among the initiative owners, alongside a director of engineering and a director of product, not a downstream stakeholder brought in once scope was set.",
+          "I was the design representative among the initiative owners, alongside a director of engineering and a director of product, not a downstream stakeholder brought in once scope was set.",
         ],
       ],
       staticDescription:
-        "Frame slide: internationalization was one of three company-wide initiatives that year, constraining EMEA growth; sending to more than one language at once was also a manual, confusing process with no real system behind it. Design had a seat at the ownership table from the start. A Venn diagram shows the three initiative owners, each name linking to their LinkedIn profile: Daniel Kezerashvili, Director of Engineering; Evan Eisert, Director of Product; and Jason Grant, Director of Design. Engineering and product overlap on the translation platform; engineering and design overlap on the component library team; product and design overlap on the product plan; and all three overlap at internationalization, in the center.",
+        "Frame slide: internationalization was one of three company-wide initiatives that year, constraining EMEA growth; sending to more than one language at once was also a manual, confusing process with no real system behind it. The presenter was the design representative among the initiative owners from the start. A Venn diagram shows the three initiative owners, each name linking to their LinkedIn profile: Daniel Kezerashvili, Director of Engineering; Evan Eisert, Director of Product; and Jason Grant, Director of Design. Engineering and product overlap on the translation platform; engineering and design overlap on the component library team; product and design overlap on the product plan; and all three overlap at internationalization, in the center.",
     },
     {
       template: "content",
       slug: "operating-model",
       title: "Operating model",
       kicker: "Internationalization › Operating model and team",
-      headline: "How two designers moved an org.",
+      headline: "How we enabled an org.",
       layout: "text-figure",
       figureSide: "right",
       columns: [5, 11],
@@ -154,7 +152,7 @@ export const internationalizationSection: DeckSection = {
         "Handoff templates included an i18n checklist and guidelines for documenting in the design spec",
       ],
       staticDescription:
-        "Operating model: five moves let two designers move an org without being in every room: guidelines built into the design system docs, intl formatting tooling that made the right thing the default, localization added to design review standards, enforcement through linting, and handoff templates that included an i18n checklist and guidelines for documenting in the design spec. The figure is a simplified map of the Klaviyo product design org, about eighty people: research and documentation, four product verticals (infrastructure, core product, reporting and AI, new ventures), and the presenter's own vertical, unified experience. Five horizontal rows cross these columns: internationalization (highlighted) and content design each reach from documentation through unified experience; design systems, accessibility, and design reviews each reach from infrastructure through unified experience. Research has no horizontal reaching it at all. Internationalization, content design, and design systems were built from zero.",
+        "Operating model: five moves let us enable an org without being in every room: guidelines built into the design system docs, intl formatting tooling that made the right thing the default, localization added to design review standards, enforcement through linting, and handoff templates that included an i18n checklist and guidelines for documenting in the design spec. The figure is a simplified map of the Klaviyo product design org, eighty people: research and documentation, four product verticals (infrastructure, core product, reporting and AI, new ventures), and the presenter's own vertical, unified experience. Five horizontal rows cross these columns: internationalization (highlighted) and content design each reach from documentation through unified experience; design systems, accessibility, and design reviews each reach from infrastructure through unified experience. Research has no horizontal reaching it at all.",
     },
     {
       template: "content",
@@ -182,7 +180,40 @@ export const internationalizationSection: DeckSection = {
         ],
       ],
       staticDescription:
-        "Team: a four-phase hiring arc, labeled player, then player-coach twice, then leadership. Pre-Q4 2023, it was Daniel (engineering) and the presenter (design) alone, removing blockers: multiple frameworks, inconsistent design-system adoption, and components not built for localization. Q1 2024: Evan joined as the third owner, Daniel pulled an engineer from Web Platform, and hiring opened for a PM and a London i18n engineering team; by quarter's end the PM was hired and engineering had an engineering manager plus four in London. Q2 2024: cross-engineering support for the first non-English language, French, proving the model once before scaling to five more. Post-Q2 2024: tooling and frameworks were built for engineering and design to follow, part-time design support answered questions and reviewed bugs while a full-time hire was made, and every engineering team owned its own part of the rollout; five more languages then shipped (German, Portuguese, Korean, Spanish, Italian) without looping engineers in, who asked how it happened without talking to them, and customers could send one campaign across multiple languages. Understanding the work firsthand before stepping back to lead let the presenter determine the skills required, then build the cross-functional team for success.",
+        "Team: a four-phase hiring arc, labeled player, then player-coach twice, then leadership. Pre-Q4 2023, it was Daniel (engineering) and the presenter (design) alone, removing blockers: multiple frameworks, inconsistent design-system adoption, and components not built for localization. Q1 2024: Evan joined as the third owner, Daniel pulled an engineer from Web Platform, and hiring opened for a PM and a London i18n engineering team; by quarter's end the PM was hired and engineering had an engineering manager plus four in London. Q2 2024: cross-engineering support for the first non-English language, French, every engineering team owning its own part of the rollout, proving the model once before scaling to five more. Post-Q2 2024: tooling and frameworks were built for engineering and design to follow, part-time design support answered questions and reviewed bugs while a full-time hire was made; five more languages then shipped (German, Portuguese, Korean, Spanish, Italian) without looping engineers in, who asked how it happened without talking to them, and customers could send one campaign across multiple languages. Understanding the work firsthand before stepping back to lead let the presenter determine the skills required, then build the cross-functional team for success.",
+    },
+    {
+      template: "content",
+      slug: "customer-conversations",
+      title: "Customer conversations",
+      kicker: "Internationalization › Supporting expansion",
+      headline: "Supporting expansion.",
+      layout: "text-figure",
+      figureAlign: "end",
+      figure: {
+        kind: "image",
+        image: {
+          src: "/work/ben-brophy-linkedin-post.png",
+          alt: "Ben Brophy's public LinkedIn post: 'Watching the growth of Smart Translation is thrilling — Klaviyo sent over a million translated messages every day last week.'",
+          width: 1068,
+          height: 1742,
+          stageFraction: 0.35,
+          rounded: true,
+        },
+      },
+      body: [
+        [
+          "Ben (design) and Iti (PM) met directly with new French customers, and kept talking with country-success teams in France and Germany, both about how localization was landing and about those customers' own need to localize for ",
+          { em: "their" },
+          " customers.",
+        ],
+      ],
+      bullets: [
+        "Klaviyo runs quantitative-first: Heap dashboards tracked localized-market usage against existing benchmarks",
+        "Qualitative is typically from customer champions, what PMs heard directly, and support tickets",
+      ],
+      staticDescription:
+        "Customer conversations: Ben, design, and Iti, PM, met directly with new French customers and kept talking with country-success teams in France and Germany, both about how localization was landing and about those customers' own need to localize for their customers. Klaviyo runs quantitative-first: Heap dashboards tracked localized-market usage against existing benchmarks, while qualitative is typically from customer champions, what PMs heard directly, and support tickets. Beside the text, right-aligned, Ben's public LinkedIn post: thrilled at Smart Translation's growth, noting Klaviyo sent over a million translated messages a day the week before.",
     },
     {
       template: "content",
@@ -200,8 +231,20 @@ export const internationalizationSection: DeckSection = {
       slug: "outcomes",
       title: "Outcomes",
       kicker: "Internationalization › Outcomes",
-      headline: "France is the proof.",
+      headline: "France and beyond results.",
       layout: "numbers",
+      figureSide: "right",
+      columns: [5, 11],
+      figure: {
+        kind: "image",
+        image: {
+          src: "/work/klaviyo-french-homepage.png",
+          alt: "Klaviyo's own marketing homepage, fully localized into French: navigation, headline, product screenshots, and customer logos all in French.",
+          width: 1716,
+          height: 2302,
+          stageFraction: 0.5,
+        },
+      },
       stats: [
         {
           figure: "65%",
@@ -221,7 +264,7 @@ export const internationalizationSection: DeckSection = {
         },
       ],
       staticDescription:
-        "Outcomes: France new business grew 65% quarter over quarter immediately after the French launch, per Klaviyo's Q2 2024 earnings call. International revenue grew about 42% year over year in 2025, outpacing the overall business, per the Q4 2025 earnings call.",
+        "Outcomes: France new business grew 65% quarter over quarter immediately after the French launch, per Klaviyo's Q2 2024 earnings call. International revenue grew about 42% year over year in 2025, outpacing the overall business, per the Q4 2025 earnings call. Beside the stats, Klaviyo's own marketing homepage, fully localized into French.",
     },
   ],
 };

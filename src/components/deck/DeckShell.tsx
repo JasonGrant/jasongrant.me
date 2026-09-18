@@ -5,6 +5,7 @@ import { useRouter, useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./DeckShell.module.css";
 import { DeckSlideFrame } from "./DeckSlideFrame";
+import { LightboxProvider } from "./LightboxContext";
 import { Navigator } from "./Navigator";
 import { ResetButton } from "./ResetButton";
 import { Stage } from "./Stage";
@@ -36,11 +37,13 @@ export function DeckShell({
   children: React.ReactNode;
 }) {
   return (
-    <DeckResetProvider>
-      <DeckShellInner secret={secret} outline={outline}>
-        {children}
-      </DeckShellInner>
-    </DeckResetProvider>
+    <LightboxProvider>
+      <DeckResetProvider>
+        <DeckShellInner secret={secret} outline={outline}>
+          {children}
+        </DeckShellInner>
+      </DeckResetProvider>
+    </LightboxProvider>
   );
 }
 

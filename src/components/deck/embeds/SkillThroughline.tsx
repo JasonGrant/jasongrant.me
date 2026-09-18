@@ -49,8 +49,8 @@ const LANES: Lane[] = [
     label: "User research",
     topLabel: "Qualitative",
     bottomLabel: "Quantitative",
-    top: [3, 3, 1, 2],
-    bottom: [1, 1, 3, 2],
+    top: [3, 3, 1, 1],
+    bottom: [1, 1, 3, 1],
   },
   {
     label: "Design systems",
@@ -71,7 +71,7 @@ const LANES: Lane[] = [
     topLabel: "Career",
     bottomLabel: "Processes",
     top: [0, 1, 2, 1],
-    bottom: [0, 0, 3, 3],
+    bottom: [0, 1, 3, 3],
   },
 ];
 

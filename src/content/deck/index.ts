@@ -22,9 +22,6 @@ export const INTERACTIVE_EMBEDS: ReadonlySet<DeckEmbedId> = new Set<DeckEmbedId>
   "design-handoff",
   "settings-cascade",
   "email-flow",
-  "settings-reveal",
-  "outreach-reveal",
-  "inbox-reveal",
 ]);
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

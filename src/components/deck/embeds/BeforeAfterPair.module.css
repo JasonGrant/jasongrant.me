@@ -1,0 +1,34 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+  min-height: 0;
+}
+
+.itemWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.item {
+  display: flex;
+  width: 100%;
+}
+
+.tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgb(21 18 13 / 0.72);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}

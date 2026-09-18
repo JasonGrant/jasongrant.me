@@ -3,21 +3,23 @@ import type { DeckEmbedId, DeckFigureRef } from "@/content/deck/types";
 import type { ComponentType } from "react";
 import styles from "./Slide.module.css";
 import { AccordionExampleDeck } from "./embeds/AccordionExampleDeck";
+import { BuildingHomesGallery } from "./embeds/BuildingHomesGallery";
 import { CareerStrip } from "./embeds/CareerStrip";
 import { DeckEmailFlow } from "./embeds/DeckEmailFlow";
 import { DeckImage } from "./embeds/DeckImage";
 import { DesignHandoffDeck } from "./embeds/DesignHandoffDeck";
 import { HiringTimeline } from "./embeds/HiringTimeline";
 import { I18nTimeline } from "./embeds/I18nTimeline";
-import { InboxRevealDeck } from "./embeds/InboxRevealDeck";
+import { InboxBeforeAfterDeck } from "./embeds/InboxBeforeAfterDeck";
 import { InitiativeVenn } from "./embeds/InitiativeVenn";
 import { LanguageBreakDeck } from "./embeds/LanguageBreakDeck";
 import { OptionsExploredDeck } from "./embeds/OptionsExploredDeck";
 import { OrgMap } from "./embeds/OrgMap";
-import { OutreachRevealDeck } from "./embeds/OutreachRevealDeck";
+import { OutreachBeforeAfterDeck } from "./embeds/OutreachBeforeAfterDeck";
+import { PendoUsageStack } from "./embeds/PendoUsageStack";
 import { RiskTiersDeck } from "./embeds/RiskTiersDeck";
+import { SettingsBeforeAfterDeck } from "./embeds/SettingsBeforeAfterDeck";
 import { SettingsCascade } from "./embeds/SettingsCascade";
-import { SettingsRevealDeck } from "./embeds/SettingsRevealDeck";
 import { ShellAfterDeck } from "./embeds/ShellAfterDeck";
 import { ShellBeforeDeck } from "./embeds/ShellBeforeDeck";
 import { ShellSequencing } from "./embeds/ShellSequencing";
@@ -32,19 +34,21 @@ const EMBEDS: Record<DeckEmbedId, ComponentType> = {
   "accordion-example": AccordionExampleDeck,
   "options-explored": OptionsExploredDeck,
   "risk-tiers": RiskTiersDeck,
+  "pendo-usage-stack": PendoUsageStack,
   "shell-after": ShellAfterDeck,
   "shell-before": ShellBeforeDeck,
   "design-handoff": DesignHandoffDeck,
   "career-strip": CareerStrip,
   "skill-throughline": SkillThroughline,
+  "building-homes-gallery": BuildingHomesGallery,
   "initiative-venn": InitiativeVenn,
   "org-map": OrgMap,
   "hiring-timeline": HiringTimeline,
   "i18n-timeline": I18nTimeline,
   "shell-sequencing": ShellSequencing,
-  "settings-reveal": SettingsRevealDeck,
-  "outreach-reveal": OutreachRevealDeck,
-  "inbox-reveal": InboxRevealDeck,
+  "settings-before-after": SettingsBeforeAfterDeck,
+  "outreach-before-after": OutreachBeforeAfterDeck,
+  "inbox-before-after": InboxBeforeAfterDeck,
   "settings-cascade": SettingsCascade,
   "email-flow": DeckEmailFlow,
 };
@@ -59,19 +63,21 @@ const EMBED_LABELS: Partial<Record<DeckEmbedId, string>> = {
   "accordion-example": "Accordion category demo",
   "options-explored": "Options explored",
   "risk-tiers": "Risk tiers",
+  "pendo-usage-stack": "Pendo usage dashboards",
   "shell-after": "Shell after",
   "shell-before": "Shell before",
   "design-handoff": "Design handoff spec",
   "career-strip": "Career strip",
   "skill-throughline": "Skill mix by role",
+  "building-homes-gallery": "House exterior and kitchen, before and after",
   "initiative-venn": "Initiative leadership",
   "org-map": "Design org map",
   "hiring-timeline": "Hiring timeline",
   "i18n-timeline": "Project timeline",
   "shell-sequencing": "Platform sequencing",
-  "settings-reveal": "Settings before and after",
-  "outreach-reveal": "Outreach before and after",
-  "inbox-reveal": "Inbox before and after",
+  "settings-before-after": "Settings before and after",
+  "outreach-before-after": "Outreach before and after",
+  "inbox-before-after": "Inbox before and after",
   "email-flow": "Email translation flow",
 };
 

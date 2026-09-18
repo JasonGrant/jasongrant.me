@@ -52,8 +52,8 @@ export function CareerStrip() {
       </ol>
       <p className={styles.caption}>
         Fifteen years in design, twelve leading teams, three built from zero, up to fifteen direct
-        reports including managers, an organization of eighty held through a transition. Hypoth runs
-        alongside as an independent studio.
+        reports including managers, and owned design PRD representation and design quality for a
+        team of eighty.
       </p>
     </div>
   );
