@@ -1,0 +1,80 @@
+.strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+  gap: 32px;
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.cardAccent {
+  border-color: var(--accent);
+  background: rgb(94 203 203 / 0.1);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 25px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.titleAccent {
+  color: var(--accent);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: disc;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.bullets li::marker {
+  color: var(--accent);
+}
+
+.role {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}
+
+.roleAccent {
+  border-top-color: var(--accent);
+  color: var(--accent);
+}

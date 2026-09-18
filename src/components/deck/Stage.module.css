@@ -1,0 +1,38 @@
+/* No-JS default: a plain flowing block (FR-012) — the frame is exactly as
+   tall as its content and the page scrolls normally. html.deck-js (set by
+   the inline script in Stage.tsx before hydration) switches to the fixed,
+   scaled 16:9 stage. See research D6. */
+.viewport {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.frame {
+  width: min(100%, 1920px);
+  height: auto;
+  margin: 0 auto;
+}
+
+:global(html.deck-js) .viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  overflow: clip;
+}
+
+:global(html.deck-js) .frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--deck-scale, 1));
+  transform-origin: center center;
+}
+
+/* Focus rings scale down with the frame at laptop widths; widen them so
+   they stay clearly visible (research D7, contracts/accessibility.md). */
+:global(html.deck-js) .frame :focus-visible {
+  outline-width: 3px;
+  outline-offset: 2px;
+}

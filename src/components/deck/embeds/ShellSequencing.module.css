@@ -1,0 +1,164 @@
+.strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+  gap: 32px;
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.cardAccent {
+  border-color: var(--accent);
+  background: rgb(94 203 203 / 0.1);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 25px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.titleAccent {
+  color: var(--accent);
+}
+
+.line {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Flat schematic diagram — same technique as NavFootprintBefore.tsx on
+   /work/app-shell (plain divs, bg-elev + ink border, accent-soft zones for
+   structural regions, no shadows/gradients). Locked to 16:10 so all four
+   cards' diagrams read as the same size regardless of content. */
+.diagram {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-elev);
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.diaTopBar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 12%;
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--ink);
+}
+
+.diaRail {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 16%;
+  background: var(--accent-soft);
+  border-right: 1px solid var(--ink);
+}
+
+.diaCardGrid {
+  position: absolute;
+  inset: 22% 8% 10% 8%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8%;
+}
+
+.diaCard {
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+}
+
+.diaTableHeader {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  right: 8%;
+  height: 8%;
+  background: var(--accent-soft);
+}
+
+.diaTableRow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 8%;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.diaChip {
+  position: absolute;
+  top: 25%;
+  right: 4%;
+  width: 14%;
+  height: 50%;
+  background: var(--accent-soft);
+  border-radius: 2px;
+}
+
+.diaMessage {
+  position: absolute;
+  height: 12%;
+  background: var(--rule-strong);
+  border-radius: 2px;
+}
+
+.bottom {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--rule);
+}
+
+.bottomAccent {
+  border-top-color: var(--accent);
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}
+
+.roleAccent {
+  color: var(--accent);
+}
+
+.discipline {
+  font-size: 15px;
+  color: var(--ink-mute);
+}

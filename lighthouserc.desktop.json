@@ -9,7 +9,12 @@
         "http://localhost:3000/writing",
         "http://localhost:3000/colophon",
         "http://localhost:3000/work/internationalization",
-        "http://localhost:3000/work/app-shell"
+        "http://localhost:3000/work/app-shell",
+        "http://localhost:3000/deck/ci/intro/cover",
+        "http://localhost:3000/deck/ci/internationalization/the-cascade",
+        "http://localhost:3000/deck/ci/internationalization/translation-flow",
+        "http://localhost:3000/deck/ci/app-shell/baseline",
+        "http://localhost:3000/deck/ci/app-shell/outcome"
       ],
       "numberOfRuns": 3,
       "settings": {
@@ -50,6 +55,30 @@
         },
         {
           "matchingUrlPattern": "^http://localhost:3000/work/",
+          "assertions": {
+            "categories:performance": [
+              "error",
+              {
+                "minScore": 0.9
+              }
+            ],
+            "categories:accessibility": [
+              "error",
+              {
+                "minScore": 0.95
+              }
+            ],
+            "categories:best-practices": [
+              "error",
+              {
+                "minScore": 0.95
+              }
+            ],
+            "categories:seo": ["off", {}]
+          }
+        },
+        {
+          "matchingUrlPattern": "^http://localhost:3000/deck/",
           "assertions": {
             "categories:performance": [
               "error",

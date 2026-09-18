@@ -11,7 +11,9 @@ import { ImageStepper, type StepperSlide } from "./ImageStepper";
 // demo profile in the component fixtures, not a real colleague). See the
 // constitution's owner-cleared-real-artifact exception, consistent with
 // research D8a.
-const SLIDES: StepperSlide[] = [
+// Exported so the presentation deck (feature 008) can step the same exports
+// through its own stage-sized stepper; this component's behavior is unchanged.
+export const DESIGN_HANDOFF_SLIDES: StepperSlide[] = [
   {
     src: "/work/app-shell/design-handoff-details-pane-structure.jpg",
     alt: "The details pane's landmark structure annotated with ARIA: a labeled aside region, a header with a live-region title, and a vertical tablist wired to hidden/visible panels.",
@@ -78,5 +80,5 @@ const SLIDES: StepperSlide[] = [
 ];
 
 export function DesignHandoffScreens() {
-  return <ImageStepper slides={SLIDES} />;
+  return <ImageStepper slides={DESIGN_HANDOFF_SLIDES} />;
 }

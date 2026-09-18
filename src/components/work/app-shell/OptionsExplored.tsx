@@ -16,7 +16,7 @@ const CRITERIA: { id: CriterionId; label: string }[] = [
   { id: "fullHeight", label: "Maximize vertical height available for content" },
 ];
 
-type OptionId = "accordion" | "buttons" | "dropdown";
+export type OptionId = "accordion" | "buttons" | "dropdown";
 
 const OPTIONS: {
   id: OptionId;
@@ -136,10 +136,15 @@ function OptionDiagram({ variant }: { variant: OptionId }) {
   );
 }
 
-export function OptionsExplored() {
+// `activeId` (presentation deck, feature 008): when given, renders only that
+// one option instead of all three — the deck adds its own segmented control
+// so a slide can show one option at a time without scrolling. Omitted (the
+// default), every option renders, unchanged from /work's own behavior.
+export function OptionsExplored({ activeId }: { activeId?: OptionId } = {}) {
+  const options = activeId ? OPTIONS.filter((o) => o.id === activeId) : OPTIONS;
   return (
     <div className={styles.root}>
-      {OPTIONS.map((option) => (
+      {options.map((option) => (
         <div className={styles.option} key={option.id}>
           <div className={styles.optionMain}>
             <h3 className={styles.optionTitle}>{option.title}</h3>

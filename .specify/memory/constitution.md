@@ -1,6 +1,50 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.2.6 → 1.3.0
+Rationale: MINOR. Adds one named exception each to Principles II, IV, and V,
+  plus a gate note, to admit a single unlisted presentation deck at
+  `/deck/[secret]` (feature 008). The deck is a leadership-cut slideshow of
+  the two existing unlisted case studies, reusing their recreated figures and
+  demos with deck-authored copy. Its URL carries a secret segment supplied at
+  build time from an environment variable, so the repository stays public
+  while the route stays unguessable. No rule is removed or inverted; every
+  non-`/deck` route is unchanged.
+
+Modified principles:
+  - II. Performance Budget — `/deck/[secret]` is measured on the desktop
+    Lighthouse profile only, against a CI placeholder slug: Performance 90+,
+    Accessibility 95+, Best Practices 95+, SEO off, CLS 0. The mobile profile
+    is exempt for the deck (a desktop-first presentation surface that only
+    scales on phones). Every other route keeps its existing band.
+  - IV. Design-Engineer Craft — new "Presentation stage" exception: inside
+    the deck route the slide stage is a fixed 16:9 frame scaled to the
+    viewport; grid/multi-column layouts are permitted inside the stage and the
+    single-column measure does not apply there. Flat bans hold on the stage
+    chrome; replica depth stays confined to `.replicaFrame`; an opacity-only
+    slide cross-fade (≤200ms, suppressed under reduced motion) is the only
+    permitted transition; nothing animates on load or scroll.
+  - V. Content Discipline — new "Unlisted presentation deck" exception:
+    noindex/nofollow, absent from the sitemap and every navigation surface,
+    and — unlike `/work` — MUST NOT be named in `robots.txt` (a Disallow would
+    publish the path). Secret from build-time env, never committed; CI builds
+    with a placeholder. Content rules of the unlisted-case-studies exception
+    apply by reference. Revocation is by rotating the secret.
+
+Added sections: None. Removed sections: None. Removed rules: None.
+
+Templates requiring updates:
+  - ✅ lighthouserc.desktop.json — `/deck/` assertion band + CI-slug URLs.
+  - ✅ lighthouserc.mobile.json — explicitly gains no deck URLs (mobile exempt).
+  - ✅ scripts/axe-check.mjs — CI-slug deck URLs added.
+  - ✅ .github/workflows/quality.yml — `DECK_SLUG: ci` on build steps.
+  - ✅ specs/008-presentation-deck/* — cite v1.3.0.
+  - ✅ CLAUDE.md — SPECKIT block points at feature 008 and v1.3.0.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.2.6)
+==================
 Version change: 1.2.5 → 1.2.6
 Rationale: MINOR. Relaxes the Performance category of the Lighthouse gate
   (Principle II) for the interactive case-study routes (`/work/[slug]`) from
@@ -345,6 +389,15 @@ is relaxed to **90 or higher**; Accessibility and Best Practices stay 95+, SEO
 is `off` (per the noindex resolution in v1.2.1), and CLS MUST remain 0. Every
 other route holds the full 95+ bar on all four categories.
 
+Named exception — Unlisted presentation deck (`/deck/[secret]`, see the
+Principle V exception): the deck is a desktop-first presentation surface whose
+fixed 16:9 stage only scales down on phones, so it is measured on the
+**desktop** Lighthouse profile only, against the CI placeholder slug:
+Performance **90 or higher**, Accessibility and Best Practices 95+, SEO `off`
+(noindex), and CLS MUST remain 0. The mobile Lighthouse profile is exempt for
+`/deck` routes and for no other route. Every other gate (axe, keyboard,
+screen reader, reduced motion, visual, TypeScript, Biome) applies in full.
+
 Concrete requirements:
 
 - Cumulative Layout Shift (CLS) MUST be 0 on all pages. Fonts MUST be
@@ -513,6 +566,27 @@ the real thing; a demonstration crushed into the reading measure reads as a
 screenshot, not a working interface. This is the layout counterpart to the
 motion and replica-craft exceptions.
 
+**Named exception — Presentation stage (`/deck/[secret]`)**: On the unlisted
+presentation-deck route (see the Principle V exception), slides render inside
+a fixed 16:9 stage that is scaled to fit the viewport and letterboxed. Inside
+that stage — and only there — the following hold:
+
+- (a) Multi-column and grid layouts MAY be used on a slide. The single-column
+  ~640–720px measure does not apply inside the stage; slide body copy still
+  holds a readable line length (≤ ~70 characters).
+- (b) The flat-styling bans remain in force on the stage chrome (navigator,
+  reset control, letterbox, slide backgrounds). Depth remains confined to
+  `.replicaFrame` under the replica-craft exception; embedded demonstrations
+  remain governed by the scripted-demonstrations exception.
+- (c) A slide change MAY cross-fade using opacity only, ≤200ms, suppressed
+  under `prefers-reduced-motion: reduce`. No slide/zoom/parallax transitions.
+  Nothing animates on load or on scroll.
+- (d) Reduced motion, keyboard operability, visible focus, and WCAG AA
+  contrast apply in full at every stage scale. Without scripting the stage
+  MUST degrade to an unscaled, flowing, readable document.
+- (e) The exception applies only under `/deck/[secret]`. Everywhere else the
+  single-column measure and the "no grid layouts" rule stay in force.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -526,8 +600,9 @@ louder is a violation, not an interpretation.
 Content structure MUST follow the rebuild plan: three pages only — Home (`/`),
 Experience (`/experience`), Writing (`/writing`) — plus an optional
 `/colophon`. No portfolio pages, no `/about`, no `/contact`. Unlisted
-interactive case-study routes under `/work/[slug]` are permitted solely
-under the named exception below.
+interactive case-study routes under `/work/[slug]` and the unlisted
+presentation deck under `/deck/[secret]` are permitted solely under the named
+exceptions below.
 
 Required:
 
@@ -576,6 +651,32 @@ violating the page-count rule, IF AND ONLY IF all of the following hold:
   and/or indexed as a per-study content decision recorded in the PR that
   makes the change. The default for every new study remains unlisted and
   noindexed.
+
+**Named exception — Unlisted presentation deck (`/deck/[secret]`)**: One
+slideshow presenting the intro and the unlisted case studies in a leadership
+cut MAY ship under `/deck/<secret>/<section>/<slide>` without violating the
+page-count rule, IF AND ONLY IF all of the following hold:
+
+- *Unlisted, and never named*: the route is excluded from the sitemap,
+  carries `noindex, nofollow` robots metadata, ships no Open Graph / Twitter
+  card, and is linked from no navigation surface (primary navigation, command
+  palette, section rails, home shelves, or the `/work` studies). Unlike
+  `/work`, it MUST NOT appear in `robots.txt` in any form — a Disallow rule
+  would publish the path it is meant to hide.
+- *Secret at build time*: the `<secret>` segment is supplied by an
+  environment variable at build time and is never committed to the
+  repository. Continuous integration builds with a placeholder value so the
+  real segment appears in no committed file and no CI log. Rotating the
+  variable and redeploying revokes every previously shared link.
+- *Same content rules, by reference*: every slide reuses material already
+  permitted on `/work/[slug]` — recreated product UI with fictional data,
+  owner-cleared real artifacts, real operator branding on unlisted routes —
+  and every content rule of the unlisted-case-studies exception above applies
+  to the deck unchanged. The deck introduces no new proprietary material.
+- *Fully gated*: the deck is a shipped page for the Workflow & Quality Gates,
+  measured as the Principle II deck exception describes (desktop profile
+  only). The *Deliberate publicizing* step does not apply — the deck is never
+  listed or indexed.
 
 Rationale: The information architecture and content rules are load-bearing
 for the positioning. Adding a portfolio page, an `/about`, or a `/contact`
@@ -633,6 +734,11 @@ Performance, Accessibility, and Best Practices at 95+ unchanged, and asserts
 SEO at the maximum score achievable with that noindex deduction — no other
 SEO deduction is permitted.
 
+For the unlisted presentation deck (`/deck/[secret]`), gate 4 runs the
+desktop profile only, against the CI placeholder slug, at the Principle II
+deck band (Performance 90+, Accessibility 95+, Best Practices 95+, SEO off,
+CLS 0). Gates 1–3 and 5–8 apply to the deck unchanged.
+
 If a Lighthouse score drops below 95 on any category, the change MUST NOT
 ship. Either fix the regression or revert. Negotiating the gate downward
 is not permitted; amending the gate requires a constitution amendment.
@@ -677,4 +783,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.2.6 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-09-02
+**Version**: 1.3.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-09-12

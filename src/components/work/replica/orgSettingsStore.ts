@@ -25,6 +25,16 @@ export function setOrgSettings(next: OrgSettings): void {
   for (const listener of listeners) listener();
 }
 
+// Forget the published settings (presentation deck, feature 008): the deck
+// resets a slide without reloading, so the cascade must be clearable
+// explicitly — nothing on /work ever calls this, where a page load is the
+// only reset.
+export function resetOrgSettings(): void {
+  if (current === null) return;
+  current = null;
+  for (const listener of listeners) listener();
+}
+
 export function subscribeOrgSettings(callback: () => void): () => void {
   listeners.add(callback);
   return () => {

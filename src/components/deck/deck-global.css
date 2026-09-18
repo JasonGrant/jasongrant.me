@@ -1,0 +1,11 @@
+/* Plain (non-CSS-Module) rules for the deck route: .replicaFrame is a global
+   class from src/components/work/replica/replica-tokens.css, so an override
+   scoped to it can't live in a CSS Module. Widens focus rings inside
+   replica controls so they stay visible when the stage is scaled down at
+   laptop widths (research D7, contracts/accessibility.md). Imported once,
+   from src/app/deck/layout.tsx, after replica-tokens.css. */
+
+html.deck-js .replicaFrame :focus-visible {
+  outline-width: 3px;
+  outline-offset: 2px;
+}

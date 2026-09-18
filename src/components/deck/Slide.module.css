@@ -1,0 +1,428 @@
+/* Deck type scale and layouts (feature 008). Values are design pixels for
+   the 1920×1080 stage frame — the frame's own transform: scale() handles
+   the shrink to the real viewport, so these read like normal desktop CSS. */
+
+.slideRoot {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Transition template: cover / section divider / close.                   */
+
+.transition {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 160px;
+}
+
+/* Kicker sits tight against its headline — a label for it, not a peer
+   element — on both templates. */
+.transitionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.transitionHeadline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 88px;
+  line-height: 1.08;
+  max-width: 1500px;
+  text-wrap: balance;
+}
+
+.transitionSub {
+  font-size: 34px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 1200px;
+}
+
+.transitionBullets {
+  list-style: disc;
+  padding-left: 1.1em;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 34px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 1200px;
+}
+.transitionBullets li::marker {
+  color: var(--accent);
+}
+
+.bulletLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.bulletLink:hover,
+.bulletLink:focus-visible {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.link {
+  font-size: 28px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.link:hover {
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Content template.                                                        */
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 56px 120px;
+}
+
+/* Kicker + headline as one tight block, so most of the reclaimed top space
+   goes to the body/figure below — the region that was clipping on demo and
+   figure slides. */
+.contentHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 32px;
+  flex: none;
+}
+
+.contentHeadline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 54px;
+  line-height: 1.18;
+  max-width: 1600px;
+}
+
+.contentBody {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bodyParagraph {
+  font-size: 32px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 70ch;
+}
+
+.sourceLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.bulletList {
+  list-style: disc;
+  padding-left: 1.1em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 28px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 1200px;
+}
+.bulletList li::marker {
+  color: var(--accent);
+}
+
+.caption {
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  max-width: 1400px;
+  margin: 0;
+}
+
+/* layout: statement */
+.statement {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1300px;
+}
+
+/* layout: text-figure */
+.textFigure {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 9fr);
+  gap: 56px;
+  /* stretch, not start: a text-figure image (next/image fill mode) needs its
+     ancestor chain to resolve to a real height, which a grid item never gets
+     under align-items:start — it sizes to content instead. Non-image
+     figures (RiskTiers, AccordionExampleDeck) size themselves regardless, so
+     this is a safe default for the whole layout, not just the image case. */
+  align-items: stretch;
+}
+.textFigureBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.textFigureFigure {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 100%;
+  overflow: auto;
+}
+
+/* A second figure spanning the full width, below the text/figure row (e.g.
+   a wide chart that doesn't belong in either column) — the row and this
+   block split the available height 5:2 via their own inline flex values,
+   favoring the row since its text content doesn't shrink to fit the way
+   an image does; a bottom figure needs to be sized to comfortably fit its
+   smaller share, not the other way around. */
+.textFigureWithBottom {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.textFigureBottom {
+  flex: 2 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* layout: figure / demo — the embed carries the slide */
+.figureOnly,
+.demoLayout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/* A flex column, not a block: an image embed (DeckImage/DeckStepper) can
+   then take flex:1 and scale to fit both the width AND the remaining
+   height, instead of rendering at intrinsic height and needing an internal
+   scrollbar to reach the rest of it. Non-image embeds (UI replicas) are
+   unaffected — a stretched, naturally-sized flex child looks identical to a
+   block one. overflow:auto stays as a safety net for anything that still
+   doesn't fit (e.g. an unusually long text embed). */
+.embedFrame {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  /* A focus ring on a control flush against this edge would otherwise be
+     clipped by the overflow:auto boundary. */
+  padding: 6px;
+}
+
+/* layout: columns — three fidelities, one shared example. A real 2D grid
+   (an "invisible table"): each column is a grid column, each row index a
+   grid row, placed explicitly in ContentSlide.tsx — a category like
+   "Artifact" lines up across every column because it's the same grid row,
+   even when one column carries an extra row before it. */
+.columnsTable {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 48px;
+  /* Tight by default — this governs the title-to-first-row gap. Rows after
+     the first get their spacing back via .columnCellSpaced's margin-top,
+     independent of this value. */
+  row-gap: 6px;
+  align-items: start;
+}
+.columnTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 34px;
+  color: var(--ink);
+}
+.columnImage {
+  margin: 10px 0 4px;
+}
+.columnImagesRow {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.columnCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.columnCellSpaced {
+  margin-top: 10px;
+}
+.columnLabel {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+.columnText {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.columnBullets {
+  list-style: disc;
+  padding-left: 1.1em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.columnBullets li::marker {
+  color: var(--accent);
+}
+
+/* layout: numbers */
+.numbers {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+.numbersRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 520px;
+}
+.statFigure {
+  font-family: var(--font-display);
+  font-size: 88px;
+  line-height: 0.95;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.statText {
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.statSource {
+  font-size: 18px;
+  color: var(--ink-mute);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  width: max-content;
+  max-width: 100%;
+}
+.statSource:hover {
+  color: var(--accent);
+}
+
+/* The labeled-embed wrapper (SlideEmbed) must itself be a flex column
+   participating in the same flex:1/min-height:0 chain as .embedFrame —
+   otherwise it breaks height resolution for a scale-to-fit image embed
+   nested inside it (DeckImage/DeckStepper). */
+.embedWrapper {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* embed wrapper heading — visually hidden, keeps the outline logical under
+   the slide <h1> (data-model.md §3). */
+.embedHeading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .transition,
+  .content {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .textFigure {
+    grid-template-columns: 1fr;
+  }
+  /* .columnsTable is intentionally not reflowed here: each cell's grid
+     position is set inline (ContentSlide.tsx) to keep rows aligned across
+     columns, and an inline style always wins over a class rule here, so a
+     column-count override would be silently ignored anyway. */
+}
