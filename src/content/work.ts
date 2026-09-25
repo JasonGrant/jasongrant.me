@@ -12,11 +12,10 @@ export const workEntries: WorkEntry[] = [
     dates: "2025 — present",
     companyStage: "Insurtech · Series B",
     homeDescription:
-      "Lead design across every product surface, reporting to the CPO. Established a three-tier design fidelity model — production code, Figma overlays, and an interactive Vercel prototype site — chosen by intent rather than default. Consolidated four legacy component libraries into one production design system. Designed the AI Writing Assistant end-to-end, including prompt engineering, for 26,000+ users across enterprise insurance carriers.",
+      "Lead design across every product surface, reporting to the CPO. Established a three-tier design fidelity model — production code, Figma overlays, and an interactive Vercel prototype site — chosen by intent rather than default. Consolidated four legacy component libraries into one production design system.",
     experienceBullets: [
       "Established a three-tier design fidelity model (production code, Figma overlays, and an interactive Vercel prototype site) chosen by intent rather than default. Replaced single-fidelity handoffs with a system where each tier earns its use.",
       "Consolidated four legacy component libraries into one production design system used by every product surface.",
-      "Designed the AI Writing Assistant end-to-end, including interaction, surface, and prompt engineering. Shipped for 26,000+ users across enterprise insurance carriers.",
       "Embedded design in engineering workflow by shipping production code alongside the team, not handoffs.",
     ],
   },
@@ -60,15 +59,17 @@ export const workEntries: WorkEntry[] = [
     orgHref: site.org.klaviyo.url,
     external: true,
     mark: { kind: "logo", key: "klaviyo" },
-    role: "Director of Product Design · fractional interim VP",
-    dates: "2023 — 2025",
+    role: "Senior Manager → Director of Product Design",
+    dates: "2021 — 2025",
     companyStage: "Martech · Series D to IPO",
     homeDescription:
-      "As fractional interim VP, held the design quality bar across an 80-person product org and represented design at PRD approval. Ran growth experiments, including a free-to-paid conversion test that lifted 28-day conversion +0.7% absolute and went GA. Built three teams from zero (Design Systems, Content Design, Internationalization), including the Ascent Design System.",
+      "Held sole design quality authority across an 80-person design org after the VP of Design left, and was a primary design sign-off on PRDs. Built three design teams from zero (Design Systems, Content Design, Internationalization) as the design org grew from 12 to 80, including the Ascent Design System. Ran growth experiments, including a free-to-paid conversion test that lifted 28-day conversion +0.7% absolute and went GA.",
     experienceBullets: [
-      "As fractional interim VP, held the design quality bar across an 80-person product org and represented design at PRD approval.",
+      "Following the VP of Design's departure, held sole design quality authority across the 80-person design organization: the single approver on 160+ design reviews across all product areas, including ventures and AI.",
+      "Built three design teams from zero (Design Systems, Content Design, Internationalization), growing the group to 16 ICs and 2 managers while the design org expanded from 12 to 80.",
+      "Founding PM, designer, and systems architect for the Ascent Design System: roughly 1,000 design tokens, 50+ net new components, and 2,203 of ~2,700 legacy form components replaced.",
+      "Led design strategy for the company-wide internationalization initiative: French shipped in Q2 2024 as the platform's first non-English language, followed by five more languages by Q3 2024.",
       "Ran growth experiments, including a free-to-paid conversion test that lifted 28-day conversion +0.7% absolute and went GA.",
-      "Built three new teams from zero (Design Systems / Ascent, Content Design, Internationalization) and hired the leaders for each.",
     ],
     links: [
       {
