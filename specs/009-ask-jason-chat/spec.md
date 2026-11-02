@@ -416,7 +416,8 @@ confirm the layout-shift tooling records no shift.
 **Loading and first paint**
 
 - **FR-005**: Before the visitor's first intent, the page MUST carry only the floating input,
-  its placeholder rotation and nudge, and the minimal code that reacts to it. No chat module,
+  its placeholder rotation and nudge, the minimal code that reacts to it and, in `private` mode
+  only, the key check of FR-047b. No chat module,
   no bot-check script, no stylesheet for the panel body, no request to the chat API and no
   preconnect MAY be present on first load.
 - **FR-006**: On the visitor's first intent (focus in the floating input, its tap on a phone,
@@ -488,7 +489,7 @@ confirm the layout-shift tooling records no shift.
 - **FR-021**: While a reply streams, Send MUST become Stop. Stop ends the display of the reply;
   text already shown stays with a "Stopped" tag; the turn counts as spent.
 - **FR-022**: The remaining turns MUST be shown as a one-line hint above the composer when three
-  or fewer remain ("3 questions left in this conversation"), taken from `meta.session.turns_left`
+  or fewer remain ("3 questions left", down to "1 question left"), taken from `meta.session.turns_left`
   after each reply, and otherwise hidden. When it reaches 0 the composer MUST be replaced by the
   ended state (FR-033).
 
@@ -612,8 +613,8 @@ confirm the layout-shift tooling records no shift.
   Every environment MUST set it explicitly: Development `on` with no setup (a committed
   development env file), Preview per branch, Production `private` until launch and `on` after.
   Every change of mode MUST be an environment change plus a redeploy, never a code change.
-- **FR-047a**: The preview key MUST be a long random secret held in a build-time environment
-  variable, `ASK_JASON_PREVIEW_SECRET`, never committed and never logged; the page MUST carry
+- **FR-047a**: The preview key MUST be a random secret of at least 32 characters held in a
+  build-time environment variable, `ASK_JASON_PREVIEW_SECRET`, never committed and never logged; the page MUST carry
   only a one-way hash of it. A browser is armed by opening any site page with the key in the
   URL fragment (`#ask=<key>`); the key check verifies it against the hash, stores it in that
   browser only, for 30 days, and removes it from the address bar. The fragment never reaches a
@@ -709,8 +710,9 @@ confirm the layout-shift tooling records no shift.
   less.
 - **SC-010**: 100 % of controls are at least 24 × 24 px; 100 % of cards, Send and Close are at
   least 44 px tall on phones.
-- **SC-011**: Only one storage key (the session token) is written, and only two hosts are
-  contacted (the chat API and the bot-check host), both only after the chat is opened.
+- **SC-011**: Only the session token is written to storage (plus, in `private` mode, the preview
+  key in the armed browser), and only two hosts are contacted (the chat API and the bot-check
+  host), both only after the visitor's first intent.
 - **SC-012**: Each change of mode, in a preview environment and in production, is one variable
   change plus a redeploy, with 0 code changes, demonstrated on the preview before launch.
 - **SC-013**: The counter and Send prevent an over-limit send in 100 % of attempts, and a
@@ -834,7 +836,8 @@ What the widget meets, where it goes beyond the contract, and what it cannot mee
 - No analytics beyond what the site already has.
 - No change to the API, its contracts, or its wording; gaps are listed for Jason, not patched.
 - No transcript storage, export, email of the conversation, or sharing link.
-- No new runtime dependencies beyond the bot-check script loaded on open.
+- No new runtime dependencies beyond the bot-check script, loaded only after the visitor's first
+  intent.
 - No instant site-side kill switch (a mode change is a redeploy; the API's kill switch is
   instant), and no per-visitor targeting beyond Jason's own preview key.
 - No changes to the deck route.

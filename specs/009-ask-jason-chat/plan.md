@@ -53,10 +53,10 @@ third-party script.
   motion collapses everything to ≤ 100 ms crossfades; Safari 15.4 floor (`showModal()` yes,
   `inert` no, `dvh` with `vh` fallback, `Intl.Segmenter` with a whitespace fallback for Firefox
   < 125); the deck route and the root layout untouched
-**Scale/Scope**: 1 content module; ~28 new files under `src/components/ask/`; 2 layout edits,
+**Scale/Scope**: 1 content module; ~36 new files (TypeScript and CSS) under `src/components/ask/`; 2 layout edits,
   1 palette item, 1 action kind, 1 keyboard-event helper, 1 global CSS rule, 1 token; 1 config
   edit (`next.config.mjs` env digest); 1 committed env file; 1 check script; CI: +1 job, +3 env
-  vars on the gate builds, +9 axe URLs; constitution v1.4.0; CLAUDE.md → 009
+  vars on the gate builds, +29 axe URLs (every FR-030 state); constitution v1.4.0; CLAUDE.md → 009
 
 ## Constitution Check
 

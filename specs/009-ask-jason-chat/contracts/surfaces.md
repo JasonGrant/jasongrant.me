@@ -89,7 +89,8 @@ footer   turn hint (when ≤ 3) · composer · counter · Send/Stop · notice
   border, radius 5 px, 13 px body text, 8 px gap, wrapping; external pills append the `ArrowOut`
   mark and visually hidden "(opens in new tab)" and use `target="_blank" rel="noreferrer"`.
 - Option / starter cards: `<button>` full width, min-height 48 px touch / 40 px pointer,
-  padding 12 × 14, border 1 px `--rule-strong`, radius 6 px, 8 px gap; title 17 px `--ink`
+  padding 12 × 14, border 1 px `--rule-strong` plus background `--ink` at 4 % (hairline and
+  tone, the constitution's framed-device rule), radius 6 px, 8 px gap; title 17 px `--ink`
   (two lines max), summary 13 px `--ink-soft` single line with ellipsis, trailing "→"
   `aria-hidden`. Disabled cards: `--ink-mute` text, no arrow, `aria-disabled="true"`.
 - Contact block: tone block, one site line + `<a href="mailto:…">` from `site.email`.

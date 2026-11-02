@@ -20,7 +20,7 @@ variable leaves the code in place.
 | Development (`.env.development`, committed) | `on` | `standin` | `1x00000000000000000000AA` (Cloudflare test key) | — |
 | Developer override (`.env.local`, ignored) | any | `https://api.jasongrant.me` | real key | optional, to test arming |
 | CI gate jobs (`quality.yml`) | `on` | `standin` | test key | — |
-| CI bundle-check job | `off`, then `private` | `https://api.jasongrant.me` | test key | `ci-placeholder` for the `private` build |
+| CI bundle-check job | `off`, then `private` | `https://api.jasongrant.me` | test key | `ci-placeholder-secret-for-private-builds` for the `private` build |
 | Vercel Preview (chosen branches) | `on` (or `private`) | `https://api.jasongrant.me` | real key | set if `private` |
 | Vercel Production, before launch | `private` | `https://api.jasongrant.me` | real key | long random value |
 | Vercel Production, launch | `on` | same | same | may stay set |
@@ -78,11 +78,15 @@ rule.
 - New `bundle-check` job: `npm ci`; build with `off` and run the check; remove `.next`; build
   with `private` (placeholder secret) and run the check. Runs on `ubuntu-latest` (no browser
   needed).
-- `scripts/axe-check.mjs` gains open-state URLs on the home page via the stand-in picker:
-  `/?ask=empty&open=1`, `/?ask=answer-3&open=1`, `/?ask=options&open=1`,
-  `/?ask=deflect&open=1`, `/?ask=too-long&open=1`, `/?ask=countdown&open=1`,
-  `/?ask=capped-health&open=1`, `/?ask=bot-interactive&open=1`, plus one sheet variant
-  `/?ask=answer-3&open=1&container=sheet`.
+- `scripts/axe-check.mjs` gains one open-state URL on the home page per stand-in scenario in
+  data-model.md §9, each as `/?ask=<id>&open=1`, except the two timing-only scenarios
+  (`slow-health`, `no-meta`): `empty`, `answer-1`, `answer-3`, `options`, `deflect`, `none`,
+  `correction-text`, `correction-options`, `long`, `error-event`, `drop`, `too-long`,
+  `not-text`, `address-limit`, `countdown`, `turn-limit`, `session-closed`, `session-expired`,
+  `capped-health`, `down-health`, `capped-session`, `unavailable-chat`, `old-version`,
+  `voice-on`, `bot-pass`, `bot-fail`, `bot-interactive`; plus two sheet variants,
+  `/?ask=answer-3&open=1&container=sheet` and `/?ask=options&open=1&container=sheet`. That is
+  every state of spec FR-030 (29 URLs), which is what FR-053 requires.
 - Lighthouse URL lists are unchanged (the bar is on every measured page already).
 
 ## Secret hygiene (SC-014)

@@ -272,7 +272,7 @@ page                         page                             page              
 │                                    │
 │          [↓ JUMP TO LATEST]        │ ← 36 px pill, appears only when not following
 │ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │
-│ (3 QUESTIONS LEFT IN THIS CHAT)    │ ← turn hint, mono 13, only when ≤ 3 remain
+│ (3 QUESTIONS LEFT)                 │ ← turn hint, mono 13, only when ≤ 3 remain
 │ [Ask about my work, how I lead,  ] │ ← textarea 1→5 lines, 17 px, transparent, no border
 │                   (412 LEFT) [SEND]│ ← counter from 80 % of limit; SEND = kbd-style button
 │ Your questions are kept for 30     │ ← notice: body 13 px, --ink-mute (5.0:1), always with
@@ -290,7 +290,7 @@ Measurements:
 | Transcript padding | 16 px sides, 20 px top and bottom |
 | Message gap | 24 px between turns; 8 px between eyebrow and body |
 | Sources pill | 32 px tall, 10 px side padding, hairline border, radius 5 px, body 13 px |
-| Option / starter card | full width, min 48 px (touch) / 40 px (pointer), padding 12 × 14, border `--rule-strong`, radius 6 px, 8 px gap |
+| Option / starter card | full width, min 48 px (touch) / 40 px (pointer), padding 12 × 14, border `--rule-strong` + tone `--ink` @ 4 %, radius 6 px, 8 px gap |
 | Composer | min 56 px; textarea grows to 5 lines; Send 36 × 28 px kbd button (44 px hit area on touch) |
 | Jump to latest | 36 px pill, centred, 12 px above the composer rule |
 | Bot-check surface | full inner width × 65 px challenge, 12 px padding, overlays the transcript bottom (see 4.3) |
@@ -572,7 +572,7 @@ Failed (`bot_check_failed`):
 │  backlog nobody owned. The first   │
 │                                    │
 │ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │
-│ (2 QUESTIONS LEFT IN THIS CHAT)    │  ← the turn is spent
+│ (2 QUESTIONS LEFT)                 │  ← the turn is spent
 │ [Ask a follow-up                 ] │
 │                             [SEND] │
 ```
@@ -663,8 +663,8 @@ Rejected by the API (a code block or data URL slipped through):
 │                                    │
 │ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │
 │ ░░ That's the end of this          │  ← site line at turns_left 0, or error.message on
-│ ░░ conversation. If you'd like to  │    `turn_limit` / `session_closed`
-│ ░░ keep talking:                   │
+│ ░░ conversation.                   │    `turn_limit` / `session_closed`
+│ ░░ You can reach me directly:      │  ← contact block (FR-035)
 │ ░░ [hello@jasongrant.me]           │
 │                                    │
 └────────────────────────────────────┘

@@ -66,8 +66,8 @@ the API again: ended block = site line "That's the end of this conversation." + 
 
 ## Turn hint and counter
 
-- Hint above the composer when `turnsLeft ≤ 3`: "3 questions left in this conversation",
-  "2 questions left…", "1 question left…". Announce at 1 and 0 only.
+- Hint above the composer when `turnsLeft ≤ 3`: "3 questions left", "2 questions left",
+  "1 question left". Announce at 1 and 0 only.
 - Counter from 80 % of `inputLimit`: "N left" (mono, `--ink-mute`); at or over: "N over" in the
   error tone, Send disabled, notice line replaced by "Keep it under {limit} characters."
 

@@ -59,7 +59,7 @@ npx biome check .                                  # 2. Biome: no errors
 NEXT_PUBLIC_ASK_JASON=off npm run build            # 3a. off build
 node scripts/check-ask-jason-bundle.mjs off        #     → 0 markers anywhere
 rm -rf .next
-NEXT_PUBLIC_ASK_JASON=private ASK_JASON_PREVIEW_SECRET=ci-placeholder-secret-32chars npm run build
+NEXT_PUBLIC_ASK_JASON=private ASK_JASON_PREVIEW_SECRET=ci-placeholder-secret-for-private-builds npm run build
 node scripts/check-ask-jason-bundle.mjs private    # 3b. → 0 markers in HTML / first-load scripts
 rm -rf .next
 NEXT_PUBLIC_ASK_JASON=on NEXT_PUBLIC_ASK_JASON_API=standin npm run build   # 3c. the gate build
@@ -71,7 +71,7 @@ npx lhci autorun --config=lighthouserc.mobile.json   # 5. Lighthouse mobile (unc
 npx lhci autorun --config=lighthouserc.desktop.json  # 6. Lighthouse desktop
 ```
 
-Gate targets (constitution v1.3.0, unchanged by this feature):
+Gate targets (the bands are unchanged; the constitution moves to v1.4.0 with research D19):
 
 | Pages | Performance | Accessibility | Best Practices | SEO | CLS |
 |---|---|---|---|---|---|

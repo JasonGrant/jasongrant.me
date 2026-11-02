@@ -89,7 +89,7 @@ until a pause of 1 s in typing, only at the 80 % threshold crossing and at/over 
 | message arrival | 150 ms fade | none |
 | card stagger | 30 ms | none |
 | correction | 200 ms crossfade | instant replace |
-| sheet | 450 ms slide | 100 ms fade |
+| sheet open / close | 320 ms / 240 ms morph (the frame grows from the bar) | 100 ms crossfade |
 
 `useReducedMotion` from `src/lib/motion.ts` is the single source; CSS uses the media query for
 the same cases.

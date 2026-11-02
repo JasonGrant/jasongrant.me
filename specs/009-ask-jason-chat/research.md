@@ -59,7 +59,8 @@ runs after hydration: it reads `location.hash` for `#ask=<key>`, hashes the key 
 `crypto.subtle.digest("SHA-256")`, compares to the inlined digest, stores the key in
 `localStorage["ask-jason.preview-key"]` with a 30-day expiry, and removes the fragment with
 `history.replaceState`. On every load it re-hashes the stored key, so rotating the secret and
-redeploying disarms every browser. `crypto.subtle` needs a secure context, which production,
+redeploying disarms every browser. The spec calls this mechanism the *key check*; the module
+is `keyGate.ts`. `crypto.subtle` needs a secure context, which production,
 previews and `localhost` all are.
 
 **Why a fragment**: browsers never send the fragment to the server, so the key cannot land in
