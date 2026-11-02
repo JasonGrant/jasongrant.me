@@ -11,3 +11,15 @@
     padding: 40px 24px 56px;
   }
 }
+
+/* Room below the last content for the Ask Jason entry bar (mode "on" only), so the
+   footer's last row can scroll clear of it. */
+.withAskBar {
+  padding-bottom: calc(64px + 72px);
+}
+
+@media (max-width: 720px) {
+  .withAskBar {
+    padding-bottom: calc(56px + 72px);
+  }
+}

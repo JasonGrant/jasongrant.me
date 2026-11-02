@@ -1,6 +1,14 @@
 import type { CommandPaletteItem } from "@/types/content";
 import { site } from "./site";
 
+// "Ask Jason" opens the chat widget. The literal comparison lets a production build
+// drop the item with the rest of the widget when the flag is "off"; in "private"
+// mode CommandPalette hides it until the browser holds Jason's preview key.
+const askItem: CommandPaletteItem[] =
+  process.env.NEXT_PUBLIC_ASK_JASON === "on" || process.env.NEXT_PUBLIC_ASK_JASON === "private"
+    ? [{ group: "Meta", label: "Ask Jason", hint: "chat", action: { kind: "open-ask-jason" } }]
+    : [];
+
 export const paletteItems: CommandPaletteItem[] = [
   // Navigate — page-level only. In-page anchor jumps were removed because
   // labels like "Selected work" / "Experience" and "Writing" / "Writing (page)"
@@ -76,6 +84,7 @@ export const paletteItems: CommandPaletteItem[] = [
     hint: "pdf",
     action: { kind: "navigate", href: "/resume.pdf" },
   },
+  ...askItem,
   { group: "Meta", label: "View source", hint: "this page", action: { kind: "view-source" } },
   {
     group: "Meta",
