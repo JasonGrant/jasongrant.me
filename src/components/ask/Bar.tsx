@@ -4,12 +4,19 @@ import { ask } from "@/content/ask";
 import { OPEN_ASK_JASON_EVENT } from "@/lib/keyboard";
 import { useReducedMotion } from "@/lib/motion";
 import classNames from "classnames";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import {
+  type ComponentType,
+  startTransition,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Bar.module.css";
 import { NUDGE_MS, startNudges } from "./nudge";
-import { LazyRoot, loadRoot, rootRequested } from "./rootLoader";
+import { loadRoot, loadedRoot } from "./rootLoader";
 import { startRotation } from "./rotation";
-import { barModeOf, countChars, setAsk, useAsk } from "./store";
+import { barModeOf, countChars, getAsk, setAsk, useAsk } from "./store";
 
 const COUNT_FROM = 0.8;
 
@@ -30,18 +37,31 @@ export default function Bar() {
   const [ghost, setGhost] = useState("");
   const [phone, setPhone] = useState(false);
   const [nudging, setNudging] = useState(false);
-  const [wantRoot, setWantRoot] = useState(rootRequested);
+  // The panel module, held in state once loaded (see rootLoader.ts for why not React.lazy).
+  const [Root, setRoot] = useState<ComponentType | null>(() => loadedRoot()?.default ?? null);
   const bar = useRef<HTMLDivElement>(null);
   const field = useRef<HTMLInputElement>(null);
   const closedButton = useRef<HTMLButtonElement>(null);
   const previousPhase = useRef(phase);
+  // The field is UNCONTROLLED on purpose. A controlled field makes React put the old value back
+  // after every keystroke whose render has not committed yet, and in production builds commits
+  // can be held up for a few milliseconds after the first focus (while the panel chunk loads), so
+  // the first characters typed were lost. An uncontrolled field is never touched by React, so
+  // nothing can eat a keystroke. The store gets every change; the effect below copies changes
+  // made elsewhere (cleared after a send, text restored after a failure, typed in the panel) in.
+  const [initialDraft] = useState(() => getAsk().draft);
 
   const open = phase !== "closed";
   const rotating = mode === "rotating" && !reduced;
 
   const ensureRoot = useCallback(() => {
-    setWantRoot(true);
-    return loadRoot();
+    return loadRoot().then((m) => {
+      // A transition so mounting the panel never competes with the visitor's keystrokes for
+      // priority. (The lost-keystroke bug is fixed by the field being uncontrolled, see above;
+      // this just keeps the mount out of the urgent lane.)
+      startTransition(() => setRoot(() => m.default));
+      return m;
+    });
   }, []);
 
   const markInteracted = useCallback(() => {
@@ -70,6 +90,15 @@ export default function Bar() {
     },
     [ensureRoot],
   );
+
+  // Copy a draft changed elsewhere into the field. It compares against the live store, not the
+  // render's value, so it never overwrites characters typed since that render.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `draft` is the trigger
+  useEffect(() => {
+    const el = field.current;
+    const live = getAsk().draft;
+    if (el && el.value !== live) el.value = live;
+  }, [draft, mode]);
 
   // Phones: one tap target that opens the sheet.
   useEffect(() => {
@@ -137,8 +166,10 @@ export default function Bar() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (over) return;
-    const text = draft.trim();
+    // Read the field itself: the render's `draft` can be a keystroke or two behind.
+    const typed = field.current ? field.current.value : getAsk().draft;
+    if (countChars(typed) > getAsk().inputLimit) return;
+    const text = typed.trim();
     const rect = bar.current ? bar.current.getBoundingClientRect() : null;
     const box = rect
       ? { top: rect.top, left: rect.left, width: rect.width, height: rect.height }
@@ -178,7 +209,7 @@ export default function Bar() {
                 name="ask-jason-bar"
                 aria-label="Ask Jason"
                 placeholder={placeholder}
-                value={draft}
+                defaultValue={initialDraft}
                 autoComplete="off"
                 enterKeyHint="send"
                 readOnly={phone}
@@ -187,10 +218,11 @@ export default function Bar() {
                 onFocus={firstIntent}
                 onPointerEnter={markInteracted}
                 onPointerDown={markInteracted}
-                onChange={(e) => {
+                onInput={(e) => {
                   markInteracted();
-                  if (draft === "") void ensureRoot().then((m) => m.actions.firstKeystroke());
-                  setAsk({ draft: e.target.value, inlineError: null });
+                  if (getAsk().draft === "")
+                    void ensureRoot().then((m) => m.actions.firstKeystroke());
+                  setAsk({ draft: e.currentTarget.value, inlineError: null });
                 }}
               />
               {ghosting ? (
@@ -228,11 +260,7 @@ export default function Bar() {
           </form>
         )}
       </div>
-      {wantRoot ? (
-        <Suspense fallback={null}>
-          <LazyRoot />
-        </Suspense>
-      ) : null}
+      {Root ? <Root /> : null}
     </>
   );
 }

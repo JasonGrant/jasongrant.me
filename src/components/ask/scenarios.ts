@@ -2,9 +2,10 @@
 //
 // Every state in the spec's FR-030 list is reproducible from here, including the
 // ones production cannot produce on demand: capped, address limit, correction,
-// expired session. The stand-in is NOT a source of truth. The disclosure, notice
-// and fixed lines below were copied from the live API's /api/health on 2026-11-01
-// to look right; reply text and sources are invented. Pick a scenario with
+// expired session. The stand-in is NOT a source of truth. The disclosure and notice
+// were copied from the live API's /api/health, and the error messages from the
+// API's fixed table (cortex src/lib/chat/errors.ts), both on 2026-11-01; reply text
+// and sources are invented. Pick a scenario with
 // ?ask=<id>; add &open=1 to open the panel and play it, &fast=1 to skip the
 // waiting, &container=sheet to force the phone container.
 import type { BotCheckMode } from "./chatClient";
@@ -86,10 +87,18 @@ const TEXT = {
     "That one is worth the long version. We replaced three navigation systems with one shell by shipping it behind a flag, moving the lowest-risk surfaces first, and keeping the old routes alive until the numbers said we could stop. The surprising part was how much of the work was deleting things.",
 };
 
-const SESSION_ENDED =
-  "That's the end of this conversation. If you'd like to keep talking, reach out through the contact info on my site.";
-const RESTING =
-  "The chat is resting for now. You can reach me through the contact info on my site.";
+// The API's fixed error messages.
+const MESSAGES = {
+  botCheck: "I couldn't confirm you're a person. Please try again.",
+  closed: "This conversation has ended.",
+  expired: "This conversation has expired. Start a new one.",
+  tooLong: "Please keep questions to 500 characters.",
+  notText: "I can only read plain text questions.",
+  address: "That's all I can take from this connection today.",
+  turnLimit: "That's the end of this conversation.",
+  capped: "The chat is resting for now.",
+  unavailable: "Something went wrong on my side. Please try again later.",
+};
 
 export interface StreamTurn {
   kind: "stream";
@@ -143,7 +152,7 @@ const answer = (sources: Source[], text = TEXT.vertex): StreamTurn => ({
 const turnLimit: HttpErrorTurn = {
   kind: "http",
   status: 409,
-  error: { code: "turn_limit", message: SESSION_ENDED },
+  error: { code: "turn_limit", message: MESSAGES.turnLimit },
 };
 
 export const SCENARIOS: Record<string, Scenario> = {
@@ -214,11 +223,7 @@ export const SCENARIOS: Record<string, Scenario> = {
         mode: "answer",
         text: TEXT.vertex,
         sources: [VERTEX],
-        errorEvent: {
-          code: "unavailable",
-          message:
-            "Something went wrong on my side. You can reach me through the contact info on my site.",
-        },
+        errorEvent: { code: "unavailable", message: MESSAGES.unavailable },
       },
     ],
   },
@@ -240,10 +245,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 400,
-        error: {
-          code: "input_too_long",
-          message: "That's a bit long for me. Keep it under 500 characters and try again.",
-        },
+        error: { code: "input_too_long", message: MESSAGES.tooLong },
       },
     ],
   },
@@ -254,10 +256,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 400,
-        error: {
-          code: "input_not_text",
-          message: "Plain text only, please: no code blocks or pasted files.",
-        },
+        error: { code: "input_not_text", message: MESSAGES.notText },
       },
     ],
   },
@@ -269,11 +268,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 429,
-        error: {
-          code: "address_limit",
-          message:
-            "That's a lot of questions from one place today. Come back tomorrow, or reach me by email.",
-        },
+        error: { code: "address_limit", message: MESSAGES.address },
       },
     ],
   },
@@ -291,7 +286,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 409,
-        error: { code: "session_closed", message: SESSION_ENDED },
+        error: { code: "session_closed", message: MESSAGES.closed },
       },
     ],
   },
@@ -302,7 +297,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 410,
-        error: { code: "session_expired", message: "This conversation timed out." },
+        error: { code: "session_expired", message: MESSAGES.expired },
       },
       answer([VERTEX]),
     ],
@@ -317,7 +312,7 @@ export const SCENARIOS: Record<string, Scenario> = {
   "capped-session": {
     id: "capped-session",
     prompts: [ASK],
-    sessionError: { status: 503, error: { code: "chat_capped", message: RESTING } },
+    sessionError: { status: 503, error: { code: "chat_capped", message: MESSAGES.capped } },
   },
   "unavailable-chat": {
     id: "unavailable-chat",
@@ -326,11 +321,7 @@ export const SCENARIOS: Record<string, Scenario> = {
       {
         kind: "http",
         status: 503,
-        error: {
-          code: "unavailable",
-          message:
-            "Something went wrong on my side. You can reach me through the contact info on my site.",
-        },
+        error: { code: "unavailable", message: MESSAGES.unavailable },
       },
     ],
   },
@@ -354,7 +345,7 @@ export const SCENARIOS: Record<string, Scenario> = {
     botCheck: { kind: "fake", outcome: "fail" },
     sessionError: {
       status: 403,
-      error: { code: "bot_check_failed", message: "Couldn't verify this browser." },
+      error: { code: "bot_check_failed", message: MESSAGES.botCheck },
     },
   },
   "bot-interactive": {

@@ -117,7 +117,17 @@ function unavailable(health: Health): boolean {
   return health.chat !== "ok" || health.build?.api_version !== SUPPORTED_API_VERSION;
 }
 
-function applyHealth(health: Health): void {
+/**
+ * The bot check cannot run without a Turnstile site key. With the widget on and the
+ * key missing the visitor gets the contact block, not a check that can never pass
+ * (spec FR-050).
+ */
+function siteKeyMissing(client: ChatClient): boolean {
+  const mode = client.botCheck;
+  return mode.kind === "turnstile" && !(mode.siteKey ?? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+}
+
+function applyHealth(health: Health, blocked: boolean): void {
   setAsk((s) => {
     const keep = s.terminal?.kind === "ended" || s.terminal?.kind === "address-limit";
     return {
@@ -127,7 +137,7 @@ function applyHealth(health: Health): void {
       inputLimit: health.limits.input_chars,
       terminal: keep
         ? s.terminal
-        : unavailable(health)
+        : blocked || unavailable(health)
           ? { kind: "cta", message: null }
           : s.terminal?.kind === "cta" || s.terminal?.kind === "network-error"
             ? null
@@ -146,7 +156,7 @@ export function ensureHealth(force = false): Promise<void> {
   healthRun = (async () => {
     try {
       const client = await getChatClient();
-      applyHealth(await client.health());
+      applyHealth(await client.health(), siteKeyMissing(client));
     } catch {
       // A failed refresh keeps the last known health; only a first failure is an error state.
       if (!getAsk().health) {

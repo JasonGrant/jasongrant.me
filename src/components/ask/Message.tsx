@@ -105,7 +105,10 @@ export const ReplyView = memo(function ReplyView({
           </span>
         ))}
       </h3>
-      {reply.mode === "answer" ? <SourcesRow sources={reply.sources} /> : null}
+      {/* A reply the API replaced with an error shows no sources: they belonged to text that is gone. */}
+      {reply.mode === "answer" && (reply.status !== "failed" || reply.chunks.length > 0) ? (
+        <SourcesRow sources={reply.sources} />
+      ) : null}
       {reply.status === "thinking" ? (
         <span className={styles.thinking} aria-hidden="true">
           <span />

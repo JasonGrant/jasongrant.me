@@ -21,29 +21,36 @@ transcript to storage (outside the `widget.md` *Must not* list).
 
 ## D2 — Flag gating that strips code when off
 
-**Decision**: `src/lib/askJasonFlag.ts` exports `ASK_JASON_MODE` as `"off" | "private" | "on"`,
-derived only from literal comparisons of `process.env.NEXT_PUBLIC_ASK_JASON` (`=== "on"`,
-`=== "private"`, else `off`). The layouts import one small **client** module,
-`src/components/ask/AskJason.tsx`, whose body is:
+**Decision**: the layouts render `<AskJasonMount />` (`src/components/ask/AskJasonMount.tsx`), an
+**async server component** whose conditions are literal comparisons of
+`process.env.NEXT_PUBLIC_ASK_JASON` and whose imports sit inside the branches:
 
-```ts
-export const AskJason =
-  process.env.NEXT_PUBLIC_ASK_JASON === "on" || process.env.NEXT_PUBLIC_ASK_JASON === "private"
-    ? AskJasonGate            // bar + lazy import("./AskJasonRoot") on first intent
-    : () => null;
+```tsx
+export async function AskJasonMount() {
+  if (process.env.NEXT_PUBLIC_ASK_JASON === "on") {
+    const { default: Bar } = await import("./Bar");
+    return <Bar />;
+  }
+  if (process.env.NEXT_PUBLIC_ASK_JASON === "private") {
+    const { default: AskJasonPrivate } = await import("./AskJasonPrivate");
+    return <AskJasonPrivate />;
+  }
+  return null;
+}
 ```
 
-Webpack's DefinePlugin inlines the public variable and ConstPlugin drops the dead branch at
-parse time, pruning the `import()` and the bar, so an `off` build carries a null component and
-nothing else. Every environment sets the variable explicitly: an **unset** variable is not
-inlined, the branch survives as runtime-dead code, and the chat chunk is emitted (verified with
-webpack 5 in a standalone test; the build check in D16 is the arbiter on the real build).
+Webpack inlines the public variable and its ConstPlugin drops a branch whose condition is a
+literal in the same module, pruning the `import()` with it. In an `off` build neither import is
+reachable and nothing of the widget is in the build. In `private` the server renders only
+`AskJasonPrivate` (the key check), which loads the bar with `React.lazy` after the key matches.
+Every environment sets the variable explicitly: an **unset** variable is not inlined, the branch
+survives as runtime-dead code, and the widget chunk is emitted. The bundle check (D16) is the
+arbiter, and it passes on the real build.
 
-**Caveat**: Next's React Server Components layer collects client references per imported client
-module, not per used export; keeping the gate inside a single tiny client module keeps that
-reference trivial. If the D16 check still finds a leaked chunk, the fallback is an `await
-import()` behind the same literal condition inside the async layout, which removes the client
-reference entirely.
+**Revised during implementation**: the first design put the condition in a client module that
+statically imported the bar. A static import keeps the module in the graph whatever the branch
+does, so only a conditional `import()` inside a literal condition removes it. Moving the gate to a
+server component also keeps the first-load bundle free of a client gate in the `on` build.
 
 **Rejected**: Vercel Flags SDK (server-side evaluation needs dynamic rendering or precomputed
 variants and cannot ship zero code); Edge Config (middleware on a fully static site); the repo's
@@ -270,6 +277,29 @@ rule, not a PR comment. If Jason declines, the task is dropped and the PR record
 level and will record clicks on source pills as `link_click` with the entry title as text, which
 is public information and existing behaviour; option cards are buttons and are not tracked. The
 widget sends nothing else anywhere.
+
+## D21 — The text fields are uncontrolled (found and fixed during implementation)
+
+**Problem**: in production builds, the first characters typed right after focusing the entry bar
+were lost. In a trace, every keystroke ran its handler and rendered, but React did not commit
+those renders until the panel's chunk finished loading about 20 ms after focus; meanwhile React's
+controlled-input restore put the field's old value back after each key, so each handler saw only
+the newest character. It reproduced about half the time when typing instantly after focus, never
+in the dev server (which injects CSS differently), and it also made Enter open an empty panel
+because the submit handler read a stale `draft`. A `React.lazy` boundary and a transition were
+tried first and did not fix it.
+
+**Decision**: the bar's field and the panel's composer are **uncontrolled** (`defaultValue`,
+`onInput`). React never rewrites an uncontrolled field, so a delayed commit cannot eat a
+keystroke. Every change is written to the store as it happens; an effect copies a draft changed
+elsewhere (cleared after a send, restored after a failure, typed in the other field) into the
+field, comparing against the live store so it never overwrites characters typed since the last
+render. Submit reads the field's own value, not the render's copy. Verified 40 of 40 on a
+production build (20 runs each, focusing by Tab and by click, typing a sentence instantly).
+
+**Rejected**: keeping the fields controlled and delaying the chunk load (the window moves, it
+does not close); buffering keystrokes in a ref and replaying them (a controlled field still fights
+the DOM).
 
 ## Sources consulted before the spec
 

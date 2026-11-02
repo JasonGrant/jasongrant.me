@@ -174,9 +174,24 @@ function SheetShell() {
   useLayoutEffect(() => {
     const el = dialog.current;
     if (el && !el.open) el.showModal();
-    lockBodyScroll();
-    return () => unlockBodyScroll();
   }, []);
+
+  // Pin the page behind the sheet only once it has finished opening. Pinning the body
+  // re-lays-out the whole page, and doing that on the first frame of the morph is what
+  // made that frame long on a slow phone. It is released when the sheet unmounts.
+  const locked = useRef(false);
+  useEffect(() => {
+    if (phase === "open" && !locked.current) {
+      lockBodyScroll();
+      locked.current = true;
+    }
+  }, [phase]);
+  useEffect(
+    () => () => {
+      if (locked.current) unlockBodyScroll();
+    },
+    [],
+  );
 
   // Keep the sheet on the visible viewport while the on-screen keyboard is up.
   useEffect(() => {

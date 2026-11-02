@@ -42,7 +42,7 @@ to move between modes (FR-047).
    `armed = true` and mounts the bar (after hydration; the bar is fixed, so nothing reflows); on
    a mismatch or expiry it removes the stored key and does nothing visible.
 4. Rotate: change the secret in Vercel and redeploy; every stored key stops matching.
-5. In `on` the gate is not present; a fragment is ignored (and removed if present). In `off`
+5. In `on` the gate is not present, so a fragment is inert (nothing reads it). In `off`
    nothing reads it.
 
 Exposure accepted: the digest and the gate code are public (the repo is public anyway); they
@@ -86,7 +86,9 @@ rule.
   `capped-health`, `down-health`, `capped-session`, `unavailable-chat`, `old-version`,
   `voice-on`, `bot-pass`, `bot-fail`, `bot-interactive`; plus two sheet variants,
   `/?ask=answer-3&open=1&container=sheet` and `/?ask=options&open=1&container=sheet`. That is
-  every state of spec FR-030 (29 URLs), which is what FR-053 requires.
+  every state of spec FR-030, which is what FR-053 requires. The scripts add `&fast=1` (no
+  waiting) to every scenario but `slow-health`, whose two-second health is the loading state,
+  so the list is 31 URLs: 28 scenarios, two sheet variants and the slow-health URL.
 - Lighthouse URL lists are unchanged (the bar is on every measured page already).
 
 ## Secret hygiene (SC-014)

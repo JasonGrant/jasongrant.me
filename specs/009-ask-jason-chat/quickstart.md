@@ -110,8 +110,11 @@ first-words latency from the Network panel (spec SC-004).
 - **Phone, on hardware** (iOS Safari and Android Chrome): tap the bar → sheet with composer
   focus and keyboard up, header and composer visible; swipe down closes; no page scroll behind
   the sheet; 320 px and 200 % zoom with no horizontal scroll inside the sheet.
-- **Layout shift**: Performance panel, Layout Shifts track empty during open, bot-check
-  appearance (`bot-interactive`), streaming (`long`) and correction, desktop and phone.
+- **Layout shift**: the counted shift is 0 during open, bot-check appearance
+  (`bot-interactive`), streaming (`long`) and correction (`correction-text`), desktop and
+  phone. In the Performance panel the Layout Shifts track shows entries only for the panel's
+  frame during the 320 ms morph, each flagged as following user input (that is the morph, not
+  instability); any entry for a page element, or any unflagged entry, is a bug.
 - **Performance**: no dropped frames during the morph at 6× CPU throttling; Layout count flat
   during a rotation cycle.
 - **Visual**: every state in sketches.md §4 at 360 px (sheet) and in the 400 px panel; the bar

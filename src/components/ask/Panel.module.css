@@ -34,6 +34,7 @@
   left: -1px;
   right: -1px;
   top: calc(var(--ask-vvtop, 0px) + 24px);
+  height: calc(100vh - 24px);
   height: calc(var(--ask-vvh, 100dvh) - 24px);
   border-radius: 10px 10px 0 0;
   touch-action: pan-y;

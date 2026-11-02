@@ -485,6 +485,9 @@ a.pill:focus-visible {
 }
 
 .contact a {
+  display: inline-block;
+  min-height: 24px;
+  line-height: 24px;
   color: var(--accent);
   border-bottom: 1px solid var(--accent-soft);
 }
@@ -553,6 +556,9 @@ a.pill:focus-visible {
 }
 
 .botActions a {
+  display: inline-block;
+  min-height: 24px;
+  line-height: 24px;
   color: var(--accent);
   border-bottom: 1px solid var(--accent-soft);
 }
@@ -566,6 +572,15 @@ a.pill:focus-visible {
   border-radius: 4px;
   font-size: var(--fs-meta);
   color: var(--ink);
+}
+
+/* Touch targets for the mail links; after both link rules so it wins. */
+@media (pointer: coarse) {
+  .contact a,
+  .botActions a {
+    min-height: 44px;
+    line-height: 44px;
+  }
 }
 
 /* ---------- motion ---------- */

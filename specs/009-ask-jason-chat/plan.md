@@ -13,8 +13,8 @@ phones) where replies stream word by word with a "From" row of sources, three-ca
 replies, fixed deflections, in-place corrections, a turn hint and every limit and error state
 from the API contract. The header always carries the API's disclosure sentence.
 
-Technical approach (research.md D1–D20): a client gate module whose dead branches webpack strips,
-so `off` ships nothing and `private` ships only a key check; a build-time SHA-256 of a secret
+Technical approach (research.md D1–D20): an async server mount whose literal conditions let webpack
+strip the dead branches, so `off` ships nothing and `private` ships only a key check; a build-time SHA-256 of a secret
 for Jason's private production check, armed through a URL fragment; a module-level store so the
 conversation survives layout remounts; one `ChatClient` interface with an HTTP implementation
 (fetch plus a hand-rolled SSE reader) and a scripted stand-in that replays every state for
@@ -56,7 +56,7 @@ third-party script.
 **Scale/Scope**: 1 content module; ~36 new files (TypeScript and CSS) under `src/components/ask/`; 2 layout edits,
   1 palette item, 1 action kind, 1 keyboard-event helper, 1 global CSS rule, 1 token; 1 config
   edit (`next.config.mjs` env digest); 1 committed env file; 1 check script; CI: +1 job, +3 env
-  vars on the gate builds, +29 axe URLs (every FR-030 state); constitution v1.4.0; CLAUDE.md → 009
+  vars on the gate builds, +31 axe URLs (every FR-030 state); constitution v1.4.0; CLAUDE.md → 009
 
 ## Constitution Check
 
@@ -133,8 +133,10 @@ src/
 └── components/
     ├── chrome/CommandPalette.tsx          # EDIT — run open-ask-jason; hide the item when unavailable
     └── ask/                               # NEW — everything below
-        ├── AskJason.tsx                   #   client gate: null | bar (+ key gate) ; lazy import of the root
-        ├── AskJasonRoot.tsx               #   panel/sheet host, event listeners, breakpoint switch, focus return
+        ├── AskJasonMount.tsx              #   async server component: literal env branches; import() inside each (D2)
+        ├── AskJasonPrivate.tsx            #   private mode: key check, then React.lazy bar
+        ├── rootLoader.ts                  #   lazy import of AskJasonRoot (first intent)
+        ├── AskJasonRoot.tsx               #   consumes the open request, container switch, stand-in autoplay
         ├── Bar.tsx (+ .module.css)        #   fixed bar: form, field, overlay placeholder, button; rotation + nudge hooks
         ├── Panel.tsx (+ .module.css)      #   <section role=dialog> and <dialog> variants; frame element for the morph
         ├── Header.tsx                     #   h2, disclosure (reserved), Close

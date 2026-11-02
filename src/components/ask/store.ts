@@ -185,7 +185,13 @@ export function uid(): string {
   return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 }
 
-/** Characters the way the API counts them: Unicode code points after trimming. */
+/**
+ * Characters the way the API counts them: Unicode code points after trimming
+ * (cortex src/lib/chat/limits.ts: `Array.from(text.trim()).length`). The API also
+ * rejects, as `input_not_text`, a message with a code fence, a base64 data URL or a
+ * control character other than tab and line breaks. The widget does not pre-check
+ * those: the only error text it may show is the API's own `error.message`.
+ */
 export function countChars(text: string): number {
   return Array.from(text.trim()).length;
 }

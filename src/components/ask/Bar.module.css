@@ -122,11 +122,11 @@
   transition: color 300ms ease, border-color 0.12s ease;
 }
 
-/* A 44 px hit area around the 36 px visible button. */
+/* A 46 px hit area around the 36 px visible button, kept inside the bar's own 46 px interior. */
 .button::after {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -5px;
 }
 
 .button:hover:not(:disabled),

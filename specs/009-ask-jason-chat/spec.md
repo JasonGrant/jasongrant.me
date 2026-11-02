@@ -300,7 +300,9 @@ confirm the layout-shift tooling records no shift.
 1. **Given** the flag on, **When** every gated page is measured, **Then** scores meet the
    constitution bands and differ from the pre-feature run by no more than one point, with CLS 0.
 2. **Given** the input morphing into the panel and back, the bot check appearing, text streaming
-   and a correction arriving, **Then** no element of the page or the panel shifts position; new
+   and a correction arriving, **Then** no element of the page shifts and the browser counts no
+   layout shift (CLS 0); the panel's own frame moving during the morph is the one thing that
+   moves, and the browser marks that movement as caused by the visitor's click or keypress. New
    content appears in reserved or overlaid space, or below existing content.
 4. **Given** the floating input over the bottom of a page, **When** the visitor tabs to a link
    or field near the bottom, **Then** it scrolls into view clear of the input and is never
@@ -360,8 +362,8 @@ confirm the layout-shift tooling records no shift.
 - **Deck routes** (`/deck/…`): no entry point, no chat code.
 - **Preview key expired (30 days) or secret rotated**: the entry point simply does not appear;
   opening the site with the current key arms the browser again.
-- **Key in the URL fragment while the mode is `on`**: ignored and removed; while `off` there is
-  no key check, so the fragment is inert.
+- **Key in the URL fragment while the mode is `on`**: inert, since `on` ships no key check and
+  nothing reads the fragment; while `off` it is inert for the same reason.
 - **Print**: the panel is not printed.
 - **Voice turned on at the API** while this feature is live: no change; the widget shows no voice
   control until a later feature adds it.
@@ -693,8 +695,10 @@ confirm the layout-shift tooling records no shift.
   constitution bands on both Lighthouse profiles, within one point of the pre-feature run,
   with CLS 0 and zero third-party scripts on first load.
 - **SC-003**: The panel shell is visible within 100 ms of activation, and the empty state within
-  500 ms on a mid-tier connection; layout-shift tooling records 0 shifts during open, bot check,
-  streaming and correction.
+  500 ms on a mid-tier connection; the counted layout shift (the browser's CLS, which ignores
+  movement caused by the visitor's own input) is 0 during open, bot check, streaming and
+  correction, and the only elements the layout-shift API ever reports are the panel's frame and
+  what sits inside it.
 - **SC-004**: For 90 % of questions the first words appear within 3 seconds of send (the API's
   own target), with the widget adding at most 200 ms.
 - **SC-005**: The disclosure sentence is visible in the header in 100 % of open states at 320 px

@@ -66,10 +66,14 @@ until a pause of 1 s in typing, only at the 80 % threshold crossing and at/over 
 
 - Every control ≥ 24 × 24 CSS px; on touch: bar, bar button, cards, Send, Stop, Close,
   mail link ≥ 44 px tall.
-- Text contrast ≥ 4.5:1 on `--bg-elev` and on the tone block: `--ink` 15.6:1, `--ink-soft`
-  6.3:1, `--ink-mute` 5.0:1 (verified in tokens.css notes). Placeholder uses `--ink-mute`.
-- Error tone: a warm red at ≥ 4.5:1 on `--bg-elev` (new token `--danger`, value chosen at
-  implementation and checked with axe); never the only cue (text says "over").
+- Text contrast ≥ 4.5:1, measured at implementation (WCAG relative luminance). On `--bg-elev`:
+  `--ink` 13.6:1, `--ink-soft` 6.3:1, `--ink-mute` 5.0:1. On the ink @ 4 % card tone: `--ink`
+  12.4:1, `--ink-soft` 5.8:1, `--ink-mute` 4.6:1. On the ink @ 6 % visitor-message block: `--ink`
+  11.8:1, `--ink-soft` 5.5:1, but `--ink-mute` only **4.4:1, which fails**; so muted text is never
+  placed on that block (its eyebrow sits above it on `--bg-elev`, and the text inside is `--ink`).
+  The placeholder uses `--ink-mute` on `--bg-elev`.
+- Error tone: `--danger` `#ec8a7a`, 7.0:1 on `--bg-elev` and 6.1:1 on the 6 % tone block; never
+  the only cue (the text says "over" or carries a hidden "Error:" prefix).
 - Non-text: focus ring `--accent` 2 px / 2 px offset (≥ 3:1 against `--bg-elev`); card border
   `--rule-strong` is not the only boundary (tone + padding), so 3:1 is not required of it.
 - Disabled Send and disabled cards are exempt from contrast (1.4.3) but keep ≥ 3:1 anyway.

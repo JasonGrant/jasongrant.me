@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { firstKeystroke, sendMessage, setDraft, stop } from "./actions";
 import styles from "./ask.module.css";
-import { countChars, useAsk } from "./store";
+import { countChars, getAsk, useAsk } from "./store";
 
 const COUNT_FROM = 0.8;
 
@@ -28,22 +28,51 @@ export function Composer() {
   const notice = useAsk((s) => s.health?.notice ?? "");
   const healthReady = useAsk((s) => s.healthState === "ok");
   const botCheck = useAsk((s) => s.botCheck);
+  const phase = useAsk((s) => s.phase);
   const inlineError = useAsk((s) => s.inlineError);
   const ref = useRef<HTMLTextAreaElement>(null);
   const [coarse, setCoarse] = useState(false);
+  // Uncontrolled, like the bar's field (see Bar.tsx): React never rewrites the text under the
+  // visitor's fingers. The effect below copies drafts changed elsewhere into the field.
+  const [initialDraft] = useState(() => getAsk().draft);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `draft` is the trigger
+  useLayoutEffect(() => {
+    const el = ref.current;
+    const live = getAsk().draft;
+    if (el && el.value !== live) el.value = live;
+  }, [draft]);
 
   useEffect(() => {
     setCoarse(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
-  // Grow to fit, up to five lines, then scroll. Reads the element, not `draft`; it reruns when the text changes.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: `draft` is the trigger, not an input
+  // Grow to fit, up to five lines, then scroll. It reads the element, not `draft`; it reruns when
+  // the text changes and when the panel settles open. The sheet is a <dialog> that is not open on
+  // the first pass (a closed dialog measures zero), and the panel is still growing out of the bar,
+  // so the first measurement is wrong; measuring again once the phase is "open" corrects it.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `draft` and `phase` are triggers, not inputs
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
     el.style.height = "auto";
     el.style.height = `${el.scrollHeight}px`;
-  }, [draft]);
+  }, [draft, phase]);
+
+  // A wider or narrower panel (rotating a phone, resizing a window) re-wraps the text.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || phase !== "open" || typeof ResizeObserver === "undefined") return;
+    let width = el.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (el.clientWidth === width) return;
+      width = el.clientWidth;
+      el.style.height = "auto";
+      el.style.height = `${el.scrollHeight}px`;
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [phase]);
 
   const used = countChars(draft);
   const over = used > limit;
@@ -53,7 +82,16 @@ export function Composer() {
   const canSend = draft.trim() !== "" && !over && !inFlight && healthReady;
 
   const submit = () => {
-    if (canSend) void sendMessage(draft);
+    // Send what is in the field, not the render's copy of it.
+    const typed = ref.current ? ref.current.value : getAsk().draft;
+    if (
+      typed.trim() !== "" &&
+      countChars(typed) <= getAsk().inputLimit &&
+      !inFlight &&
+      healthReady
+    ) {
+      void sendMessage(typed);
+    }
   };
 
   return (
@@ -72,16 +110,16 @@ export function Composer() {
           id="ask-q"
           className={styles.textarea}
           rows={1}
-          value={draft}
+          defaultValue={initialDraft}
           placeholder={ask.placeholder}
           aria-label="Your question"
           aria-describedby="ask-keys ask-count"
           aria-invalid={over || inlineError ? true : undefined}
           enterKeyHint="send"
           autoComplete="off"
-          onChange={(e) => {
-            if (draft === "") firstKeystroke();
-            setDraft(e.target.value);
+          onInput={(e) => {
+            if (getAsk().draft === "") firstKeystroke();
+            setDraft(e.currentTarget.value);
           }}
           onKeyDown={(e) => {
             if (e.key !== "Enter" || e.shiftKey || e.nativeEvent.isComposing) return;
