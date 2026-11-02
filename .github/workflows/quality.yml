@@ -26,36 +26,50 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - run: npm ci
 
       # DECK_SLUG=ci: the presentation deck's secret path segment is a
       # placeholder in CI so the gate URLs below never carry the real value.
+      # The Ask Jason widget is measured switched on, against its scripted stand-in
+      # (no network, no secrets), so the entry bar is part of every page scored here.
       - run: npm run build
         env:
           DECK_SLUG: ci
+          NEXT_PUBLIC_ASK_JASON: "on"
+          NEXT_PUBLIC_ASK_JASON_API: standin
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
 
       - name: Run Lighthouse CI (${{ matrix.preset }})
         run: npx --yes @lhci/cli@0.14.x autorun --config=./lighthouserc.${{ matrix.preset }}.json
 
   axe:
     name: axe-core WCAG 2.1 AA
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest became Ubuntu 26.04 in October 2026 and Playwright
+    # 1.60 cannot install Chromium's dependencies there. 24.04 keeps the
+    # version-locked Chromium this job depends on. Revisit when Playwright
+    # supports 26.04.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - run: npm ci
 
+      # The Ask Jason widget is measured switched on, against its scripted stand-in
+      # (no network, no secrets), so the entry bar is part of every page scored here.
       - run: npm run build
         env:
           DECK_SLUG: ci
+          NEXT_PUBLIC_ASK_JASON: "on"
+          NEXT_PUBLIC_ASK_JASON_API: standin
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
@@ -71,3 +85,39 @@ jobs:
 
       - name: Run axe-core via Playwright against all routes
         run: node scripts/axe-check.mjs
+
+  # Proves the Ask Jason build flag: with it off the build carries no widget code, no
+  # entry bar and no Turnstile reference; in private mode the public page and its first-load
+  # scripts carry none either (scripts/check-ask-jason-bundle.mjs, constitution v1.4.0).
+  bundle-check:
+    name: Ask Jason bundle (off / private)
+    runs-on: ubuntu-latest
+    env:
+      DECK_SLUG: ci
+      NEXT_PUBLIC_ASK_JASON_API: https://api.jasongrant.me
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build with the widget off and check
+        run: |
+          npm run build
+          node scripts/check-ask-jason-bundle.mjs off
+        env:
+          NEXT_PUBLIC_ASK_JASON: "off"
+
+      - name: Build in private mode and check
+        run: |
+          rm -rf .next
+          npm run build
+          node scripts/check-ask-jason-bundle.mjs private
+        env:
+          NEXT_PUBLIC_ASK_JASON: private
+          ASK_JASON_PREVIEW_SECRET: ci-placeholder-secret-for-private-builds

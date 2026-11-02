@@ -1,0 +1,109 @@
+/* The panel (tablet and desktop) and the sheet (phone) share one frame: a fixed box on
+   the elevated tone with hairline borders, no shadow. Its final geometry is plain CSS;
+   morph.ts animates it from and to the entry bar's rectangle. */
+
+.frame {
+  position: fixed;
+  z-index: 30;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  contain: layout paint;
+  --ask-disclosure-lines: 2;
+}
+
+/* The top, right and bottom borders sit just off screen; only the left edge shows. */
+.panelFrame {
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  width: 401px;
+  max-width: 100vw;
+  border-radius: 0;
+}
+
+.sheetFrame {
+  --ask-disclosure-lines: 3;
+  left: -1px;
+  right: -1px;
+  top: calc(var(--ask-vvtop, 0px) + 24px);
+  height: calc(100vh - 24px);
+  height: calc(var(--ask-vvh, 100dvh) - 24px);
+  border-radius: 10px 10px 0 0;
+  touch-action: pan-y;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ---------- sheet: a native <dialog> in the top layer ---------- */
+
+.sheetDialog {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  background: transparent;
+  color: inherit;
+  overflow: visible;
+}
+
+.sheetDialog::backdrop {
+  background: rgb(10 8 5 / 0.5);
+  animation: scrimIn 200ms ease-out;
+}
+
+.sheetDialog[data-phase="closing"]::backdrop {
+  opacity: 0;
+  transition: opacity 160ms ease-in;
+}
+
+.grabber {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 0;
+  touch-action: none;
+  cursor: grab;
+}
+
+.grabber span {
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--rule-strong);
+}
+
+@keyframes scrimIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheetDialog::backdrop {
+    animation: none;
+  }
+  .sheetDialog[data-phase="closing"]::backdrop {
+    transition: none;
+  }
+}

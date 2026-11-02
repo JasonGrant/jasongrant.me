@@ -1,4 +1,5 @@
 import "@/components/work/replica/replica-tokens.css";
+import { AskJasonMount } from "@/components/ask/AskJasonMount";
 import { BackgroundFX } from "@/components/chrome/BackgroundFX";
 import { ClickTracker } from "@/components/chrome/ClickTracker";
 import { CommandPalette } from "@/components/chrome/CommandPalette";
@@ -6,6 +7,8 @@ import { Footer } from "@/components/chrome/Footer";
 import { LeftRail } from "@/components/chrome/LeftRail";
 import { TopBar } from "@/components/chrome/TopBar";
 import { getStudy } from "@/content/studies";
+import { ASK_JASON_MODE } from "@/lib/askJasonFlag";
+import classNames from "classnames";
 import styles from "./layout.module.css";
 
 // Case-study routes reuse the primary site chrome (TopBar wordmark + ⌘K +
@@ -35,12 +38,18 @@ export default async function WorkStudyLayout({
     <>
       <BackgroundFX />
       <LeftRail sections={sections} />
-      <div className={styles.page}>
+      <div
+        className={classNames(
+          styles.page,
+          ASK_JASON_MODE === "on" && [styles.withAskBar, "ask-reserve"],
+        )}
+      >
         <TopBar />
         <main>{children}</main>
         <Footer />
       </div>
       <CommandPalette />
+      <AskJasonMount />
       <ClickTracker />
     </>
   );

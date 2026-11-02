@@ -56,7 +56,8 @@ export type PaletteAction =
   | { kind: "navigate"; href: string }
   | { kind: "open-external"; href: string }
   | { kind: "copy"; value: string }
-  | { kind: "view-source" };
+  | { kind: "view-source" }
+  | { kind: "open-ask-jason" };
 
 export interface CommandPaletteItem {
   group: "Navigate" | "Work" | "External" | "Meta";

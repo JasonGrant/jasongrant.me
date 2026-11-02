@@ -1,6 +1,46 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 1.3.0 → 1.4.0
+Rationale: MINOR. Adds one named exception to Principle IV, a note to Principle
+  V, and an approved-script note to Stack & Delivery, to admit the "Ask Jason"
+  chat widget (feature 009). The widget is a fixed bottom-centre input that
+  morphs into a docked panel (a modal sheet on phones) and talks to a separate
+  chat API. It needs three things the enumerated exceptions do not cover: fixed
+  overlay surfaces beside the single-column layout, a small amount of motion that
+  runs without a visitor's action (a retyping placeholder and an occasional
+  colour nudge, both bounded and gone under reduced motion), and one third-party
+  script (Cloudflare Turnstile), which the chat API requires for every session.
+  No rule is removed or inverted; every non-widget surface is unchanged, the
+  widget is absent from the deck, and when its build-time flag is off nothing of
+  it ships.
+
+Modified principles:
+  - IV. Design-Engineer Craft — new "Ask Jason widget" exception: flat overlay
+    surfaces; bounded placeholder rotation and nudge (WCAG 2.2.2); a
+    user-initiated bar-to-panel morph of frame geometry only (≤320ms open,
+    ≤240ms close, no overshoot); reduced motion collapses all of it to ≤100ms
+    crossfades; every sitewide ban still holds.
+  - V. Content Discipline — the widget is not a page and changes no IA; its header
+    carries the AI disclosure at all times; it ships behind a build-time flag
+    whose off state ships no widget code.
+Modified sections:
+  - Stack & Delivery Constraints — Cloudflare Turnstile approved for the widget
+    only, loaded after the visitor's first intent, never on first load.
+  - Workflow & Quality Gates — widget gating note: the gate builds run with the
+    flag on, and the off and private builds are checked for leaked widget code.
+
+Added sections: None. Removed sections: None. Removed rules: None.
+
+Templates requiring updates:
+  - ✅ specs/009-ask-jason-chat/* — cite v1.4.0.
+  - ✅ CLAUDE.md — SPECKIT block already points at feature 009.
+  - ✅ Other templates: generic; no edits required.
+
+Deferred / TODO: None.
+==================
+PRIOR REPORT (v1.3.0)
+==================
 Version change: 1.2.6 → 1.3.0
 Rationale: MINOR. Adds one named exception each to Principles II, IV, and V,
   plus a gate note, to admit a single unlisted presentation deck at
@@ -587,6 +627,36 @@ that stage — and only there — the following hold:
 - (e) The exception applies only under `/deck/[secret]`. Everywhere else the
   single-column measure and the "no grid layouts" rule stay in force.
 
+**Named exception — Ask Jason widget** (feature 009): On the pages that carry the
+site chrome (not the deck), the Ask Jason chat widget MAY add a fixed input bar at
+the bottom centre of the viewport and a docked panel (a modal sheet below 768px),
+IF AND ONLY IF all of the following hold:
+
+- (a) *Overlays, not layout*: the bar, panel and sheet are fixed and out of the
+  page flow, shift nothing (CLS 0), and use the flat vocabulary of the rest of the
+  site: elevated tone and 1px hairline borders, no shadows, no gradients. The
+  panel's header shows the AI disclosure at all times.
+- (b) *Bounded unprompted motion*: the bar's placeholder MAY retype a short set of
+  questions and the bar MAY change its border and label colour for a moment, with
+  no movement, scale or shimmer, IF AND ONLY IF: the rotation starts no sooner than
+  2s after load, runs at most three cycles per page view and then stays static; the
+  colour nudge starts no sooner than 20s after load, runs no more than once per 45s
+  and no more than three times per page view, lasts under 600ms, and never runs
+  while the panel is open; both stop for the rest of the page view on the visitor's
+  first focus, hover, press or keystroke, pause while the tab is hidden, never
+  reach assistive technology, and never run under `prefers-reduced-motion: reduce`.
+  Each run lasts under five seconds, which keeps them inside WCAG 2.2.2.
+- (c) *User-initiated morph*: when the visitor sends or opens, the bar's frame MAY
+  travel and grow into the panel (≤320ms) and shrink back on close (≤240ms), with
+  no overshoot or bounce, animating the frame's position and size only while
+  contents crossfade and are never stretched. Under reduced motion the morph is a
+  crossfade of at most 100ms.
+- (d) *Everything else holds*: no scale or bounce on hover, no parallax, nothing
+  animates on scroll, the single-column measure governs every page, and all
+  banned patterns above stay banned outside the widget's own surfaces.
+- (e) The exception applies only to the widget. The deck and every other route are
+  unchanged.
+
 Rationale: The page is judged on the same craft signals that judge a
 portfolio piece. Restraint is the proof. Every banned pattern listed above
 reads as "designed by a designer who needs to prove they can design" and
@@ -678,6 +748,13 @@ page-count rule, IF AND ONLY IF all of the following hold:
   only). The *Deliberate publicizing* step does not apply — the deck is never
   listed or indexed.
 
+**Note — Ask Jason widget** (feature 009): the chat widget is not a page. It adds
+no route, appears in no navigation or sitemap, and does not change the
+three-page IA. It speaks as Jason only from his public writing through the chat
+API, discloses that it is an AI in its header at all times, and ships behind a
+build-time flag (`NEXT_PUBLIC_ASK_JASON`: `off`, `private`, `on`) whose `off`
+state ships no widget code, no entry point and no third-party script.
+
 Rationale: The information architecture and content rules are load-bearing
 for the positioning. Adding a portfolio page, an `/about`, or a `/contact`
 dilutes the spike and signals participation in a generic personal-site
@@ -704,6 +781,12 @@ The shipped stack is constrained to support Principles I, II, and IV:
 
 Adding runtime dependencies, new third-party scripts, or new analytics
 providers requires explicit justification against Principles I and II.
+
+Approved exception — Cloudflare Turnstile: the Ask Jason widget's chat API issues a
+session only against a Turnstile token. The script MAY be loaded by the widget
+after the visitor's first intent (focusing the entry bar, tapping it on a phone, or
+choosing the command-palette action), asynchronously, and MUST NOT appear in any
+page's first-load HTML or scripts. It is approved for the widget only.
 
 ## Workflow & Quality Gates
 
@@ -738,6 +821,13 @@ For the unlisted presentation deck (`/deck/[secret]`), gate 4 runs the
 desktop profile only, against the CI placeholder slug, at the Principle II
 deck band (Performance 90+, Accessibility 95+, Best Practices 95+, SEO off,
 CLS 0). Gates 1–3 and 5–8 apply to the deck unchanged.
+
+For the Ask Jason widget, the Lighthouse and axe gate builds run with the widget
+on, so the entry bar is part of every measured page, and a bundle check on the
+`off` and `private` builds MUST find no widget code, entry point or Turnstile
+reference in any page's HTML or first-load scripts (`off`: anywhere in the build
+output). Scores on the core pages MUST stay within one point of the pre-widget
+run.
 
 If a Lighthouse score drops below 95 on any category, the change MUST NOT
 ship. Either fix the regression or revert. Negotiating the gate downward
@@ -783,4 +873,4 @@ the audit.
 context, refer to `CLAUDE.md` and the active rebuild plan referenced from
 it. Those documents MUST defer to this constitution where they overlap.
 
-**Version**: 1.3.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-09-12
+**Version**: 1.4.0 | **Ratified**: 2026-05-11 | **Last Amended**: 2026-11-02

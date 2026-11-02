@@ -2,7 +2,8 @@
 
 import { paletteItems } from "@/content/palette";
 import { trackPaletteAction } from "@/lib/analytics";
-import { CMDK_OPEN_EVENT, useEscape, useGlobalCmdK } from "@/lib/keyboard";
+import { useAskArmed } from "@/lib/askArmed";
+import { CMDK_OPEN_EVENT, dispatchOpenAskJason, useEscape, useGlobalCmdK } from "@/lib/keyboard";
 import type { CommandPaletteItem, PaletteAction } from "@/types/content";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
@@ -34,6 +35,9 @@ function runAction(action: PaletteAction, router: ReturnType<typeof useRouter>) 
     case "view-source":
       window.open(`view-source:${window.location.href}`, "_blank");
       return;
+    case "open-ask-jason":
+      dispatchOpenAskJason();
+      return;
   }
 }
 
@@ -44,6 +48,7 @@ export function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<Element | null>(null);
   const router = useRouter();
+  const askArmed = useAskArmed();
 
   const toggle = useCallback(() => setOpen((v) => !v), []);
   const close = useCallback(() => setOpen(false), []);
@@ -124,11 +129,11 @@ export function CommandPalette() {
 
   const filtered = useMemo<CommandPaletteItem[]>(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return paletteItems;
-    return paletteItems.filter((it) =>
-      `${it.label} ${it.group} ${it.hint}`.toLowerCase().includes(q),
-    );
-  }, [query]);
+    // "Ask Jason" appears only where the widget is available in this browser.
+    const items = paletteItems.filter((it) => it.action.kind !== "open-ask-jason" || askArmed);
+    if (!q) return items;
+    return items.filter((it) => `${it.label} ${it.group} ${it.hint}`.toLowerCase().includes(q));
+  }, [query, askArmed]);
 
   const run = useCallback(
     (item: CommandPaletteItem) => {
