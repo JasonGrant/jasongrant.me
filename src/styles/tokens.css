@@ -20,6 +20,10 @@
   --accent-strong: #7ddada; /* oklch(0.84 0.10 195) */
   --accent-soft: #445757;
 
+  /* Error tone for the Ask Jason widget (counter overage, inline errors). Never the only
+     cue: the text always says what is wrong. 7.0:1 on --bg-elev, 6.1:1 on the ink@6% tone block. */
+  --danger: #ec8a7a;
+
   /* Type stack — references next/font/google CSS variables set in src/lib/fonts.ts */
   --font-display: var(--font-petrona, "Times New Roman", serif);
   --font-body: var(--font-funnel-sans, system-ui, sans-serif);

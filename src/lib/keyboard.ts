@@ -4,6 +4,12 @@ import { useEffect } from "react";
 
 export const CMDK_OPEN_EVENT = "open-cmdk";
 
+export const OPEN_ASK_JASON_EVENT = "open-ask-jason";
+
+export function dispatchOpenAskJason(): void {
+  window.dispatchEvent(new CustomEvent(OPEN_ASK_JASON_EVENT));
+}
+
 export function dispatchOpenCmdK(): void {
   window.dispatchEvent(new CustomEvent(CMDK_OPEN_EVENT));
 }

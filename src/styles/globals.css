@@ -25,6 +25,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Pages that carry the Ask Jason entry bar (mode "on") reserve room below their last
+   content (see the layouts' .withAskBar), and a focused control near the bottom scrolls
+   clear of the fixed bar (WCAG 2.2 SC 2.4.11). :has() is absent in Firefox below 121;
+   there the reserved padding alone still keeps the footer reachable. */
+html:has(.ask-reserve) {
+  scroll-padding-bottom: 96px;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
