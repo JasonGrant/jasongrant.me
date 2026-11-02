@@ -167,10 +167,10 @@ preview secret), T047 (API allowlist and Turnstile hostnames), T056 (VoiceOver p
 
 ## Phase 9: Polish & Cross-Cutting Concerns
 
-- [ ] T063 [P] Visual pass against sketches.md §1–§4 at 360 px (sheet) and the 400 px panel, every state, plus the bar on every chrome page at four widths; adjust spacing/tone to the measurements table in sketches.md §3
+- [X] T063 [P] Visual pass against sketches.md §1–§4 at 360 px (sheet) and the 400 px panel, every state, plus the bar on every chrome page at four widths; adjust spacing/tone to the measurements table in sketches.md §3
 - [ ] T064 **Jason-gated**: constitution v1.4.0 sign-off (or revert T001 to a PR note if declined), final copy for `src/content/ask.ts`, and the PR record per quickstart.md (scores, axe, bundle-check lines, latency from the preview, env names); update the spec's Clarifications if anything changed
 - [ ] T065 [P] Live end-to-end on the preview once T047 lands: starter, typed follow-up, options question, salary deflection, turn hint countdown; first-words latency from the Network panel recorded (spec SC-004; quickstart.md §Verification against the live API)
-- [ ] T066 Code read for view-source quality: comments explain the gate, the key flow, the pacer and the morph in plain words; no leftover scenario or picker references outside the `standin` literal; Biome and `tsc` clean; `git grep -n "TODO" src/components/ask` empty
+- [X] T066 Code read for view-source quality: comments explain the gate, the key flow, the pacer and the morph in plain words; no leftover scenario or picker references outside the `standin` literal; Biome and `tsc` clean; `git grep -n "TODO" src/components/ask` empty
 
 ---
 

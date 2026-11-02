@@ -190,7 +190,7 @@ export function completeFakeChallenge(): void {
 
 async function acquireToken(client: ChatClient): Promise<string> {
   const mode = client.botCheck;
-  if (mode.kind === "skip") return "standin-token";
+  if (mode.kind === "skip") return "";
   if (mode.kind === "fake") {
     setAsk({ botCheck: "checking", botCheckMessage: null });
     if (mode.outcome === "interactive") {
